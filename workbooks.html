@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workbooks - Microsoft Sentinel Guide</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            Sentinel Guide
+        </a>
+        <ul class="navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="architecture.html">Architecture</a></li>
+            <li><a href="data-connectors.html">Connectors</a></li>
+            <li><a href="analytics-rules.html">Analytics</a></li>
+            <li><a href="kql-library.html">KQL Library</a></li>
+            <li><a href="automation.html">Automation</a></li>
+        </ul>
+        <button class="mobile-toggle" aria-label="Toggle menu">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+    </nav>
+
+    <aside class="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Getting Started</div>
+            <ul class="sidebar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Detection & Analytics</div>
+            <ul class="sidebar-nav">
+                <li><a href="analytics-rules.html">Analytics Rules</a></li>
+                <li><a href="kql-library.html">KQL Library</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Investigation & Response</div>
+            <ul class="sidebar-nav">
+                <li><a href="incidents.html">Incidents</a></li>
+                <li><a href="automation.html">Automation & SOAR</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Intelligence & Analytics</div>
+            <ul class="sidebar-nav">
+                <li><a href="workbooks.html" class="active">Workbooks</a></li>
+                <li><a href="threat-intelligence.html">Threat Intelligence</a></li>
+                <li><a href="ueba.html">UEBA</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Management</div>
+            <ul class="sidebar-nav">
+                <li><a href="content-hub.html">Content Hub</a></li>
+                <li><a href="costs.html">Pricing & Costs</a></li>
+                <li><a href="best-practices.html">Best Practices</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="content-container">
+            <h1>Workbooks & Dashboards</h1>
+            <p>Create powerful visualizations and interactive dashboards for security monitoring, threat hunting, and executive reporting using Azure Workbooks.</p>
+
+            <div class="toc">
+                <div class="toc-title">On This Page</div>
+                <ul class="toc-list">
+                    <li><a href="#overview">Workbook Overview</a></li>
+                    <li><a href="#builtin">Built-in Workbooks</a></li>
+                    <li><a href="#custom">Creating Custom Workbooks</a></li>
+                    <li><a href="#visualizations">Visualization Types</a></li>
+                    <li><a href="#templates">Common Templates</a></li>
+                </ul>
+            </div>
+
+            <h2 id="overview">Workbook Overview</h2>
+            <p>Workbooks combine KQL queries, text, parameters, and visualizations into interactive reports that can be shared across your organization.</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-title">📊 SOC Operations</div>
+                    <div class="card-body">Incident metrics, analyst performance, SLA tracking, queue health</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🔍 Threat Hunting</div>
+                    <div class="card-body">Interactive investigation, drill-down analysis, hypothesis testing</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">📈 Executive Reporting</div>
+                    <div class="card-body">High-level KPIs, trend analysis, compliance status</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">⚙️ Health Monitoring</div>
+                    <div class="card-body">Data ingestion, connector status, cost analysis</div>
+                </div>
+            </div>
+
+            <h2 id="builtin">Built-in Workbooks</h2>
+            <p>Microsoft Sentinel includes numerous pre-built workbooks available through Content Hub.</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Workbook</th>
+                            <th>Purpose</th>
+                            <th>Key Metrics</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Security Operations Efficiency</strong></td>
+                            <td>SOC performance tracking</td>
+                            <td>MTTR, MTTA, incidents by analyst</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Azure AD Sign-in Logs</strong></td>
+                            <td>Identity monitoring</td>
+                            <td>Sign-in trends, failures, MFA usage</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Microsoft Defender for Endpoint</strong></td>
+                            <td>Endpoint security</td>
+                            <td>Alerts, vulnerabilities, device health</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Collection Health</strong></td>
+                            <td>Ingestion monitoring</td>
+                            <td>Volume by table, anomalies, gaps</td>
+                        </tr>
+                        <tr>
+                            <td><strong>MITRE ATT&CK Coverage</strong></td>
+                            <td>Detection coverage</td>
+                            <td>Techniques covered, gaps</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 id="custom">Creating Custom Workbooks</h2>
+            <h3>SOC Metrics Dashboard Query</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">KQL - Incident Metrics</span>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="code-content">
+<pre>// Incidents by severity over time
+SecurityIncident
+| where TimeGenerated > ago(30d)
+| summarize Count = count() by Severity, bin(TimeGenerated, 1d)
+| render columnchart with (title="Daily Incidents by Severity")
+
+// MTTR by severity
+SecurityIncident
+| where TimeGenerated > ago(30d)
+| where Status == "Closed"
+| extend MTTR = datetime_diff('hour', ClosedTime, CreatedTime)
+| summarize AvgMTTR = avg(MTTR), MedianMTTR = percentile(MTTR, 50) by Severity
+| render barchart
+
+// Top analysts by closed incidents
+SecurityIncident
+| where TimeGenerated > ago(30d)
+| where Status == "Closed"
+| summarize ClosedCount = count() by Owner.assignedTo
+| top 10 by ClosedCount
+| render piechart</pre>
+                </div>
+            </div>
+
+            <h2 id="visualizations">Visualization Types</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Best For</th>
+                            <th>KQL Render</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Time Chart</td>
+                            <td>Trends over time</td>
+                            <td><code>| render timechart</code></td>
+                        </tr>
+                        <tr>
+                            <td>Bar Chart</td>
+                            <td>Comparisons</td>
+                            <td><code>| render barchart</code></td>
+                        </tr>
+                        <tr>
+                            <td>Pie Chart</td>
+                            <td>Proportions</td>
+                            <td><code>| render piechart</code></td>
+                        </tr>
+                        <tr>
+                            <td>Table</td>
+                            <td>Detailed data</td>
+                            <td><code>| render table</code></td>
+                        </tr>
+                        <tr>
+                            <td>Map</td>
+                            <td>Geographic data</td>
+                            <td>Workbook map visualization</td>
+                        </tr>
+                        <tr>
+                            <td>Tiles</td>
+                            <td>KPIs, counts</td>
+                            <td>Workbook tiles step</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 id="templates">Common Templates</h2>
+            <h3>Executive Summary Tile Queries</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">KQL</span>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="code-content">
+<pre>// Open High/Critical Incidents (Tile)
+SecurityIncident
+| where Status != "Closed"
+| where Severity in ("High", "Critical")
+| count
+
+// Daily Events Ingested (Tile)  
+Usage
+| where TimeGenerated > ago(1d)
+| summarize TotalGB = sum(Quantity) / 1024
+
+// Active Analytics Rules (Tile)
+SentinelHealth
+| where TimeGenerated > ago(1d)
+| where SentinelResourceType == "Analytics Rule"
+| where Status == "Success"
+| distinct SentinelResourceName
+| count</pre>
+                </div>
+            </div>
+
+            <div class="alert alert-info">
+                <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>
+                </svg>
+                <div class="alert-content">
+                    <div class="alert-title">Pro Tip</div>
+                    <p class="alert-text">Use workbook parameters to create interactive filters. Add time range, severity, and entity type parameters to let users customize their view.</p>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="footer-content">
+                    <svg class="footer-icon" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    Microsoft Sentinel Ultimate Guide
+                </div>
+            </footer>
+        </div>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Connectors - Microsoft Sentinel Guide</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            Sentinel Guide
+        </a>
+        <ul class="navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="architecture.html">Architecture</a></li>
+            <li><a href="data-connectors.html" class="active">Connectors</a></li>
+            <li><a href="analytics-rules.html">Analytics</a></li>
+            <li><a href="kql-library.html">KQL Library</a></li>
+            <li><a href="automation.html">Automation</a></li>
+        </ul>
+        <button class="mobile-toggle" aria-label="Toggle menu">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Getting Started</div>
+            <ul class="sidebar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Data Collection</div>
+            <ul class="sidebar-nav">
+                <li><a href="data-connectors.html" class="active">Data Connectors</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Detection & Analytics</div>
+            <ul class="sidebar-nav">
+                <li><a href="analytics-rules.html">Analytics Rules</a></li>
+                <li><a href="connector-rules.html">Connector Rules</a></li>
+                <li><a href="correlation-rules.html">Correlation Rules</a></li>
+                <li><a href="kql-library.html">KQL Library</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Investigation & Response</div>
+            <ul class="sidebar-nav">
+                <li><a href="incidents.html">Incidents</a></li>
+                <li><a href="automation.html">Automation & SOAR</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Intelligence & Analytics</div>
+            <ul class="sidebar-nav">
+                <li><a href="workbooks.html">Workbooks</a></li>
+                <li><a href="threat-intelligence.html">Threat Intelligence</a></li>
+                <li><a href="ueba.html">UEBA</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Management</div>
+            <ul class="sidebar-nav">
+                <li><a href="content-hub.html">Content Hub</a></li>
+                <li><a href="costs.html">Pricing & Costs</a></li>
+                <li><a href="best-practices.html">Best Practices</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-container">
+            <h1>Data Connectors</h1>
+            <p>Data connectors are the foundation of Microsoft Sentinel, enabling ingestion from Microsoft services, Azure resources, third-party solutions, and custom sources. This guide covers connector categories, configuration, DCR-based collection, and troubleshooting.</p>
+
+            <!-- Table of Contents -->
+            <div class="toc">
+                <div class="toc-title">On This Page</div>
+                <ul class="toc-list">
+                    <li><a href="#overview">Connector Overview</a></li>
+                    <li><a href="#microsoft">Microsoft Connectors</a></li>
+                    <li><a href="#azure">Azure Service Connectors</a></li>
+                    <li><a href="#third-party">Third-Party Connectors</a></li>
+                    <li><a href="#custom">Custom Connectors</a></li>
+                    <li><a href="#dcr">Data Collection Rules</a></li>
+                    <li><a href="#ama">AMA vs Legacy Agent</a></li>
+                    <li><a href="#tables">Tables Reference</a></li>
+                    <li><a href="#troubleshooting">Troubleshooting</a></li>
+                </ul>
+            </div>
+
+            <!-- Connector Overview -->
+            <h2 id="overview">Connector Overview</h2>
+            <p>Microsoft Sentinel offers 100+ data connectors across multiple categories. Connectors use different collection methods: native API integration, agent-based collection (AMA), syslog/CEF, and REST API.</p>
+
+            <div class="ascii-diagram">
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                        DATA CONNECTOR ARCHITECTURE                               │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   ┌─────────────────────────────────────────────────────────────────────────┐   │
+│   │                      CONNECTOR CATEGORIES                                │   │
+│   │                                                                          │   │
+│   │  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐      │   │
+│   │  │ MICROSOFT        │  │ AZURE SERVICES   │  │ THIRD-PARTY      │      │   │
+│   │  │ (Native API)     │  │ (Diagnostic)     │  │ (CEF/Syslog/API) │      │   │
+│   │  │                  │  │                  │  │                  │      │   │
+│   │  │ • M365 Defender  │  │ • Azure Activity │  │ • Palo Alto      │      │   │
+│   │  │ • Azure AD       │  │ • Key Vault      │  │ • Fortinet       │      │   │
+│   │  │ • Defender Cloud │  │ • Azure Firewall │  │ • CrowdStrike    │      │   │
+│   │  │ • MDE/MDI/MDO    │  │ • NSG Flow Logs  │  │ • AWS/GCP        │      │   │
+│   │  │ • MCAS           │  │ • App Gateway    │  │ • Cisco          │      │   │
+│   │  │                  │  │ • SQL/Storage    │  │ • Many more...   │      │   │
+│   │  │ FREE INGESTION   │  │                  │  │                  │      │   │
+│   │  │ for most tables  │  │                  │  │                  │      │   │
+│   │  └────────┬─────────┘  └────────┬─────────┘  └────────┬─────────┘      │   │
+│   │           │                     │                     │                │   │
+│   └───────────┼─────────────────────┼─────────────────────┼────────────────┘   │
+│               │                     │                     │                    │
+│               ▼                     ▼                     ▼                    │
+│   ┌─────────────────────────────────────────────────────────────────────────┐   │
+│   │                     COLLECTION METHODS                                   │   │
+│   │                                                                          │   │
+│   │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐    │   │
+│   │  │ Native API  │  │    AMA      │  │ Syslog/CEF  │  │  REST API   │    │   │
+│   │  │             │  │ (Agent)     │  │             │  │             │    │   │
+│   │  │ Direct      │  │ Windows/    │  │ Network     │  │ Custom      │    │   │
+│   │  │ service     │  │ Linux       │  │ devices,    │  │ apps,       │    │   │
+│   │  │ integration │  │ servers     │  │ firewalls   │  │ scripts     │    │   │
+│   │  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘    │   │
+│   │         │                │                │                │            │   │
+│   └─────────┼────────────────┼────────────────┼────────────────┼────────────┘   │
+│             │                │                │                │                │
+│             └────────────────┴───────┬────────┴────────────────┘                │
+│                                      │                                          │
+│                                      ▼                                          │
+│                        ┌─────────────────────────────┐                         │
+│                        │  LOG ANALYTICS WORKSPACE     │                         │
+│                        │                              │                         │
+│                        │  Tables: SecurityEvent,      │                         │
+│                        │  SigninLogs, AuditLogs,      │                         │
+│                        │  DeviceProcessEvents,        │                         │
+│                        │  CommonSecurityLog, etc.     │                         │
+│                        └─────────────────────────────┘                         │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+</pre>
+            </div>
+
+            <!-- Microsoft Connectors -->
+            <h2 id="microsoft">Microsoft Connectors</h2>
+            <p>Microsoft connectors provide deep integration with Microsoft 365 and Azure security products. Many offer free data ingestion for specific tables.</p>
+
+            <div class="alert alert-success">
+                <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                <div class="alert-content">
+                    <div class="alert-title">Free Ingestion Benefit</div>
+                    <p class="alert-text">Many Microsoft security tables (SecurityAlert, SecurityIncident, etc.) are ingested free of charge when using Sentinel with M365 Defender integration.</p>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Connector</th>
+                            <th>Tables Created</th>
+                            <th>License Required</th>
+                            <th>Free Ingestion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Microsoft 365 Defender</strong></td>
+                            <td>DeviceProcessEvents, DeviceNetworkEvents, DeviceFileEvents, DeviceLogonEvents, DeviceRegistryEvents, DeviceImageLoadEvents, DeviceEvents, AlertInfo, AlertEvidence</td>
+                            <td>M365 E5 / E5 Security</td>
+                            <td>✓ Yes (raw device events)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Microsoft Defender for Endpoint</strong></td>
+                            <td>Same as M365 Defender (endpoint subset)</td>
+                            <td>MDE P2 / M365 E5</td>
+                            <td>✓ Yes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Microsoft Defender for Identity</strong></td>
+                            <td>IdentityLogonEvents, IdentityQueryEvents, IdentityDirectoryEvents</td>
+                            <td>MDI / M365 E5</td>
+                            <td>✓ Yes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Microsoft Defender for Office 365</strong></td>
+                            <td>EmailEvents, EmailUrlInfo, EmailAttachmentInfo, EmailPostDeliveryEvents, UrlClickEvents</td>
+                            <td>MDO P2 / M365 E5</td>
+                            <td>✓ Yes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Microsoft Defender for Cloud Apps</strong></td>
+                            <td>CloudAppEvents, McasShadowItReporting</td>
+                            <td>MCAS / M365 E5</td>
+                            <td>✓ Yes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Azure Active Directory</strong></td>
+                            <td>SigninLogs, AuditLogs, AADNonInteractiveUserSignInLogs, AADServicePrincipalSignInLogs, AADManagedIdentitySignInLogs, AADProvisioningLogs</td>
+                            <td>Azure AD P1/P2</td>
+                            <td>✗ Paid</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Microsoft Defender for Cloud</strong></td>
+                            <td>SecurityAlert (from MDfC), SecurityRecommendation</td>
+                            <td>MDfC (various plans)</td>
+                            <td>✓ Alerts free</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Configuring Microsoft 365 Defender Connector</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">Steps</span>
+                    <button class="copy-btn">
+                        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"/></svg>
+                        Copy
+                    </button>
+                </div>
+                <div class="code-content">
+<pre>1. Navigate to: Microsoft Sentinel → Data connectors
+2. Search for "Microsoft 365 Defender"
+3. Click "Open connector page"
+4. Prerequisites:
+   - Global Administrator or Security Administrator role
+   - M365 E5 or E5 Security license
+   - Tenant connected to same Azure AD as Sentinel
+5. Under "Connect incidents & alerts":
+   - Toggle ON "Connect incidents"
+   - Select products to sync (MDE, MDI, MDO, MCAS)
+6. Under "Connect events" (optional for raw data):
+   - Click "Connect events"
+   - Select tables to ingest (DeviceProcessEvents, etc.)
+7. Click "Apply Changes"
+
+Verification KQL:
+DeviceProcessEvents | take 10
+SecurityAlert | where ProviderName == "MDATP" | take 10</pre>
+                </div>
+            </div>
+
+            <!-- Azure Connectors -->
+            <h2 id="azure">Azure Service Connectors</h2>
+            <p>Azure service connectors use diagnostic settings to stream logs from Azure resources to the Log Analytics workspace.</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Connector</th>
+                            <th>Tables Created</th>
+                            <th>Configuration Method</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Azure Activity</strong></td>
+                            <td>AzureActivity</td>
+                            <td>Diagnostic settings (subscription level)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Azure Key Vault</strong></td>
+                            <td>AzureDiagnostics (Category: AuditEvent)</td>
+                            <td>Diagnostic settings per Key Vault</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Azure Firewall</strong></td>
+                            <td>AzureDiagnostics (AzureFirewallApplicationRule, AzureFirewallNetworkRule)</td>
+                            <td>Diagnostic settings per Firewall</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Azure WAF</strong></td>
+                            <td>AzureDiagnostics (ApplicationGatewayFirewallLog)</td>
+                            <td>Diagnostic settings per App Gateway</td>
+                        </tr>
+                        <tr>
+                            <td><strong>NSG Flow Logs</strong></td>
+                            <td>AzureNetworkAnalytics_CL</td>
+                            <td>Network Watcher NSG flow log settings</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Azure Storage</strong></td>
+                            <td>StorageBlobLogs, StorageFileLogs, StorageQueueLogs, StorageTableLogs</td>
+                            <td>Diagnostic settings per storage account</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Configure Azure Activity Connector</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">Azure CLI</span>
+                    <button class="copy-btn">
+                        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"/></svg>
+                        Copy
+                    </button>
+                </div>
+                <div class="code-content">
+<pre># Create diagnostic setting for Azure Activity logs
+az monitor diagnostic-settings subscription create \
+    --name "sentinel-activity-logs" \
+    --subscription "your-subscription-id" \
+    --workspace "/subscriptions/{sub}/resourceGroups/{rg}/providers/Microsoft.OperationalInsights/workspaces/{workspace}" \
+    --logs '[{"category": "Administrative", "enabled": true},
+             {"category": "Security", "enabled": true},
+             {"category": "ServiceHealth", "enabled": true},
+             {"category": "Alert", "enabled": true},
+             {"category": "Recommendation", "enabled": true},
+             {"category": "Policy", "enabled": true},
+             {"category": "Autoscale", "enabled": true},
+             {"category": "ResourceHealth", "enabled": true}]'</pre>
+                </div>
+            </div>
+
+            <!-- Third-Party Connectors -->
+            <h2 id="third-party">Third-Party Connectors</h2>
+            <p>Third-party connectors enable integration with non-Microsoft security products via CEF, Syslog, REST API, or vendor-specific protocols.</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <h3 class="card-title">Firewall/Network</h3>
+                    <p class="card-description">Palo Alto Networks, Fortinet FortiGate, Cisco ASA, Check Point, Juniper, F5 BIG-IP</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3 class="card-title">EDR/XDR</h3>
+                    <p class="card-description">CrowdStrike Falcon, SentinelOne, Carbon Black, Trend Micro, Cybereason</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3 class="card-title">Identity</h3>
+                    <p class="card-description">Okta, Ping Identity, CyberArk, BeyondTrust, Thycotic</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+                    </div>
+                    <h3 class="card-title">Cloud Providers</h3>
+                    <p class="card-description">AWS CloudTrail, GCP Operations, AWS Security Hub, AWS GuardDuty</p>
+                </div>
+            </div>
+
+            <h3>Configure Palo Alto Networks Connector</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">Steps</span>
+                    <button class="copy-btn">
+                        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"/></svg>
+                        Copy
+                    </button>
+                </div>
+                <div class="code-content">
+<pre>OPTION 1: CEF via AMA (Recommended)
+────────────────────────────────────
+1. Deploy Azure Monitor Agent on Linux forwarder VM
+2. Create Data Collection Rule for CEF
+3. Configure Palo Alto to forward logs in CEF format to forwarder
+4. Logs appear in CommonSecurityLog table
+
+Palo Alto Log Forwarding Profile (CEF format):
+- Device → Server Profiles → Syslog
+- Format: CEF
+- Server: your-linux-forwarder-ip
+- Port: 514 (or custom)
+- Facility: Local4 (common)
+
+OPTION 2: Palo Alto Networks CDL (Cloud-Delivered)
+──────────────────────────────────────────────────
+1. Enable Cortex Data Lake license on Palo Alto
+2. Configure CDL connector in Sentinel
+3. Provide Cortex Data Lake credentials
+4. Logs streamed directly via API
+
+Verification KQL:
+CommonSecurityLog
+| where DeviceVendor == "Palo Alto Networks"
+| take 10</pre>
+                </div>
+            </div>
+
+            <!-- Custom Connectors -->
+            <h2 id="custom">Custom Connectors</h2>
+            <p>Custom connectors enable ingestion from any source using various methods: REST API, Logstash, Azure Functions, or direct agent collection.</p>
+
+            <h3>Custom Log via REST API (Data Collector API)</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">PowerShell</span>
+                    <button class="copy-btn">
+                        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"/></svg>
+                        Copy
+                    </button>
+                </div>
+                <div class="code-content">
+<pre># Send custom logs to Log Analytics via Data Collector API
+$WorkspaceId = "your-workspace-id"
+$SharedKey = "your-workspace-primary-key"
+$LogType = "CustomSecurityLog"
+
+$json = @"
+[
+    {
+        "TimeGenerated": "$(Get-Date -Format 'yyyy-MM-ddTHH:mm:ssZ')",
+        "SourceSystem": "CustomApp",
+        "EventType": "SecurityAlert",
+        "Severity": "High",
+        "Description": "Suspicious activity detected",
+        "SourceIP": "10.0.0.50",
+        "DestinationIP": "203.0.113.100",
+        "UserName": "admin"
+    }
+]
+"@
+
+$body = [System.Text.Encoding]::UTF8.GetBytes($json)
+$method = "POST"
+$contentType = "application/json"
+$resource = "/api/logs"
+$rfc1123date = [DateTime]::UtcNow.ToString("r")
+$contentLength = $body.Length
+$signature = Build-Signature -WorkspaceId $WorkspaceId -SharedKey $SharedKey `
+    -Date $rfc1123date -ContentLength $contentLength -Method $method `
+    -ContentType $contentType -Resource $resource
+
+$uri = "https://" + $WorkspaceId + ".ods.opinsights.azure.com" + $resource + "?api-version=2016-04-01"
+$headers = @{
+    "Authorization" = $signature
+    "Log-Type" = $LogType
+    "x-ms-date" = $rfc1123date
+}
+
+Invoke-RestMethod -Uri $uri -Method $method -ContentType $contentType -Headers $headers -Body $body
+
+# Data appears in: CustomSecurityLog_CL table</pre>
+                </div>
+            </div>
+
+            <!-- DCR Section -->
+            <h2 id="dcr">Data Collection Rules (DCR)</h2>
+            <p>Data Collection Rules define how data is collected, transformed, and routed to destinations. DCRs enable filtering, parsing, and cost optimization at ingestion time.</p>
+
+            <div class="ascii-diagram">
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                       DATA COLLECTION RULE ARCHITECTURE                          │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   SOURCE                        DCR                           DESTINATION        │
+│   ──────                        ───                           ───────────       │
+│                                                                                  │
+│   ┌─────────────┐         ┌─────────────────────────────┐   ┌─────────────┐    │
+│   │   Windows   │         │                             │   │  Analytics  │    │
+│   │   Server    │─────────│   ┌─────────────────────┐   │   │   Table     │    │
+│   │   (AMA)     │         │   │    TRANSFORMATION   │   │───│             │    │
+│   └─────────────┘         │   │                     │   │   │ SecurityEvt │    │
+│                           │   │  • Filter events    │   │   │             │    │
+│   ┌─────────────┐         │   │  • Parse fields     │   │   └─────────────┘    │
+│   │   Linux     │─────────│   │  • Drop columns     │   │                      │
+│   │   Server    │         │   │  • Enrich data      │   │   ┌─────────────┐    │
+│   │   (AMA)     │         │   │  • Route to tables  │   │───│   Basic     │    │
+│   └─────────────┘         │   │                     │   │   │   Logs      │    │
+│                           │   └─────────────────────┘   │   │             │    │
+│   ┌─────────────┐         │                             │   │ (Lower cost)│    │
+│   │   CEF/      │─────────│   Benefits:                 │   └─────────────┘    │
+│   │   Syslog    │         │   • Reduce ingestion cost   │                      │
+│   └─────────────┘         │   • Filter noisy events     │   ┌─────────────┐    │
+│                           │   • Transform at edge       │───│  Custom     │    │
+│                           │   • Multi-destination       │   │  Table      │    │
+│                           │                             │   └─────────────┘    │
+│                           └─────────────────────────────┘                      │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+</pre>
+            </div>
+
+            <h3>Create DCR for Windows Security Events (Filtered)</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">JSON (ARM Template)</span>
+                    <button class="copy-btn">
+                        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"/></svg>
+                        Copy
+                    </button>
+                </div>
+                <div class="code-content">
+<pre>{
+    "type": "Microsoft.Insights/dataCollectionRules",
+    "apiVersion": "2022-06-01",
+    "name": "dcr-windows-security-filtered",
+    "location": "eastus",
+    "properties": {
+        "dataCollectionEndpointId": "/subscriptions/{sub}/resourceGroups/{rg}/providers/Microsoft.Insights/dataCollectionEndpoints/{dce}",
+        "streamDeclarations": {
+            "Custom-SecurityEvent": {
+                "columns": [
+                    {"name": "TimeGenerated", "type": "datetime"},
+                    {"name": "EventID", "type": "int"},
+                    {"name": "Computer", "type": "string"},
+                    {"name": "Account", "type": "string"}
+                ]
+            }
+        },
+        "dataSources": {
+            "windowsEventLogs": [
+                {
+                    "name": "securityEvents",
+                    "streams": ["Microsoft-SecurityEvent"],
+                    "xPathQueries": [
+                        "Security!*[System[(EventID=4624 or EventID=4625 or EventID=4720 or EventID=4726 or EventID=4728 or EventID=4732 or EventID=4756 or EventID=1102 or EventID=4688 or EventID=4698 or EventID=7045)]]"
+                    ]
+                }
+            ]
+        },
+        "destinations": {
+            "logAnalytics": [
+                {
+                    "workspaceResourceId": "/subscriptions/{sub}/resourceGroups/{rg}/providers/Microsoft.OperationalInsights/workspaces/{workspace}",
+                    "name": "sentinel-workspace"
+                }
+            ]
+        },
+        "dataFlows": [
+            {
+                "streams": ["Microsoft-SecurityEvent"],
+                "destinations": ["sentinel-workspace"],
+                "transformKql": "source | where EventID in (4624, 4625, 4720, 4726, 4688, 1102, 7045)",
+                "outputStream": "Microsoft-SecurityEvent"
+            }
+        ]
+    }
+}</pre>
+                </div>
+            </div>
+
+            <!-- AMA vs Legacy -->
+            <h2 id="ama">AMA vs Legacy Agent Comparison</h2>
+            <p>Azure Monitor Agent (AMA) replaces the legacy Log Analytics agent (MMA/OMS). New deployments should use AMA exclusively.</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Legacy Agent (MMA)</th>
+                            <th>Azure Monitor Agent (AMA)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Configuration</td>
+                            <td>Workspace-level settings</td>
+                            <td>Data Collection Rules (DCR)</td>
+                        </tr>
+                        <tr>
+                            <td>Multi-homing</td>
+                            <td>Supported but complex</td>
+                            <td>Supported via multiple DCRs</td>
+                        </tr>
+                        <tr>
+                            <td>Filtering at source</td>
+                            <td>Limited XPath only</td>
+                            <td>Full KQL transformations</td>
+                        </tr>
+                        <tr>
+                            <td>Windows Events</td>
+                            <td>SecurityEvent table</td>
+                            <td>SecurityEvent or WindowsEvent table</td>
+                        </tr>
+                        <tr>
+                            <td>Linux Syslog</td>
+                            <td>Syslog table</td>
+                            <td>Syslog table (same)</td>
+                        </tr>
+                        <tr>
+                            <td>CEF/Syslog</td>
+                            <td>Requires forwarder</td>
+                            <td>Direct or via forwarder</td>
+                        </tr>
+                        <tr>
+                            <td>Management</td>
+                            <td>Per-agent config</td>
+                            <td>Centralized via DCR</td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td><span class="tag tag-red">Deprecated Aug 2024</span></td>
+                            <td><span class="tag tag-green">Recommended</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="alert alert-warning">
+                <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+                <div class="alert-content">
+                    <div class="alert-title">Migration Required</div>
+                    <p class="alert-text">The legacy Log Analytics agent (MMA) was deprecated in August 2024. Migrate existing deployments to Azure Monitor Agent (AMA) using the AMA Migration Helper workbook.</p>
+                </div>
+            </div>
+
+            <!-- Tables Reference -->
+            <h2 id="tables">Tables Reference</h2>
+            <p>Understanding which tables are created by each connector is essential for writing effective analytics rules and hunting queries.</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Table Name</th>
+                            <th>Source Connector</th>
+                            <th>Key Fields</th>
+                            <th>Retention</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>SecurityEvent</code></td>
+                            <td>Windows Security Events (AMA)</td>
+                            <td>EventID, Account, Computer, Process</td>
+                            <td>Configurable</td>
+                        </tr>
+                        <tr>
+                            <td><code>SigninLogs</code></td>
+                            <td>Azure AD</td>
+                            <td>UserPrincipalName, IPAddress, Status, Location</td>
+                            <td>Configurable</td>
+                        </tr>
+                        <tr>
+                            <td><code>AuditLogs</code></td>
+                            <td>Azure AD</td>
+                            <td>OperationName, Result, TargetResources</td>
+                            <td>Configurable</td>
+                        </tr>
+                        <tr>
+                            <td><code>DeviceProcessEvents</code></td>
+                            <td>M365 Defender / MDE</td>
+                            <td>DeviceName, FileName, ProcessCommandLine</td>
+                            <td>30 days (free)</td>
+                        </tr>
+                        <tr>
+                            <td><code>DeviceNetworkEvents</code></td>
+                            <td>M365 Defender / MDE</td>
+                            <td>RemoteIP, RemotePort, RemoteUrl</td>
+                            <td>30 days (free)</td>
+                        </tr>
+                        <tr>
+                            <td><code>EmailEvents</code></td>
+                            <td>M365 Defender / MDO</td>
+                            <td>SenderFromAddress, RecipientEmailAddress, Subject</td>
+                            <td>30 days (free)</td>
+                        </tr>
+                        <tr>
+                            <td><code>AzureActivity</code></td>
+                            <td>Azure Activity Logs</td>
+                            <td>OperationName, Caller, ResourceGroup</td>
+                            <td>Configurable</td>
+                        </tr>
+                        <tr>
+                            <td><code>CommonSecurityLog</code></td>
+                            <td>CEF devices (firewalls, etc.)</td>
+                            <td>DeviceVendor, DeviceAction, SourceIP</td>
+                            <td>Configurable</td>
+                        </tr>
+                        <tr>
+                            <td><code>Syslog</code></td>
+                            <td>Linux Syslog via AMA</td>
+                            <td>Facility, SeverityLevel, SyslogMessage</td>
+                            <td>Configurable</td>
+                        </tr>
+                        <tr>
+                            <td><code>SecurityAlert</code></td>
+                            <td>Multiple (Defender products)</td>
+                            <td>AlertName, Severity, Tactics</td>
+                            <td>Free</td>
+                        </tr>
+                        <tr>
+                            <td><code>SecurityIncident</code></td>
+                            <td>Sentinel Incidents</td>
+                            <td>Title, Severity, Status, Owner</td>
+                            <td>Free</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Troubleshooting -->
+            <h2 id="troubleshooting">Troubleshooting Connectors</h2>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        No data appearing in workspace
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>Diagnostic Steps:</strong></p>
+                        <ol>
+                            <li>Check connector status in Sentinel portal (last log received)</li>
+                            <li>Verify agent health: <code>Heartbeat | where TimeGenerated > ago(1h)</code></li>
+                            <li>Check DCR association (for AMA-based connectors)</li>
+                            <li>Verify network connectivity to Azure endpoints</li>
+                            <li>Check Azure Activity for failed diagnostic setting deployments</li>
+                        </ol>
+                        <p><strong>Common causes:</strong> DCR not associated, firewall blocking outbound, missing permissions, agent not installed.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        CEF/Syslog logs not parsing correctly
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>Diagnostic Steps:</strong></p>
+                        <ol>
+                            <li>Verify source is sending in proper CEF format</li>
+                            <li>Check DeviceVendor and DeviceProduct fields in CommonSecurityLog</li>
+                            <li>Test with: <code>CommonSecurityLog | where TimeGenerated > ago(1h) | take 10</code></li>
+                            <li>Verify forwarder rsyslog/syslog-ng configuration</li>
+                        </ol>
+                        <p><strong>Common causes:</strong> Non-standard CEF format, incorrect facility, timezone issues.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        High latency in data ingestion
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>Expected latency by connector type:</strong></p>
+                        <ul>
+                            <li>Microsoft native connectors: 1-5 minutes</li>
+                            <li>Azure diagnostic settings: 2-10 minutes</li>
+                            <li>AMA-based collection: 1-5 minutes</li>
+                            <li>CEF/Syslog via forwarder: 1-3 minutes</li>
+                            <li>REST API custom logs: Near real-time</li>
+                        </ul>
+                        <p><strong>If higher than expected:</strong> Check agent health, network bandwidth, workspace throttling, source timestamps.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Connector Health Query</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">KQL</span>
+                    <button class="copy-btn">
+                        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"/></svg>
+                        Copy
+                    </button>
+                </div>
+                <div class="code-content">
+<pre>// Check data freshness across all tables
+union withsource=TableName *
+| summarize LastRecord = max(TimeGenerated) by TableName
+| extend HoursAgo = datetime_diff('hour', now(), LastRecord)
+| order by HoursAgo desc
+
+// Agent heartbeat check
+Heartbeat
+| summarize LastHeartbeat = max(TimeGenerated) by Computer, OSType
+| extend MinutesSinceHeartbeat = datetime_diff('minute', now(), LastHeartbeat)
+| where MinutesSinceHeartbeat > 15
+| order by MinutesSinceHeartbeat desc
+
+// Ingestion anomaly detection
+let baseline = 
+    union withsource=TableName *
+    | where TimeGenerated between (ago(7d) .. ago(1d))
+    | summarize AvgDailyVolume = count()/6 by TableName;
+let current = 
+    union withsource=TableName *
+    | where TimeGenerated > ago(1d)
+    | summarize CurrentVolume = count() by TableName;
+baseline
+| join current on TableName
+| extend PercentChange = round((CurrentVolume - AvgDailyVolume) / AvgDailyVolume * 100, 2)
+| where abs(PercentChange) > 50
+| project TableName, AvgDailyVolume, CurrentVolume, PercentChange
+| order by abs(PercentChange) desc</pre>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <svg class="footer-icon" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    Microsoft Sentinel Ultimate Guide
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>

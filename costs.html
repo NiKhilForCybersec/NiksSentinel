@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing & Costs - Microsoft Sentinel Guide</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            Sentinel Guide
+        </a>
+        <ul class="navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="architecture.html">Architecture</a></li>
+            <li><a href="analytics-rules.html">Analytics</a></li>
+            <li><a href="automation.html">Automation</a></li>
+        </ul>
+        <button class="mobile-toggle" aria-label="Toggle menu">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+    </nav>
+
+    <aside class="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Getting Started</div>
+            <ul class="sidebar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Detection & Analytics</div>
+            <ul class="sidebar-nav">
+                <li><a href="analytics-rules.html">Analytics Rules</a></li>
+                <li><a href="kql-library.html">KQL Library</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Intelligence & Analytics</div>
+            <ul class="sidebar-nav">
+                <li><a href="workbooks.html">Workbooks</a></li>
+                <li><a href="threat-intelligence.html">Threat Intelligence</a></li>
+                <li><a href="ueba.html">UEBA</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Management</div>
+            <ul class="sidebar-nav">
+                <li><a href="content-hub.html">Content Hub</a></li>
+                <li><a href="costs.html" class="active">Pricing & Costs</a></li>
+                <li><a href="best-practices.html">Best Practices</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="content-container">
+            <h1>Pricing & Cost Optimization</h1>
+            <p>Understand Microsoft Sentinel pricing models and implement strategies to optimize costs while maintaining security coverage.</p>
+
+            <div class="toc">
+                <div class="toc-title">On This Page</div>
+                <ul class="toc-list">
+                    <li><a href="#pricing">Pricing Models</a></li>
+                    <li><a href="#free-data">Free Data Sources</a></li>
+                    <li><a href="#retention">Data Retention</a></li>
+                    <li><a href="#optimization">Cost Optimization</a></li>
+                    <li><a href="#monitoring">Cost Monitoring</a></li>
+                </ul>
+            </div>
+
+            <h2 id="pricing">Pricing Models</h2>
+            <p>Microsoft Sentinel charges for data ingestion into the Log Analytics workspace, with two pricing tiers.</p>
+
+            <div class="ascii-diagram">
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                         SENTINEL PRICING TIERS                                   │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   ┌─────────────────────────────────────────────────────────────────────────┐   │
+│   │                         PAY-AS-YOU-GO                                    │   │
+│   │   ─────────────────────────────────────                                  │   │
+│   │                                                                          │   │
+│   │   • Best for: Variable/unpredictable workloads, &lt;100 GB/day            │   │
+│   │   • Pricing: ~$2.46/GB ingested (varies by region)                      │   │
+│   │   • No commitment required                                               │   │
+│   │   • Scale up/down instantly                                              │   │
+│   │                                                                          │   │
+│   │   COST EXAMPLE:                                                          │   │
+│   │   50 GB/day × 30 days × $2.46 = ~$3,690/month                           │   │
+│   │                                                                          │   │
+│   └─────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                  │
+│   ┌─────────────────────────────────────────────────────────────────────────┐   │
+│   │                      COMMITMENT TIERS                                    │   │
+│   │   ───────────────────────────────────                                    │   │
+│   │                                                                          │   │
+│   │   • Best for: Predictable workloads, &gt;100 GB/day                        │   │
+│   │   • Discount: Up to 65% vs Pay-As-You-Go                                │   │
+│   │   • Tiers: 100, 200, 300, 400, 500, 1000, 2000, 5000 GB/day             │   │
+│   │                                                                          │   │
+│   │   TIER          EFFECTIVE RATE    MONTHLY COST    SAVINGS               │   │
+│   │   ────          ──────────────    ────────────    ───────               │   │
+│   │   100 GB/day    ~$1.96/GB         ~$5,880         20%                   │   │
+│   │   200 GB/day    ~$1.72/GB         ~$10,320        30%                   │   │
+│   │   500 GB/day    ~$1.48/GB         ~$22,200        40%                   │   │
+│   │   1000 GB/day   ~$1.23/GB         ~$36,900        50%                   │   │
+│   │   5000 GB/day   ~$0.86/GB         ~$129,000       65%                   │   │
+│   │                                                                          │   │
+│   └─────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                  │
+│   NOTE: Prices are approximate USD, East US region. Check Azure Calculator.     │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+</pre>
+            </div>
+
+            <h2 id="free-data">Free Data Sources</h2>
+            <p>Several high-value data sources are free to ingest into Sentinel (you only pay for Log Analytics retention beyond 90 days).</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data Source</th>
+                            <th>Table</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Azure Activity Logs</strong></td>
+                            <td>AzureActivity</td>
+                            <td>Control plane operations</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Office 365 Audit Logs</strong></td>
+                            <td>OfficeActivity</td>
+                            <td>User and admin activity</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Azure AD Sign-in Logs</strong></td>
+                            <td>SigninLogs</td>
+                            <td>Identity authentication</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Azure AD Audit Logs</strong></td>
+                            <td>AuditLogs</td>
+                            <td>Directory changes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Microsoft 365 Defender Alerts</strong></td>
+                            <td>SecurityAlert</td>
+                            <td>MDE, MDI, MDO, MCAS</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Microsoft Defender for Cloud Alerts</strong></td>
+                            <td>SecurityAlert</td>
+                            <td>Cloud security alerts</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="alert alert-warning">
+                <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+                <div class="alert-content">
+                    <div class="alert-title">Important Distinction</div>
+                    <p class="alert-text">M365 Defender <strong>alerts</strong> are free. M365 Defender <strong>raw data</strong> (DeviceProcessEvents, EmailEvents, etc.) is billable at standard rates.</p>
+                </div>
+            </div>
+
+            <h2 id="retention">Data Retention</h2>
+            <p>Understanding retention tiers helps optimize long-term storage costs.</p>
+
+            <div class="ascii-diagram">
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                         DATA RETENTION TIERS                                     │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   ┌─────────────────────────────────────────────────────────────────────────┐   │
+│   │  INTERACTIVE RETENTION (Hot)                                             │   │
+│   │  ─────────────────────────────                                           │   │
+│   │  • Default: 90 days (free with Sentinel)                                │   │
+│   │  • Extended: Up to 2 years ($0.10/GB/month)                             │   │
+│   │  • Full query capabilities                                               │   │
+│   │  • Fast performance                                                      │   │
+│   └─────────────────────────────────────────────────────────────────────────┘   │
+│                                        │                                        │
+│                                        ▼                                        │
+│   ┌─────────────────────────────────────────────────────────────────────────┐   │
+│   │  ARCHIVE TIER (Cold)                                                     │   │
+│   │  ───────────────────                                                     │   │
+│   │  • Retention: Up to 7 years                                              │   │
+│   │  • Storage: ~$0.02/GB/month                                              │   │
+│   │  • Search: $0.007/GB scanned                                             │   │
+│   │  • Slower queries, batch jobs                                            │   │
+│   │  • Great for compliance requirements                                     │   │
+│   └─────────────────────────────────────────────────────────────────────────┘   │
+│                                        │                                        │
+│                                        ▼                                        │
+│   ┌─────────────────────────────────────────────────────────────────────────┐   │
+│   │  BASIC LOGS                                                              │   │
+│   │  ──────────                                                              │   │
+│   │  • Ingestion: ~$0.50/GB (vs $2.46 for Analytics)                        │   │
+│   │  • Retention: 8 days (interactive) + archive                            │   │
+│   │  • Limited: No alerts, no scheduled queries                              │   │
+│   │  • Best for: Verbose logs, troubleshooting data                         │   │
+│   └─────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                  │
+│   RECOMMENDED STRATEGY:                                                         │
+│   ─────────────────────                                                         │
+│   Security tables (90 days hot) → Archive (2+ years for compliance)             │
+│   Verbose logs → Basic Logs tier                                                │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+</pre>
+            </div>
+
+            <h2 id="optimization">Cost Optimization Strategies</h2>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        1. Filter at Source
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Configure data connectors to only send relevant events:</p>
+                        <ul>
+                            <li><strong>Windows Events:</strong> Collect only 4624, 4625, 4688, 4720 vs all events</li>
+                            <li><strong>Syslog:</strong> Filter by facility (auth, authpriv) vs all facilities</li>
+                            <li><strong>CEF:</strong> Use DCR transformations to drop verbose fields</li>
+                        </ul>
+                        <p><strong>Savings:</strong> 40-70% reduction in ingestion volume</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        2. Use Data Collection Rules (DCR) Transformations
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Transform data at ingestion time to reduce volume:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">KQL - DCR Transformation</span>
+                                <button class="copy-btn">Copy</button>
+                            </div>
+                            <div class="code-content">
+<pre>// Filter to security events only
+source
+| where EventID in (4624, 4625, 4688, 4720, 4726)
+// Drop unnecessary columns
+| project-away RawData, Message
+// Rename for consistency
+| extend TimeGenerated = TimeCreated</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        3. Use Basic Logs for Verbose Data
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Configure tables for Basic Logs tier (80% cheaper ingestion):</p>
+                        <ul>
+                            <li>ContainerLog (Kubernetes logs)</li>
+                            <li>AppTraces (Application traces)</li>
+                            <li>Custom tables with verbose debug data</li>
+                        </ul>
+                        <p><strong>Trade-off:</strong> 8-day query window, no alert rules</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        4. Right-size Commitment Tier
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Analyze 30-day ingestion patterns before committing:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">KQL</span>
+                                <button class="copy-btn">Copy</button>
+                            </div>
+                            <div class="code-content">
+<pre>Usage
+| where TimeGenerated > ago(30d)
+| summarize DailyGB = sum(Quantity) / 1024 by bin(TimeGenerated, 1d)
+| summarize 
+    AvgDaily = avg(DailyGB),
+    MaxDaily = max(DailyGB),
+    P95Daily = percentile(DailyGB, 95)
+| extend RecommendedTier = case(
+    P95Daily < 100, "Pay-As-You-Go",
+    P95Daily < 200, "100 GB/day",
+    P95Daily < 400, "200 GB/day",
+    "Higher tier needed"
+)</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="monitoring">Cost Monitoring</h2>
+            <p>Track ingestion costs and identify optimization opportunities.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">KQL - Cost Analysis Queries</span>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="code-content">
+<pre>// Daily ingestion by table
+Usage
+| where TimeGenerated > ago(30d)
+| where IsBillable == true
+| summarize GB = sum(Quantity) / 1024 by DataType, bin(TimeGenerated, 1d)
+| render timechart
+
+// Top 10 tables by volume
+Usage
+| where TimeGenerated > ago(7d)
+| where IsBillable == true
+| summarize TotalGB = sum(Quantity) / 1024 by DataType
+| top 10 by TotalGB
+| render barchart
+
+// Estimated monthly cost by table (at $2.46/GB)
+Usage
+| where TimeGenerated > ago(30d)
+| where IsBillable == true
+| summarize GB = sum(Quantity) / 1024 by DataType
+| extend MonthlyCost = GB * 2.46
+| sort by MonthlyCost desc
+| project DataType, GB = round(GB, 2), MonthlyCost = round(MonthlyCost, 2)</pre>
+                </div>
+            </div>
+
+            <div class="alert alert-info">
+                <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>
+                </svg>
+                <div class="alert-content">
+                    <div class="alert-title">Pro Tip</div>
+                    <p class="alert-text">Set up Azure Cost Management alerts at 80% and 100% of budget. Use the Data Collection Health workbook to monitor ingestion anomalies.</p>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="footer-content">
+                    <svg class="footer-icon" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    Microsoft Sentinel Ultimate Guide
+                </div>
+            </footer>
+        </div>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>

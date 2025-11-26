@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UEBA - Microsoft Sentinel Guide</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            Sentinel Guide
+        </a>
+        <ul class="navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="analytics-rules.html">Analytics</a></li>
+            <li><a href="automation.html">Automation</a></li>
+        </ul>
+        <button class="mobile-toggle" aria-label="Toggle menu">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+    </nav>
+
+    <aside class="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Getting Started</div>
+            <ul class="sidebar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Intelligence & Analytics</div>
+            <ul class="sidebar-nav">
+                <li><a href="workbooks.html">Workbooks</a></li>
+                <li><a href="threat-intelligence.html">Threat Intelligence</a></li>
+                <li><a href="ueba.html" class="active">UEBA</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Management</div>
+            <ul class="sidebar-nav">
+                <li><a href="content-hub.html">Content Hub</a></li>
+                <li><a href="costs.html">Pricing & Costs</a></li>
+                <li><a href="best-practices.html">Best Practices</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="content-container">
+            <h1>UEBA - User and Entity Behavior Analytics</h1>
+            <p>Detect insider threats and compromised accounts using machine learning-based behavioral analysis and anomaly detection.</p>
+
+            <div class="toc">
+                <div class="toc-title">On This Page</div>
+                <ul class="toc-list">
+                    <li><a href="#overview">UEBA Overview</a></li>
+                    <li><a href="#entities">Entity Types</a></li>
+                    <li><a href="#anomalies">Anomaly Detection</a></li>
+                    <li><a href="#investigation">Entity Pages</a></li>
+                </ul>
+            </div>
+
+            <h2 id="overview">UEBA Overview</h2>
+            <p>UEBA establishes behavioral baselines for users and entities, then identifies deviations that may indicate compromise or insider threats.</p>
+
+            <div class="ascii-diagram">
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                         UEBA ARCHITECTURE                                        │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   DATA SOURCES              ML ENGINE                    OUTPUT                 │
+│   ────────────              ─────────                    ──────                 │
+│                                                                                  │
+│   ┌─────────────┐          ┌──────────────────┐         ┌─────────────────┐    │
+│   │ Azure AD    │          │                  │         │ Investigation   │    │
+│   │ SigninLogs  │─────────▶│  BASELINE        │────────▶│ Priority Score  │    │
+│   └─────────────┘          │  LEARNING        │         │ (0-10)          │    │
+│                            │                  │         └─────────────────┘    │
+│   ┌─────────────┐          │  • Login times   │                                │
+│   │ MDE Device  │─────────▶│  • Locations     │         ┌─────────────────┐    │
+│   │ Events      │          │  • Applications  │────────▶│ Entity Pages    │    │
+│   └─────────────┘          │  • Peer groups   │         │ with Timeline   │    │
+│                            │  • Data access   │         └─────────────────┘    │
+│   ┌─────────────┐          │                  │                                │
+│   │ HR Data     │─────────▶│  ANOMALY         │         ┌─────────────────┐    │
+│   │ (optional)  │          │  DETECTION       │────────▶│ Anomaly Alerts  │    │
+│   └─────────────┘          │                  │         │ (BehaviorAnalytics)│ │
+│                            └──────────────────┘         └─────────────────┘    │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+</pre>
+            </div>
+
+            <h2 id="entities">Entity Types</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Entity</th>
+                            <th>Baseline Data</th>
+                            <th>Anomaly Examples</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>User</strong></td>
+                            <td>Login times, locations, apps, peers</td>
+                            <td>First access to resource, unusual hour login</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Host</strong></td>
+                            <td>Running processes, network connections</td>
+                            <td>New process, unusual outbound connection</td>
+                        </tr>
+                        <tr>
+                            <td><strong>IP Address</strong></td>
+                            <td>Geographic location, reputation</td>
+                            <td>Connection from new country</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cloud Resource</strong></td>
+                            <td>Access patterns, API calls</td>
+                            <td>Mass deletion, config changes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 id="anomalies">Anomaly Detection Queries</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">KQL - Query Anomalies</span>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="code-content">
+<pre>// Get all anomalies for a user
+BehaviorAnalytics
+| where TimeGenerated > ago(7d)
+| where UserPrincipalName =~ "john.doe@company.com"
+| project TimeGenerated, ActivityType, ActionType, 
+    InvestigationPriority, UsersInsights, DevicesInsights
+
+// High priority users
+BehaviorAnalytics
+| where TimeGenerated > ago(24h)
+| where InvestigationPriority > 7
+| summarize AnomalyCount = count(), MaxPriority = max(InvestigationPriority)
+    by UserPrincipalName
+| sort by MaxPriority desc
+
+// Anomalous first-time activities
+BehaviorAnalytics
+| where TimeGenerated > ago(7d)
+| where ActivityInsights has "FirstTimeUser"
+| project TimeGenerated, UserPrincipalName, ActivityType, SourceIPAddress</pre>
+                </div>
+            </div>
+
+            <h2 id="investigation">Entity Investigation</h2>
+            <p>Entity pages aggregate all activity, alerts, and anomalies for rapid investigation context.</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-title">User Entity Page</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Investigation priority score</li>
+                            <li>Recent anomalies timeline</li>
+                            <li>Group memberships</li>
+                            <li>Related incidents</li>
+                            <li>Sign-in history with risk</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Host Entity Page</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Device risk score</li>
+                            <li>Installed software</li>
+                            <li>Active alerts</li>
+                            <li>Logged-on users</li>
+                            <li>Network connections</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-info">
+                <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>
+                </svg>
+                <div class="alert-content">
+                    <div class="alert-title">Enabling UEBA</div>
+                    <p class="alert-text">UEBA requires enabling in Sentinel Settings → Entity behavior analytics. Allow 2-3 weeks for baseline establishment before anomalies become meaningful.</p>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="footer-content">
+                    <svg class="footer-icon" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    Microsoft Sentinel Ultimate Guide
+                </div>
+            </footer>
+        </div>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>

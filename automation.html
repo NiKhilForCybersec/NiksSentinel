@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automation & SOAR - Microsoft Sentinel Guide</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            Sentinel Guide
+        </a>
+        <ul class="navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="architecture.html">Architecture</a></li>
+            <li><a href="data-connectors.html">Connectors</a></li>
+            <li><a href="analytics-rules.html">Analytics</a></li>
+            <li><a href="kql-library.html">KQL Library</a></li>
+            <li><a href="automation.html" class="active">Automation</a></li>
+        </ul>
+        <button class="mobile-toggle" aria-label="Toggle menu">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Getting Started</div>
+            <ul class="sidebar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Data Collection</div>
+            <ul class="sidebar-nav">
+                <li><a href="data-connectors.html">Data Connectors</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Detection & Analytics</div>
+            <ul class="sidebar-nav">
+                <li><a href="analytics-rules.html">Analytics Rules</a></li>
+                <li><a href="connector-rules.html">Connector Rules</a></li>
+                <li><a href="correlation-rules.html">Correlation Rules</a></li>
+                <li><a href="kql-library.html">KQL Library</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Investigation & Response</div>
+            <ul class="sidebar-nav">
+                <li><a href="incidents.html">Incidents</a></li>
+                <li><a href="automation.html" class="active">Automation & SOAR</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Intelligence & Analytics</div>
+            <ul class="sidebar-nav">
+                <li><a href="workbooks.html">Workbooks</a></li>
+                <li><a href="threat-intelligence.html">Threat Intelligence</a></li>
+                <li><a href="ueba.html">UEBA</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Management</div>
+            <ul class="sidebar-nav">
+                <li><a href="content-hub.html">Content Hub</a></li>
+                <li><a href="costs.html">Pricing & Costs</a></li>
+                <li><a href="best-practices.html">Best Practices</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-container">
+            <h1>Automation & SOAR</h1>
+            <p>Leverage Microsoft Sentinel's native SOAR capabilities to automate incident response, reduce MTTR, and free analysts for high-value work.</p>
+
+            <!-- Table of Contents -->
+            <div class="toc">
+                <div class="toc-title">On This Page</div>
+                <ul class="toc-list">
+                    <li><a href="#overview">Automation Overview</a></li>
+                    <li><a href="#automation-rules">Automation Rules</a></li>
+                    <li><a href="#playbooks">Playbooks (Logic Apps)</a></li>
+                    <li><a href="#common-playbooks">Common Playbook Scenarios</a></li>
+                    <li><a href="#connectors">Logic App Connectors</a></li>
+                    <li><a href="#best-practices">Best Practices</a></li>
+                </ul>
+            </div>
+
+            <!-- Overview -->
+            <h2 id="overview">Automation Overview</h2>
+            <p>Sentinel automation consists of two complementary components: Automation Rules for lightweight orchestration and Playbooks for complex workflows.</p>
+
+            <div class="ascii-diagram">
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────────────────────┐
+│                           SENTINEL AUTOMATION ARCHITECTURE                                   │
+├─────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                              │
+│   TRIGGERS                      AUTOMATION LAYER                    ACTIONS                 │
+│   ────────                      ────────────────                    ───────                 │
+│                                                                                              │
+│   ┌──────────────┐                                                                          │
+│   │   INCIDENT   │                                                                          │
+│   │   CREATED    │──┐                                                                       │
+│   └──────────────┘  │          ┌─────────────────────────────────┐                         │
+│                     │          │      AUTOMATION RULES            │                         │
+│   ┌──────────────┐  │          │  ─────────────────────────────  │                         │
+│   │   INCIDENT   │──┼─────────▶│  • Lightweight, fast execution  │                         │
+│   │   UPDATED    │  │          │  • Run on incident lifecycle    │                         │
+│   └──────────────┘  │          │  • No-code configuration        │                         │
+│                     │          │  • Sequential processing        │                         │
+│   ┌──────────────┐  │          └──────────────┬──────────────────┘                         │
+│   │    ALERT     │──┘                         │                                             │
+│   │   CREATED    │                            │                                             │
+│   └──────────────┘                            ▼                                             │
+│                                                                                              │
+│                               ┌─────────────────────────────────┐                           │
+│   AUTOMATION RULE ACTIONS:    │        PLAYBOOKS                │   PLAYBOOK ACTIONS:      │
+│   ─────────────────────────   │  ─────────────────────────────  │   ──────────────────     │
+│                               │                                 │                           │
+│   • Assign owner              │  • Azure Logic Apps             │   • API calls            │
+│   • Change severity           │  • Complex workflows            │   • Enrich data          │
+│   • Change status             │  • External integrations        │   • Send notifications   │
+│   • Add tags                  │  • Conditional logic            │   • Isolate hosts        │
+│   • Run playbook              │  • Loops and variables          │   • Block IPs/users      │
+│   • Suppress incident         │  • Error handling               │   • Create tickets       │
+│                               │  • Approval workflows           │   • Query databases      │
+│                               │                                 │   • Update systems       │
+│                               └─────────────────────────────────┘                           │
+│                                                                                              │
+│   EXECUTION ORDER:                                                                          │
+│   ────────────────                                                                          │
+│   1. Incident/Alert triggers automation rules (by order priority)                           │
+│   2. Automation rules execute actions sequentially                                          │
+│   3. If "Run Playbook" action → Playbook executes asynchronously                           │
+│   4. Multiple automation rules can match same incident                                      │
+│                                                                                              │
+└─────────────────────────────────────────────────────────────────────────────────────────────┘
+</pre>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Automation Rules</th>
+                            <th>Playbooks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Complexity</strong></td>
+                            <td>Simple, no-code</td>
+                            <td>Complex workflows</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Execution</strong></td>
+                            <td>Synchronous, fast</td>
+                            <td>Asynchronous</td>
+                        </tr>
+                        <tr>
+                            <td><strong>External APIs</strong></td>
+                            <td>No (via playbook only)</td>
+                            <td>Yes (400+ connectors)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cost</strong></td>
+                            <td>Free (included)</td>
+                            <td>Logic Apps pricing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Use Case</strong></td>
+                            <td>Triage, routing, tagging</td>
+                            <td>Enrichment, response, ticketing</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Automation Rules -->
+            <h2 id="automation-rules">Automation Rules</h2>
+            <p>Automation rules provide lightweight, no-code automation for common incident management tasks.</p>
+
+            <h3>Rule Configuration</h3>
+            <div class="ascii-diagram">
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────────────────────┐
+│                           AUTOMATION RULE STRUCTURE                                          │
+├─────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                              │
+│   ┌─────────────────────────────────────────────────────────────────────────────────────┐   │
+│   │  RULE: Auto-assign High Severity to Senior Analyst                                  │   │
+│   ├─────────────────────────────────────────────────────────────────────────────────────┤   │
+│   │                                                                                      │   │
+│   │  TRIGGER:     When incident is created                                              │   │
+│   │                                                                                      │   │
+│   │  CONDITIONS:  ┌─────────────────────────────────────────────────────────────────┐   │   │
+│   │               │  AND                                                             │   │   │
+│   │               │  ├── Severity equals High                                        │   │   │
+│   │               │  ├── Tactics contains Credential Access                          │   │   │
+│   │               │  └── Analytic rule name contains "Brute Force"                   │   │   │
+│   │               └─────────────────────────────────────────────────────────────────┘   │   │
+│   │                                                                                      │   │
+│   │  ACTIONS:     ┌─────────────────────────────────────────────────────────────────┐   │   │
+│   │               │  1. Assign owner: senior.analyst@company.com                     │   │   │
+│   │               │  2. Change status: Active                                        │   │   │
+│   │               │  3. Add tags: ["high-priority", "credential-attack"]             │   │   │
+│   │               │  4. Run playbook: Send-Teams-Notification                        │   │   │
+│   │               └─────────────────────────────────────────────────────────────────┘   │   │
+│   │                                                                                      │   │
+│   │  ORDER:       100 (lower numbers run first)                                         │   │
+│   │  EXPIRATION:  None (or set specific date)                                           │   │
+│   │                                                                                      │   │
+│   └─────────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                              │
+└─────────────────────────────────────────────────────────────────────────────────────────────┘
+</pre>
+            </div>
+
+            <h3>Common Automation Rule Patterns</h3>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        Auto-Close Informational Incidents
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>Trigger:</strong> When incident is created</p>
+                        <p><strong>Condition:</strong> Severity equals Informational</p>
+                        <p><strong>Actions:</strong></p>
+                        <ul>
+                            <li>Change status to Closed</li>
+                            <li>Set classification: Undetermined</li>
+                            <li>Add tag: "auto-closed"</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        Route by MITRE Tactic
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>Trigger:</strong> When incident is created</p>
+                        <p><strong>Condition:</strong> Tactics contains "InitialAccess"</p>
+                        <p><strong>Actions:</strong></p>
+                        <ul>
+                            <li>Assign owner: phishing-team@company.com</li>
+                            <li>Add tag: "initial-access"</li>
+                            <li>Run playbook: Enrich-Email-IOCs</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        Suppress Known False Positives
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>Trigger:</strong> When incident is created</p>
+                        <p><strong>Conditions (OR):</strong></p>
+                        <ul>
+                            <li>Title contains "Scheduled Task" AND Entity host contains "SCCM"</li>
+                            <li>Title contains "PowerShell" AND Entity user contains "svc_"</li>
+                        </ul>
+                        <p><strong>Actions:</strong></p>
+                        <ul>
+                            <li>Change status to Closed</li>
+                            <li>Set classification: BenignPositive</li>
+                            <li>Add tag: "auto-suppressed"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Playbooks -->
+            <h2 id="playbooks">Playbooks (Logic Apps)</h2>
+            <p>Playbooks are Azure Logic Apps triggered by Sentinel to execute complex automated workflows.</p>
+
+            <h3>Playbook Architecture</h3>
+            <div class="ascii-diagram">
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────────────────────┐
+│                           PLAYBOOK WORKFLOW EXAMPLE                                          │
+│                        "Isolate-Compromised-Host"                                            │
+├─────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                              │
+│   ┌──────────────────────────────────────────────────────────────────────────────────────┐  │
+│   │  TRIGGER: Microsoft Sentinel incident                                                 │  │
+│   │  (When Sentinel incident creation rule triggers)                                      │  │
+│   └────────────────────────────────────┬─────────────────────────────────────────────────┘  │
+│                                        │                                                    │
+│                                        ▼                                                    │
+│   ┌──────────────────────────────────────────────────────────────────────────────────────┐  │
+│   │  PARSE: Get entities from incident                                                    │  │
+│   │  Extract: Host entities, IP entities, User entities                                   │  │
+│   └────────────────────────────────────┬─────────────────────────────────────────────────┘  │
+│                                        │                                                    │
+│                                        ▼                                                    │
+│   ┌──────────────────────────────────────────────────────────────────────────────────────┐  │
+│   │  CONDITION: Is severity High or Critical?                                             │  │
+│   └───────────────────┬──────────────────────────────────┬───────────────────────────────┘  │
+│                       │ YES                              │ NO                               │
+│                       ▼                                  ▼                                  │
+│   ┌───────────────────────────────────────┐  ┌───────────────────────────────────────────┐ │
+│   │  FOR EACH: Host entity                 │  │  Add comment: "Low severity -             │ │
+│   │                                        │  │  no automatic isolation"                  │ │
+│   │  ┌──────────────────────────────────┐ │  └───────────────────────────────────────────┘ │
+│   │  │  MDE API: Isolate machine        │ │                                                │
+│   │  │  POST /machines/{id}/isolate     │ │                                                │
+│   │  └──────────────────────────────────┘ │                                                │
+│   │                                        │                                                │
+│   │  ┌──────────────────────────────────┐ │                                                │
+│   │  │  Wait for isolation confirmation │ │                                                │
+│   │  └──────────────────────────────────┘ │                                                │
+│   └───────────────────┬────────────────────┘                                                │
+│                       │                                                                     │
+│                       ▼                                                                     │
+│   ┌──────────────────────────────────────────────────────────────────────────────────────┐  │
+│   │  PARALLEL:                                                                            │  │
+│   │  ┌─────────────────────────┐  ┌─────────────────────────┐  ┌──────────────────────┐  │  │
+│   │  │  Teams: Send message    │  │  ServiceNow: Create     │  │  Sentinel: Add       │  │  │
+│   │  │  to SOC channel         │  │  incident ticket        │  │  comment to incident │  │  │
+│   │  └─────────────────────────┘  └─────────────────────────┘  └──────────────────────┘  │  │
+│   └──────────────────────────────────────────────────────────────────────────────────────┘  │
+│                                                                                              │
+└─────────────────────────────────────────────────────────────────────────────────────────────┘
+</pre>
+            </div>
+
+            <h3>Creating a Playbook</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">ARM Template - Basic Playbook Structure</span>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="code-content">
+<pre>{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "PlaybookName": {
+            "type": "string",
+            "defaultValue": "Enrich-IP-Reputation"
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "2019-05-01",
+            "name": "[parameters('PlaybookName')]",
+            "location": "[resourceGroup().location]",
+            "identity": {
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                    "triggers": {
+                        "Microsoft_Sentinel_incident": {
+                            "type": "ApiConnectionWebhook",
+                            "inputs": {
+                                "body": {
+                                    "callback_url": "@{listCallbackUrl()}"
+                                },
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['azuresentinel']['connectionId']"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "actions": {
+                        "Entities_-_Get_IPs": {
+                            "type": "ApiConnection",
+                            "inputs": {
+                                "body": "@triggerBody()?['object']?['properties']?['relatedEntities']",
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['azuresentinel']['connectionId']"
+                                    }
+                                },
+                                "method": "post",
+                                "path": "/entities/ip"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}</pre>
+                </div>
+            </div>
+
+            <!-- Common Playbooks -->
+            <h2 id="common-playbooks">Common Playbook Scenarios</h2>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-title">🔍 Enrichment</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>IP reputation lookup (VirusTotal, AbuseIPDB)</li>
+                            <li>Hash analysis (VT, Hybrid Analysis)</li>
+                            <li>Domain/URL reputation</li>
+                            <li>User risk score from Identity Protection</li>
+                            <li>GeoIP location enrichment</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">📧 Notification</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Teams channel alert</li>
+                            <li>Email to incident owner</li>
+                            <li>Slack webhook</li>
+                            <li>PagerDuty escalation</li>
+                            <li>SMS for critical incidents</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🛡️ Containment</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Isolate host via MDE</li>
+                            <li>Disable user account</li>
+                            <li>Revoke user sessions</li>
+                            <li>Block IP in firewall</li>
+                            <li>Quarantine email</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🎫 Ticketing</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>ServiceNow incident</li>
+                            <li>Jira ticket creation</li>
+                            <li>Zendesk integration</li>
+                            <li>Azure DevOps work item</li>
+                            <li>Freshservice ticket</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Example: IP Enrichment Playbook</h3>
+            <div class="rule-card">
+                <div class="rule-header">
+                    <h4 class="rule-title">Enrich-IP-VirusTotal</h4>
+                    <div class="rule-meta">
+                        <span class="tag">Enrichment</span>
+                        <span class="tag tag-blue">API</span>
+                    </div>
+                </div>
+                <div class="rule-body">
+                    <div class="rule-section">
+                        <div class="rule-section-title">Workflow Steps</div>
+                        <ol>
+                            <li>Trigger: Sentinel incident created</li>
+                            <li>Parse: Extract IP entities from incident</li>
+                            <li>For each IP:
+                                <ul>
+                                    <li>Call VirusTotal API: GET /ip_addresses/{ip}</li>
+                                    <li>Parse response for malicious votes</li>
+                                    <li>Get reputation score</li>
+                                </ul>
+                            </li>
+                            <li>Update incident: Add comment with findings</li>
+                            <li>Condition: If malicious score > 5:
+                                <ul>
+                                    <li>Add tag "malicious-ip"</li>
+                                    <li>Increase severity</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Example: Block User Playbook</h3>
+            <div class="rule-card">
+                <div class="rule-header">
+                    <h4 class="rule-title">Block-User-AzureAD</h4>
+                    <div class="rule-meta">
+                        <span class="tag tag-red">Response</span>
+                        <span class="tag tag-blue">Azure AD</span>
+                    </div>
+                </div>
+                <div class="rule-body">
+                    <div class="rule-section">
+                        <div class="rule-section-title">Logic App JSON (Key Actions)</div>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">JSON</span>
+                                <button class="copy-btn">Copy</button>
+                            </div>
+                            <div class="code-content">
+<pre>{
+    "Disable_User": {
+        "type": "Http",
+        "inputs": {
+            "method": "PATCH",
+            "uri": "https://graph.microsoft.com/v1.0/users/@{body('Get_User')?['id']}",
+            "headers": {
+                "Authorization": "Bearer @{body('Get_Token')?['access_token']}",
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "accountEnabled": false
+            }
+        }
+    },
+    "Revoke_Sessions": {
+        "type": "Http",
+        "inputs": {
+            "method": "POST",
+            "uri": "https://graph.microsoft.com/v1.0/users/@{body('Get_User')?['id']}/revokeSignInSessions"
+        }
+    },
+    "Add_Incident_Comment": {
+        "type": "ApiConnection",
+        "inputs": {
+            "body": {
+                "incidentArmId": "@triggerBody()?['object']?['id']",
+                "message": "User @{body('Get_User')?['userPrincipalName']} has been disabled and sessions revoked."
+            },
+            "path": "/Incidents/Comment"
+        }
+    }
+}</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Connectors -->
+            <h2 id="connectors">Logic App Connectors</h2>
+            <p>Key connectors for security automation workflows.</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Connector</th>
+                            <th>Use Case</th>
+                            <th>Authentication</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Microsoft Sentinel</strong></td>
+                            <td>Incident operations, entity extraction</td>
+                            <td>Managed Identity</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Microsoft Defender for Endpoint</strong></td>
+                            <td>Isolate/unisolate machines, collect investigation package</td>
+                            <td>App Registration</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Azure AD (Microsoft Graph)</strong></td>
+                            <td>User operations, group management</td>
+                            <td>Managed Identity / App Reg</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Microsoft Teams</strong></td>
+                            <td>Post messages, adaptive cards</td>
+                            <td>User connection</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Office 365 Outlook</strong></td>
+                            <td>Send emails, manage mailboxes</td>
+                            <td>User connection</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ServiceNow</strong></td>
+                            <td>Create incidents, update tickets</td>
+                            <td>Basic auth / OAuth</td>
+                        </tr>
+                        <tr>
+                            <td><strong>HTTP</strong></td>
+                            <td>Custom API calls (VT, MISP, etc.)</td>
+                            <td>API Key in header</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Azure Key Vault</strong></td>
+                            <td>Store API keys securely</td>
+                            <td>Managed Identity</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Best Practices -->
+            <h2 id="best-practices">Best Practices</h2>
+
+            <div class="alert alert-warning">
+                <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+                <div class="alert-content">
+                    <div class="alert-title">Security Considerations</div>
+                    <p class="alert-text">Use Managed Identity over stored credentials. Store API keys in Azure Key Vault. Apply least-privilege RBAC to playbook identities. Test playbooks in non-production first.</p>
+                </div>
+            </div>
+
+            <h3>Playbook Development Guidelines</h3>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        1. Error Handling
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Configure "Run After" settings on each action</li>
+                            <li>Add Scope blocks for try-catch pattern</li>
+                            <li>Log failures to Log Analytics for monitoring</li>
+                            <li>Send alert on playbook failure</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        2. Performance Optimization
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Use parallel branches for independent actions</li>
+                            <li>Limit For Each concurrency to prevent throttling</li>
+                            <li>Cache tokens when making multiple API calls</li>
+                            <li>Avoid unnecessary actions and conditions</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        3. Testing Strategy
+                        <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Create test incidents with known entities</li>
+                            <li>Use "Run with payload" in Logic Apps designer</li>
+                            <li>Start with notification-only, then add response actions</li>
+                            <li>Review run history for each test</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Automation Rule Ordering</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">Recommended Order</span>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="code-content">
+<pre>Order   Rule Name                           Purpose
+─────   ─────────────────────────────────   ───────────────────────────────────
+1       Suppress-Known-FP-Hosts             Close known false positives first
+2       Suppress-Known-FP-Users             Before any assignment
+10      Route-Critical-to-Tier3             Critical gets senior analysts
+20      Route-High-to-Tier2                 High severity routing
+30      Route-by-MITRE-Tactic               Specialized team routing
+100     Default-Assignment                  Catch-all for unmatched
+500     Enrich-All-Incidents                Run enrichment playbook
+1000    Auto-Close-Informational            Clean up low priority last</pre>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <svg class="footer-icon" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    Microsoft Sentinel Ultimate Guide
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>

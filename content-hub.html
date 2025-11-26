@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Hub - Microsoft Sentinel Guide</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            Sentinel Guide
+        </a>
+        <ul class="navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="architecture.html">Architecture</a></li>
+            <li><a href="analytics-rules.html">Analytics</a></li>
+            <li><a href="automation.html">Automation</a></li>
+        </ul>
+        <button class="mobile-toggle" aria-label="Toggle menu">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+    </nav>
+
+    <aside class="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Getting Started</div>
+            <ul class="sidebar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Detection & Analytics</div>
+            <ul class="sidebar-nav">
+                <li><a href="analytics-rules.html">Analytics Rules</a></li>
+                <li><a href="kql-library.html">KQL Library</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Intelligence & Analytics</div>
+            <ul class="sidebar-nav">
+                <li><a href="workbooks.html">Workbooks</a></li>
+                <li><a href="threat-intelligence.html">Threat Intelligence</a></li>
+                <li><a href="ueba.html">UEBA</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Management</div>
+            <ul class="sidebar-nav">
+                <li><a href="content-hub.html" class="active">Content Hub</a></li>
+                <li><a href="costs.html">Pricing & Costs</a></li>
+                <li><a href="best-practices.html">Best Practices</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="content-container">
+            <h1>Content Hub & Solutions</h1>
+            <p>Deploy pre-built security content including data connectors, analytics rules, workbooks, and playbooks from Microsoft and partners.</p>
+
+            <div class="toc">
+                <div class="toc-title">On This Page</div>
+                <ul class="toc-list">
+                    <li><a href="#overview">Content Hub Overview</a></li>
+                    <li><a href="#solutions">Solution Packages</a></li>
+                    <li><a href="#standalone">Standalone Content</a></li>
+                    <li><a href="#repositories">Repository Integration</a></li>
+                    <li><a href="#cicd">CI/CD Deployment</a></li>
+                </ul>
+            </div>
+
+            <h2 id="overview">Content Hub Overview</h2>
+            <p>Content Hub is the centralized marketplace for discovering, deploying, and managing out-of-the-box security content.</p>
+
+            <div class="ascii-diagram">
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                         CONTENT HUB ECOSYSTEM                                    │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   CONTENT SOURCES                                                                │
+│   ───────────────                                                                │
+│                                                                                  │
+│   ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐                 │
+│   │   MICROSOFT     │  │    PARTNERS     │  │   COMMUNITY     │                 │
+│   │                 │  │                 │  │                 │                 │
+│   │ • M365 Defender │  │ • Palo Alto     │  │ • GitHub        │                 │
+│   │ • Azure AD      │  │ • CrowdStrike   │  │ • Custom        │                 │
+│   │ • Windows       │  │ • Okta          │  │   solutions     │                 │
+│   │ • Office 365    │  │ • Cisco         │  │                 │                 │
+│   └─────────────────┘  └─────────────────┘  └─────────────────┘                 │
+│            │                   │                   │                            │
+│            └───────────────────┼───────────────────┘                            │
+│                                ▼                                                 │
+│                     ┌─────────────────────┐                                     │
+│                     │    CONTENT HUB      │                                     │
+│                     │    ────────────     │                                     │
+│                     │                     │                                     │
+│                     │  Browse → Install → │                                     │
+│                     │  Configure → Update │                                     │
+│                     │                     │                                     │
+│                     └──────────┬──────────┘                                     │
+│                                │                                                 │
+│            ┌───────────────────┼───────────────────┐                            │
+│            ▼                   ▼                   ▼                            │
+│   ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐                 │
+│   │ DATA CONNECTORS │  │ ANALYTICS RULES │  │   WORKBOOKS     │                 │
+│   │ Configure data  │  │ Detection logic │  │ Visualization   │                 │
+│   │ ingestion       │  │ for threats     │  │ dashboards      │                 │
+│   └─────────────────┘  └─────────────────┘  └─────────────────┘                 │
+│            │                   │                   │                            │
+│   ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐                 │
+│   │   PLAYBOOKS     │  │ HUNTING QUERIES │  │   WATCHLISTS    │                 │
+│   │ Automated       │  │ Proactive threat│  │ Reference data  │                 │
+│   │ response        │  │ hunting         │  │ for enrichment  │                 │
+│   └─────────────────┘  └─────────────────┘  └─────────────────┘                 │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+</pre>
+            </div>
+
+            <h2 id="solutions">Solution Packages</h2>
+            <p>Solutions bundle related content for specific data sources or use cases.</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Solution</th>
+                            <th>Contents</th>
+                            <th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Microsoft 365 Defender</strong></td>
+                            <td>2 connectors, 25+ rules, 5 workbooks, 10 playbooks</td>
+                            <td>Free</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Azure Active Directory</strong></td>
+                            <td>1 connector, 30+ rules, 3 workbooks, 8 playbooks</td>
+                            <td>Free</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Windows Security Events</strong></td>
+                            <td>1 connector, 40+ rules, 2 workbooks</td>
+                            <td>Free</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Palo Alto PAN-OS</strong></td>
+                            <td>1 connector, 15 rules, 2 workbooks, 3 playbooks</td>
+                            <td>Free</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SOC Process Framework</strong></td>
+                            <td>Workbooks, hunting queries, watchlists</td>
+                            <td>Free</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Installing a Solution</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">Azure CLI</span>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="code-content">
+<pre># List available solutions
+az sentinel content list --workspace-name "sentinel-ws" --resource-group "rg-sentinel"
+
+# Install solution via ARM template
+az deployment group create \
+  --resource-group "rg-sentinel" \
+  --template-uri "https://raw.githubusercontent.com/Azure/Azure-Sentinel/master/Solutions/Microsoft365Defender/Package/mainTemplate.json" \
+  --parameters workspace-name="sentinel-ws"</pre>
+                </div>
+            </div>
+
+            <h2 id="standalone">Standalone Content</h2>
+            <p>Individual content items can be installed without full solution packages.</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-title">Analytics Rule Templates</div>
+                    <div class="card-body">
+                        <p>Pre-built detection rules ready to enable. Review and customize thresholds before activation.</p>
+                        <p><strong>Location:</strong> Analytics → Rule templates</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Workbook Templates</div>
+                    <div class="card-body">
+                        <p>Visualization dashboards for security monitoring. Save as custom workbook to modify.</p>
+                        <p><strong>Location:</strong> Workbooks → Templates</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Hunting Queries</div>
+                    <div class="card-body">
+                        <p>KQL queries for proactive threat hunting. Run ad-hoc or schedule as analytics rules.</p>
+                        <p><strong>Location:</strong> Hunting → Queries</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Playbook Templates</div>
+                    <div class="card-body">
+                        <p>Logic App templates for automated response. Deploy and configure connections.</p>
+                        <p><strong>Location:</strong> Automation → Playbook templates</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="repositories">Repository Integration</h2>
+            <p>Connect GitHub or Azure DevOps repositories for version-controlled content management.</p>
+
+            <div class="ascii-diagram">
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                      REPOSITORY INTEGRATION                                      │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   ┌─────────────────┐         ┌─────────────────┐         ┌─────────────────┐  │
+│   │     GITHUB      │         │    SENTINEL     │         │   DEPLOYED      │  │
+│   │   REPOSITORY    │────────▶│   REPOSITORIES  │────────▶│   CONTENT       │  │
+│   │                 │  sync   │    FEATURE      │  deploy │                 │  │
+│   │ • Analytics/    │         │                 │         │ • Active rules  │  │
+│   │ • Hunting/      │         │ • Validate ARM  │         │ • Workbooks     │  │
+│   │ • Workbooks/    │         │ • Track changes │         │ • Playbooks     │  │
+│   │ • Playbooks/    │         │ • Deploy on PR  │         │                 │  │
+│   └─────────────────┘         └─────────────────┘         └─────────────────┘  │
+│                                                                                  │
+│   FOLDER STRUCTURE:                                                             │
+│   .sentinel/                                                                     │
+│   ├── AnalyticsRules/                                                           │
+│   │   ├── BruteForceDetection.json                                              │
+│   │   └── SuspiciousLogin.json                                                  │
+│   ├── HuntingQueries/                                                           │
+│   │   └── LateralMovement.json                                                  │
+│   ├── Workbooks/                                                                │
+│   │   └── SOCOverview.json                                                      │
+│   └── Playbooks/                                                                │
+│       └── BlockIP/                                                              │
+│           └── azuredeploy.json                                                  │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+</pre>
+            </div>
+
+            <h2 id="cicd">CI/CD Deployment</h2>
+            <p>Automate content deployment using Azure DevOps or GitHub Actions.</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">YAML - GitHub Actions Workflow</span>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="code-content">
+<pre>name: Deploy Sentinel Content
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.sentinel/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+      - name: Deploy Analytics Rules
+        uses: azure/arm-deploy@v1
+        with:
+          resourceGroupName: rg-sentinel
+          template: .sentinel/AnalyticsRules/template.json
+          parameters: workspaceName=sentinel-ws
+      
+      - name: Deploy Workbooks
+        uses: azure/arm-deploy@v1
+        with:
+          resourceGroupName: rg-sentinel
+          template: .sentinel/Workbooks/template.json</pre>
+                </div>
+            </div>
+
+            <div class="alert alert-info">
+                <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>
+                </svg>
+                <div class="alert-content">
+                    <div class="alert-title">Best Practice</div>
+                    <p class="alert-text">Always review analytics rules before enabling. Customize thresholds and exclusions for your environment to reduce false positives.</p>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="footer-content">
+                    <svg class="footer-icon" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    Microsoft Sentinel Ultimate Guide
+                </div>
+            </footer>
+        </div>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>

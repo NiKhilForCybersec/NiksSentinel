@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture & Components - Microsoft Sentinel Guide</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            Sentinel Guide
+        </a>
+        <ul class="navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="architecture.html" class="active">Architecture</a></li>
+            <li><a href="data-connectors.html">Connectors</a></li>
+            <li><a href="analytics-rules.html">Analytics</a></li>
+            <li><a href="kql-library.html">KQL Library</a></li>
+            <li><a href="automation.html">Automation</a></li>
+        </ul>
+        <button class="mobile-toggle" aria-label="Toggle menu">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Getting Started</div>
+            <ul class="sidebar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="architecture.html" class="active">Architecture</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Data Collection</div>
+            <ul class="sidebar-nav">
+                <li><a href="data-connectors.html">Data Connectors</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Detection & Analytics</div>
+            <ul class="sidebar-nav">
+                <li><a href="analytics-rules.html">Analytics Rules</a></li>
+                <li><a href="connector-rules.html">Connector Rules</a></li>
+                <li><a href="correlation-rules.html">Correlation Rules</a></li>
+                <li><a href="kql-library.html">KQL Library</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Investigation & Response</div>
+            <ul class="sidebar-nav">
+                <li><a href="incidents.html">Incidents</a></li>
+                <li><a href="automation.html">Automation & SOAR</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Intelligence & Analytics</div>
+            <ul class="sidebar-nav">
+                <li><a href="workbooks.html">Workbooks</a></li>
+                <li><a href="threat-intelligence.html">Threat Intelligence</a></li>
+                <li><a href="ueba.html">UEBA</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Management</div>
+            <ul class="sidebar-nav">
+                <li><a href="content-hub.html">Content Hub</a></li>
+                <li><a href="costs.html">Pricing & Costs</a></li>
+                <li><a href="best-practices.html">Best Practices</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-container">
+            <h1>Architecture & Components</h1>
+            <p>Understanding Microsoft Sentinel's architecture is essential for effective deployment, cost optimization, and security operations. This section covers workspace design, data flow, multi-tenant scenarios, and retention strategies.</p>
+
+            <!-- Table of Contents -->
+            <div class="toc">
+                <div class="toc-title">On This Page</div>
+                <ul class="toc-list">
+                    <li><a href="#overview">Architecture Overview</a></li>
+                    <li><a href="#workspace">Log Analytics Workspace</a></li>
+                    <li><a href="#data-flow">Data Flow Architecture</a></li>
+                    <li><a href="#multi-workspace">Multi-Workspace Designs</a></li>
+                    <li><a href="#multi-tenant">Multi-Tenant & MSSP</a></li>
+                    <li><a href="#retention">Retention & Archive</a></li>
+                    <li><a href="#geo">Geographic Considerations</a></li>
+                </ul>
+            </div>
+
+            <!-- Architecture Overview -->
+            <h2 id="overview">Architecture Overview</h2>
+            <p>Microsoft Sentinel is built on top of Azure Log Analytics and leverages Azure's global infrastructure. The architecture consists of several key components that work together to collect, analyze, and respond to security threats.</p>
+
+            <div class="ascii-diagram">
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────────────────────┐
+│                           MICROSOFT SENTINEL - COMPLETE ARCHITECTURE                          │
+├─────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                               │
+│  ┌─────────────────────────────────────────────────────────────────────────────────────┐    │
+│  │                              DATA SOURCES LAYER                                      │    │
+│  │                                                                                       │    │
+│  │  ┌───────────┐ ┌───────────┐ ┌───────────┐ ┌───────────┐ ┌───────────┐             │    │
+│  │  │  M365     │ │  Azure    │ │  Defender │ │  Third-   │ │  Custom   │             │    │
+│  │  │ Defender  │ │ Services  │ │ for Cloud │ │   Party   │ │   Logs    │             │    │
+│  │  │           │ │           │ │           │ │           │ │           │             │    │
+│  │  │ • MDE     │ │ • Activity│ │ • VMs     │ │ • Firewall│ │ • CEF     │             │    │
+│  │  │ • MDI     │ │ • Key Vlt │ │ • Storage │ │ • IDS/IPS │ │ • Syslog  │             │    │
+│  │  │ • MDO     │ │ • WAF     │ │ • SQL     │ │ • EDR     │ │ • REST API│             │    │
+│  │  │ • MCAS    │ │ • NSG     │ │ • K8s     │ │ • Cloud   │ │ • Logstash│             │    │
+│  │  └─────┬─────┘ └─────┬─────┘ └─────┬─────┘ └─────┬─────┘ └─────┬─────┘             │    │
+│  │        │             │             │             │             │                   │    │
+│  └────────┼─────────────┼─────────────┼─────────────┼─────────────┼───────────────────┘    │
+│           │             │             │             │             │                         │
+│           └─────────────┴─────────────┴──────┬──────┴─────────────┘                         │
+│                                              │                                               │
+│  ┌───────────────────────────────────────────▼───────────────────────────────────────────┐  │
+│  │                              INGESTION LAYER                                          │  │
+│  │                                                                                       │  │
+│  │   ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐                 │  │
+│  │   │  Native API     │    │  Azure Monitor  │    │  Codeless       │                 │  │
+│  │   │  Connectors     │    │  Agent (AMA)    │    │  Connectors     │                 │  │
+│  │   │                 │    │                 │    │                 │                 │  │
+│  │   │ Direct service  │    │ DCR-based       │    │ API polling     │                 │  │
+│  │   │ integration     │    │ collection      │    │ No code needed  │                 │  │
+│  │   └────────┬────────┘    └────────┬────────┘    └────────┬────────┘                 │  │
+│  │            │                      │                      │                          │  │
+│  │            │    ┌─────────────────┴─────────────────┐    │                          │  │
+│  │            │    │     Data Collection Rules (DCR)   │    │                          │  │
+│  │            │    │     • Transformation              │    │                          │  │
+│  │            │    │     • Filtering                   │    │                          │  │
+│  │            │    │     • Routing                     │    │                          │  │
+│  │            │    └─────────────────┬─────────────────┘    │                          │  │
+│  │            │                      │                      │                          │  │
+│  └────────────┼──────────────────────┼──────────────────────┼──────────────────────────┘  │
+│               │                      │                      │                             │
+│               └──────────────────────┼──────────────────────┘                             │
+│                                      │                                                     │
+│  ┌───────────────────────────────────▼───────────────────────────────────────────────┐    │
+│  │                           LOG ANALYTICS WORKSPACE                                  │    │
+│  │                                                                                    │    │
+│  │   ┌────────────────────────────────────────────────────────────────────────────┐  │    │
+│  │   │                         DATA STORE                                          │  │    │
+│  │   │                                                                             │  │    │
+│  │   │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐       │  │    │
+│  │   │  │ Security    │  │ Microsoft   │  │  Azure      │  │  Custom     │       │  │    │
+│  │   │  │ Tables      │  │ 365 Tables  │  │  Tables     │  │  Tables     │       │  │    │
+│  │   │  │             │  │             │  │             │  │             │       │  │    │
+│  │   │  │ SecurityEvt │  │ SigninLogs  │  │ AzureActvty │  │ MyCustom_CL │       │  │    │
+│  │   │  │ SecurityAlt │  │ AuditLogs   │  │ AzureDiag   │  │ CEF         │       │  │    │
+│  │   │  │ Syslog      │  │ EmailEvents │  │ AzureMetric │  │ Syslog      │       │  │    │
+│  │   │  └─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘       │  │    │
+│  │   │                                                                             │  │    │
+│  │   │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐                        │  │    │
+│  │   │  │ Watchlists  │  │ Threat      │  │ UEBA        │                        │  │    │
+│  │   │  │             │  │ Intel       │  │ Tables      │                        │  │    │
+│  │   │  └─────────────┘  └─────────────┘  └─────────────┘                        │  │    │
+│  │   └────────────────────────────────────────────────────────────────────────────┘  │    │
+│  │                                                                                    │    │
+│  └─────────────────────────────────────┬──────────────────────────────────────────────┘    │
+│                                        │                                                   │
+│  ┌─────────────────────────────────────┼──────────────────────────────────────────────┐   │
+│  │                                     │     ANALYTICS LAYER                          │   │
+│  │                                     │                                               │   │
+│  │  ┌──────────────┐  ┌──────────────┐ │ ┌──────────────┐  ┌──────────────┐          │   │
+│  │  │  Scheduled   │  │   NRT        │ │ │   Fusion     │  │    ML        │          │   │
+│  │  │  Rules       │  │   Rules      │ │ │   (ML)       │  │  Behavior    │          │   │
+│  │  │              │  │              │ │ │              │  │  Analytics   │          │   │
+│  │  │ KQL queries  │  │ <1 min       │ │ │ Multi-signal │  │              │          │   │
+│  │  │ on schedule  │  │ latency      │ │ │ correlation  │  │ Anomaly      │          │   │
+│  │  └──────┬───────┘  └──────┬───────┘ │ └──────┬───────┘  └──────┬───────┘          │   │
+│  │         │                 │         │        │                 │                  │   │
+│  │         └─────────────────┴─────────┼────────┴─────────────────┘                  │   │
+│  │                                     │                                              │   │
+│  └─────────────────────────────────────┼──────────────────────────────────────────────┘   │
+│                                        │                                                   │
+│                                        ▼                                                   │
+│  ┌────────────────────────────────────────────────────────────────────────────────────┐   │
+│  │                              INCIDENT MANAGEMENT                                    │   │
+│  │                                                                                     │   │
+│  │   ┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐     │   │
+│  │   │  Alerts     │────▶│  Incidents  │────▶│Investigation│────▶│  Response   │     │   │
+│  │   │             │     │             │     │   Graph     │     │             │     │   │
+│  │   │ Triggered   │     │ Correlated  │     │             │     │ Playbooks   │     │   │
+│  │   │ by rules    │     │ alerts      │     │ Entity      │     │ Logic Apps  │     │   │
+│  │   │             │     │             │     │ timeline    │     │             │     │   │
+│  │   └─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘     │   │
+│  │                                                                                     │   │
+│  └────────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                            │
+└────────────────────────────────────────────────────────────────────────────────────────────┘
+</pre>
+            </div>
+
+            <h3>Core Components</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Function</th>
+                            <th>Key Features</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Log Analytics Workspace</strong></td>
+                            <td>Data storage and query engine</td>
+                            <td>KQL queries, retention policies, RBAC, tables</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Connectors</strong></td>
+                            <td>Ingest data from various sources</td>
+                            <td>100+ connectors, DCR support, transformation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Analytics Engine</strong></td>
+                            <td>Detect threats via rules</td>
+                            <td>Scheduled, NRT, Fusion, ML-based rules</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Incident Management</strong></td>
+                            <td>Investigate and respond</td>
+                            <td>Investigation graph, entity mapping, tasks</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Automation (SOAR)</strong></td>
+                            <td>Orchestrate response actions</td>
+                            <td>Logic Apps playbooks, automation rules</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Workbooks</strong></td>
+                            <td>Visualize and report</td>
+                            <td>Interactive dashboards, parameters</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Threat Intelligence</strong></td>
+                            <td>IOC matching and enrichment</td>
+                            <td>STIX/TAXII, custom indicators</td>
+                        </tr>
+                        <tr>
+                            <td><strong>UEBA</strong></td>
+                            <td>Behavior analytics</td>
+                            <td>Anomaly detection, entity scoring</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Log Analytics Workspace -->
+            <h2 id="workspace">Log Analytics Workspace</h2>
+            <p>The Log Analytics Workspace is the foundation of Microsoft Sentinel. It stores all ingested data, provides the KQL query interface, and manages data retention. Understanding workspace design is critical for cost management and security.</p>
+
+            <div class="ascii-diagram">
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                       LOG ANALYTICS WORKSPACE STRUCTURE                      │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│   Workspace: sentinel-prod-workspace                                        │
+│   Region: East US                                                           │
+│   Resource Group: rg-sentinel-prod                                          │
+│                                                                              │
+│   ┌──────────────────────────────────────────────────────────────────────┐  │
+│   │                           TABLES                                      │  │
+│   │                                                                       │  │
+│   │  ┌─────────────────────────────────────────────────────────────────┐ │  │
+│   │  │  Analytics Tables (Standard)                                     │ │  │
+│   │  │  • Full KQL query capability                                     │ │  │
+│   │  │  • Alert rules supported                                         │ │  │
+│   │  │  • 90 days interactive retention (default)                       │ │  │
+│   │  │                                                                   │ │  │
+│   │  │  SecurityEvent, SigninLogs, AuditLogs, DeviceProcessEvents,     │ │  │
+│   │  │  EmailEvents, AzureActivity, SecurityAlert, SecurityIncident... │ │  │
+│   │  └─────────────────────────────────────────────────────────────────┘ │  │
+│   │                                                                       │  │
+│   │  ┌─────────────────────────────────────────────────────────────────┐ │  │
+│   │  │  Basic Logs Tables (Cost-Optimized)                              │ │  │
+│   │  │  • Limited KQL (no joins, limited time range)                    │ │  │
+│   │  │  • No alert rules                                                │ │  │
+│   │  │  • Lower ingestion cost                                          │ │  │
+│   │  │                                                                   │ │  │
+│   │  │  ContainerLogV2, AppTraces (optional)                            │ │  │
+│   │  └─────────────────────────────────────────────────────────────────┘ │  │
+│   │                                                                       │  │
+│   │  ┌─────────────────────────────────────────────────────────────────┐ │  │
+│   │  │  Auxiliary Tables (Search Jobs)                                  │ │  │
+│   │  │  • Very low cost storage                                         │ │  │
+│   │  │  • Requires search job to query                                  │ │  │
+│   │  │  • Good for compliance/archive                                   │ │  │
+│   │  └─────────────────────────────────────────────────────────────────┘ │  │
+│   └──────────────────────────────────────────────────────────────────────┘  │
+│                                                                              │
+│   ┌──────────────────────────────────────────────────────────────────────┐  │
+│   │                        RETENTION TIERS                                │  │
+│   │                                                                       │  │
+│   │   Interactive ──────▶ Archive ──────▶ Delete                         │  │
+│   │   (90 days default)  (up to 12 yrs)  (after retention)               │  │
+│   │                                                                       │  │
+│   │   Full KQL           Search Jobs      Permanent removal              │  │
+│   │   Real-time          4-24 hr latency                                 │  │
+│   │   Higher cost        Lower cost                                      │  │
+│   └──────────────────────────────────────────────────────────────────────┘  │
+│                                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+</pre>
+            </div>
+
+            <h3>Workspace Configuration Best Practices</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">Azure CLI</span>
+                    <button class="copy-btn">
+                        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"/></svg>
+                        Copy
+                    </button>
+                </div>
+                <div class="code-content">
+<pre># Create Log Analytics Workspace for Sentinel
+az monitor log-analytics workspace create \
+    --resource-group rg-sentinel-prod \
+    --workspace-name sentinel-prod-workspace \
+    --location eastus \
+    --retention-time 90 \
+    --sku PerGB2018
+
+# Enable Microsoft Sentinel on the workspace
+az sentinel onboarding-state create \
+    --resource-group rg-sentinel-prod \
+    --workspace-name sentinel-prod-workspace</pre>
+                </div>
+            </div>
+
+            <div class="alert alert-warning">
+                <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+                <div class="alert-content">
+                    <div class="alert-title">Workspace Region Selection</div>
+                    <p class="alert-text">Choose the workspace region carefully—data residency requirements and egress costs apply. Some features (like certain connectors) may have regional availability limitations.</p>
+                </div>
+            </div>
+
+            <!-- Data Flow -->
+            <h2 id="data-flow">Data Flow Architecture</h2>
+            <p>Understanding how data flows from source to incident helps optimize ingestion, reduce costs, and improve detection performance.</p>
+
+            <div class="ascii-diagram">
+<pre>
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                              DATA FLOW - DETAILED VIEW                             │
+├───────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                    │
+│  PHASE 1: DATA GENERATION                                                          │
+│  ─────────────────────────                                                         │
+│                                                                                    │
+│  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐                 │
+│  │Endpoints│  │Identity │  │ Email   │  │ Network │  │  Cloud  │                 │
+│  │         │  │ (AD/    │  │(Exchange│  │(Firewall│  │  Apps   │                 │
+│  │Windows  │  │ Entra)  │  │ Online) │  │  NSG)   │  │(M365,   │                 │
+│  │Linux    │  │         │  │         │  │         │  │ SaaS)   │                 │
+│  │macOS    │  │         │  │         │  │         │  │         │                 │
+│  └────┬────┘  └────┬────┘  └────┬────┘  └────┬────┘  └────┬────┘                 │
+│       │            │            │            │            │                       │
+│       ▼            ▼            ▼            ▼            ▼                       │
+│                                                                                    │
+│  PHASE 2: DATA COLLECTION                                                          │
+│  ────────────────────────                                                          │
+│                                                                                    │
+│  ┌─────────────────────────────────────────────────────────────────────────────┐  │
+│  │                        COLLECTION METHODS                                    │  │
+│  │                                                                              │  │
+│  │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐    │  │
+│  │  │ AMA (Agent)  │  │ Native API   │  │ Syslog/CEF   │  │ REST API     │    │  │
+│  │  │              │  │              │  │              │  │              │    │  │
+│  │  │ Windows      │  │ M365 Defender│  │ Firewalls    │  │ Custom Apps  │    │  │
+│  │  │ Linux        │  │ Azure AD     │  │ Linux servers│  │ 3rd Party    │    │  │
+│  │  │ Events       │  │ Azure Svc    │  │ Network devs │  │ Services     │    │  │
+│  │  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘    │  │
+│  │         │                 │                 │                 │            │  │
+│  │         └─────────────────┴─────────┬───────┴─────────────────┘            │  │
+│  │                                     │                                       │  │
+│  │                                     ▼                                       │  │
+│  │                    ┌────────────────────────────────┐                      │  │
+│  │                    │  DATA COLLECTION RULES (DCR)   │                      │  │
+│  │                    │                                │                      │  │
+│  │                    │  • Filter unwanted events      │                      │  │
+│  │                    │  • Transform/parse data        │                      │  │
+│  │                    │  • Route to destinations       │                      │  │
+│  │                    │  • Reduce ingestion costs      │                      │  │
+│  │                    └────────────────┬───────────────┘                      │  │
+│  │                                     │                                       │  │
+│  └─────────────────────────────────────┼───────────────────────────────────────┘  │
+│                                        │                                          │
+│                                        ▼                                          │
+│  PHASE 3: DATA STORAGE                                                            │
+│  ─────────────────────                                                            │
+│                                                                                    │
+│  ┌─────────────────────────────────────────────────────────────────────────────┐  │
+│  │                     LOG ANALYTICS WORKSPACE                                  │  │
+│  │                                                                              │  │
+│  │    ┌─────────────────────────────────────────────────────────────────┐     │  │
+│  │    │                     INGESTED DATA                                │     │  │
+│  │    │                                                                  │     │  │
+│  │    │  SecurityEvent  │ SigninLogs │ AuditLogs │ DeviceProcessEvents  │     │  │
+│  │    │  EmailEvents    │ AzureActivity │ CommonSecurityLog │ Syslog    │     │  │
+│  │    │                                                                  │     │  │
+│  │    │  Average Ingestion Latency: 2-5 minutes (varies by connector)   │     │  │
+│  │    └─────────────────────────────────────────────────────────────────┘     │  │
+│  │                                                                              │  │
+│  └─────────────────────────────────────┬───────────────────────────────────────┘  │
+│                                        │                                          │
+│                                        ▼                                          │
+│  PHASE 4: ANALYTICS & DETECTION                                                   │
+│  ──────────────────────────────                                                   │
+│                                                                                    │
+│  ┌─────────────────────────────────────────────────────────────────────────────┐  │
+│  │                        ANALYTICS ENGINE                                      │  │
+│  │                                                                              │  │
+│  │    ┌───────────────┐  ┌───────────────┐  ┌───────────────┐                 │  │
+│  │    │  Scheduled    │  │     NRT       │  │    Fusion     │                 │  │
+│  │    │    Rules      │  │    Rules      │  │     (ML)      │                 │  │
+│  │    │               │  │               │  │               │                 │  │
+│  │    │ 5min - 14 day │  │  <1 minute    │  │ Automatic     │                 │  │
+│  │    │ schedule      │  │  detection    │  │ correlation   │                 │  │
+│  │    └───────┬───────┘  └───────┬───────┘  └───────┬───────┘                 │  │
+│  │            │                  │                  │                          │  │
+│  │            └──────────────────┴────────┬─────────┘                          │  │
+│  │                                        │                                    │  │
+│  │                                        ▼                                    │  │
+│  │                               ┌─────────────┐                              │  │
+│  │                               │   ALERTS    │                              │  │
+│  │                               │             │                              │  │
+│  │                               │ Severity    │                              │  │
+│  │                               │ Entities    │                              │  │
+│  │                               │ MITRE       │                              │  │
+│  │                               └──────┬──────┘                              │  │
+│  │                                      │                                      │  │
+│  └──────────────────────────────────────┼──────────────────────────────────────┘  │
+│                                         │                                         │
+│                                         ▼                                         │
+│  PHASE 5: INCIDENT CREATION                                                       │
+│  ──────────────────────────                                                       │
+│                                                                                    │
+│  ┌─────────────────────────────────────────────────────────────────────────────┐  │
+│  │                       ALERT GROUPING → INCIDENTS                             │  │
+│  │                                                                              │  │
+│  │    Alert 1 ──┐                          ┌─────────────────────────┐         │  │
+│  │              │                          │      INCIDENT           │         │  │
+│  │    Alert 2 ──┼── Correlation ──────────▶│                         │         │  │
+│  │              │   (Entity, Time,         │  • Severity: High       │         │  │
+│  │    Alert 3 ──┘    Alert Name)           │  • Owner: Unassigned    │         │  │
+│  │                                          │  • Status: New          │         │  │
+│  │                                          │  • Entities: 5          │         │  │
+│  │                                          │  • Evidence: 12 items   │         │  │
+│  │                                          └─────────────────────────┘         │  │
+│  │                                                                              │  │
+│  └──────────────────────────────────────────────────────────────────────────────┘  │
+│                                                                                    │
+└───────────────────────────────────────────────────────────────────────────────────┘
+</pre>
+            </div>
+
+            <!-- Multi-Workspace -->
+            <h2 id="multi-workspace">Multi-Workspace Designs</h2>
+            <p>Enterprise deployments often require multiple workspaces for data residency, RBAC, or cost allocation. Understanding the trade-offs helps design the optimal architecture.</p>
+
+            <h3>Single Workspace (Recommended Default)</h3>
+            <div class="ascii-diagram">
+<pre>
+┌───────────────────────────────────────────────────────────────────┐
+│                    SINGLE WORKSPACE DESIGN                         │
+│                    (Recommended for most orgs)                     │
+├───────────────────────────────────────────────────────────────────┤
+│                                                                    │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐         │
+│  │ Region A │  │ Region B │  │ Region C │  │ Region D │         │
+│  │  Logs    │  │  Logs    │  │  Logs    │  │  Logs    │         │
+│  └────┬─────┘  └────┬─────┘  └────┬─────┘  └────┬─────┘         │
+│       │             │             │             │                 │
+│       └─────────────┴──────┬──────┴─────────────┘                 │
+│                            │                                       │
+│                            ▼                                       │
+│              ┌─────────────────────────────┐                      │
+│              │   SINGLE SENTINEL WORKSPACE  │                      │
+│              │                              │                      │
+│              │   ✓ Unified visibility       │                      │
+│              │   ✓ Cross-region correlation │                      │
+│              │   ✓ Simpler management       │                      │
+│              │   ✓ Lower complexity         │                      │
+│              │                              │                      │
+│              │   ⚠ Data residency limits    │                      │
+│              │   ⚠ Single RBAC boundary     │                      │
+│              └─────────────────────────────┘                      │
+│                                                                    │
+└───────────────────────────────────────────────────────────────────┘
+</pre>
+            </div>
+
+            <h3>Multi-Workspace Architecture</h3>
+            <div class="ascii-diagram">
+<pre>
+┌────────────────────────────────────────────────────────────────────────────────────┐
+│                           MULTI-WORKSPACE DESIGN                                    │
+│                    (Data residency, RBAC separation, cost allocation)               │
+├────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                     │
+│   ┌────────────────────────┐   ┌────────────────────────┐                         │
+│   │    WORKSPACE: EU       │   │    WORKSPACE: US       │                         │
+│   │    Region: West Europe │   │    Region: East US     │                         │
+│   │                        │   │                        │                         │
+│   │  ┌──────────────────┐  │   │  ┌──────────────────┐  │                         │
+│   │  │ EU Employee Data │  │   │  │ US Employee Data │  │                         │
+│   │  │ EU Server Logs   │  │   │  │ US Server Logs   │  │                         │
+│   │  │ GDPR Compliant   │  │   │  │ US Compliance    │  │                         │
+│   │  └──────────────────┘  │   │  └──────────────────┘  │                         │
+│   │                        │   │                        │                         │
+│   │  Sentinel Instance 1   │   │  Sentinel Instance 2   │                         │
+│   └───────────┬────────────┘   └───────────┬────────────┘                         │
+│               │                            │                                       │
+│               │                            │                                       │
+│               └────────────┬───────────────┘                                       │
+│                            │                                                        │
+│                            ▼                                                        │
+│              ┌─────────────────────────────────┐                                   │
+│              │    CROSS-WORKSPACE QUERIES       │                                   │
+│              │                                  │                                   │
+│              │  workspace('EU').SecurityEvent   │                                   │
+│              │  | union                         │                                   │
+│              │  workspace('US').SecurityEvent   │                                   │
+│              │  | where ...                     │                                   │
+│              │                                  │                                   │
+│              │  ⚠ Performance considerations    │                                   │
+│              │  ⚠ Cross-region egress costs     │                                   │
+│              └─────────────────────────────────┘                                   │
+│                                                                                     │
+│   CONSIDERATIONS:                                                                   │
+│   ─────────────                                                                     │
+│   • Each workspace = separate Sentinel billing                                      │
+│   • Rules must be duplicated or use cross-workspace                                 │
+│   • Workbooks need workspace() function for multi-workspace                         │
+│   • Playbooks can target multiple workspaces                                        │
+│   • Azure Lighthouse enables MSSP cross-tenant management                           │
+│                                                                                     │
+└────────────────────────────────────────────────────────────────────────────────────┘
+</pre>
+            </div>
+
+            <h3>When to Use Multiple Workspaces</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Scenario</th>
+                            <th>Recommendation</th>
+                            <th>Rationale</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Data residency requirements (GDPR, etc.)</td>
+                            <td>Multi-workspace</td>
+                            <td>Legal requirement to keep data in specific regions</td>
+                        </tr>
+                        <tr>
+                            <td>Strict RBAC separation between BUs</td>
+                            <td>Multi-workspace</td>
+                            <td>Workspace-level permissions provide strongest isolation</td>
+                        </tr>
+                        <tr>
+                            <td>Cost allocation to different departments</td>
+                            <td>Multi-workspace</td>
+                            <td>Easier billing separation with dedicated workspaces</td>
+                        </tr>
+                        <tr>
+                            <td>MSSP managing multiple tenants</td>
+                            <td>Multi-workspace + Lighthouse</td>
+                            <td>Tenant isolation with centralized management</td>
+                        </tr>
+                        <tr>
+                            <td>Single organization, no special requirements</td>
+                            <td>Single workspace</td>
+                            <td>Simplicity, unified correlation, lower management overhead</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Multi-Tenant -->
+            <h2 id="multi-tenant">Multi-Tenant & MSSP Scenarios</h2>
+            <p>Azure Lighthouse enables MSSPs and enterprise SOCs to manage multiple tenants from a single pane of glass while maintaining tenant isolation.</p>
+
+            <div class="ascii-diagram">
+<pre>
+┌────────────────────────────────────────────────────────────────────────────────────┐
+│                      AZURE LIGHTHOUSE - MSSP ARCHITECTURE                           │
+├────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                     │
+│                        ┌───────────────────────────────────┐                       │
+│                        │       MSSP MANAGING TENANT         │                       │
+│                        │                                    │                       │
+│                        │   ┌────────────────────────────┐  │                       │
+│                        │   │    Unified SOC Portal       │  │                       │
+│                        │   │                             │  │                       │
+│                        │   │  • Cross-tenant incidents   │  │                       │
+│                        │   │  • Centralized hunting      │  │                       │
+│                        │   │  • Shared playbooks         │  │                       │
+│                        │   │  • Unified workbooks        │  │                       │
+│                        │   └────────────────────────────┘  │                       │
+│                        │                                    │                       │
+│                        └──────────────┬─────────────────────┘                       │
+│                                       │                                              │
+│                    Azure Lighthouse Delegations                                     │
+│                                       │                                              │
+│         ┌─────────────────────────────┼─────────────────────────────┐               │
+│         │                             │                             │               │
+│         ▼                             ▼                             ▼               │
+│  ┌──────────────────┐   ┌──────────────────┐   ┌──────────────────┐               │
+│  │   CUSTOMER A     │   │   CUSTOMER B     │   │   CUSTOMER C     │               │
+│  │    TENANT        │   │    TENANT        │   │    TENANT        │               │
+│  │                  │   │                  │   │                  │               │
+│  │ ┌──────────────┐ │   │ ┌──────────────┐ │   │ ┌──────────────┐ │               │
+│  │ │  Sentinel    │ │   │ │  Sentinel    │ │   │ │  Sentinel    │ │               │
+│  │ │  Workspace A │ │   │ │  Workspace B │ │   │ │  Workspace C │ │               │
+│  │ │              │ │   │ │              │ │   │ │              │ │               │
+│  │ │ Customer A   │ │   │ │ Customer B   │ │   │ │ Customer C   │ │               │
+│  │ │ data only    │ │   │ │ data only    │ │   │ │ data only    │ │               │
+│  │ └──────────────┘ │   │ └──────────────┘ │   │ └──────────────┘ │               │
+│  │                  │   │                  │   │                  │               │
+│  │ Data residency:  │   │ Data residency:  │   │ Data residency:  │               │
+│  │ Customer's Azure │   │ Customer's Azure │   │ Customer's Azure │               │
+│  └──────────────────┘   └──────────────────┘   └──────────────────┘               │
+│                                                                                     │
+│  LIGHTHOUSE CAPABILITIES:                                                           │
+│  ────────────────────────                                                          │
+│  ✓ Manage at scale without tenant switching                                         │
+│  ✓ Customers retain data ownership                                                  │
+│  ✓ Granular RBAC delegation                                                         │
+│  ✓ Audit trail of MSSP actions                                                      │
+│  ✓ Automated onboarding via ARM templates                                           │
+│                                                                                     │
+└────────────────────────────────────────────────────────────────────────────────────┘
+</pre>
+            </div>
+
+            <!-- Retention -->
+            <h2 id="retention">Retention & Archive Policies</h2>
+            <p>Data retention directly impacts costs and compliance. Sentinel supports tiered retention with different capabilities and costs at each tier.</p>
+
+            <div class="ascii-diagram">
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                         RETENTION TIERS & CAPABILITIES                           │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   TIME ──────────────────────────────────────────────────────────────────▶      │
+│                                                                                  │
+│   │ Day 1          │ Day 90         │ Day 730        │ Year 12               │  │
+│   │                │                │                │                        │  │
+│   ▼                ▼                ▼                ▼                        │  │
+│                                                                                  │
+│   ┌────────────────────────────────────────────────────────────────────────┐   │
+│   │                    INTERACTIVE RETENTION                                │   │
+│   │                    (Default: 90 days, configurable 30-730 days)         │   │
+│   │                                                                         │   │
+│   │    ✓ Full KQL query capability                                          │   │
+│   │    ✓ Analytics rules can query                                          │   │
+│   │    ✓ Real-time access                                                   │   │
+│   │    ✓ Sub-second query response                                          │   │
+│   │                                                                         │   │
+│   │    Cost: Standard ingestion + retention cost/GB/month after free tier  │   │
+│   │                                                                         │   │
+│   └───────────────────────────────────┬─────────────────────────────────────┘   │
+│                                       │                                          │
+│                                       │ After interactive retention expires      │
+│                                       ▼                                          │
+│   ┌────────────────────────────────────────────────────────────────────────┐   │
+│   │                    ARCHIVE TIER                                         │   │
+│   │                    (Up to 12 years total retention)                     │   │
+│   │                                                                         │   │
+│   │    ✓ Low-cost long-term storage                                         │   │
+│   │    ✓ Compliance and legal hold                                          │   │
+│   │                                                                         │   │
+│   │    ⚠ Requires Search Job to query (async)                               │   │
+│   │    ⚠ Search job results: 4-24 hours                                     │   │
+│   │    ⚠ Search job cost per GB scanned                                     │   │
+│   │                                                                         │   │
+│   │    Cost: ~$0.02/GB/month (significantly lower than interactive)         │   │
+│   │                                                                         │   │
+│   └───────────────────────────────────┬─────────────────────────────────────┘   │
+│                                       │                                          │
+│                                       │ After total retention expires            │
+│                                       ▼                                          │
+│   ┌────────────────────────────────────────────────────────────────────────┐   │
+│   │                    PERMANENT DELETION                                   │   │
+│   │                                                                         │   │
+│   │    Data permanently removed                                             │   │
+│   │    Cannot be recovered                                                  │   │
+│   │                                                                         │   │
+│   └────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+</pre>
+            </div>
+
+            <h3>Configure Table Retention</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">Azure CLI</span>
+                    <button class="copy-btn">
+                        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"/></svg>
+                        Copy
+                    </button>
+                </div>
+                <div class="code-content">
+<pre># Set interactive retention to 180 days for SecurityEvent table
+az monitor log-analytics workspace table update \
+    --resource-group rg-sentinel-prod \
+    --workspace-name sentinel-prod-workspace \
+    --name SecurityEvent \
+    --retention-time 180 \
+    --total-retention-time 730
+
+# Set archive retention to 2 years total (730 days)
+az monitor log-analytics workspace table update \
+    --resource-group rg-sentinel-prod \
+    --workspace-name sentinel-prod-workspace \
+    --name AuditLogs \
+    --retention-time 90 \
+    --total-retention-time 730</pre>
+                </div>
+            </div>
+
+            <!-- Geographic Considerations -->
+            <h2 id="geo">Geographic Considerations</h2>
+            <p>Workspace region selection affects data residency, latency, and costs. Consider these factors when designing your deployment.</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Consideration</th>
+                            <th>Impact</th>
+                            <th>Recommendation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Data Residency</td>
+                            <td>Data stored in workspace region only</td>
+                            <td>Select region that meets regulatory requirements (GDPR, data sovereignty)</td>
+                        </tr>
+                        <tr>
+                            <td>Latency</td>
+                            <td>Query performance affected by region</td>
+                            <td>Choose region closest to SOC analysts for best experience</td>
+                        </tr>
+                        <tr>
+                            <td>Egress Costs</td>
+                            <td>Cross-region queries incur egress fees</td>
+                            <td>Minimize cross-region data movement; use single workspace when possible</td>
+                        </tr>
+                        <tr>
+                            <td>Feature Availability</td>
+                            <td>Some features have regional rollout</td>
+                            <td>Check Azure documentation for feature availability by region</td>
+                        </tr>
+                        <tr>
+                            <td>Disaster Recovery</td>
+                            <td>Workspace is region-bound</td>
+                            <td>Consider secondary workspace in paired region for critical deployments</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="alert alert-info">
+                <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>
+                </svg>
+                <div class="alert-content">
+                    <div class="alert-title">Azure Paired Regions</div>
+                    <p class="alert-text">For disaster recovery planning, consider Azure paired regions. Data can be exported to storage accounts in paired regions for backup purposes.</p>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <svg class="footer-icon" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    Microsoft Sentinel Ultimate Guide
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>

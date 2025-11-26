@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Threat Intelligence - Microsoft Sentinel Guide</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            Sentinel Guide
+        </a>
+        <ul class="navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="architecture.html">Architecture</a></li>
+            <li><a href="analytics-rules.html">Analytics</a></li>
+            <li><a href="automation.html">Automation</a></li>
+        </ul>
+        <button class="mobile-toggle" aria-label="Toggle menu">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+    </nav>
+
+    <aside class="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Getting Started</div>
+            <ul class="sidebar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Detection & Analytics</div>
+            <ul class="sidebar-nav">
+                <li><a href="analytics-rules.html">Analytics Rules</a></li>
+                <li><a href="kql-library.html">KQL Library</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Intelligence & Analytics</div>
+            <ul class="sidebar-nav">
+                <li><a href="workbooks.html">Workbooks</a></li>
+                <li><a href="threat-intelligence.html" class="active">Threat Intelligence</a></li>
+                <li><a href="ueba.html">UEBA</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Management</div>
+            <ul class="sidebar-nav">
+                <li><a href="content-hub.html">Content Hub</a></li>
+                <li><a href="costs.html">Pricing & Costs</a></li>
+                <li><a href="best-practices.html">Best Practices</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="content-container">
+            <h1>Threat Intelligence</h1>
+            <p>Integrate threat intelligence feeds to enrich alerts, detect known IOCs, and provide context for investigations.</p>
+
+            <div class="toc">
+                <div class="toc-title">On This Page</div>
+                <ul class="toc-list">
+                    <li><a href="#overview">TI Overview</a></li>
+                    <li><a href="#sources">TI Sources</a></li>
+                    <li><a href="#matching">IOC Matching Rules</a></li>
+                    <li><a href="#management">Indicator Management</a></li>
+                </ul>
+            </div>
+
+            <h2 id="overview">Threat Intelligence Overview</h2>
+            <div class="ascii-diagram">
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                    THREAT INTELLIGENCE FLOW                                      │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   TI SOURCES                    SENTINEL TI                   USAGE             │
+│   ──────────                    ──────────                    ─────             │
+│                                                                                  │
+│   ┌─────────────┐              ┌─────────────────┐                              │
+│   │ Microsoft   │──────────────│                 │     ┌──────────────────┐     │
+│   │ Defender TI │              │ ThreatIntelli-  │────▶│ Analytics Rules  │     │
+│   └─────────────┘              │ genceIndicator  │     │ (IOC matching)   │     │
+│                                │                 │     └──────────────────┘     │
+│   ┌─────────────┐              │     Table       │                              │
+│   │ TAXII Feeds │──────────────│                 │     ┌──────────────────┐     │
+│   │ (STIX 2.x)  │              │ • IP addresses  │────▶│ Investigation    │     │
+│   └─────────────┘              │ • Domains/URLs  │     │ Context          │     │
+│                                │ • File hashes   │     └──────────────────┘     │
+│   ┌─────────────┐              │ • Email addrs   │                              │
+│   │ API Upload  │──────────────│                 │     ┌──────────────────┐     │
+│   │ (Graph API) │              │                 │────▶│ Workbook         │     │
+│   └─────────────┘              └─────────────────┘     │ Visualization    │     │
+│                                                        └──────────────────┘     │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+</pre>
+            </div>
+
+            <h2 id="sources">TI Sources</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Source</th>
+                            <th>Type</th>
+                            <th>Cost</th>
+                            <th>Indicators</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Microsoft Defender TI</strong></td>
+                            <td>Native integration</td>
+                            <td>Included with E5</td>
+                            <td>IPs, domains, hashes, URLs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TAXII Feeds</strong></td>
+                            <td>STIX 2.x format</td>
+                            <td>Varies by provider</td>
+                            <td>All IOC types</td>
+                        </tr>
+                        <tr>
+                            <td><strong>MISP</strong></td>
+                            <td>Open source platform</td>
+                            <td>Free (self-hosted)</td>
+                            <td>All IOC types + context</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Graph API Upload</strong></td>
+                            <td>Custom integration</td>
+                            <td>Development cost</td>
+                            <td>Any format</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 id="matching">IOC Matching Query</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">KQL</span>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="code-content">
+<pre>// Match network traffic against TI
+let maliciousIPs = ThreatIntelligenceIndicator
+| where TimeGenerated > ago(30d)
+| where isnotempty(NetworkIP)
+| where Active == true
+| distinct NetworkIP;
+CommonSecurityLog
+| where TimeGenerated > ago(24h)
+| where DestinationIP in (maliciousIPs)
+| project TimeGenerated, SourceIP, DestinationIP, DeviceAction, DeviceVendor
+
+// Match file hashes against TI
+let maliciousHashes = ThreatIntelligenceIndicator
+| where isnotempty(FileHashValue)
+| where Active == true
+| distinct FileHashValue;
+DeviceFileEvents
+| where SHA256 in (maliciousHashes) or SHA1 in (maliciousHashes) or MD5 in (maliciousHashes)</pre>
+                </div>
+            </div>
+
+            <h2 id="management">Indicator Management</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">PowerShell - Upload IOC via Graph API</span>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="code-content">
+<pre># Upload IP indicator
+$indicator = @{
+    "action" = "alert"
+    "description" = "Known C2 server"
+    "expirationDateTime" = (Get-Date).AddDays(30).ToString("o")
+    "networkDestinationIPv4" = "1.2.3.4"
+    "severity" = 2
+    "targetProduct" = "Azure Sentinel"
+    "threatType" = "C2"
+    "tlpLevel" = "amber"
+}
+Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/beta/security/tiIndicators" -Body $indicator</pre>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="footer-content">
+                    <svg class="footer-icon" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    Microsoft Sentinel Ultimate Guide
+                </div>
+            </footer>
+        </div>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>
