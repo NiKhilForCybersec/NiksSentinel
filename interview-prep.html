@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Prep - Microsoft Sentinel Guide</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .qa-section {
+            margin: 2rem 0;
+        }
+        .qa-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .qa-question {
+            background: rgba(0, 120, 212, 0.1);
+            padding: 1rem 1.25rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .qa-question:hover {
+            background: rgba(0, 120, 212, 0.15);
+        }
+        .qa-answer {
+            padding: 1.25rem;
+            display: none;
+            border-top: 1px solid var(--border-color);
+        }
+        .qa-card.active .qa-answer {
+            display: block;
+        }
+        .qa-card.active .qa-icon {
+            transform: rotate(180deg);
+        }
+        .qa-icon {
+            transition: transform 0.2s;
+        }
+        .difficulty {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-left: 0.5rem;
+        }
+        .diff-basic { background: #28a745; color: white; }
+        .diff-intermediate { background: #ffc107; color: black; }
+        .diff-advanced { background: #dc3545; color: white; }
+        .key-points {
+            background: var(--code-bg);
+            border-left: 3px solid var(--accent-color);
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .key-points ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+        .scenario-box {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid #ffc107;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .scenario-box h4 {
+            color: #ffc107;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            Sentinel Guide
+        </a>
+        <ul class="navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="kql-library.html">KQL Library</a></li>
+            <li><a href="interview-prep.html" class="active">Interview Prep</a></li>
+        </ul>
+    </nav>
+
+    <aside class="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Interview Topics</div>
+            <ul class="sidebar-nav">
+                <li><a href="#fundamentals">Fundamentals</a></li>
+                <li><a href="#architecture">Architecture</a></li>
+                <li><a href="#detection">Detection Engineering</a></li>
+                <li><a href="#kql">KQL Queries</a></li>
+                <li><a href="#incident">Incident Response</a></li>
+                <li><a href="#automation">Automation</a></li>
+                <li><a href="#scenarios">Scenario Questions</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="content-container">
+            <h1>Microsoft Sentinel Interview Preparation</h1>
+            <p>Common interview questions and answers for Security Engineer, SOC Analyst, and Detection Engineer roles focused on Microsoft Sentinel.</p>
+
+            <!-- Fundamentals -->
+            <h2 id="fundamentals">Fundamentals</h2>
+            <div class="qa-section">
+                <div class="qa-card">
+                    <div class="qa-question" onclick="toggleAnswer(this)">
+                        What is Microsoft Sentinel and how does it differ from traditional SIEM?
+                        <span class="difficulty diff-basic">Basic</span>
+                        <svg class="qa-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="qa-answer">
+                        <p>Microsoft Sentinel is a cloud-native SIEM (Security Information and Event Management) and SOAR (Security Orchestration, Automation, and Response) solution built on Azure.</p>
+                        <div class="key-points">
+                            <strong>Key Differentiators:</strong>
+                            <ul>
+                                <li><strong>Cloud-native:</strong> No infrastructure to deploy/maintain, elastic scaling</li>
+                                <li><strong>Pay-per-use:</strong> Consumption-based pricing vs perpetual licensing</li>
+                                <li><strong>Native integrations:</strong> Deep integration with M365 Defender, Azure AD, Defender for Cloud</li>
+                                <li><strong>Built-in ML:</strong> Fusion detection, UEBA, anomaly detection</li>
+                                <li><strong>KQL:</strong> Powerful query language vs proprietary SPL/AQL</li>
+                                <li><strong>Content Hub:</strong> 300+ pre-built solutions and connectors</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-question" onclick="toggleAnswer(this)">
+                        Explain the relationship between Log Analytics and Sentinel.
+                        <span class="difficulty diff-basic">Basic</span>
+                        <svg class="qa-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="qa-answer">
+                        <p>Microsoft Sentinel is built on top of Azure Log Analytics workspaces.</p>
+                        <div class="key-points">
+                            <strong>Relationship:</strong>
+                            <ul>
+                                <li><strong>Log Analytics:</strong> Provides data storage, ingestion, and the KQL query engine</li>
+                                <li><strong>Sentinel:</strong> Adds security-specific features on top (analytics rules, incidents, UEBA, SOAR)</li>
+                                <li><strong>Billing:</strong> Sentinel has its own pricing layer on top of Log Analytics ingestion costs</li>
+                                <li><strong>Tables:</strong> Sentinel-specific tables (SecurityIncident, SecurityAlert) stored in the workspace</li>
+                            </ul>
+                        </div>
+                        <p>Think of it as: Log Analytics = Database + Query Engine, Sentinel = Security Application Layer</p>
+                    </div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-question" onclick="toggleAnswer(this)">
+                        What data sources does Sentinel support and which are free to ingest?
+                        <span class="difficulty diff-intermediate">Intermediate</span>
+                        <svg class="qa-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="qa-answer">
+                        <p>Sentinel supports 100+ data connectors across multiple categories.</p>
+                        <div class="key-points">
+                            <strong>Free Data Sources (no Sentinel ingestion charge):</strong>
+                            <ul>
+                                <li>Azure Activity Logs</li>
+                                <li>Azure AD Sign-in and Audit Logs</li>
+                                <li>Office 365 Audit Logs</li>
+                                <li>Microsoft 365 Defender Alerts (not raw data)</li>
+                                <li>Microsoft Defender for Cloud Alerts</li>
+                            </ul>
+                        </div>
+                        <div class="key-points">
+                            <strong>Common Paid Sources:</strong>
+                            <ul>
+                                <li>Windows Security Events (via AMA)</li>
+                                <li>Linux Syslog</li>
+                                <li>CEF/Syslog from firewalls (Palo Alto, Fortinet)</li>
+                                <li>AWS CloudTrail, GuardDuty</li>
+                                <li>Custom logs via API</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Architecture -->
+            <h2 id="architecture">Architecture</h2>
+            <div class="qa-section">
+                <div class="qa-card">
+                    <div class="qa-question" onclick="toggleAnswer(this)">
+                        When would you use a multi-workspace architecture vs single workspace?
+                        <span class="difficulty diff-intermediate">Intermediate</span>
+                        <svg class="qa-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="qa-answer">
+                        <div class="key-points">
+                            <strong>Use Single Workspace When:</strong>
+                            <ul>
+                                <li>Single tenant, single region</li>
+                                <li>Unified security team</li>
+                                <li>No data residency requirements</li>
+                                <li>Simpler management preferred</li>
+                            </ul>
+                        </div>
+                        <div class="key-points">
+                            <strong>Use Multi-Workspace When:</strong>
+                            <ul>
+                                <li><strong>Data residency:</strong> GDPR requires EU data stays in EU</li>
+                                <li><strong>MSSP/Multi-tenant:</strong> Customer data isolation</li>
+                                <li><strong>Cost allocation:</strong> Separate billing per business unit</li>
+                                <li><strong>RBAC boundaries:</strong> Strict access control per team</li>
+                                <li><strong>Dev/Test separation:</strong> Avoid test noise in production</li>
+                            </ul>
+                        </div>
+                        <p><strong>Solution:</strong> Use Azure Lighthouse for centralized management of multiple workspaces.</p>
+                    </div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-question" onclick="toggleAnswer(this)">
+                        Explain the difference between AMA and legacy Log Analytics Agent (MMA).
+                        <span class="difficulty diff-intermediate">Intermediate</span>
+                        <svg class="qa-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="qa-answer">
+                        <div class="key-points">
+                            <strong>Azure Monitor Agent (AMA) - Current:</strong>
+                            <ul>
+                                <li>Unified agent for Windows and Linux</li>
+                                <li>Uses Data Collection Rules (DCRs) for configuration</li>
+                                <li>Supports transformations at ingestion</li>
+                                <li>Managed Identity authentication</li>
+                                <li>Multi-homing to multiple workspaces via DCRs</li>
+                            </ul>
+                        </div>
+                        <div class="key-points">
+                            <strong>Legacy MMA - Deprecated (Aug 2024):</strong>
+                            <ul>
+                                <li>Separate agents per OS</li>
+                                <li>Configuration via workspace settings</li>
+                                <li>No ingestion-time transformations</li>
+                                <li>Key-based authentication</li>
+                            </ul>
+                        </div>
+                        <p><strong>Migration:</strong> All new deployments should use AMA. DCRs provide filtering to reduce costs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detection Engineering -->
+            <h2 id="detection">Detection Engineering</h2>
+            <div class="qa-section">
+                <div class="qa-card">
+                    <div class="qa-question" onclick="toggleAnswer(this)">
+                        What are the different types of analytics rules in Sentinel?
+                        <span class="difficulty diff-basic">Basic</span>
+                        <svg class="qa-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="qa-answer">
+                        <div class="key-points">
+                            <strong>Rule Types:</strong>
+                            <ul>
+                                <li><strong>Scheduled:</strong> Run KQL at intervals (5min-14days), most flexible</li>
+                                <li><strong>NRT (Near Real-Time):</strong> Sub-minute latency, limited KQL (no joins/aggregations)</li>
+                                <li><strong>Fusion:</strong> Microsoft ML correlation, detects multi-stage attacks</li>
+                                <li><strong>Microsoft Security:</strong> Import alerts from M365 Defender products</li>
+                                <li><strong>ML Behavior Analytics:</strong> Anomaly detection, requires UEBA</li>
+                                <li><strong>Threat Intelligence:</strong> Match logs against TI indicators</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-question" onclick="toggleAnswer(this)">
+                        How do you reduce false positives in Sentinel rules?
+                        <span class="difficulty diff-intermediate">Intermediate</span>
+                        <svg class="qa-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="qa-answer">
+                        <div class="key-points">
+                            <strong>Techniques:</strong>
+                            <ul>
+                                <li><strong>Watchlists:</strong> Exclusion lists for known-good IPs, users, hosts</li>
+                                <li><strong>Threshold tuning:</strong> Analyze baseline, set thresholds at P95/P99</li>
+                                <li><strong>Time-based exclusions:</strong> Exclude maintenance windows</li>
+                                <li><strong>Entity filtering:</strong> Exclude service accounts, system processes</li>
+                                <li><strong>Automation rules:</strong> Auto-close patterns that are known benign</li>
+                                <li><strong>Correlation:</strong> Require multiple signals before alerting</li>
+                            </ul>
+                        </div>
+                        <p><strong>Process:</strong> Track FP rate per rule, establish tuning SLAs, create tickets for high-FP rules.</p>
+                    </div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-question" onclick="toggleAnswer(this)">
+                        Explain entity mapping in Sentinel analytics rules.
+                        <span class="difficulty diff-intermediate">Intermediate</span>
+                        <svg class="qa-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="qa-answer">
+                        <p>Entity mapping extracts structured entities (users, hosts, IPs) from alert data for investigation.</p>
+                        <div class="key-points">
+                            <strong>Supported Entity Types:</strong>
+                            <ul>
+                                <li><strong>Account:</strong> Name, UPNSuffix, SID, AadUserId</li>
+                                <li><strong>Host:</strong> HostName, DnsDomain, AzureID</li>
+                                <li><strong>IP:</strong> Address</li>
+                                <li><strong>URL:</strong> Url</li>
+                                <li><strong>File:</strong> Name, Directory</li>
+                                <li><strong>FileHash:</strong> Value, Algorithm</li>
+                                <li><strong>Process:</strong> ProcessId, CommandLine</li>
+                            </ul>
+                        </div>
+                        <div class="key-points">
+                            <strong>Benefits:</strong>
+                            <ul>
+                                <li>Enables investigation graph visualization</li>
+                                <li>Powers entity pages (timeline, related alerts)</li>
+                                <li>Allows correlation across incidents</li>
+                                <li>Required for playbook entity extraction</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KQL -->
+            <h2 id="kql">KQL Queries</h2>
+            <div class="qa-section">
+                <div class="qa-card">
+                    <div class="qa-question" onclick="toggleAnswer(this)">
+                        Write a KQL query to detect brute force attacks.
+                        <span class="difficulty diff-intermediate">Intermediate</span>
+                        <svg class="qa-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="qa-answer">
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">KQL</span>
+                            </div>
+                            <div class="code-content">
+<pre>let threshold = 10;
+let timeWindow = 5m;
+SigninLogs
+| where TimeGenerated > ago(1h)
+| where ResultType != "0"  // Failed logins
+| summarize 
+    FailedAttempts = count(),
+    DistinctUsers = dcount(UserPrincipalName),
+    Users = make_set(UserPrincipalName, 10)
+    by IPAddress, bin(TimeGenerated, timeWindow)
+| where FailedAttempts >= threshold
+| join kind=leftouter (
+    SigninLogs
+    | where TimeGenerated > ago(1h)
+    | where ResultType == "0"  // Successful logins
+    | project IPAddress, SuccessUser = UserPrincipalName, SuccessTime = TimeGenerated
+) on IPAddress
+| where SuccessTime > TimeGenerated  // Success after failures
+| project TimeGenerated, IPAddress, FailedAttempts, DistinctUsers, Users, SuccessUser, SuccessTime</pre>
+                            </div>
+                        </div>
+                        <p><strong>Explanation:</strong> Detects 10+ failed logins from same IP within 5 minutes, optionally followed by success (credential compromise indicator).</p>
+                    </div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-question" onclick="toggleAnswer(this)">
+                        How do you join data from multiple tables in KQL?
+                        <span class="difficulty diff-intermediate">Intermediate</span>
+                        <svg class="qa-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="qa-answer">
+                        <div class="key-points">
+                            <strong>Join Types:</strong>
+                            <ul>
+                                <li><strong>inner:</strong> Only matching rows from both tables</li>
+                                <li><strong>leftouter:</strong> All left rows + matching right</li>
+                                <li><strong>rightouter:</strong> All right rows + matching left</li>
+                                <li><strong>fullouter:</strong> All rows from both tables</li>
+                                <li><strong>leftanti:</strong> Left rows NOT in right (exclusion)</li>
+                                <li><strong>leftsemi:</strong> Left rows that exist in right</li>
+                            </ul>
+                        </div>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">KQL - Correlation Example</span>
+                            </div>
+                            <div class="code-content">
+<pre>// Correlate Azure AD signin with MDE process events
+SigninLogs
+| where RiskLevelDuringSignIn in ("high", "medium")
+| project SigninTime = TimeGenerated, UserPrincipalName, IPAddress, DeviceName = tostring(DeviceDetail.displayName)
+| join kind=inner (
+    DeviceProcessEvents
+    | where TimeGenerated > ago(4h)
+    | project ProcessTime = TimeGenerated, DeviceName, FileName, ProcessCommandLine
+) on DeviceName
+| where ProcessTime between (SigninTime .. (SigninTime + 4h))</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Incident Response -->
+            <h2 id="incident">Incident Response</h2>
+            <div class="qa-section">
+                <div class="qa-card">
+                    <div class="qa-question" onclick="toggleAnswer(this)">
+                        Describe your incident triage process in Sentinel.
+                        <span class="difficulty diff-intermediate">Intermediate</span>
+                        <svg class="qa-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="qa-answer">
+                        <div class="key-points">
+                            <strong>Triage Steps:</strong>
+                            <ul>
+                                <li><strong>1. Initial Assessment (30 sec):</strong> Read title, check severity, note entities</li>
+                                <li><strong>2. Context Gathering (2-5 min):</strong> Open investigation graph, check entity pages, review related incidents</li>
+                                <li><strong>3. Decision:</strong> True positive → escalate, False positive → close with classification, Needs analysis → assign for investigation</li>
+                                <li><strong>4. Documentation:</strong> Add comments, link related incidents, note tuning needs</li>
+                            </ul>
+                        </div>
+                        <p><strong>Tools Used:</strong> Investigation graph, entity pages, UEBA insights, TI matches, workbooks</p>
+                    </div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-question" onclick="toggleAnswer(this)">
+                        What SOC metrics do you track and why?
+                        <span class="difficulty diff-intermediate">Intermediate</span>
+                        <svg class="qa-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="qa-answer">
+                        <div class="key-points">
+                            <strong>Key Metrics:</strong>
+                            <ul>
+                                <li><strong>MTTA (Mean Time to Acknowledge):</strong> Target &lt;15min for High severity. Measures response readiness.</li>
+                                <li><strong>MTTR (Mean Time to Resolve):</strong> Target &lt;4hr for High. Measures investigation efficiency.</li>
+                                <li><strong>False Positive Rate:</strong> Target &lt;30%. Indicates rule quality.</li>
+                                <li><strong>Detection Coverage:</strong> % of MITRE ATT&CK tactics covered.</li>
+                                <li><strong>Incidents per Analyst:</strong> Target 15-25/day. Measures workload balance.</li>
+                            </ul>
+                        </div>
+                        <p><strong>Tracking:</strong> Use SOC Efficiency workbook from Content Hub, custom KQL queries for dashboards.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Automation -->
+            <h2 id="automation">Automation</h2>
+            <div class="qa-section">
+                <div class="qa-card">
+                    <div class="qa-question" onclick="toggleAnswer(this)">
+                        What's the difference between Automation Rules and Playbooks?
+                        <span class="difficulty diff-basic">Basic</span>
+                        <svg class="qa-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="qa-answer">
+                        <div class="key-points">
+                            <strong>Automation Rules:</strong>
+                            <ul>
+                                <li>Lightweight, no-code configuration</li>
+                                <li>Synchronous, fast execution</li>
+                                <li>Actions: assign owner, change status/severity, add tags, run playbook</li>
+                                <li>Free (included with Sentinel)</li>
+                                <li>Best for: Triage, routing, suppression</li>
+                            </ul>
+                        </div>
+                        <div class="key-points">
+                            <strong>Playbooks (Logic Apps):</strong>
+                            <ul>
+                                <li>Complex workflows with conditional logic</li>
+                                <li>Asynchronous execution</li>
+                                <li>Actions: API calls, enrichment, containment, ticketing</li>
+                                <li>Logic Apps pricing applies</li>
+                                <li>Best for: Enrichment, response actions, external integrations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-question" onclick="toggleAnswer(this)">
+                        Describe a playbook you've built or would build for incident response.
+                        <span class="difficulty diff-advanced">Advanced</span>
+                        <svg class="qa-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="qa-answer">
+                        <div class="scenario-box">
+                            <h4>Example: Isolate-Compromised-Host Playbook</h4>
+                            <p><strong>Trigger:</strong> Sentinel incident with High severity + Host entity</p>
+                        </div>
+                        <div class="key-points">
+                            <strong>Workflow Steps:</strong>
+                            <ul>
+                                <li>1. Parse incident to extract Host entities</li>
+                                <li>2. Condition: Check if severity is High or Critical</li>
+                                <li>3. For each host: Call MDE API to isolate machine</li>
+                                <li>4. Parallel actions:
+                                    <ul>
+                                        <li>Post to Teams SOC channel</li>
+                                        <li>Create ServiceNow ticket</li>
+                                        <li>Add comment to Sentinel incident</li>
+                                    </ul>
+                                </li>
+                                <li>5. Error handling: If API fails, alert on-call via PagerDuty</li>
+                            </ul>
+                        </div>
+                        <p><strong>Security:</strong> Uses Managed Identity for authentication, API keys stored in Key Vault.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scenario Questions -->
+            <h2 id="scenarios">Scenario Questions</h2>
+            <div class="qa-section">
+                <div class="qa-card">
+                    <div class="qa-question" onclick="toggleAnswer(this)">
+                        Your Sentinel costs doubled overnight. How do you investigate?
+                        <span class="difficulty diff-advanced">Advanced</span>
+                        <svg class="qa-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="qa-answer">
+                        <div class="key-points">
+                            <strong>Investigation Steps:</strong>
+                            <ul>
+                                <li><strong>1. Usage Analysis:</strong> Query Usage table to find which tables spiked</li>
+                                <li><strong>2. Identify Source:</strong> Check if new connector enabled, DCR misconfigured, or attack generating logs</li>
+                                <li><strong>3. Compare Baseline:</strong> Compare current vs 7-day average by table</li>
+                            </ul>
+                        </div>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">KQL - Cost Investigation</span>
+                            </div>
+                            <div class="code-content">
+<pre>Usage
+| where TimeGenerated > ago(7d)
+| where IsBillable == true
+| summarize DailyGB = sum(Quantity)/1024 by DataType, bin(TimeGenerated, 1d)
+| summarize AvgGB = avg(DailyGB), MaxGB = max(DailyGB) by DataType
+| where MaxGB > AvgGB * 2  // Doubled
+| sort by MaxGB desc</pre>
+                            </div>
+                        </div>
+                        <div class="key-points">
+                            <strong>Remediation:</strong>
+                            <ul>
+                                <li>Apply DCR transformations to filter verbose data</li>
+                                <li>Move noisy tables to Basic Logs tier</li>
+                                <li>Set up cost alerts at 80% of budget</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-question" onclick="toggleAnswer(this)">
+                        A critical rule hasn't fired in 30 days. How do you troubleshoot?
+                        <span class="difficulty diff-advanced">Advanced</span>
+                        <svg class="qa-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="qa-answer">
+                        <div class="key-points">
+                            <strong>Troubleshooting Steps:</strong>
+                            <ul>
+                                <li><strong>1. Check Rule Health:</strong> Query SentinelHealth table for execution errors</li>
+                                <li><strong>2. Verify Data Source:</strong> Ensure underlying table has data (connector not broken)</li>
+                                <li><strong>3. Test Query:</strong> Run the rule's KQL manually to see if it returns results</li>
+                                <li><strong>4. Check Thresholds:</strong> Maybe threshold is too high for current environment</li>
+                                <li><strong>5. Review Suppressions:</strong> Check if automation rules are auto-closing incidents</li>
+                            </ul>
+                        </div>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">KQL - Rule Health Check</span>
+                            </div>
+                            <div class="code-content">
+<pre>SentinelHealth
+| where TimeGenerated > ago(7d)
+| where SentinelResourceType == "Analytics Rule"
+| where SentinelResourceName == "Your Rule Name"
+| project TimeGenerated, Status, Description
+| sort by TimeGenerated desc</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-question" onclick="toggleAnswer(this)">
+                        How would you detect a ransomware attack using Sentinel?
+                        <span class="difficulty diff-advanced">Advanced</span>
+                        <svg class="qa-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="qa-answer">
+                        <div class="key-points">
+                            <strong>Detection Approach (Kill Chain):</strong>
+                            <ul>
+                                <li><strong>Stage 1 - Delivery:</strong> Phishing emails with malicious attachments (EmailEvents)</li>
+                                <li><strong>Stage 2 - Execution:</strong> Office macro spawning PowerShell/cmd (DeviceProcessEvents)</li>
+                                <li><strong>Stage 3 - Persistence:</strong> Registry Run keys, scheduled tasks (DeviceRegistryEvents)</li>
+                                <li><strong>Stage 4 - Lateral Movement:</strong> PsExec, WMI to multiple hosts (DeviceNetworkEvents)</li>
+                                <li><strong>Stage 5 - Impact:</strong> Mass file encryption with suspicious extensions (DeviceFileEvents)</li>
+                            </ul>
+                        </div>
+                        <div class="key-points">
+                            <strong>Rules to Deploy:</strong>
+                            <ul>
+                                <li>Scheduled rule for mass file modifications with ransomware extensions</li>
+                                <li>NRT rule for shadow copy deletion (vssadmin delete shadows)</li>
+                                <li>Correlation rule linking all stages for high-fidelity alert</li>
+                                <li>Fusion detection for multi-stage attack patterns</li>
+                            </ul>
+                        </div>
+                        <p><strong>Response:</strong> Playbook to isolate device via MDE API, disable user, alert SOC.</p>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="footer-content">
+                    <svg class="footer-icon" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    Microsoft Sentinel Ultimate Guide - Interview Preparation
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <script src="main.js"></script>
+    <script>
+        function toggleAnswer(element) {
+            const card = element.parentElement;
+            card.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
