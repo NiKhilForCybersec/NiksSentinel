@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Splunk ES Asset and Identity Framework - Populating asset inventories, identity databases, and leveraging context for security operations.">
+    <title>Asset & Identity | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item active">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="3-1-splunk-es-overview.html">Splunk Security Ops</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Asset & Identity</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Asset & Identity Framework</h1>
+                <p class="page-subtitle">Enriching security events with asset and user context</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            The Asset and Identity framework provides crucial context for security events. Knowing that an alert involves a critical server or a VIP user changes the response priority. This chapter covers populating and maintaining these frameworks.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="framework-overview">Framework Overview</h2>
+                
+                <pre><code class="language-text">ASSET & IDENTITY ENRICHMENT:
+
+Security Event                    Enriched Event
+┌─────────────────┐              ┌─────────────────────────────┐
+│ src_ip: 10.0.1.5│              │ src_ip: 10.0.1.5            │
+│ dest: DC01      │    ────►     │ dest: DC01                  │
+│ user: jsmith    │              │ user: jsmith                │
+│                 │              │ asset_priority: critical    │
+│                 │              │ asset_owner: IT Team        │
+│                 │              │ user_priority: high         │
+│                 │              │ user_department: Finance    │
+│                 │              │ user_manager: Jane Doe      │
+└─────────────────┘              └─────────────────────────────┘
+
+URGENCY CALCULATION:
+Urgency = f(Severity, max(Asset Priority, Identity Priority))</code></pre>
+                
+                <h2 id="asset-framework">Asset Framework</h2>
+                
+                <h3>Asset Lookup Fields</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>ip</strong></td>
+                                <td>IP address (primary key)</td>
+                                <td>10.0.1.50</td>
+                            </tr>
+                            <tr>
+                                <td><strong>mac</strong></td>
+                                <td>MAC address</td>
+                                <td>00:1A:2B:3C:4D:5E</td>
+                            </tr>
+                            <tr>
+                                <td><strong>nt_host</strong></td>
+                                <td>Windows hostname</td>
+                                <td>DC01</td>
+                            </tr>
+                            <tr>
+                                <td><strong>dns</strong></td>
+                                <td>FQDN</td>
+                                <td>dc01.company.com</td>
+                            </tr>
+                            <tr>
+                                <td><strong>owner</strong></td>
+                                <td>Asset owner</td>
+                                <td>IT Security Team</td>
+                            </tr>
+                            <tr>
+                                <td><strong>priority</strong></td>
+                                <td>Asset criticality</td>
+                                <td>critical, high, medium, low</td>
+                            </tr>
+                            <tr>
+                                <td><strong>bunit</strong></td>
+                                <td>Business unit</td>
+                                <td>Finance, HR, IT</td>
+                            </tr>
+                            <tr>
+                                <td><strong>category</strong></td>
+                                <td>Asset category (multi-value)</td>
+                                <td>server, pci, hipaa</td>
+                            </tr>
+                            <tr>
+                                <td><strong>is_expected</strong></td>
+                                <td>Expected on network</td>
+                                <td>true, false</td>
+                            </tr>
+                            <tr>
+                                <td><strong>lat</strong> / <strong>long</strong></td>
+                                <td>Geographic location</td>
+                                <td>37.7749 / -122.4194</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Populating Asset Data</h3>
+                
+                <pre><code class="language-text"># Method 1: CSV Upload
+Configure → Data Enrichment → Asset & Identity Management → Asset Lookups
+
+Upload CSV with columns:
+ip,mac,nt_host,dns,owner,priority,bunit,category
+
+# Method 2: Lookup Generation Search
+Configure a search that populates assets automatically</code></pre>
+                
+                <pre><code class="language-spl"># Generate assets from Active Directory
+index=ad sourcetype=ActiveDirectory objectClass=computer
+| dedup sAMAccountName
+| rename sAMAccountName AS nt_host, dNSHostName AS dns
+| eval priority = case(
+    match(distinguishedName, "OU=Domain Controllers"), "critical",
+    match(distinguishedName, "OU=Servers"), "high",
+    1==1, "medium"
+  )
+| eval category = case(
+    match(distinguishedName, "OU=Domain Controllers"), "domain_controller",
+    match(distinguishedName, "OU=Database"), "database",
+    1==1, "workstation"
+  )
+| table ip, mac, nt_host, dns, owner, priority, bunit, category
+| outputlookup asset_lookup.csv
+
+# Generate assets from DHCP leases
+index=dhcp sourcetype=dhcp
+| stats latest(mac) AS mac, latest(hostname) AS nt_host BY ip
+| eval priority = "medium"
+| outputlookup append=true asset_lookup.csv
+
+# Generate assets from vulnerability scanner
+index=qualys sourcetype=qualys_vm
+| dedup ip
+| rename hostname AS nt_host
+| eval priority = case(
+    risk_score > 80, "critical",
+    risk_score > 50, "high",
+    1==1, "medium"
+  )
+| table ip, nt_host, priority, category
+| outputlookup append=true asset_lookup.csv</code></pre>
+                
+                <h3>Asset Lookup Configuration</h3>
+                
+                <pre><code class="language-ini"># transforms.conf
+[asset_lookup]
+filename = asset_lookup.csv
+case_sensitive_match = false
+match_type = CIDR(ip)
+
+# props.conf - Automatic asset enrichment
+[source::...yoursource...]
+LOOKUP-asset = asset_lookup ip AS dest_ip OUTPUT priority AS asset_priority, owner AS asset_owner</code></pre>
+                
+                <h2 id="identity-framework">Identity Framework</h2>
+                
+                <h3>Identity Lookup Fields</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>identity</strong></td>
+                                <td>Username (primary key)</td>
+                                <td>jsmith</td>
+                            </tr>
+                            <tr>
+                                <td><strong>first</strong></td>
+                                <td>First name</td>
+                                <td>John</td>
+                            </tr>
+                            <tr>
+                                <td><strong>last</strong></td>
+                                <td>Last name</td>
+                                <td>Smith</td>
+                            </tr>
+                            <tr>
+                                <td><strong>email</strong></td>
+                                <td>Email address</td>
+                                <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3359405e5a475b73505c5e43525d4a1d505c5e">[email&#160;protected]</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>priority</strong></td>
+                                <td>User criticality</td>
+                                <td>critical, high, medium, low</td>
+                            </tr>
+                            <tr>
+                                <td><strong>bunit</strong></td>
+                                <td>Business unit</td>
+                                <td>Finance</td>
+                            </tr>
+                            <tr>
+                                <td><strong>category</strong></td>
+                                <td>User category</td>
+                                <td>executive, privileged, standard</td>
+                            </tr>
+                            <tr>
+                                <td><strong>watchlist</strong></td>
+                                <td>Watchlist status</td>
+                                <td>true, false</td>
+                            </tr>
+                            <tr>
+                                <td><strong>startDate</strong></td>
+                                <td>Hire date</td>
+                                <td>2020-01-15</td>
+                            </tr>
+                            <tr>
+                                <td><strong>endDate</strong></td>
+                                <td>Termination date</td>
+                                <td>2024-12-31</td>
+                            </tr>
+                            <tr>
+                                <td><strong>managedBy</strong></td>
+                                <td>Manager</td>
+                                <td>jdoe</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Populating Identity Data</h3>
+                
+                <pre><code class="language-spl"># Generate identities from Active Directory
+index=ad sourcetype=ActiveDirectory objectClass=user
+| dedup sAMAccountName
+| rename sAMAccountName AS identity, givenName AS first, sn AS last, mail AS email
+| eval priority = case(
+    match(memberOf, "Domain Admins"), "critical",
+    match(memberOf, "Enterprise Admins"), "critical",
+    match(title, "(?i)executive|director|vp|ceo|cfo"), "high",
+    1==1, "medium"
+  )
+| eval category = case(
+    match(memberOf, "Domain Admins|Enterprise Admins"), "privileged",
+    match(title, "(?i)executive|director|vp"), "executive",
+    1==1, "standard"
+  )
+| table identity, first, last, email, priority, bunit, category, managedBy
+| outputlookup identity_lookup.csv
+
+# Enrich from HR system
+| inputlookup identity_lookup.csv
+| lookup hr_data employee_id AS identity OUTPUT department AS bunit, hire_date AS startDate
+| outputlookup identity_lookup.csv
+
+# Add executives to watchlist
+| inputlookup identity_lookup.csv
+| eval watchlist = if(priority IN ("critical", "high"), "true", "false")
+| outputlookup identity_lookup.csv</code></pre>
+                
+                <h2 id="using-context">Using Asset/Identity Context</h2>
+                
+                <h3>In Searches</h3>
+                
+                <pre><code class="language-spl"># Enrich authentication events
+index=security EventCode=4625
+| lookup asset_lookup_by_str ip AS dest OUTPUT priority AS dest_priority, owner
+| lookup identity_lookup identity AS user OUTPUT priority AS user_priority, bunit, category
+| eval urgency = case(
+    dest_priority=="critical" OR user_priority=="critical", "critical",
+    dest_priority=="high" OR user_priority=="high", "high",
+    1==1, "medium"
+  )
+| table _time, user, src_ip, dest, dest_priority, user_priority, urgency
+
+# Find activity on critical assets
+index=security 
+| lookup asset_lookup_by_str ip AS dest OUTPUT priority
+| where priority=="critical"
+| stats count by dest, user, action
+
+# Monitor privileged user activity
+index=security
+| lookup identity_lookup identity AS user OUTPUT category
+| where category=="privileged"
+| stats count by user, action, dest</code></pre>
+                
+                <h3>In Correlation Searches</h3>
+                
+                <pre><code class="language-spl"># Critical Asset Brute Force
+| tstats count FROM datamodel=Authentication 
+  WHERE Authentication.action=failure BY Authentication.dest, Authentication.user
+| `drop_dm_object_name("Authentication")`
+| lookup asset_lookup_by_str ip AS dest OUTPUT priority
+| where priority=="critical" AND count > 5
+| `map_notable_fields`
+
+# Executive Account Compromise
+| tstats count FROM datamodel=Authentication 
+  WHERE Authentication.action=success BY Authentication.user, Authentication.src
+| `drop_dm_object_name("Authentication")`
+| lookup identity_lookup identity AS user OUTPUT category
+| where category=="executive"
+| `cim_corporate_ip(src)`
+| where NOT corporate_ip=1
+| `map_notable_fields`</code></pre>
+                
+                <h2 id="maintenance">Framework Maintenance</h2>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Maintenance Best Practices
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Automation</strong><br>
+                            □ Schedule daily/weekly asset discovery searches<br>
+                            □ Integrate with CMDB, AD, and HR systems<br>
+                            □ Auto-detect new assets from network logs<br><br>
+                            
+                            <strong>Data Quality</strong><br>
+                            □ Validate priority assignments regularly<br>
+                            □ Remove stale/decommissioned assets<br>
+                            □ Update terminated users promptly<br>
+                            □ Deduplicate entries<br><br>
+                            
+                            <strong>Coverage Monitoring</strong><br>
+                            □ Track percentage of events with asset match<br>
+                            □ Identify IPs/users without context<br>
+                            □ Report on data freshness
+                        </p>
+                    </div>
+                </div>
+                
+                <pre><code class="language-spl"># Asset Coverage Report
+index=security earliest=-24h
+| lookup asset_lookup_by_str ip AS dest OUTPUT priority
+| stats count AS total, count(eval(isnotnull(priority))) AS matched
+| eval coverage_pct = round((matched/total)*100, 2)
+
+# Identity Coverage Report  
+index=security user=* earliest=-24h
+| lookup identity_lookup identity AS user OUTPUT priority
+| stats count AS total, count(eval(isnotnull(priority))) AS matched
+| eval coverage_pct = round((matched/total)*100, 2)
+
+# Unknown Assets (for investigation)
+index=security earliest=-24h
+| lookup asset_lookup_by_str ip AS dest OUTPUT priority
+| where isnull(priority)
+| stats count by dest
+| sort -count</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"Why is the Asset and Identity framework important in Splunk ES?"</strong><br><br>
+                            The framework provides critical context that transforms raw events into actionable intelligence:<br><br>
+                            <strong>1. Priority-based urgency:</strong> An alert on a domain controller vs. a test workstation should have different priorities<br>
+                            <strong>2. Ownership routing:</strong> Alerts can be automatically assigned to asset owners<br>
+                            <strong>3. Risk scoring:</strong> Asset/identity priority influences risk calculations<br>
+                            <strong>4. Investigation context:</strong> Analysts immediately see who owns the system and user's role<br>
+                            <strong>5. Compliance:</strong> Track activity on regulated systems (PCI, HIPAA categories)
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li><strong>Asset framework</strong> provides system context (priority, owner, category)</li>
+                    <li><strong>Identity framework</strong> provides user context (priority, department, role)</li>
+                    <li>Urgency calculated from severity × max(asset, identity) priority</li>
+                    <li>Populate from AD, CMDB, HR systems, vulnerability scanners</li>
+                    <li>Automate updates via scheduled searches</li>
+                    <li>Monitor coverage and data quality</li>
+                    <li>Use context in correlation searches and investigations</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="3-5-threat-intelligence.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Threat Intelligence</span>
+                        </div>
+                    </a>
+                    <a href="3-7-security-dashboards.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Security Dashboards</span>
+                        </div>
+                    </a>
+     

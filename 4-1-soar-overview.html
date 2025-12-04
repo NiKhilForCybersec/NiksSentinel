@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Splunk SOAR Overview - Security Orchestration, Automation, and Response concepts, architecture, and capabilities.">
+    <title>SOAR Overview | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item active">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="4-1-soar-overview.html">Splunk SOAR</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">SOAR Overview</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Splunk SOAR Overview</h1>
+                <p class="page-subtitle">Security Orchestration, Automation, and Response fundamentals</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Splunk SOAR (formerly Phantom) automates security operations by orchestrating tools, automating repetitive tasks, and accelerating incident response. This chapter introduces SOAR concepts, architecture, and how it integrates with Splunk ES and the broader security stack.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="what-is-soar">What is SOAR?</h2>
+                
+                <p>
+                    SOAR stands for Security Orchestration, Automation, and Response:
+                </p>
+                
+                <pre><code class="language-text">SOAR COMPONENTS:
+
+┌─────────────────────────────────────────────────────────┐
+│ ORCHESTRATION                                           │
+│ Connect and coordinate multiple security tools          │
+│ • Integrate SIEM, EDR, Firewall, Ticketing, etc.       │
+│ • Unified workflow across the security stack           │
+└─────────────────────────────────────────────────────────┘
+                          +
+┌─────────────────────────────────────────────────────────┐
+│ AUTOMATION                                              │
+│ Execute tasks without human intervention               │
+│ • Enrich alerts automatically                          │
+│ • Perform repetitive investigation steps               │
+│ • Reduce mean time to respond (MTTR)                   │
+└─────────────────────────────────────────────────────────┘
+                          +
+┌─────────────────────────────────────────────────────────┐
+│ RESPONSE                                                │
+│ Take containment and remediation actions               │
+│ • Block IPs at firewall                                │
+│ • Isolate endpoints                                    │
+│ • Disable user accounts                                │
+│ • Create tickets                                       │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h3>Why SOAR?</h3>
+                
+                <ul>
+                    <li><strong>Alert fatigue</strong> - Analysts face thousands of alerts; SOAR triages automatically</li>
+                    <li><strong>Skill shortage</strong> - Automate Tier 1 tasks, elevate analysts to higher-value work</li>
+                    <li><strong>Consistency</strong> - Playbooks ensure standard response procedures</li>
+                    <li><strong>Speed</strong> - Machine-speed response vs human-speed</li>
+                    <li><strong>Documentation</strong> - Automatic audit trail of all actions</li>
+                </ul>
+                
+                <h2 id="soar-architecture">Splunk SOAR Architecture</h2>
+                
+                <pre><code class="language-text">SPLUNK SOAR ARCHITECTURE:
+
+┌─────────────────────────────────────────────────────────┐
+│                    SPLUNK SOAR                          │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐     │
+│  │  PLAYBOOKS  │  │    APPS     │  │   CASES     │     │
+│  │  (Workflows)│  │(Integrations)│  │(Incidents)  │     │
+│  └─────────────┘  └─────────────┘  └─────────────┘     │
+│         │                │                │             │
+│         └────────────────┼────────────────┘             │
+│                          │                              │
+│                 ┌────────▼────────┐                     │
+│                 │  DECISION       │                     │
+│                 │  ENGINE         │                     │
+│                 └────────┬────────┘                     │
+│                          │                              │
+└──────────────────────────┼──────────────────────────────┘
+                           │
+        ┌──────────────────┼──────────────────┐
+        ▼                  ▼                  ▼
+┌──────────────┐  ┌──────────────┐  ┌──────────────┐
+│  SIEM        │  │  EDR         │  │  FIREWALL    │
+│  (Splunk ES) │  │  (CrowdStrike│  │  (Palo Alto) │
+│              │  │   Carbon Blk)│  │              │
+└──────────────┘  └──────────────┘  └──────────────┘
+        ▼                  ▼                  ▼
+┌──────────────┐  ┌──────────────┐  ┌──────────────┐
+│  TICKETING   │  │  THREAT      │  │  EMAIL       │
+│  (ServiceNow │  │  INTEL       │  │  (Exchange   │
+│   Jira)      │  │  (VirusTotal)│  │   O365)      │
+└──────────────┘  └──────────────┘  └──────────────┘</code></pre>
+                
+                <h3>Key Components</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Purpose</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Events/Containers</strong></td>
+                                <td>Alert ingestion</td>
+                                <td>Incoming alerts from SIEM, email, etc.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Artifacts</strong></td>
+                                <td>IOCs/Evidence</td>
+                                <td>IPs, hashes, domains, users within events</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Playbooks</strong></td>
+                                <td>Automated workflows</td>
+                                <td>Visual or code-based automation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Apps</strong></td>
+                                <td>Integrations</td>
+                                <td>Connectors to external tools</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Actions</strong></td>
+                                <td>Operations</td>
+                                <td>Tasks performed by apps (query, block, etc.)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cases</strong></td>
+                                <td>Incident management</td>
+                                <td>Group related events, track investigation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Workbooks</strong></td>
+                                <td>Response templates</td>
+                                <td>Standard operating procedures</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="events-artifacts">Events and Artifacts</h2>
+                
+                <h3>Container (Event) Structure</h3>
+                
+                <pre><code class="language-json">{
+  "container_id": 12345,
+  "name": "Brute Force Attack Detected",
+  "label": "events",
+  "severity": "high",
+  "status": "new",
+  "source_data_identifier": "notable_abc123",
+  "artifacts": [
+    {
+      "cef": {
+        "sourceAddress": "192.168.1.50",
+        "destinationAddress": "10.0.0.5",
+        "sourceUserName": "admin"
+      },
+      "type": "ip",
+      "value": "192.168.1.50"
+    }
+  ]
+}</code></pre>
+                
+                <h3>Common Artifact Types</h3>
+                
+                <pre><code class="language-text">Artifact Types:
+• ip          - IP addresses
+• domain      - Domain names
+• url         - Full URLs
+• hash        - File hashes (MD5, SHA1, SHA256)
+• user        - Usernames
+• email       - Email addresses
+• hostname    - System names
+• file        - File names/paths
+• process     - Process names</code></pre>
+                
+                <h2 id="splunk-integration">Splunk ES Integration</h2>
+                
+                <pre><code class="language-text">ES → SOAR INTEGRATION:
+
+Notable Event Created
+        │
+        ▼
+┌───────────────────┐
+│ Adaptive Response │
+│ Action: Run       │
+│ Playbook         │
+└─────────┬─────────┘
+          │
+          ▼
+┌───────────────────┐
+│ SOAR Receives     │
+│ Container with    │
+│ Notable Details   │
+└─────────┬─────────┘
+          │
+          ▼
+┌───────────────────┐
+│ Playbook Executes │
+│ • Enrich IOCs     │
+│ • Query EDR       │
+│ • Check TI        │
+│ • Auto-contain    │
+└─────────┬─────────┘
+          │
+          ▼
+┌───────────────────┐
+│ Results Return    │
+│ to ES / Update    │
+│ Notable Event     │
+└───────────────────┘</code></pre>
+                
+                <h3>Configuration</h3>
+                
+                <pre><code class="language-text">In Splunk ES:
+Configure → Content → Correlation Searches → [Select Search]
+
+Adaptive Response Actions:
+• Add "Run Playbook" action
+• Select SOAR playbook to trigger
+• Map fields to playbook inputs
+
+In SOAR:
+• Configure Splunk ES app
+• Set up ingestion from Splunk ES notable events
+• Create playbook to process incoming containers</code></pre>
+                
+                <h2 id="use-cases">Common SOAR Use Cases</h2>
+                
+                <h3>1. Automated Enrichment</h3>
+                
+                <pre><code class="language-text">Trigger: Any alert with IP artifact
+
+Playbook Steps:
+1. Extract IP from container
+2. Query VirusTotal for reputation
+3. Query AbuseIPDB for reports
+4. Query internal asset database
+5. Query Shodan for open ports
+6. Add enrichment data to container
+7. Adjust severity based on findings</code></pre>
+                
+                <h3>2. Phishing Response</h3>
+                
+                <pre><code class="language-text">Trigger: Phishing email reported
+
+Playbook Steps:
+1. Parse email headers and body
+2. Extract URLs, attachments, sender
+3. Check URLs against threat intel
+4. Detonate attachments in sandbox
+5. Search mailboxes for similar emails
+6. If malicious:
+   a. Delete emails from all mailboxes
+   b. Block sender domain
+   c. Block malicious URLs at proxy
+7. Notify reporter of outcome
+8. Create case for tracking</code></pre>
+                
+                <h3>3. Malware Containment</h3>
+                
+                <pre><code class="language-text">Trigger: Malware detection from EDR
+
+Playbook Steps:
+1. Get host details from EDR
+2. Check file hash against threat intel
+3. Get process tree
+4. If high confidence malware:
+   a. Isolate host (network quarantine)
+   b. Kill malicious processes
+   c. Collect forensic artifacts
+5. Create ServiceNow ticket
+6. Notify SOC team via Slack
+7. Update case with findings</code></pre>
+                
+                <h3>4. Account Compromise</h3>
+                
+                <pre><code class="language-text">Trigger: Suspicious login activity
+
+Playbook Steps:
+1. Get user details from AD
+2. Get recent authentication logs
+3. Check for impossible travel
+4. Get user's recent file access
+5. If compromise indicators:
+   a. Force password reset
+   b. Revoke active sessions
+   c. Enable MFA if not active
+6. Notify user's manager
+7. Escalate to Tier 2</code></pre>
+                
+                <h2 id="soar-benefits">SOAR Benefits</h2>
+                
+                <pre><code class="language-text">SOAR METRICS IMPACT:
+
+Before SOAR:
+┌────────────────────────────────────┐
+│ Metric          │ Value            │
+├────────────────────────────────────┤
+│ MTTR            │ 4-6 hours        │
+│ Alerts/Analyst  │ 50/day           │
+│ Manual Tasks    │ 80%              │
+│ Consistency     │ Variable         │
+└────────────────────────────────────┘
+
+After SOAR:
+┌────────────────────────────────────┐
+│ Metric          │ Value            │
+├────────────────────────────────────┤
+│ MTTR            │ 15-30 minutes    │
+│ Alerts/Analyst  │ 200+/day         │
+│ Manual Tasks    │ 20%              │
+│ Consistency     │ 100%             │
+└────────────────────────────────────┘
+
+ROI Factors:
+• Reduced analyst time on repetitive tasks
+• Faster threat containment
+• Consistent documentation
+• Better compliance posture
+• Improved analyst retention (less burnout)</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"What is SOAR and how does it improve security operations?"</strong><br><br>
+                            SOAR (Security Orchestration, Automation, and Response) is a platform that:<br><br>
+                            <strong>Orchestrates:</strong> Connects disparate security tools (SIEM, EDR, firewall, ticketing) into unified workflows<br>
+                            <strong>Automates:</strong> Executes repetitive tasks like IOC enrichment, threat intel lookups, and data gathering without human intervention<br>
+                            <strong>Responds:</strong> Takes containment actions like blocking IPs, isolating hosts, disabling accounts<br><br>
+                            <strong>Improvements:</strong><br>
+                            • Reduces MTTR from hours to minutes<br>
+                            • Handles alert volume that would overwhelm analysts<br>
+                            • Ensures consistent, documented response procedures<br>
+                            • Frees analysts for complex investigations
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li><strong>SOAR</strong> = Security Orchestration, Automation, and Response</li>
+                    <li>Connects security tools, automates tasks, enables rapid response</li>
+                    <li><strong>Containers</strong> hold events with <strong>artifacts</strong> (IOCs)</li>
+                    <li><strong>Playbooks</strong> define automated workflows</li>
+                    <li><strong>Apps</strong> provide integrations to external tools</li>
+                    <li>Integrates with Splunk ES via Adaptive Response Actions</li>
+                    <li>Common use cases: enrichment, phishing, malware, account compromise</li>
+                    <li>Key metrics improved: MTTR, alerts per analyst, consistency</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="3-8-es-administration.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">ES Administration</span>
+                        </div>
+                    </a>
+                    <a href="4-2-playbooks.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Playbooks</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

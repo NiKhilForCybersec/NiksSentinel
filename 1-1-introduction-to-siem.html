@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Introduction to SIEM - Learn what Security Information and Event Management is, its evolution, core functions, and comparison with SOAR, XDR, and EDR.">
+    <title>Introduction to SIEM | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+        
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay"></div>
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+                <div class="sidebar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search docs... (Ctrl+K)" aria-label="Search documentation">
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item active">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+                <p><a href="https://github.com" target="_blank">View on GitHub</a></p>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="1-1-introduction-to-siem.html">SIEM Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Introduction to SIEM</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Introduction to SIEM</h1>
+                <p class="page-subtitle">Understanding Security Information and Event Management: concepts, evolution, and modern capabilities</p>
+                
+                <!-- Overview Box -->
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            This chapter introduces the foundational concepts of SIEM technology. You'll learn what SIEM is, how it evolved from simple log management to sophisticated security platforms, understand its core functions, and see how it compares to related technologies like SOAR, XDR, and EDR.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="what-is-siem">What is SIEM and Why It Matters</h2>
+                
+                <p>
+                    <strong>Security Information and Event Management (SIEM)</strong> is a security solution that provides real-time analysis of security alerts generated by applications and network hardware. SIEM systems collect and aggregate log data generated throughout an organization's technology infrastructure, from host systems and applications to network and security devices.
+                </p>
+                
+                <p>
+                    The term SIEM was coined by Gartner analysts Mark Nicolett and Amrit Williams in 2005, combining two previously separate categories:
+                </p>
+                
+                <ul>
+                    <li><strong>Security Information Management (SIM)</strong> - Long-term storage, analysis, and reporting of log data</li>
+                    <li><strong>Security Event Management (SEM)</strong> - Real-time monitoring, correlation, and notification of security events</li>
+                </ul>
+                
+                <h3>Why SIEM Matters</h3>
+                
+                <p>
+                    Organizations face an overwhelming volume of security data. A medium-sized enterprise might generate billions of log events daily across firewalls, servers, applications, and endpoints. Without SIEM, security teams would be drowning in data with no way to identify genuine threats.
+                </p>
+                
+                <p>SIEM addresses critical security challenges:</p>
+                
+                <ul>
+                    <li><strong>Visibility</strong> - Centralized view across all security-relevant data sources</li>
+                    <li><strong>Compliance</strong> - Meet regulatory requirements (PCI-DSS, HIPAA, SOX, GDPR) with audit trails and reporting</li>
+                    <li><strong>Threat Detection</strong> - Identify attacks through correlation and behavioral analysis</li>
+                    <li><strong>Incident Response</strong> - Accelerate investigation with contextual data and forensic capabilities</li>
+                    <li><strong>Operational Efficiency</strong> - Reduce alert fatigue and streamline SOC workflows</li>
+                </ul>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"Why do organizations need a SIEM?"</strong><br><br>
+                            A strong answer touches on: centralized visibility, threat detection through correlation, compliance requirements, and operational efficiency. Mention specific use cases like detecting lateral movement that spans multiple log sources, or meeting audit requirements for access logging.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="siem-evolution">SIEM Evolution</h2>
+                
+                <p>
+                    SIEM technology has evolved significantly over the past two decades, progressing through distinct generations:
+                </p>
+                
+                <h3>Generation 1: Log Management (Early 2000s)</h3>
+                
+                <p>
+                    The earliest systems focused purely on log collection and storage. Organizations needed a central repository for logs to meet compliance requirements and perform basic searches. These systems offered:
+                </p>
+                
+                <ul>
+                    <li>Centralized log collection via syslog</li>
+                    <li>Basic search and reporting</li>
+                    <li>Long-term retention for compliance</li>
+                    <li>Limited or no real-time alerting</li>
+                </ul>
+                
+                <h3>Generation 2: Traditional SIEM (Mid 2000s - Early 2010s)</h3>
+                
+                <p>
+                    The introduction of correlation engines marked a significant advancement. SIEMs could now identify patterns across multiple log sources and generate alerts. Key capabilities included:
+                </p>
+                
+                <ul>
+                    <li>Rule-based correlation engine</li>
+                    <li>Real-time alerting</li>
+                    <li>Asset and identity context</li>
+                    <li>Basic dashboards and reporting</li>
+                    <li>Normalized data models</li>
+                </ul>
+                
+                <p>
+                    Examples from this era include ArcSight, QRadar, and LogLogic.
+                </p>
+                
+                <h3>Generation 3: Next-Gen SIEM (2010s)</h3>
+                
+                <p>
+                    Modern SIEMs introduced big data architecture and advanced analytics. This generation addressed scale limitations and added intelligence:
+                </p>
+                
+                <ul>
+                    <li>Horizontal scalability with big data backends</li>
+                    <li>User and Entity Behavior Analytics (UEBA)</li>
+                    <li>Machine learning for anomaly detection</li>
+                    <li>Threat intelligence integration</li>
+                    <li>Advanced visualization and hunting tools</li>
+                    <li>Cloud-native deployment options</li>
+                </ul>
+                
+                <p>
+                    Splunk and Elastic Security emerged as leaders, leveraging big data technology for massive scale.
+                </p>
+                
+                <h3>Generation 4: Cloud-Native & XDR Integration (2020s)</h3>
+                
+                <p>
+                    The current generation emphasizes cloud-native architecture, automation, and convergence with other security tools:
+                </p>
+                
+                <ul>
+                    <li>Cloud-native SaaS platforms (Microsoft Sentinel, Google Chronicle)</li>
+                    <li>Integration with XDR platforms</li>
+                    <li>Built-in SOAR capabilities</li>
+                    <li>AI/ML-powered detection and response</li>
+                    <li>Open schemas (OCSF, ASIM)</li>
+                    <li>Consumption-based pricing models</li>
+                </ul>
+                
+                <div class="info-box tip">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💡</span>
+                        Memory Tip
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Think of SIEM evolution as: <strong>Store → Alert → Analyze → Automate</strong>. Each generation added a new primary capability while building on previous ones.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="core-functions">Core SIEM Functions</h2>
+                
+                <p>
+                    Every SIEM, regardless of vendor, performs six fundamental functions:
+                </p>
+                
+                <h3>1. Collection</h3>
+                
+                <p>
+                    The SIEM must gather data from diverse sources across the environment. This includes:
+                </p>
+                
+                <ul>
+                    <li>Agent-based collection (installed software on endpoints)</li>
+                    <li>Agentless collection (syslog, API polling, WMI)</li>
+                    <li>Network-based collection (packet capture, NetFlow)</li>
+                    <li>Cloud service integrations</li>
+                </ul>
+                
+                <pre><code class="language-bash"># Example: Forwarding syslog to SIEM
+# Linux rsyslog configuration
+*.* @@siem.company.com:514
+
+# Windows Event Forwarding (WEF) subscription
+wecutil qc /q  # Quick configuration for collector</code></pre>
+                
+                <h3>2. Normalization</h3>
+                
+                <p>
+                    Raw logs come in countless formats. Normalization transforms them into a consistent schema for analysis:
+                </p>
+                
+                <ul>
+                    <li>Parse structured and unstructured data</li>
+                    <li>Extract relevant fields</li>
+                    <li>Map to common data model (CIM, ASIM, OCSF)</li>
+                    <li>Standardize timestamps to UTC</li>
+                </ul>
+                
+                <pre><code class="language-text"># Raw Windows Event
+EventID: 4624, LogonType: 10, TargetUserName: admin
+
+# Normalized to common schema
+{
+  "event_type": "authentication",
+  "outcome": "success",
+  "method": "remote_desktop",
+  "user": "admin",
+  "timestamp": "2024-01-15T14:32:00Z"
+}</code></pre>
+                
+                <h3>3. Correlation</h3>
+                
+                <p>
+                    The correlation engine connects related events to identify meaningful patterns:
+                </p>
+                
+                <ul>
+                    <li>Rule-based correlation (if X and Y within time Z, alert)</li>
+                    <li>Statistical correlation (threshold breaches, baseline deviations)</li>
+                    <li>Behavioral correlation (unusual user/entity activity)</li>
+                    <li>Threat intelligence correlation (IOC matching)</li>
+                </ul>
+                
+                <pre><code class="language-text"># Example correlation rule logic
+IF:
+  - Failed login attempts > 5 within 5 minutes
+  - FOLLOWED BY successful login within 10 minutes
+  - FROM same source IP
+THEN:
+  - Generate "Potential Brute Force Success" alert
+  - Priority: High
+  - Enrich with threat intelligence</code></pre>
+                
+                <h3>4. Alerting</h3>
+                
+                <p>
+                    When correlation rules match, the SIEM generates alerts for analyst review:
+                </p>
+                
+                <ul>
+                    <li>Alert prioritization and scoring</li>
+                    <li>Suppression and throttling to prevent duplicates</li>
+                    <li>Notification channels (email, Slack, PagerDuty, ticketing)</li>
+                    <li>Automatic enrichment with context</li>
+                </ul>
+                
+                <h3>5. Dashboards & Visualization</h3>
+                
+                <p>
+                    Visual interfaces help analysts understand security posture and trends:
+                </p>
+                
+                <ul>
+                    <li>Real-time security dashboards</li>
+                    <li>Trend analysis and historical comparison</li>
+                    <li>Executive summary reports</li>
+                    <li>Investigation timelines</li>
+                </ul>
+                
+                <h3>6. Retention & Forensics</h3>
+                
+                <p>
+                    Long-term storage enables compliance and incident investigation:
+                </p>
+                
+                <ul>
+                    <li>Configurable retention policies by data type</li>
+                    <li>Hot/warm/cold storage tiers</li>
+                    <li>Full-text search across historical data</li>
+                    <li>Chain of custody for legal proceedings</li>
+                </ul>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Best Practice
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Define retention policies based on both compliance requirements and operational needs. Security logs typically require 90 days to 1 year online, with longer cold storage. Compliance requirements (PCI-DSS: 1 year, HIPAA: 6 years) may mandate extended retention.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="siem-vs-others">SIEM vs SOAR vs XDR vs EDR</h2>
+                
+                <p>
+                    Security teams often encounter confusion about how SIEM relates to other security technologies. Here's a clear comparison:
+                </p>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Technology</th>
+                                <th>Primary Focus</th>
+                                <th>Data Sources</th>
+                                <th>Key Capability</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>SIEM</strong></td>
+                                <td>Log aggregation & correlation</td>
+                                <td>All log sources (broad)</td>
+                                <td>Detection, compliance, forensics</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SOAR</strong></td>
+                                <td>Automation & orchestration</td>
+                                <td>Security tool integrations</td>
+                                <td>Playbooks, response automation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>XDR</strong></td>
+                                <td>Unified detection & response</td>
+                                <td>Vendor ecosystem (deep)</td>
+                                <td>Correlated detection across stack</td>
+                            </tr>
+                            <tr>
+                                <td><strong>EDR</strong></td>
+                                <td>Endpoint visibility & response</td>
+                                <td>Endpoints only</td>
+                                <td>Process telemetry, containment</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>SIEM vs SOAR</h3>
+                
+                <p>
+                    <strong>SIEM</strong> collects data and generates alerts. <strong>SOAR</strong> (Security Orchestration, Automation, and Response) takes action on those alerts. They're complementary:
+                </p>
+                
+                <ul>
+                    <li>SIEM detects "suspicious login from unusual country"</li>
+                    <li>SOAR automatically enriches with threat intel, checks user's travel history, and creates a ticket or blocks the account</li>
+                </ul>
+                
+                <p>
+                    Many modern SIEMs include built-in SOAR capabilities (Splunk SOAR, Sentinel Logic Apps).
+                </p>
+                
+                <h3>SIEM vs XDR</h3>
+                
+                <p>
+                    <strong>XDR</strong> (Extended Detection and Response) provides correlated detection across a specific vendor's security stack. While SIEM offers breadth across all log sources, XDR offers depth within an ecosystem:
+                </p>
+                
+                <ul>
+                    <li>XDR: Microsoft Defender suite correlation (endpoint + email + identity + cloud)</li>
+                    <li>SIEM: Correlation across Microsoft, Palo Alto, AWS, custom apps, and everything else</li>
+                </ul>
+                
+                <p>
+                    Many organizations run both: XDR for rapid, automated detection within their primary security stack, and SIEM for broad visibility and compliance.
+                </p>
+                
+                <h3>SIEM vs EDR</h3>
+                
+                <p>
+                    <strong>EDR</strong> (Endpoint Detection and Response) focuses exclusively on endpoint telemetry—process execution, file modifications, network connections from hosts. SIEM ingests EDR alerts and enriches them with network, cloud, and identity context.
+                </p>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"Do organizations still need SIEM if they have XDR?"</strong><br><br>
+                            Yes. XDR provides excellent detection within its ecosystem but lacks visibility into third-party tools, legacy systems, and custom applications. SIEM remains essential for compliance reporting, long-term retention, and correlating events across diverse environments. The ideal architecture uses XDR for rapid, automated response and SIEM for comprehensive visibility and compliance.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="deployment-models">On-Premises vs Cloud SIEM</h2>
+                
+                <p>
+                    Organizations can deploy SIEM in several models, each with trade-offs:
+                </p>
+                
+                <h3>On-Premises SIEM</h3>
+                
+                <p>
+                    Traditional deployment within the organization's data center. Examples: Splunk Enterprise, QRadar, ArcSight.
+                </p>
+                
+                <p><strong>Advantages:</strong></p>
+                <ul>
+                    <li>Full control over data sovereignty</li>
+                    <li>No data leaving the network</li>
+                    <li>Predictable costs at scale</li>
+                    <li>Customization flexibility</li>
+                </ul>
+                
+                <p><strong>Challenges:</strong></p>
+                <ul>
+                    <li>Significant infrastructure investment</li>
+                    <li>Operational burden (patching, scaling, HA)</li>
+                    <li>Capacity planning complexity</li>
+                    <li>Longer deployment timelines</li>
+                </ul>
+                
+                <h3>Cloud-Native SIEM (SaaS)</h3>
+                
+                <p>
+                    Fully managed SIEM delivered as a service. Examples: Microsoft Sentinel, Google Chronicle, Splunk Cloud.
+                </p>
+                
+                <p><strong>Advantages:</strong></p>
+                <ul>
+                    <li>Rapid deployment (days vs months)</li>
+                    <li>Automatic scaling</li>
+                    <li>No infrastructure management</li>
+                    <li>Native cloud integrations</li>
+                    <li>Regular feature updates</li>
+                </ul>
+                
+                <p><strong>Challenges:</strong></p>
+                <ul>
+                    <li>Data residency concerns</li>
+                    <li>Consumption-based pricing can be unpredictable</li>
+                    <li>Less customization control</li>
+                    <li>Internet dependency</li>
+                </ul>
+                
+                <h3>Hybrid Deployment</h3>
+                
+                <p>
+                    Combination of on-premises and cloud components. Common patterns:
+                </p>
+                
+                <ul>
+                    <li>On-prem collection with cloud analytics</li>
+                    <li>Sensitive data on-prem, cloud workloads in cloud SIEM</li>
+                    <li>Primary on-prem with cloud DR</li>
+                </ul>
+                
+                <div class="info-box tip">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💡</span>
+                        Decision Framework
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Choose <strong>cloud SIEM</strong> if you're cloud-first, want rapid deployment, and have variable/growing data volumes.<br><br>
+                            Choose <strong>on-premises</strong> if you have strict data sovereignty requirements, predictable high volumes, and existing infrastructure investment.<br><br>
+                            Choose <strong>hybrid</strong> when you need both cloud agility and on-premises control for specific data types.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="vendor-comparison">Key SIEM Vendors</h2>
+                
+                <p>
+                    The SIEM market includes several major players, each with distinct strengths:
+                </p>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Vendor</th>
+                                <th>Platform</th>
+                                <th>Strengths</th>
+                                <th>Considerations</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Splunk</strong></td>
+                                <td>Enterprise, Cloud</td>
+                                <td>Powerful SPL, extensive ecosystem, flexibility</td>
+                                <td>Higher cost, complexity</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Microsoft Sentinel</strong></td>
+                                <td>Cloud-native (Azure)</td>
+                                <td>M365/Azure integration, UEBA, cost model</td>
+                                <td>Azure lock-in, KQL learning curve</td>
+                            </tr>
+                            <tr>
+                                <td><strong>IBM QRadar</strong></td>
+                                <td>On-prem, Cloud</td>
+                                <td>Strong correlation, offense management</td>
+                                <td>Legacy architecture, complexity</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Google Chronicle</strong></td>
+                                <td>Cloud-native (GCP)</td>
+                                <td>Massive scale, fixed pricing, YARA-L</td>
+                                <td>Newer platform, fewer integrations</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Elastic Security</strong></td>
+                                <td>Self-managed, Cloud</td>
+                                <td>Open source core, ELK stack familiarity</td>
+                                <td>Requires tuning, security features maturing</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Exabeam</strong></td>
+                                <td>Cloud, On-prem</td>
+                                <td>Advanced UEBA, timeline visualization</td>
+                                <td>Pricing, market positioning changes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <p>
+                    This documentation focuses on the two most widely deployed platforms in enterprise environments: <strong>Splunk</strong> and <strong>Microsoft Sentinel</strong>. Between them, they cover on-premises, cloud, and hybrid deployment models with the most extensive feature sets and job market demand.
+                </p>
+                
+                <div class="info-box memory">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">🧠</span>
+                        Memory Aid
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>SIEM = Security's Central Nervous System</strong><br><br>
+                            Think of SIEM like the brain and nervous system of your security infrastructure:<br>
+                            • <strong>Collection</strong> = Nerves gathering signals from all over the body<br>
+                            • <strong>Normalization</strong> = Translating signals into a common language<br>
+                            • <strong>Correlation</strong> = Brain connecting related signals to understand what's happening<br>
+                            • <strong>Alerting</strong> = Pain response telling you something is wrong<br>
+                            • <strong>Retention</strong> = Memory storing past events for learning<br><br>
+                            
+                            <strong>Remember the 6 Core Functions:</strong> <em>"Collect, Normalize, Correlate, Alert, Visualize, Retain"</em> — or <strong>CN-CAVR</strong> (sounds like "can cover")
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li><strong>SIEM</strong> combines security information management and security event management to provide centralized visibility, threat detection, and compliance capabilities</li>
+                    <li>SIEM has evolved through four generations: Log Management → Traditional SIEM → Next-Gen SIEM → Cloud-Native/XDR Integration</li>
+                    <li>Core SIEM functions are: Collection, Normalization, Correlation, Alerting, Visualization, and Retention</li>
+                    <li>SIEM complements (doesn't replace) SOAR, XDR, and EDR—each serves a distinct purpose</li>
+                    <li>Deployment options include on-premises, cloud-native SaaS, and hybrid models</li>
+                    <li>Major vendors include Splunk, Microsoft Sentinel, QRadar, Chronicle, and Elastic</li>
+                </ul>
+                
+                <!-- Page Navigation -->
+                <div class="page-navigation">
+                    <a href="index.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Home</span>
+                        </div>
+                    </a>
+                    <a href="1-2-architecture-components.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Architecture & Components</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

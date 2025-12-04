@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Data Exfiltration Use Cases - Detecting data theft via cloud, USB, email, and network channels.">
+    <title>Data Exfiltration | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item active">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="10-1-authentication-attacks.html">Use Case Library</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Data Exfiltration</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Data Exfiltration Use Cases</h1>
+                <p class="page-subtitle">Detection rules for data theft via cloud, email, USB, and network channels</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Data exfiltration is often the ultimate goal of attackers. This chapter covers detection of data theft through various channels including cloud storage, email, USB devices, and direct network transfers.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="exfil-channels">Exfiltration Channels</h2>
+                
+                <pre><code class="language-text">COMMON EXFILTRATION METHODS:
+
+┌─────────────────────────────────────────────────────────┐
+│ CHANNEL          │ EXAMPLES                            │
+├─────────────────────────────────────────────────────────┤
+│ Cloud Storage    │ Dropbox, Google Drive, OneDrive     │
+│                  │ Mega, Box, iCloud                   │
+├─────────────────────────────────────────────────────────┤
+│ Email            │ Personal email, large attachments   │
+│                  │ Forwarding rules                    │
+├─────────────────────────────────────────────────────────┤
+│ USB/Removable    │ USB drives, external HDDs           │
+│ Media            │ SD cards, phones                    │
+├─────────────────────────────────────────────────────────┤
+│ Network          │ FTP, SCP, SFTP                      │
+│                  │ DNS tunneling, HTTPS                │
+├─────────────────────────────────────────────────────────┤
+│ Web              │ File sharing sites                  │
+│                  │ Pastebin, GitHub Gists              │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h2 id="cloud-exfil">Use Case: Cloud Storage Exfiltration</h2>
+                
+                <pre><code class="language-text">USE CASE: CLOUD STORAGE DATA THEFT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DESCRIPTION:
+Detect large data uploads to personal cloud storage
+services that could indicate data exfiltration.
+
+MITRE ATT&CK: T1567.002 - Exfiltration to Cloud Storage
+
+INDICATORS:
+• Large uploads to consumer cloud services
+• Uploads during off-hours
+• Uploads by terminated/departing employees
+• Sensitive file types being uploaded</code></pre>
+                
+                <h3>Sentinel KQL - Cloud Upload Detection</h3>
+                
+                <pre><code class="language-kql">// Large Uploads to Cloud Storage
+let CloudStorageDomains = dynamic([
+    "dropbox.com", "drive.google.com", "onedrive.live.com",
+    "mega.nz", "box.com", "icloud.com", "wetransfer.com",
+    "sendspace.com", "mediafire.com"
+]);
+DeviceNetworkEvents
+| where TimeGenerated > ago(24h)
+| where RemoteUrl has_any (CloudStorageDomains)
+| where ActionType == "ConnectionSuccess"
+| summarize 
+    TotalBytesUploaded = sum(SentBytes),
+    ConnectionCount = count(),
+    Destinations = make_set(RemoteUrl, 5)
+    by DeviceName, InitiatingProcessAccountName, bin(TimeGenerated, 1h)
+| where TotalBytesUploaded > 50000000  // 50 MB threshold
+| extend UploadMB = round(TotalBytesUploaded / 1048576.0, 2)
+| project TimeGenerated, DeviceName, InitiatingProcessAccountName,
+    UploadMB, ConnectionCount, Destinations
+
+// M365 Defender - File uploads to cloud storage
+CloudAppEvents
+| where TimeGenerated > ago(24h)
+| where ActionType == "FileUploaded"
+| where Application in ("Dropbox", "Google Drive", "Box", "WeTransfer")
+| summarize 
+    UploadCount = count(),
+    TotalSize = sum(ActivityObjects[0].Size),
+    Files = make_set(ActivityObjects[0].Name, 10)
+    by AccountDisplayName, Application, bin(TimeGenerated, 1h)
+| where TotalSize > 50000000
+| extend SizeMB = round(TotalSize / 1048576.0, 2)</code></pre>
+                
+                <h3>Splunk SPL - Cloud Storage</h3>
+                
+                <pre><code class="language-text">// Cloud Storage Upload Detection - Splunk
+index=proxy OR index=firewall
+| where match(url, "(?i)(dropbox|drive\.google|onedrive|mega\.nz|box\.com)")
+| stats sum(bytes_out) as TotalBytesOut, 
+    dc(url) as UniqueURLs,
+    values(url) as Destinations
+    by src_user, src_ip, _time span=1h
+| where TotalBytesOut > 50000000
+| eval SizeMB = round(TotalBytesOut/1048576, 2)
+| table _time, src_user, src_ip, SizeMB, UniqueURLs, Destinations</code></pre>
+                
+                <h2 id="email-exfil">Use Case: Email-Based Exfiltration</h2>
+                
+                <pre><code class="language-text">USE CASE: EMAIL DATA EXFILTRATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DESCRIPTION:
+Detect data exfiltration via email including large
+attachments, forwarding to personal accounts, and
+mailbox rule abuse.
+
+INDICATORS:
+• Large attachments to external recipients
+• Emails to personal email domains
+• Auto-forward rules to external addresses
+• Bulk email sending</code></pre>
+                
+                <h3>Sentinel KQL - Email Exfiltration</h3>
+                
+                <pre><code class="language-kql">// Large Email Attachments to External Recipients
+EmailEvents
+| where TimeGenerated > ago(24h)
+| where EmailDirection == "Outbound"
+| where RecipientEmailAddress !endswith "@yourdomain.com"
+| where AttachmentCount > 0
+| join kind=inner (
+    EmailAttachmentInfo
+    | where TimeGenerated > ago(24h)
+    | summarize TotalAttachmentSize = sum(FileSize) by NetworkMessageId
+) on NetworkMessageId
+| where TotalAttachmentSize > 10000000  // 10 MB
+| project TimeGenerated, SenderFromAddress, RecipientEmailAddress,
+    Subject, AttachmentCount, 
+    AttachmentSizeMB = round(TotalAttachmentSize / 1048576.0, 2)
+
+// Email Forwarding Rules to External Addresses
+OfficeActivity
+| where TimeGenerated > ago(7d)
+| where Operation in ("New-InboxRule", "Set-InboxRule")
+| where Parameters has_any ("ForwardTo", "ForwardAsAttachmentTo", "RedirectTo")
+| extend ForwardingAddress = extract(@"ForwardTo.+?'([^']+)'", 1, tostring(Parameters))
+| where ForwardingAddress !endswith "@yourdomain.com"
+| project TimeGenerated, UserId, Operation, 
+    ForwardingAddress, ClientIP
+
+// Emails to Personal Email Domains
+let PersonalDomains = dynamic([
+    "gmail.com", "yahoo.com", "hotmail.com", "outlook.com",
+    "protonmail.com", "icloud.com", "aol.com"
+]);
+EmailEvents
+| where TimeGenerated > ago(24h)
+| where EmailDirection == "Outbound"
+| extend RecipientDomain = tostring(split(RecipientEmailAddress, "@")[1])
+| where RecipientDomain in (PersonalDomains)
+| summarize 
+    EmailCount = count(),
+    TotalRecipients = dcount(RecipientEmailAddress),
+    Recipients = make_set(RecipientEmailAddress, 10)
+    by SenderFromAddress, bin(TimeGenerated, 1h)
+| where EmailCount > 10</code></pre>
+                
+                <h3>Splunk SPL - Email Rules</h3>
+                
+                <pre><code class="language-text">// Mailbox Forwarding Rules - Splunk
+index=o365 sourcetype=o365:management:activity
+    Operation IN ("New-InboxRule", "Set-InboxRule")
+| spath output=Parameters path=Parameters{}
+| where match(Parameters, "(?i)(forwardto|redirectto)")
+| rex field=Parameters "ForwardTo[^:]+:\s*(?<ForwardAddress>[^,\]]+)"
+| where NOT match(ForwardAddress, "@yourdomain\.com")
+| table _time, UserId, Operation, ForwardAddress, ClientIP</code></pre>
+                
+                <h2 id="usb-exfil">Use Case: USB/Removable Media</h2>
+                
+                <pre><code class="language-text">USE CASE: USB DATA EXFILTRATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DESCRIPTION:
+Detect data copying to removable media devices.
+
+MITRE ATT&CK: T1052.001 - Exfiltration Over Physical Medium
+
+DATA SOURCES:
+• Windows Event 4663 (File access)
+• Sysmon Event 11 (File create)
+• EDR file write events
+• USB device connection logs</code></pre>
+                
+                <h3>Sentinel KQL - USB Activity</h3>
+                
+                <pre><code class="language-kql">// USB Device Connection
+DeviceEvents
+| where TimeGenerated > ago(24h)
+| where ActionType == "PnpDeviceConnected"
+| where DeviceDescription has_any ("USB", "Removable", "Mass Storage")
+| project TimeGenerated, DeviceName, AccountName,
+    USBDevice = DeviceDescription,
+    DeviceId
+
+// File Copy to Removable Drive
+DeviceFileEvents
+| where TimeGenerated > ago(24h)
+| where ActionType == "FileCreated" or ActionType == "FileModified"
+| where FolderPath matches regex @"^[D-Z]:\\"  // Non-C: drives
+| where FolderPath !startswith "D:\\Windows"  // Exclude system
+| summarize 
+    FileCount = count(),
+    TotalSize = sum(FileSize),
+    FileTypes = make_set(FileType, 10)
+    by DeviceName, AccountName, 
+    DriveLetter = substring(FolderPath, 0, 2),
+    bin(TimeGenerated, 1h)
+| where TotalSize > 10000000  // 10 MB
+| extend SizeMB = round(TotalSize / 1048576.0, 2)
+
+// Sensitive File Access Before USB Copy
+let SensitiveExtensions = dynamic([
+    ".docx", ".xlsx", ".pdf", ".pptx", 
+    ".zip", ".7z", ".rar", ".sql", ".bak"
+]);
+DeviceFileEvents
+| where TimeGenerated > ago(24h)
+| where ActionType == "FileCreated"
+| where FileType has_any (SensitiveExtensions)
+| where FolderPath matches regex @"^[D-Z]:\\"
+| project TimeGenerated, DeviceName, AccountName,
+    FileName, FileType, FilePath = FolderPath</code></pre>
+                
+                <h2 id="network-exfil">Use Case: Network Exfiltration</h2>
+                
+                <pre><code class="language-text">USE CASE: NETWORK DATA EXFILTRATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+INDICATORS:
+• Large outbound data transfers
+• Connections to unusual destinations
+• Off-hours data transfers
+• DNS tunneling patterns</code></pre>
+                
+                <h3>Sentinel KQL - Network Exfiltration</h3>
+                
+                <pre><code class="language-kql">// Large Outbound Data Transfers
+DeviceNetworkEvents
+| where TimeGenerated > ago(24h)
+| where RemoteIPType == "Public"
+| where ActionType == "ConnectionSuccess"
+| summarize 
+    TotalBytesSent = sum(SentBytes),
+    UniqueDestinations = dcount(RemoteIP),
+    Destinations = make_set(RemoteIP, 10)
+    by DeviceName, InitiatingProcessFileName, 
+    InitiatingProcessAccountName, bin(TimeGenerated, 1h)
+| where TotalBytesSent > 100000000  // 100 MB
+| extend SentMB = round(TotalBytesSent / 1048576.0, 2)
+| project TimeGenerated, DeviceName, 
+    Process = InitiatingProcessFileName,
+    User = InitiatingProcessAccountName,
+    SentMB, UniqueDestinations, Destinations
+
+// Off-Hours Data Transfer
+DeviceNetworkEvents
+| where TimeGenerated > ago(7d)
+| where RemoteIPType == "Public"
+| extend Hour = datetime_part("hour", TimeGenerated)
+| extend DayOfWeek = dayofweek(TimeGenerated)
+| where Hour < 6 or Hour > 20 or DayOfWeek in (0d, 6d)  // Off-hours
+| summarize 
+    TotalBytesSent = sum(SentBytes)
+    by DeviceName, InitiatingProcessAccountName, bin(TimeGenerated, 1d)
+| where TotalBytesSent > 50000000
+
+// DNS Tunneling Detection
+DnsEvents
+| where TimeGenerated > ago(24h)
+| extend SubdomainLength = strlen(tostring(split(Name, ".")[0]))
+| extend QueryEntropy = log2(SubdomainLength) * SubdomainLength
+| where SubdomainLength > 50  // Very long subdomains
+| summarize 
+    LongQueries = count(),
+    AvgLength = avg(SubdomainLength),
+    Domains = make_set(Name, 5)
+    by ClientIP, bin(TimeGenerated, 1h)
+| where LongQueries > 100</code></pre>
+                
+                <h3>Splunk SPL - Network Transfers</h3>
+                
+                <pre><code class="language-text">// Large Outbound Transfers - Splunk
+index=firewall OR index=proxy action=allowed direction=outbound
+| stats sum(bytes_out) as TotalBytesOut,
+    dc(dest_ip) as UniqueDestinations
+    by src_ip, src_user, _time span=1h
+| where TotalBytesOut > 100000000
+| eval SizeMB = round(TotalBytesOut/1048576, 2)
+| table _time, src_user, src_ip, SizeMB, UniqueDestinations</code></pre>
+                
+                <h2 id="dlp-integration">Integration with DLP</h2>
+                
+                <pre><code class="language-text">DATA LOSS PREVENTION INTEGRATION:
+
+ENRICH SIEM ALERTS WITH DLP CONTEXT:
+┌─────────────────────────────────────────────────────────┐
+│ DLP Policy Match + SIEM Context = Better Detection    │
+├─────────────────────────────────────────────────────────┤
+│ DLP: Sensitive data (PII, IP) detected               │
+│ SIEM: User behavior, network context, timeline        │
+│ Combined: Risk-prioritized exfiltration alert         │
+└─────────────────────────────────────────────────────────┘
+
+PURVIEW DLP ALERTS IN SENTINEL:
+SecurityAlert
+| where TimeGenerated > ago(24h)
+| where ProviderName == "Microsoft Data Loss Prevention"
+| project TimeGenerated, AlertName, Description,
+    Entities, Severity</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Exfiltration Detection Best Practices
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Baseline First:</strong><br>
+                            □ Understand normal data transfer patterns<br>
+                            □ Know which cloud services are sanctioned<br>
+                            □ Document approved USB usage<br><br>
+                            
+                            <strong>Layer Detections:</strong><br>
+                            □ Volume-based (large transfers)<br>
+                            □ Destination-based (unusual targets)<br>
+                            □ Time-based (off-hours activity)<br>
+                            □ User-based (departing employees)<br><br>
+                            
+                            <strong>Combine Data Sources:</strong><br>
+                            □ DLP + SIEM for context<br>
+                            □ HR data for departing users<br>
+                            □ Asset data for sensitive systems
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"How would you detect data exfiltration in your SIEM?"</strong><br><br>
+                            I would implement a layered approach:<br><br>
+                            
+                            <strong>1. Network-Based Detection:</strong><br>
+                            Monitor for large outbound data transfers (>100MB) to external IPs, especially during off-hours or to unusual destinations.<br><br>
+                            
+                            <strong>2. Cloud Storage:</strong><br>
+                            Track uploads to consumer cloud services (Dropbox, personal Google Drive) using proxy/firewall logs or CASB integration.<br><br>
+                            
+                            <strong>3. Email Monitoring:</strong><br>
+                            Detect large attachments to external recipients, forwarding rules to personal email, and bulk email sending.<br><br>
+                            
+                            <strong>4. Endpoint Visibility:</strong><br>
+                            Monitor USB device connections and file copies to removable media, especially for sensitive file types.<br><br>
+                            
+                            <strong>5. Context Enhancement:</strong><br>
+                            Cross-reference with HR data (departing employees), DLP alerts, and asset criticality to prioritize alerts.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Monitor multiple exfiltration channels: cloud, email, USB, network</li>
+                    <li>Use volume thresholds with time and destination context</li>
+                    <li>Integrate with DLP for sensitive data awareness</li>
+                    <li>Watch for off-hours activity and unusual destinations</li>
+                    <li>Track departing employee activity more closely</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="10-2-malware-execution.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Malware & Execution</span>
+                        </div>
+                    </a>
+                    <a href="10-4-insider-threats.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Insider Threats</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

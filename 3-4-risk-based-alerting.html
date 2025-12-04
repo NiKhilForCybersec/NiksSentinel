@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Splunk ES Risk-Based Alerting - The risk framework, risk scoring, risk index, and building risk-based detections.">
+    <title>Risk-Based Alerting | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+                <div class="sidebar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search docs... (Ctrl+K)" aria-label="Search documentation">
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item active">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="3-1-splunk-es-overview.html">Splunk Security Ops</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Risk-Based Alerting</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Risk-Based Alerting (RBA)</h1>
+                <p class="page-subtitle">Aggregating low-fidelity signals into high-fidelity alerts with the ES risk framework</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Risk-Based Alerting (RBA) is a paradigm shift in detection. Instead of alerting on individual events, RBA accumulates risk scores on entities (users, hosts) and alerts when thresholds are exceeded. This chapter covers the risk framework, scoring strategies, and building effective RBA detections.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="rba-concept">The RBA Concept</h2>
+                
+                <p>
+                    Traditional alerting creates many false positives because individual events lack context. RBA solves this by:
+                </p>
+                
+                <pre><code class="language-text">TRADITIONAL ALERTING vs RISK-BASED ALERTING:
+
+TRADITIONAL:
+Event → Alert → Analyst (repeat 100x)
+• High alert volume
+• Many false positives
+• Alert fatigue
+• Context missing
+
+RISK-BASED:
+Event → Risk Score → Risk Index
+Event → Risk Score → Risk Index
+Event → Risk Score → Risk Index
+                    ↓
+Risk Threshold Exceeded → Notable Event → Analyst
+• Lower alert volume
+• Higher fidelity
+• Context included
+• Correlated signals</code></pre>
+                
+                <h3>RBA Benefits</h3>
+                
+                <ul>
+                    <li><strong>Reduced alert volume</strong> - Aggregate signals instead of individual alerts</li>
+                    <li><strong>Higher fidelity</strong> - Multiple signals = higher confidence</li>
+                    <li><strong>Context-rich alerts</strong> - See all contributing events</li>
+                    <li><strong>Flexible tuning</strong> - Adjust scores instead of disabling detections</li>
+                    <li><strong>Entity-centric</strong> - Focus on risky users/hosts, not events</li>
+                </ul>
+                
+                <h2 id="risk-framework">Risk Framework Components</h2>
+                
+                <pre><code class="language-text">RISK FRAMEWORK ARCHITECTURE:
+
+┌─────────────────────────────────────────────────────────┐
+│                 RISK INDEX (index=risk)                │
+│  Stores all risk events with scores and metadata       │
+└─────────────────────────────────────────────────────────┘
+                          ↑
+┌─────────────────────────────────────────────────────────┐
+│              RISK MODIFYING SEARCHES                    │
+│  Correlation searches that add risk scores to entities │
+└─────────────────────────────────────────────────────────┘
+                          ↑
+┌─────────────────────────────────────────────────────────┐
+│                    DATA MODELS                          │
+│  Authentication, Endpoint, Network, etc.               │
+└─────────────────────────────────────────────────────────┘
+
+RISK ALERTING:
+┌─────────────────────────────────────────────────────────┐
+│              RISK THRESHOLD SEARCHES                    │
+│  Alert when accumulated risk exceeds threshold         │
+│  "ATT&CK Tactic Threshold Exceeded For Host"           │
+│  "Risk Threshold Exceeded For User"                    │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h3>Risk Index Fields</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>risk_object</strong></td>
+                                <td>Entity receiving risk</td>
+                                <td>jsmith, 192.168.1.50, SERVER01</td>
+                            </tr>
+                            <tr>
+                                <td><strong>risk_object_type</strong></td>
+                                <td>Type of entity</td>
+                                <td>user, system, other</td>
+                            </tr>
+                            <tr>
+                                <td><strong>risk_score</strong></td>
+                                <td>Points added</td>
+                                <td>10, 25, 50</td>
+                            </tr>
+                            <tr>
+                                <td><strong>risk_message</strong></td>
+                                <td>Description</td>
+                                <td>"Failed login from unusual location"</td>
+                            </tr>
+                            <tr>
+                                <td><strong>source</strong></td>
+                                <td>Detection that created risk</td>
+                                <td>Brute Force Detection</td>
+                            </tr>
+                            <tr>
+                                <td><strong>threat_object</strong></td>
+                                <td>Associated threat indicator</td>
+                                <td>malware.exe, bad-domain.com</td>
+                            </tr>
+                            <tr>
+                                <td><strong>threat_object_type</strong></td>
+                                <td>Threat indicator type</td>
+                                <td>file_name, domain, process</td>
+                            </tr>
+                            <tr>
+                                <td><strong>annotations.mitre_attack</strong></td>
+                                <td>MITRE technique</td>
+                                <td>T1110.001</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="risk-scoring">Risk Scoring Strategies</h2>
+                
+                <h3>Score Guidelines</h3>
+                
+                <pre><code class="language-text">RISK SCORE GUIDELINES:
+
+Score Range    │ Confidence │ Example Detections
+───────────────┼────────────┼─────────────────────────────────
+1-10           │ Low        │ Info gathering, reconnaissance
+               │            │ First-time behavior
+───────────────┼────────────┼─────────────────────────────────
+11-25          │ Medium     │ Policy violations
+               │            │ Unusual but not malicious
+───────────────┼────────────┼─────────────────────────────────
+26-50          │ High       │ Known attack patterns
+               │            │ Suspicious process execution
+───────────────┼────────────┼─────────────────────────────────
+51-75          │ Very High  │ Confirmed malicious indicators
+               │            │ Threat intel match
+───────────────┼────────────┼─────────────────────────────────
+76-100         │ Critical   │ Active compromise indicators
+               │            │ Data exfiltration detected</code></pre>
+                
+                <h3>Score Modifiers</h3>
+                
+                <pre><code class="language-spl"># Adjust risk based on asset/identity priority
+| eval risk_score = case(
+    asset_priority=="critical", risk_score * 2,
+    asset_priority=="high", risk_score * 1.5,
+    asset_priority=="low", risk_score * 0.5,
+    1==1, risk_score
+  )
+
+# Adjust based on threat intelligence
+| eval risk_score = if(isnotnull(threat_intel_match), risk_score * 1.5, risk_score)
+
+# Adjust based on time (off-hours activity)
+| eval hour = strftime(_time, "%H")
+| eval risk_score = if(hour < 6 OR hour > 20, risk_score * 1.25, risk_score)</code></pre>
+                
+                <h2 id="creating-risk-rules">Creating Risk-Modifying Rules</h2>
+                
+                <h3>Adding Risk Analysis Action</h3>
+                
+                <pre><code class="language-text">In Correlation Search Settings:
+
+Adaptive Response Actions:
+1. Risk Analysis
+   - Risk Score: 25
+   - Risk Object Field: user
+   - Risk Object Type: user
+   - Risk Message: User $user$ had $count$ failed logins from $src$
+   
+   OR for systems:
+   - Risk Object Field: dest
+   - Risk Object Type: system</code></pre>
+                
+                <h3>Example Risk Rules</h3>
+                
+                <pre><code class="language-spl"># Risk Rule: Failed Logins (Low Score, High Volume)
+| tstats count FROM datamodel=Authentication 
+  WHERE Authentication.action=failure BY Authentication.user
+| where count > 5
+| eval risk_score = 10
+| eval risk_object = user
+| eval risk_object_type = "user"
+| eval risk_message = "User ".user." had ".count." failed logins"
+| `risk_score`   # Macro that writes to risk index
+
+# Risk Rule: Suspicious Process (Higher Score)
+| tstats count FROM datamodel=Endpoint.Processes 
+  WHERE Processes.process_name IN ("mimikatz.exe", "procdump.exe", "psexec.exe")
+  BY Processes.dest, Processes.process_name, Processes.user
+| eval risk_score = 75
+| eval risk_object = dest
+| eval risk_object_type = "system"
+| eval risk_message = "Suspicious tool ".process_name." executed on ".dest
+| `risk_score`
+
+# Risk Rule: Threat Intel Match
+| tstats count FROM datamodel=Network_Traffic 
+  WHERE All_Traffic.dest_ip IN (threatlist_ip) 
+  BY All_Traffic.src_ip, All_Traffic.dest_ip
+| eval risk_score = 60
+| eval risk_object = src_ip
+| eval risk_object_type = "system"
+| eval risk_message = "Connection to threat intel IP: ".dest_ip
+| eval threat_object = dest_ip
+| eval threat_object_type = "ip"
+| `risk_score`</code></pre>
+                
+                <h2 id="risk-threshold">Risk Threshold Alerting</h2>
+                
+                <p>
+                    Create notable events when accumulated risk exceeds thresholds:
+                </p>
+                
+                <h3>Built-in Risk Notables</h3>
+                
+                <pre><code class="language-spl"># ATT&CK Tactic Threshold Exceeded For Host
+# Alerts when a host accumulates risk across multiple MITRE tactics
+
+index=risk risk_object_type=system earliest=-24h
+| stats sum(risk_score) AS total_risk, 
+        dc(annotations.mitre_attack.mitre_tactic) AS tactic_count,
+        values(annotations.mitre_attack.mitre_tactic) AS tactics,
+        values(source) AS contributing_searches
+  BY risk_object
+| where total_risk > 100 AND tactic_count >= 3
+
+# Risk Threshold Exceeded For User
+index=risk risk_object_type=user earliest=-24h
+| stats sum(risk_score) AS total_risk,
+        values(source) AS contributing_searches,
+        values(risk_message) AS risk_messages
+  BY risk_object
+| where total_risk > 75</code></pre>
+                
+                <h3>Custom Risk Threshold Search</h3>
+                
+                <pre><code class="language-spl"># Custom: High Risk User in Last Hour
+index=risk risk_object_type=user earliest=-1h
+| stats sum(risk_score) AS risk_score,
+        dc(source) AS detection_count,
+        values(source) AS detections,
+        latest(_time) AS latest_risk_time
+  BY risk_object
+| where risk_score > 50 AND detection_count >= 3
+| eval risk_message = "User ".risk_object." accumulated ".risk_score." risk points from ".detection_count." detections"
+| `map_notable_fields`
+
+# Custom: Critical Asset Risk Threshold
+index=risk risk_object_type=system earliest=-4h
+| lookup asset_lookup_by_str ip AS risk_object OUTPUT priority
+| where priority IN ("critical", "high")
+| stats sum(risk_score) AS risk_score,
+        values(source) AS detections
+  BY risk_object, priority
+| where (priority=="critical" AND risk_score > 50) OR (priority=="high" AND risk_score > 75)
+| `map_notable_fields`</code></pre>
+                
+                <h2 id="risk-analysis">Risk Analysis Dashboard</h2>
+                
+                <pre><code class="language-spl"># Top Risky Users (24h)
+index=risk risk_object_type=user earliest=-24h
+| stats sum(risk_score) AS total_risk, 
+        dc(source) AS unique_detections,
+        latest(_time) AS last_seen
+  BY risk_object
+| sort -total_risk
+| head 20
+
+# Top Risky Systems (24h)
+index=risk risk_object_type=system earliest=-24h
+| stats sum(risk_score) AS total_risk,
+        dc(source) AS unique_detections,
+        values(annotations.mitre_attack.mitre_tactic) AS tactics
+  BY risk_object
+| sort -total_risk
+| head 20
+
+# Risk Timeline for Specific Entity
+index=risk risk_object="jsmith" earliest=-7d
+| timechart span=1h sum(risk_score) AS risk_score
+| trendline sma3(risk_score) AS trend
+
+# Risk Contributors
+index=risk risk_object="jsmith" earliest=-24h
+| stats sum(risk_score) AS risk_score, count BY source
+| sort -risk_score
+
+# MITRE ATT&CK Coverage from Risk Events
+index=risk earliest=-7d annotations.mitre_attack.mitre_tactic=*
+| stats dc(risk_object) AS affected_entities,
+        sum(risk_score) AS total_risk
+  BY annotations.mitre_attack.mitre_tactic
+| sort -total_risk</code></pre>
+                
+                <h2 id="rba-workflow">RBA Implementation Workflow</h2>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        RBA Implementation Steps
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Phase 1: Foundation</strong><br>
+                            □ Populate Asset and Identity frameworks<br>
+                            □ Accelerate data models<br>
+                            □ Enable risk index<br><br>
+                            
+                            <strong>Phase 2: Risk Rules</strong><br>
+                            □ Convert high-FP correlations to risk rules<br>
+                            □ Assign appropriate risk scores<br>
+                            □ Add MITRE ATT&CK annotations<br>
+                            □ Remove notable event action (add risk only)<br><br>
+                            
+                            <strong>Phase 3: Threshold Alerting</strong><br>
+                            □ Enable risk threshold searches<br>
+                            □ Tune thresholds based on baseline<br>
+                            □ Create custom thresholds for critical assets<br><br>
+                            
+                            <strong>Phase 4: Optimization</strong><br>
+                            □ Monitor risk distribution<br>
+                            □ Adjust scores based on outcomes<br>
+                            □ Expand risk rules coverage<br>
+                            □ Track ATT&CK coverage
+                        </p>
+                    </div>
+                </div>
+                
+                <h3>Converting Correlation to Risk Rule</h3>
+                
+                <pre><code class="language-text">BEFORE (Traditional):
+Correlation Search: Brute Force Detection
+Actions: Create Notable Event (severity: high)
+Result: 50+ notable events per day
+
+AFTER (Risk-Based):
+Correlation Search: Brute Force Detection
+Actions: Risk Analysis (score: 15, object: user)
+         NO notable event action
+
+Risk Threshold Search: User Risk > 50
+Actions: Create Notable Event (severity: high)
+Result: 5 notable events per day (aggregated, contextual)</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"Explain Risk-Based Alerting and why it's better than traditional alerting."</strong><br><br>
+                            Risk-Based Alerting aggregates low-confidence signals into high-confidence alerts. Instead of alerting on every suspicious event (which causes alert fatigue), RBA assigns risk scores to entities and alerts when thresholds are exceeded.<br><br>
+                            <strong>Benefits:</strong><br>
+                            • <strong>Reduces volume:</strong> 10 individual alerts become 1 contextual alert<br>
+                            • <strong>Higher fidelity:</strong> Multiple signals correlate to increase confidence<br>
+                            • <strong>Context-rich:</strong> Notable includes all contributing events<br>
+                            • <strong>Flexible tuning:</strong> Adjust scores instead of disabling detections<br>
+                            • <strong>MITRE mapping:</strong> Alert when multiple tactics detected = likely compromise
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li><strong>RBA</strong> aggregates low-fidelity events into high-fidelity alerts</li>
+                    <li>Risk events stored in <code>index=risk</code> with scores and metadata</li>
+                    <li>Risk objects are entities: users, systems, or other</li>
+                    <li>Score guidelines: 1-10 (low), 11-25 (medium), 26-50 (high), 51-100 (critical)</li>
+                    <li>Threshold searches alert when accumulated risk exceeds limits</li>
+                    <li>MITRE ATT&CK mapping enables tactic-based thresholds</li>
+                    <li>Convert high-FP correlation searches to risk-only rules</li>
+                    <li>Populate Asset/Identity frameworks for entity context</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="3-3-correlation-searches.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Correlation Searches</span>
+                        </div>
+                    </a>
+                    <a href="3-5-threat-intelligence.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Threat Intelligence</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

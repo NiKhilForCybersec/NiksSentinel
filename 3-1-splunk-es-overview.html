@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Splunk Enterprise Security Overview - ES architecture, key features, security posture dashboard, and getting started with Splunk's premium SIEM solution.">
+    <title>Splunk ES Overview | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+                <div class="sidebar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search docs... (Ctrl+K)" aria-label="Search documentation">
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item active">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="3-1-splunk-es-overview.html">Splunk Security Ops</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Splunk ES Overview</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Splunk Enterprise Security Overview</h1>
+                <p class="page-subtitle">Introduction to Splunk's premium SIEM solution for security operations</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Splunk Enterprise Security (ES) is Splunk's premium security solution that transforms Splunk into a full-featured SIEM. This chapter introduces ES architecture, key features, the security operations workflow, and how ES fits into modern SOC operations.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="what-is-es">What is Splunk Enterprise Security?</h2>
+                
+                <p>
+                    Splunk Enterprise Security (ES) is a premium application that runs on top of Splunk Enterprise or Splunk Cloud. It provides:
+                </p>
+                
+                <ul>
+                    <li><strong>Security monitoring</strong> - Real-time visibility into security events</li>
+                    <li><strong>Incident investigation</strong> - Tools to investigate and respond to threats</li>
+                    <li><strong>Compliance reporting</strong> - Pre-built reports for regulatory requirements</li>
+                    <li><strong>Threat detection</strong> - Correlation searches and risk-based alerting</li>
+                    <li><strong>Security orchestration</strong> - Integration with SOAR platforms</li>
+                </ul>
+                
+                <pre><code class="language-text">SPLUNK SECURITY STACK:
+
+┌─────────────────────────────────────────────────────────┐
+│                    SPLUNK SOAR                          │
+│         (Security Orchestration & Automation)           │
+└─────────────────────────────────────────────────────────┘
+                          ↑
+┌─────────────────────────────────────────────────────────┐
+│              SPLUNK ENTERPRISE SECURITY                 │
+│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐       │
+│  │  Notable    │ │ Correlation │ │    Risk     │       │
+│  │  Events     │ │  Searches   │ │  Framework  │       │
+│  └─────────────┘ └─────────────┘ └─────────────┘       │
+│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐       │
+│  │   Asset &   │ │   Threat    │ │  Security   │       │
+│  │  Identity   │ │    Intel    │ │ Dashboards  │       │
+│  └─────────────┘ └─────────────┘ └─────────────┘       │
+└─────────────────────────────────────────────────────────┘
+                          ↑
+┌─────────────────────────────────────────────────────────┐
+│           SPLUNK ENTERPRISE / CLOUD                     │
+│         (Platform + Common Information Model)           │
+└─────────────────────────────────────────────────────────┘
+                          ↑
+┌─────────────────────────────────────────────────────────┐
+│                    DATA SOURCES                         │
+│    Windows │ Linux │ Network │ Cloud │ EDR │ IAM       │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h2 id="es-components">Key ES Components</h2>
+                
+                <h3>Notable Events</h3>
+                
+                <p>
+                    Notable events are ES's alert mechanism. When a correlation search detects suspicious activity, it creates a notable event for analyst review.
+                </p>
+                
+                <pre><code class="language-text">Notable Event Lifecycle:
+                         
+[Correlation Search Fires] → [Notable Event Created] → [Analyst Triage]
+                                      ↓                       ↓
+                              [Risk Score Added]     [Investigation]
+                                      ↓                       ↓
+                              [Owner Assigned]       [Status Updated]
+                                                           ↓
+                                                    [Closed/Resolved]</code></pre>
+                
+                <h3>Correlation Searches</h3>
+                
+                <p>
+                    Scheduled SPL searches that detect security threats and create notable events:
+                </p>
+                
+                <pre><code class="language-spl"># Example: Brute Force Access Behavior Detected
+| tstats summariesonly=true count FROM datamodel=Authentication 
+  WHERE Authentication.action=failure 
+  by Authentication.user, Authentication.src, _time span=5m
+| where count > 10
+| `drop_dm_object_name("Authentication")`</code></pre>
+                
+                <h3>Risk Framework</h3>
+                
+                <p>
+                    ES's risk-based alerting aggregates multiple low-fidelity events into high-fidelity alerts:
+                </p>
+                
+                <pre><code class="language-text">Risk-Based Alerting Flow:
+
+Individual Events (low signal):
+├─ Failed login (risk +5)
+├─ New process executed (risk +3)
+├─ Outbound connection to rare domain (risk +10)
+├─ File download from suspicious site (risk +15)
+└─ PowerShell encoded command (risk +20)
+                    ↓
+Risk Score Accumulation: 5 + 3 + 10 + 15 + 20 = 53
+                    ↓
+Risk Threshold Exceeded (>50) → Notable Event Created</code></pre>
+                
+                <h3>Asset and Identity Framework</h3>
+                
+                <p>
+                    Enriches events with context about assets (systems) and identities (users):
+                </p>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Framework</th>
+                                <th>Purpose</th>
+                                <th>Key Fields</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Asset</strong></td>
+                                <td>System context</td>
+                                <td>ip, mac, dns, nt_host, owner, priority, bunit, category</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Identity</strong></td>
+                                <td>User context</td>
+                                <td>identity, first, last, email, manager, priority, bunit</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Threat Intelligence Framework</h3>
+                
+                <p>
+                    Integrates external threat feeds to identify known malicious indicators:
+                </p>
+                
+                <ul>
+                    <li>IP addresses</li>
+                    <li>Domain names</li>
+                    <li>File hashes (MD5, SHA1, SHA256)</li>
+                    <li>URLs</li>
+                    <li>Email addresses</li>
+                </ul>
+                
+                <h2 id="es-architecture">ES Architecture</h2>
+                
+                <pre><code class="language-text">ES DEPLOYMENT ARCHITECTURE:
+
+┌─────────────────────────────────────────────────────────┐
+│                   SEARCH HEAD (ES)                      │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │              Enterprise Security App            │   │
+│  │  • Security Posture Dashboard                   │   │
+│  │  • Incident Review                              │   │
+│  │  • Risk Analysis                                │   │
+│  │  • Threat Intelligence                          │   │
+│  │  • Access/Identity/Network Dashboards           │   │
+│  └─────────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │         Supporting Technology Add-ons           │   │
+│  │  • Splunk Common Information Model (CIM)        │   │
+│  │  • SA-* (Supporting Add-ons)                    │   │
+│  │  • DA-* (Domain Add-ons)                        │   │
+│  └─────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────┘
+                          ↑
+              Search Requests / Results
+                          ↓
+┌─────────────────────────────────────────────────────────┐
+│                      INDEXERS                           │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │           Technology Add-ons (TA-*)             │   │
+│  │  • Field extractions                            │   │
+│  │  • CIM mapping                                  │   │
+│  │  • Sourcetype definitions                       │   │
+│  └─────────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │              Accelerated Data Models            │   │
+│  │  • Authentication  • Network Traffic            │   │
+│  │  • Endpoint        • Web                        │   │
+│  │  • Malware         • Intrusion Detection        │   │
+│  └─────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h3>ES App Components</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Type</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>SplunkEnterpriseSecuritySuite</strong></td>
+                                <td>Main App</td>
+                                <td>ES UI, dashboards, workflows</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Splunk_SA_CIM</strong></td>
+                                <td>Supporting Add-on</td>
+                                <td>Common Information Model</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SA-AccessProtection</strong></td>
+                                <td>Supporting Add-on</td>
+                                <td>Access anomaly detection</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SA-AuditAndDataProtection</strong></td>
+                                <td>Supporting Add-on</td>
+                                <td>Data protection monitoring</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SA-EndpointProtection</strong></td>
+                                <td>Supporting Add-on</td>
+                                <td>Endpoint security</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SA-NetworkProtection</strong></td>
+                                <td>Supporting Add-on</td>
+                                <td>Network security</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SA-ThreatIntelligence</strong></td>
+                                <td>Supporting Add-on</td>
+                                <td>Threat feed integration</td>
+                            </tr>
+                            <tr>
+                                <td><strong>DA-ESS-*</strong></td>
+                                <td>Domain Add-ons</td>
+                                <td>Domain-specific content</td>
+                            </tr>
+                            <tr>
+                                <td><strong>TA-*</strong></td>
+                                <td>Technology Add-ons</td>
+                                <td>Data source parsing/normalization</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="security-posture">Security Posture Dashboard</h2>
+                
+                <p>
+                    The Security Posture dashboard is ES's main landing page, providing at-a-glance security status:
+                </p>
+                
+                <pre><code class="language-text">SECURITY POSTURE DASHBOARD COMPONENTS:
+
+┌─────────────────────────────────────────────────────────┐
+│  KEY INDICATORS                                         │
+│  ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐    │
+│  │Notable│ │ Open  │ │Unassn'd││ Urgent│ │ Risk  │    │
+│  │Events │ │Invest.│ │Notable │ │Notable│ │ Score │    │
+│  │  247  │ │  12   │ │   89   │ │   5   │ │ 2,450 │    │
+│  └───────┘ └───────┘ └───────┘ └───────┘ └───────┘    │
+├─────────────────────────────────────────────────────────┤
+│  NOTABLE EVENTS BY URGENCY                              │
+│  ■■■■■■■■■■ Critical (23)                              │
+│  ■■■■■■■■■■■■■■■ High (67)                             │
+│  ■■■■■■■■■■■■■■■■■■■■■ Medium (102)                    │
+│  ■■■■■■■■■ Low (55)                                    │
+├─────────────────────────────────────────────────────────┤
+│  TOP NOTABLE EVENTS (Last 24h)                          │
+│  • Brute Force Access Detected (45)                    │
+│  • Malware Detected (23)                               │
+│  • High Risk Host (18)                                 │
+│  • Suspicious PowerShell (15)                          │
+│  • Data Exfiltration Attempt (12)                      │
+├─────────────────────────────────────────────────────────┤
+│  NOTABLE EVENTS OVER TIME          [Trend Chart]       │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h2 id="incident-review">Incident Review Dashboard</h2>
+                
+                <p>
+                    The Incident Review dashboard is where analysts work notable events:
+                </p>
+                
+                <pre><code class="language-text">INCIDENT REVIEW WORKFLOW:
+
+┌─────────────────────────────────────────────────────────┐
+│  FILTERS                                                │
+│  Status: [New ▼]  Owner: [Unassigned ▼]  Time: [24h ▼] │
+├─────────────────────────────────────────────────────────┤
+│  NOTABLE EVENTS                                         │
+│  ┌─────┬────────────────────┬────────┬────────┬──────┐ │
+│  │ Urg │ Title              │ Status │ Owner  │ Time │ │
+│  ├─────┼────────────────────┼────────┼────────┼──────┤ │
+│  │ ●   │ Brute Force - admin│ New    │   -    │ 10m  │ │
+│  │ ●   │ Malware - host01   │ New    │   -    │ 15m  │ │
+│  │ ●   │ High Risk User     │ New    │   -    │ 22m  │ │
+│  │ ○   │ Policy Violation   │ Pending│ jsmith │ 1h   │ │
+│  └─────┴────────────────────┴────────┴────────┴──────┘ │
+├─────────────────────────────────────────────────────────┤
+│  NOTABLE EVENT DETAILS (Selected)                       │
+│  Title: Brute Force Access Behavior Detected           │
+│  User: admin  Source: 192.168.1.50  Dest: DC01         │
+│  Failed Attempts: 47  Time: Last 5 minutes             │
+│                                                         │
+│  [Assign to Me] [Change Status] [Add Comment]          │
+│  [Investigate] [Create Incident] [Suppress]            │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h3>Notable Event Statuses</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Description</th>
+                                <th>Typical Use</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>New</strong></td>
+                                <td>Unreviewed</td>
+                                <td>Fresh alerts awaiting triage</td>
+                            </tr>
+                            <tr>
+                                <td><strong>In Progress</strong></td>
+                                <td>Under investigation</td>
+                                <td>Analyst actively working</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pending</strong></td>
+                                <td>Awaiting response</td>
+                                <td>Waiting for user/team input</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Resolved</strong></td>
+                                <td>Investigation complete</td>
+                                <td>Issue addressed, no further action</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Closed</strong></td>
+                                <td>Fully closed</td>
+                                <td>Final state, documented</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="es-use-cases">Common ES Use Cases</h2>
+                
+                <h3>1. Threat Detection</h3>
+                
+                <pre><code class="language-spl"># Built-in correlation searches detect:
+• Brute force attacks
+• Malware infections
+• Data exfiltration
+• Insider threats
+• Account compromise
+• Lateral movement
+• Privilege escalation</code></pre>
+                
+                <h3>2. Compliance Monitoring</h3>
+                
+                <pre><code class="language-text">Pre-built compliance reports for:
+• PCI-DSS (Payment Card Industry)
+• HIPAA (Healthcare)
+• SOX (Financial)
+• GDPR (Privacy)
+• NIST Cybersecurity Framework</code></pre>
+                
+                <h3>3. Security Operations</h3>
+                
+                <pre><code class="language-text">SOC workflow support:
+• Alert triage and prioritization
+• Investigation workbench
+• Case management integration
+• Playbook automation (with SOAR)
+• Metrics and reporting</code></pre>
+                
+                <h2 id="getting-started">Getting Started with ES</h2>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        ES Implementation Checklist
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>1. Prerequisites</strong><br>
+                            □ Splunk Enterprise/Cloud deployed<br>
+                            □ Data sources onboarded and normalized (CIM)<br>
+                            □ Sufficient license capacity<br><br>
+                            
+                            <strong>2. Installation</strong><br>
+                            □ Install ES app on Search Head(s)<br>
+                            □ Install required Technology Add-ons<br>
+                            □ Configure data model acceleration<br><br>
+                            
+                            <strong>3. Configuration</strong><br>
+                            □ Populate Asset inventory<br>
+                            □ Populate Identity database<br>
+                            □ Configure threat intelligence feeds<br>
+                            □ Enable relevant correlation searches<br>
+                            □ Tune thresholds and suppressions<br><br>
+                            
+                            <strong>4. Operations</strong><br>
+                            □ Train analysts on Incident Review<br>
+                            □ Establish triage procedures<br>
+                            □ Integrate with ticketing system<br>
+                            □ Configure SOAR playbooks
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="es-vs-core">ES vs Core Splunk</h2>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Splunk Core</th>
+                                <th>Splunk ES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Alerts</strong></td>
+                                <td>Basic alerts</td>
+                                <td>Notable events with workflow</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Risk Scoring</strong></td>
+                                <td>Manual implementation</td>
+                                <td>Built-in risk framework</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Asset Context</strong></td>
+                                <td>Lookup tables</td>
+                                <td>Asset/Identity framework</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Threat Intel</strong></td>
+                                <td>Manual integration</td>
+                                <td>TI framework + feeds</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dashboards</strong></td>
+                                <td>Build yourself</td>
+                                <td>Pre-built security dashboards</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Detections</strong></td>
+                                <td>Build yourself</td>
+                                <td>100+ correlation searches</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Case Management</strong></td>
+                                <td>Not included</td>
+                                <td>Incident Review workflow</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Compliance</strong></td>
+                                <td>Build yourself</td>
+                                <td>Pre-built reports</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"What is Splunk Enterprise Security and how does it differ from core Splunk?"</strong><br><br>
+                            Splunk ES is a premium SIEM application that runs on top of Splunk. While core Splunk provides log management and basic alerting, ES adds: (1) Notable events with analyst workflow and case management, (2) Risk-based alerting that aggregates low-fidelity signals into high-fidelity alerts, (3) Asset and Identity frameworks for contextual enrichment, (4) Threat intelligence integration, (5) 100+ pre-built correlation searches, and (6) Security-focused dashboards. ES transforms Splunk from a log analysis platform into a full-featured SIEM for SOC operations.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li><strong>Splunk ES</strong> is a premium SIEM app built on Splunk Enterprise/Cloud</li>
+                    <li><strong>Notable Events</strong> are ES's alert mechanism with analyst workflow</li>
+                    <li><strong>Correlation Searches</strong> detect threats and create notable events</li>
+                    <li><strong>Risk Framework</strong> aggregates signals for risk-based alerting</li>
+                    <li><strong>Asset/Identity</strong> frameworks provide contextual enrichment</li>
+                    <li><strong>Threat Intelligence</strong> framework integrates external threat feeds</li>
+                    <li><strong>Security Posture</strong> dashboard provides at-a-glance status</li>
+                    <li><strong>Incident Review</strong> is where analysts work notable events</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="2-10-search-optimization.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Search Optimization</span>
+                        </div>
+                    </a>
+                    <a href="3-2-notable-events.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Notable Events</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SPL Advanced Commands - tstats, datamodel, append, multisearch, foreach, map, and macros for advanced Splunk analysis.">
+    <title>SPL Advanced Commands | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+                <div class="sidebar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search docs... (Ctrl+K)" aria-label="Search documentation">
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item active">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="2-1-splunk-architecture.html">Splunk Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">SPL Advanced</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">SPL Advanced Commands</h1>
+                <p class="page-subtitle">Power user commands: tstats, datamodels, append, multisearch, foreach, map, and macros</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Advanced SPL commands unlock Splunk's full potential for complex analysis. This chapter covers high-performance searches with tstats and data models, combining multiple searches, iteration with foreach and map, and creating reusable macros.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="tstats">tstats Command</h2>
+                
+                <p>
+                    The <code>tstats</code> command performs fast statistical queries against indexed fields and data model accelerations. It's significantly faster than regular searches.
+                </p>
+                
+                <h3>Basic tstats Syntax</h3>
+                
+                <pre><code class="language-spl"># Count events by index
+| tstats count WHERE index=* by index
+
+# Count by sourcetype over time
+| tstats count WHERE index=security by sourcetype _time span=1h
+
+# Using indexed fields only
+| tstats count WHERE index=security source=*Security* by host
+
+# prestats for improved performance with summariesonly
+| tstats prestats=true count WHERE index=security by host
+| stats count by host</code></pre>
+                
+                <h3>tstats with Data Models</h3>
+                
+                <pre><code class="language-spl"># Authentication data model
+| tstats count FROM datamodel=Authentication 
+  WHERE Authentication.action=success 
+  by Authentication.user Authentication.src
+
+# Network traffic data model
+| tstats sum(All_Traffic.bytes) AS total_bytes 
+  FROM datamodel=Network_Traffic 
+  WHERE All_Traffic.action=allowed 
+  by All_Traffic.src_ip All_Traffic.dest_ip
+
+# Endpoint data model - process execution
+| tstats count FROM datamodel=Endpoint.Processes 
+  WHERE Processes.process_name="powershell.exe" 
+  by Processes.user Processes.dest
+
+# Time-series with data model
+| tstats count FROM datamodel=Authentication 
+  WHERE Authentication.action=failure 
+  by _time Authentication.user span=1h
+| timechart span=1h sum(count) by Authentication.user</code></pre>
+                
+                <div class="info-box tip">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💡</span>
+                        tstats Performance
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <code>tstats</code> can be 10-100x faster than regular searches because it queries pre-indexed metadata rather than raw events. It works best with: (1) indexed fields (host, source, sourcetype), (2) accelerated data models, and (3) summary indexes. Use it for dashboards and alerts where speed matters.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="datamodels">Data Models</h2>
+                
+                <p>
+                    Data models provide a normalized schema for common security data. Splunk CIM (Common Information Model) includes pre-built models.
+                </p>
+                
+                <h3>Common Security Data Models</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Data Model</th>
+                                <th>Use Case</th>
+                                <th>Key Fields</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Authentication</strong></td>
+                                <td>Login/logout events</td>
+                                <td>user, src, dest, action, app</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Network_Traffic</strong></td>
+                                <td>Firewall, flow data</td>
+                                <td>src_ip, dest_ip, bytes, action</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Endpoint.Processes</strong></td>
+                                <td>Process execution</td>
+                                <td>process_name, user, parent_process</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Endpoint.Filesystem</strong></td>
+                                <td>File operations</td>
+                                <td>file_path, file_name, action</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Web</strong></td>
+                                <td>Web proxy logs</td>
+                                <td>url, dest, http_method, status</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Malware</strong></td>
+                                <td>AV/EDR detections</td>
+                                <td>signature, file_path, action</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Intrusion_Detection</strong></td>
+                                <td>IDS/IPS alerts</td>
+                                <td>signature, src, dest, severity</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Exploring Data Models</h3>
+                
+                <pre><code class="language-spl"># List all data models
+| datamodel
+
+# View data model structure
+| datamodel Authentication Authentication
+
+# Search data model (without tstats)
+| datamodel Authentication Authentication search
+| table _time, user, src, dest, action
+
+# Check data model acceleration status
+| rest /services/admin/summarization by_tstats=t
+| search datamodel_acceleration.* | table title, *acceleration*</code></pre>
+                
+                <h2 id="append-multisearch">append and multisearch</h2>
+                
+                <p>
+                    Combine results from multiple searches into a single result set.
+                </p>
+                
+                <h3>append Command</h3>
+                
+                <pre><code class="language-spl"># Append results from another search
+index=security EventCode=4625 earliest=-24h
+| stats count by user
+| append 
+    [search index=security EventCode=4624 earliest=-24h 
+     | stats count by user]
+
+# Multiple appends
+index=security EventCode=4625 earliest=-24h
+| stats count AS failed_logins by user
+| append 
+    [search index=security EventCode=4624 earliest=-24h 
+     | stats count AS successful_logins by user]
+| stats sum(failed_logins) AS failed, sum(successful_logins) AS success by user
+
+# Append with different time ranges
+index=security EventCode=4625
+| stats count AS current_failures by user
+| eval period="current"
+| append
+    [search index=security EventCode=4625 earliest=-7d@d latest=-1d@d
+     | stats count AS baseline_failures by user
+     | eval period="baseline"]</code></pre>
+                
+                <h3>multisearch Command</h3>
+                
+                <pre><code class="language-spl"># Run multiple searches in parallel
+| multisearch 
+    [search index=security EventCode=4625 | stats count AS failures by user]
+    [search index=security EventCode=4624 | stats count AS successes by user]
+| stats sum(failures) AS total_failures, sum(successes) AS total_successes by user
+
+# Compare data across indexes
+| multisearch
+    [search index=windows sourcetype=WinEventLog:Security | stats count by host | eval source="windows"]
+    [search index=linux sourcetype=linux_secure | stats count by host | eval source="linux"]
+| chart sum(count) by host source
+
+# Aggregate from multiple sourcetypes
+| multisearch
+    [search index=firewall action=deny | stats count AS firewall_blocks by src_ip]
+    [search index=proxy action=blocked | stats count AS proxy_blocks by src_ip]
+    [search index=ids severity=high | stats count AS ids_alerts by src_ip]
+| stats sum(firewall_blocks), sum(proxy_blocks), sum(ids_alerts) by src_ip</code></pre>
+                
+                <h2 id="foreach">foreach Command</h2>
+                
+                <p>
+                    Iterate over fields and apply operations. Useful for dynamic field processing.
+                </p>
+                
+                <pre><code class="language-spl"># Apply calculation to multiple fields
+| stats sum(bytes_in) AS in, sum(bytes_out) AS out, sum(bytes_total) AS total by host
+| foreach in out total [eval &lt;&lt;FIELD&gt;&gt;_GB = round('&lt;&lt;FIELD&gt;&gt;' / 1024 / 1024 / 1024, 2)]
+
+# Convert multiple timestamp fields
+| foreach *_time [eval &lt;&lt;FIELD&gt;&gt;_human = strftime('&lt;&lt;FIELD&gt;&gt;', "%Y-%m-%d %H:%M:%S")]
+
+# Wildcard field matching
+| foreach *_count [eval &lt;&lt;FIELD&gt;&gt; = if('&lt;&lt;FIELD&gt;&gt;' &lt; 0, 0, '&lt;&lt;FIELD&gt;&gt;')]
+
+# Apply to specific fields
+| foreach day_* [eval &lt;&lt;FIELD&gt;&gt; = round('&lt;&lt;FIELD&gt;&gt;', 2)]
+
+# Iterate with field list
+| foreach Monday Tuesday Wednesday Thursday Friday
+    [eval &lt;&lt;FIELD&gt;&gt;_avg = '&lt;&lt;FIELD&gt;&gt;' / 24]</code></pre>
+                
+                <h2 id="map">map Command</h2>
+                
+                <p>
+                    Execute a search for each result of a previous search. Powerful but resource-intensive.
+                </p>
+                
+                <pre><code class="language-spl"># Run search for each user
+index=security EventCode=4625 earliest=-24h
+| stats count by user
+| where count > 10
+| map search="search index=security user=$user$ earliest=-24h | stats values(src_ip) AS source_ips, values(dest) AS systems"
+
+# Investigate top talkers
+index=firewall action=allowed earliest=-24h
+| stats sum(bytes) AS total_bytes by src_ip
+| sort -total_bytes
+| head 10
+| map maxsearches=10 search="search index=firewall src_ip=$src_ip$ earliest=-24h 
+    | stats count, dc(dest_ip) AS unique_dests by dest_port 
+    | sort -count | head 5"
+
+# Dynamic time-based searches
+| makeresults count=7
+| streamstats count AS day_offset
+| eval earliest = "-" . day_offset . "d@d", latest = "-" . (day_offset - 1) . "d@d"
+| map search="search index=security EventCode=4625 earliest=$earliest$ latest=$latest$ 
+    | stats count | eval day=$day_offset$"</code></pre>
+                
+                <div class="info-box warning">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">⚠️</span>
+                        Warning
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>map is resource-intensive.</strong> It runs a separate search for each input result, which can overwhelm the search head. Default limit is 10 searches (maxsearches). Use sparingly and consider alternatives like stats with subsearches or join. Never use in scheduled searches without careful testing.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="macros">Search Macros</h2>
+                
+                <p>
+                    Macros are reusable search snippets. They improve consistency and reduce duplication.
+                </p>
+                
+                <h3>Creating Macros</h3>
+                
+                <pre><code class="language-text"># Via Settings → Advanced Search → Search Macros
+
+# Simple macro (no arguments)
+Name: security_index
+Definition: index=security sourcetype=WinEventLog:Security
+
+# Macro with arguments
+Name: failed_logins(1)
+Arguments: hours
+Definition: index=security EventCode=4625 earliest=-$hours$h
+
+# Macro with multiple arguments
+Name: auth_events(2)
+Arguments: event_type, timerange
+Definition: index=security EventCode=$event_type$ earliest=-$timerange$
+
+# Complex macro
+Name: brute_force_detection(2)
+Arguments: threshold, timespan
+Definition: index=security EventCode=4625 earliest=-$timespan$
+| stats count by user, src_ip
+| where count > $threshold$</code></pre>
+                
+                <h3>Using Macros</h3>
+                
+                <pre><code class="language-spl"># Call simple macro
+`security_index` user=admin
+| stats count by action
+
+# Call macro with argument
+`failed_logins(24)` 
+| stats count by user
+
+# Call macro with multiple arguments
+`auth_events(4625, 7d)`
+| stats count by user, src_ip
+
+# Use macro in complex search
+`security_index` EventCode IN (4624, 4625)
+| `brute_force_detection(10, 1h)`
+
+# Nested macros
+Name: security_summary
+Definition: `security_index` | `enrich_user_data` | `add_risk_score`</code></pre>
+                
+                <h3>Macro Definition File</h3>
+                
+                <pre><code class="language-ini"># macros.conf
+[security_index]
+definition = index=security sourcetype=WinEventLog:Security
+iseval = 0
+
+[failed_logins(1)]
+args = hours
+definition = index=security EventCode=4625 earliest=-$hours$h
+iseval = 0
+
+[calculate_risk(2)]
+args = failures, systems
+definition = eval risk_score = ($failures$ * 10) + ($systems$ * 5)
+iseval = 0</code></pre>
+                
+                <h2 id="makeresults">makeresults and Generating Data</h2>
+                
+                <pre><code class="language-spl"># Generate empty result with timestamp
+| makeresults
+
+# Generate multiple rows
+| makeresults count=10
+
+# Generate data for testing
+| makeresults count=5
+| streamstats count AS id
+| eval user = "user" . id
+| eval failures = random() % 100
+| table user, failures
+
+# Generate time range
+| makeresults count=24
+| streamstats count AS hour
+| eval _time = relative_time(now(), "-" . hour . "h")
+| eval expected_events = if(hour >= 9 AND hour < 17, 1000, 100)
+
+# Generate lookup data
+| makeresults count=1
+| eval user = split("admin,jsmith,tjones", ",")
+| mvexpand user
+| eval department = case(
+    user="admin", "IT",
+    user="jsmith", "Finance",
+    user="tjones", "HR"
+  )
+| table user, department</code></pre>
+                
+                <h2 id="security-examples">Advanced Security Examples</h2>
+                
+                <pre><code class="language-spl"># High-performance authentication analysis with tstats
+| tstats count FROM datamodel=Authentication 
+  WHERE Authentication.action IN (success, failure)
+  by Authentication.user Authentication.action Authentication.src _time span=1h
+| timechart span=1h count by Authentication.action
+
+# Correlated threat detection across data sources
+| multisearch
+    [search index=firewall action=deny earliest=-1h | stats count AS fw_blocks by src_ip]
+    [search index=proxy action=blocked category=malware earliest=-1h | stats count AS proxy_blocks by src_ip]
+    [search index=security EventCode=4625 earliest=-1h | stats count AS failed_logins by src_ip]
+| stats sum(fw_blocks) AS fw, sum(proxy_blocks) AS proxy, sum(failed_logins) AS auth by src_ip
+| where fw > 0 AND (proxy > 0 OR auth > 5)
+| eval threat_score = fw + (proxy * 5) + (auth * 2)
+| sort -threat_score
+
+# Baseline comparison with macro
+# Macro: get_baseline(3) - index, field, days
+# Definition: stats avg($field$) AS baseline_avg, stdev($field$) AS baseline_stdev by user
+#            earliest=-$days$d latest=-1d
+
+index=security EventCode=4625 earliest=-24h
+| stats count by user
+| join user 
+    [search index=security EventCode=4625 earliest=-30d latest=-1d
+     | stats avg(count) AS baseline_avg, stdev(count) AS baseline_stdev by user]
+| eval zscore = (count - baseline_avg) / baseline_stdev
+| where zscore > 3 OR isnull(baseline_avg)
+
+# Process execution analysis with data model
+| tstats count FROM datamodel=Endpoint.Processes 
+  WHERE Processes.process_name IN ("powershell.exe", "cmd.exe", "wscript.exe", "cscript.exe")
+  by Processes.process_name Processes.user Processes.dest _time span=1h
+| timechart span=1h sum(count) by Processes.process_name</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"How would you improve the performance of a slow dashboard?"</strong><br><br>
+                            <strong>1.</strong> Use <code>tstats</code> with accelerated data models instead of raw searches<br>
+                            <strong>2.</strong> Create summary indexes for expensive, repetitive calculations<br>
+                            <strong>3.</strong> Use <code>| stats</code> instead of <code>| transaction</code> when possible<br>
+                            <strong>4.</strong> Implement search macros to ensure index and time ranges are always specified<br>
+                            <strong>5.</strong> Consider report acceleration for scheduled dashboards<br>
+                            <strong>6.</strong> Profile searches with Job Inspector to identify bottlenecks
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li><strong>tstats</strong> - High-performance stats against indexed fields and data models</li>
+                    <li><strong>Data Models</strong> - Normalized schemas (CIM) for common security data</li>
+                    <li><strong>append/multisearch</strong> - Combine results from multiple searches</li>
+                    <li><strong>foreach</strong> - Iterate over fields for batch operations</li>
+                    <li><strong>map</strong> - Run searches dynamically; use sparingly</li>
+                    <li><strong>Macros</strong> - Reusable search snippets for consistency</li>
+                    <li><strong>makeresults</strong> - Generate data for testing and baselines</li>
+                    <li>Use tstats with data models for dashboard performance</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="2-8-spl-manipulation.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">SPL Manipulation</span>
+                        </div>
+                    </a>
+                    <a href="2-10-search-optimization.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Search Optimization</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

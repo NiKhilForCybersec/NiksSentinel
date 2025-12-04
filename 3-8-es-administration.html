@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Splunk ES Administration - Health monitoring, performance tuning, content management, and operational best practices.">
+    <title>ES Administration | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item active">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="3-1-splunk-es-overview.html">Splunk Security Ops</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">ES Administration</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">ES Administration</h1>
+                <p class="page-subtitle">Health monitoring, content management, and operational maintenance</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Effective ES administration ensures reliable detection, optimal performance, and smooth operations. This chapter covers health monitoring, data model acceleration, content management, and operational best practices for maintaining Splunk Enterprise Security.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="health-monitoring">ES Health Monitoring</h2>
+                
+                <h3>Data Model Acceleration Status</h3>
+                
+                <pre><code class="language-spl"># Check all data model acceleration status
+| rest /services/admin/summarization by_tstats=t
+| search datamodel_acceleration.* 
+| table title, eai:acl.app, datamodel_acceleration.is_inprogress,
+        datamodel_acceleration.complete, datamodel_acceleration.retention,
+        datamodel_acceleration.last_rebuild_time
+| rename datamodel_acceleration.* AS *
+
+# Detailed acceleration status
+| rest /servicesNS/-/-/admin/summarization by_tstats=t
+| eval size_GB = round('summary.size'/1024/1024/1024, 2)
+| eval complete_pct = round('summary.complete'*100, 1)
+| table title, summary.access_count, size_GB, complete_pct, summary.mod_time
+
+# Check acceleration build progress
+| datamodelsimple type=models
+| search acceleration=true
+| table modelName, acceleration, acceleration.cron_schedule</code></pre>
+                
+                <h3>Correlation Search Health</h3>
+                
+                <pre><code class="language-spl"># Correlation search status
+| rest /servicesNS/-/-/saved/searches
+| search action.correlationsearch.enabled=1
+| table title, disabled, cron_schedule, next_scheduled_time, 
+        action.notable.param.severity
+| sort disabled, -next_scheduled_time
+
+# Failed scheduled searches (last 24h)
+index=_internal sourcetype=scheduler status=failed earliest=-24h
+| stats count by savedsearch_name, status
+| sort -count
+
+# Long-running correlation searches
+index=_internal sourcetype=scheduler status=completed earliest=-24h
+| where run_time > 60
+| stats avg(run_time) AS avg_runtime, max(run_time) AS max_runtime by savedsearch_name
+| sort -avg_runtime
+
+# Skipped searches (resource constraints)
+index=_internal sourcetype=scheduler status=skipped earliest=-24h
+| stats count by savedsearch_name
+| sort -count</code></pre>
+                
+                <h3>KV Store Health</h3>
+                
+                <pre><code class="language-spl"># KV Store status
+| rest /services/server/introspection/kvstore/collectionstats
+| table title, data, count, avgObjSize, storageSize
+
+# Large KV Store collections
+| rest /services/server/introspection/kvstore/collectionstats
+| where storageSize > 100000000
+| eval size_MB = round(storageSize/1024/1024, 2)
+| table title, count, size_MB
+| sort -size_MB
+
+# Threat intel collection sizes
+| inputlookup ip_intel | stats count AS ip_intel_count
+| appendcols [| inputlookup domain_intel | stats count AS domain_intel_count]
+| appendcols [| inputlookup file_intel | stats count AS file_intel_count]</code></pre>
+                
+                <h2 id="data-model-management">Data Model Management</h2>
+                
+                <h3>Enabling Acceleration</h3>
+                
+                <pre><code class="language-text">Settings → Data Models → Select Model → Edit Acceleration
+
+Acceleration Settings:
+• Accelerate: Yes
+• Summary Range: 7 days (typical for security)
+• Acceleration Schedule: */5 * * * * (every 5 minutes)
+
+Recommended Models to Accelerate:
+• Authentication
+• Network_Traffic
+• Endpoint (Processes, Filesystem, Services)
+• Web
+• Intrusion_Detection
+• Malware
+• Change</code></pre>
+                
+                <h3>Acceleration Configuration</h3>
+                
+                <pre><code class="language-ini"># datamodels.conf
+[Authentication]
+acceleration = true
+acceleration.earliest_time = -7d
+acceleration.cron_schedule = */5 * * * *
+acceleration.manual_rebuilds = true
+acceleration.max_concurrent = 3
+
+[Network_Traffic]
+acceleration = true
+acceleration.earliest_time = -3d
+acceleration.cron_schedule = */10 * * * *</code></pre>
+                
+                <h3>Rebuilding Acceleration</h3>
+                
+                <pre><code class="language-spl"># Force rebuild of data model acceleration
+# Via CLI:
+# $SPLUNK_HOME/bin/splunk rebuild datamodel-acceleration -d datamodel:Authentication
+
+# Check rebuild status
+| rest /services/admin/summarization by_tstats=t
+| search title="*Authentication*"
+| table title, datamodel_acceleration.is_inprogress, 
+        datamodel_acceleration.last_rebuild_time</code></pre>
+                
+                <h2 id="content-management">Content Management</h2>
+                
+                <h3>Content Management Interface</h3>
+                
+                <pre><code class="language-text">Configure → Content → Content Management
+
+Content Types:
+• Correlation Searches
+• Lookup Generating Searches
+• Adaptive Response Actions
+• Swim Lane Searches
+• Key Indicator Searches
+
+Bulk Operations:
+• Enable/Disable multiple searches
+• Export content for backup
+• Import content from other ES instances</code></pre>
+                
+                <h3>Managing Correlation Searches</h3>
+                
+                <pre><code class="language-spl"># List all correlation searches with status
+| rest /servicesNS/-/-/saved/searches
+| search action.correlationsearch.enabled=1
+| eval status = if(disabled=1, "Disabled", "Enabled")
+| stats count by status, action.notable.param.security_domain
+
+# Recently modified correlation searches
+| rest /servicesNS/-/-/saved/searches
+| search action.correlationsearch.enabled=1
+| eval updated = strftime(updated, "%Y-%m-%d %H:%M:%S")
+| sort -updated
+| table title, updated, eai:acl.owner
+| head 20
+
+# Correlation search by security domain
+| rest /servicesNS/-/-/saved/searches
+| search action.correlationsearch.enabled=1 disabled=0
+| stats count by action.notable.param.security_domain</code></pre>
+                
+                <h3>Backup and Recovery</h3>
+                
+                <pre><code class="language-text">BACKUP CHECKLIST:
+
+Configuration Files:
+□ $SPLUNK_HOME/etc/apps/SplunkEnterpriseSecuritySuite/local/
+□ $SPLUNK_HOME/etc/apps/SA-*/local/
+□ $SPLUNK_HOME/etc/apps/DA-*/local/
+
+KV Store Collections:
+□ Asset lookups (asset_lookup_by_*)
+□ Identity lookups (identity_lookup_by_*)
+□ Threat intel (ip_intel, domain_intel, file_intel)
+□ Notable event status (notable_owners, incident_review)
+
+Lookup Files:
+□ Custom CSV lookups
+□ Threat lists
+
+Export Method:
+# Backup KV store collections
+| inputlookup asset_lookup_by_str | outputlookup asset_backup.csv
+| inputlookup identity_lookup | outputlookup identity_backup.csv</code></pre>
+                
+                <h2 id="performance-tuning">Performance Tuning</h2>
+                
+                <h3>Correlation Search Optimization</h3>
+                
+                <pre><code class="language-spl"># Identify slow correlation searches
+index=_internal sourcetype=scheduler savedsearch_name="*" status=completed earliest=-24h
+| where match(savedsearch_name, "(?i)correlation|notable|risk")
+| stats avg(run_time) AS avg_sec, max(run_time) AS max_sec, 
+        count AS executions by savedsearch_name
+| where avg_sec > 30
+| sort -avg_sec
+
+# Check if using tstats efficiently
+| rest /servicesNS/-/-/saved/searches
+| search action.correlationsearch.enabled=1 disabled=0
+| eval uses_tstats = if(match(search, "tstats"), "Yes", "No")
+| stats count by uses_tstats
+
+# Searches NOT using tstats (candidates for optimization)
+| rest /servicesNS/-/-/saved/searches
+| search action.correlationsearch.enabled=1 disabled=0
+| where NOT match(search, "tstats")
+| table title, search</code></pre>
+                
+                <h3>Resource Allocation</h3>
+                
+                <pre><code class="language-ini"># limits.conf - ES-related settings
+[scheduler]
+max_searches_per_cpu = 4
+auto_summary_perc = 50
+
+[summarization]
+max_summary_ratio = 0.1
+max_summary_size = 1000000000
+
+[search]
+max_searches_per_cpu = 4
+dispatch_dir_warning_size = 2000</code></pre>
+                
+                <h2 id="user-management">User and Role Management</h2>
+                
+                <h3>ES Roles</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Role</th>
+                                <th>Capabilities</th>
+                                <th>Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>ess_admin</strong></td>
+                                <td>Full ES administration</td>
+                                <td>ES administrators</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ess_analyst</strong></td>
+                                <td>Work notable events, investigate</td>
+                                <td>SOC analysts</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ess_user</strong></td>
+                                <td>View dashboards, limited actions</td>
+                                <td>Stakeholders, viewers</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Custom Role Example</h3>
+                
+                <pre><code class="language-ini"># authorize.conf
+[role_soc_tier1]
+importRoles = ess_analyst
+srchIndexesAllowed = main;security;notable;risk
+srchIndexesDefault = security
+# Limit to specific capabilities
+edit_notable_events = enabled
+transition_reviewstatus-notable_event = enabled
+
+[role_soc_tier2]
+importRoles = ess_analyst
+srchIndexesAllowed = *
+edit_correlationsearches = enabled
+edit_suppressions = enabled
+
+[role_soc_manager]
+importRoles = ess_admin
+schedule_search = enabled
+admin_all_objects = disabled</code></pre>
+                
+                <h2 id="maintenance-tasks">Routine Maintenance</h2>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        ES Maintenance Schedule
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Daily:</strong><br>
+                            □ Review skipped/failed scheduled searches<br>
+                            □ Check data model acceleration status<br>
+                            □ Monitor notable event backlog<br>
+                            □ Verify threat intel feed updates<br><br>
+                            
+                            <strong>Weekly:</strong><br>
+                            □ Review correlation search performance<br>
+                            □ Check KV store sizes<br>
+                            □ Review suppression list<br>
+                            □ Update asset/identity lookups<br>
+                            □ Audit user access<br><br>
+                            
+                            <strong>Monthly:</strong><br>
+                            □ Review false positive rates by rule<br>
+                            □ Tune noisy correlation searches<br>
+                            □ Clean up stale threat intel<br>
+                            □ Review MITRE ATT&CK coverage<br>
+                            □ Backup ES configurations<br><br>
+                            
+                            <strong>Quarterly:</strong><br>
+                            □ Full content review and cleanup<br>
+                            □ Data model coverage assessment<br>
+                            □ ES app and TA updates<br>
+                            □ Capacity planning review
+                        </p>
+                    </div>
+                </div>
+                
+                <h3>Maintenance Searches</h3>
+                
+                <pre><code class="language-spl"># Stale notable events (auto-close candidates)
+index=notable status="New" earliest=-30d latest=-7d
+| stats count by rule_name
+| sort -count
+
+# Unused correlation searches
+| rest /servicesNS/-/-/saved/searches
+| search action.correlationsearch.enabled=1 disabled=0
+| eval days_since_run = (now() - dispatch.latest_time) / 86400
+| where days_since_run > 7 OR isnull(dispatch.latest_time)
+| table title, days_since_run
+
+# Suppression audit
+| rest /services/alerts/suppressions
+| where disabled=0
+| eval age_days = (now() - updated) / 86400
+| table title, description, age_days
+| sort -age_days
+
+# Data model coverage gaps
+| tstats count FROM datamodel=Authentication WHERE * BY sourcetype
+| append [| tstats count FROM datamodel=Network_Traffic WHERE * BY sourcetype]
+| stats sum(count) AS events by sourcetype</code></pre>
+                
+                <h2 id="troubleshooting">Troubleshooting</h2>
+                
+                <h3>Common Issues</h3>
+                
+                <pre><code class="language-spl"># No notable events being created
+# Check 1: Is correlation search running?
+index=_internal sourcetype=scheduler savedsearch_name="*Brute*"
+| head 10
+
+# Check 2: Is search returning results?
+# Run the correlation search manually without sendalert
+
+# Check 3: Check for errors
+index=_internal sourcetype=splunkd component=SavedSplunker ERROR
+| head 20
+
+# Data model not populating
+# Check 1: Source data exists
+index=security sourcetype=WinEventLog:Security | head 5
+
+# Check 2: Data model constraint matches
+| datamodel Authentication search | head 5
+
+# Check 3: TA field extractions working
+index=security sourcetype=WinEventLog:Security
+| table user, action, src, dest, app
+
+# Slow dashboard performance
+# Check 1: Identify slow panels
+index=_internal sourcetype=splunkd_access uri_path="*/search/jobs/*"
+| stats avg(spent) AS avg_ms by uri_path
+| sort -avg_ms
+
+# Check 2: Check if acceleration is being used
+# Look for "summariesonly=true" in tstats
+# Verify data model acceleration is complete</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"How would you troubleshoot a correlation search that isn't generating notable events?"</strong><br><br>
+                            <strong>1. Verify the search is enabled and running:</strong> Check scheduler logs in _internal<br>
+                            <strong>2. Test the search manually:</strong> Run the SPL without adaptive response actions<br>
+                            <strong>3. Check data availability:</strong> Verify source data exists in the expected index/sourcetype<br>
+                            <strong>4. Validate data model:</strong> If using tstats, confirm data model acceleration is complete<br>
+                            <strong>5. Review thresholds:</strong> Check if detection thresholds are appropriate for current data volume<br>
+                            <strong>6. Check for errors:</strong> Look in splunkd.log and scheduler logs for errors<br>
+                            <strong>7. Verify permissions:</strong> Ensure the search owner has access to required indexes
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Monitor data model acceleration status regularly</li>
+                    <li>Track correlation search health and performance</li>
+                    <li>Manage content through Content Management interface</li>
+                    <li>Backup configurations and KV store collections</li>
+                    <li>Optimize searches to use tstats with accelerated models</li>
+                    <li>Follow maintenance schedule: daily, weekly, monthly, quarterly</li>
+                    <li>Troubleshoot systematically: scheduler → search → data → model</li>
+                </ul>
+                
+                <div class="info-box tip">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">🎉</span>
+                        Section Complete
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Congratulations! You've completed <strong>Section 3: Splunk Security Operations</strong>. You now understand Splunk ES architecture, notable events, correlation searches, risk-based alerting, threat intelligence, asset/identity frameworks, dashboards, and administration. Continue to <a href="5-1-sentinel-architecture.html">Section 5: Microsoft Sentinel</a> to learn about Microsoft's cloud-native SIEM.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="page-navigation">
+                    <a href="3-7-security-dashboards.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Security Dashboards</span>
+                        </div>
+                    </a>
+                    <a href="5-1-sentinel-architecture.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Sentinel Architecture</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

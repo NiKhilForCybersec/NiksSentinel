@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Splunk ES Notable Events - Creating, managing, and investigating notable events in Splunk Enterprise Security.">
+    <title>Notable Events | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+                <div class="sidebar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search docs... (Ctrl+K)" aria-label="Search documentation">
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item active">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="3-1-splunk-es-overview.html">Splunk Security Ops</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Notable Events</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Notable Events</h1>
+                <p class="page-subtitle">Understanding, creating, and managing notable events in Splunk ES</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Notable events are the core alert mechanism in Splunk ES. This chapter covers the notable event data model, how to create and customize notable events, the analyst workflow in Incident Review, and best practices for notable event management.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="notable-anatomy">Anatomy of a Notable Event</h2>
+                
+                <p>
+                    A notable event is a special Splunk event stored in the <code>notable</code> index with standardized fields:
+                </p>
+                
+                <pre><code class="language-spl"># Query notable events
+index=notable
+| table _time, rule_name, rule_title, urgency, owner, status_label, 
+        src, dest, user, src_ip, dest_ip, signature</code></pre>
+                
+                <h3>Key Notable Event Fields</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>rule_name</strong></td>
+                                <td>Correlation search name</td>
+                                <td>Brute Force Access Behavior</td>
+                            </tr>
+                            <tr>
+                                <td><strong>rule_title</strong></td>
+                                <td>Display title</td>
+                                <td>Brute Force Attack Detected</td>
+                            </tr>
+                            <tr>
+                                <td><strong>urgency</strong></td>
+                                <td>Priority level</td>
+                                <td>critical, high, medium, low, informational</td>
+                            </tr>
+                            <tr>
+                                <td><strong>owner</strong></td>
+                                <td>Assigned analyst</td>
+                                <td>jsmith</td>
+                            </tr>
+                            <tr>
+                                <td><strong>status</strong></td>
+                                <td>Workflow status (numeric)</td>
+                                <td>0-5</td>
+                            </tr>
+                            <tr>
+                                <td><strong>status_label</strong></td>
+                                <td>Workflow status (text)</td>
+                                <td>New, In Progress, Resolved</td>
+                            </tr>
+                            <tr>
+                                <td><strong>security_domain</strong></td>
+                                <td>Security category</td>
+                                <td>access, endpoint, network, threat</td>
+                            </tr>
+                            <tr>
+                                <td><strong>src</strong></td>
+                                <td>Source (flexible)</td>
+                                <td>IP, hostname, or user</td>
+                            </tr>
+                            <tr>
+                                <td><strong>dest</strong></td>
+                                <td>Destination</td>
+                                <td>Target system or user</td>
+                            </tr>
+                            <tr>
+                                <td><strong>user</strong></td>
+                                <td>User involved</td>
+                                <td>admin</td>
+                            </tr>
+                            <tr>
+                                <td><strong>risk_score</strong></td>
+                                <td>Calculated risk</td>
+                                <td>75</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="creating-notables">Creating Notable Events</h2>
+                
+                <p>
+                    Notable events are created by correlation searches using the <code>sendalert</code> command or notable event adaptive response action:
+                </p>
+                
+                <h3>Method 1: Correlation Search with Notable Action</h3>
+                
+                <pre><code class="language-spl"># Correlation search that creates notable events
+# Configure via: Configure → Content → Correlation Searches
+
+| tstats summariesonly=true count FROM datamodel=Authentication 
+  WHERE Authentication.action=failure 
+  by Authentication.user, Authentication.src, _time span=5m
+| where count > 10
+| `drop_dm_object_name("Authentication")`
+| `map_notable_fields`
+
+# The correlation search settings include:
+# - Adaptive Response Action: Notable Event
+# - Title: Brute Force Access Behavior Detected
+# - Security Domain: Access
+# - Severity: High</code></pre>
+                
+                <h3>Method 2: Direct sendalert</h3>
+                
+                <pre><code class="language-spl"># Manual notable event creation
+index=security EventCode=4625 earliest=-5m
+| stats count by user, src_ip
+| where count > 10
+| eval rule_name="Custom Brute Force Detection"
+| eval rule_title="Brute Force Attack - ".user
+| eval urgency="high"
+| eval security_domain="access"
+| eval rule_description="User ".user." had ".count." failed logins from ".src_ip
+| sendalert notable param.rule_title="$rule_title$" 
+                     param.rule_description="$rule_description$"
+                     param.security_domain="$security_domain$"
+                     param.severity="high"</code></pre>
+                
+                <h3>Method 3: makeresults for Testing</h3>
+                
+                <pre><code class="language-spl"># Create test notable event
+| makeresults
+| eval rule_name="Test Notable"
+| eval rule_title="Test Notable Event"
+| eval rule_description="This is a test notable for training"
+| eval urgency="low"
+| eval security_domain="access"
+| eval src="10.0.0.1"
+| eval dest="server01"
+| eval user="testuser"
+| sendalert notable</code></pre>
+                
+                <h2 id="urgency-calculation">Urgency Calculation</h2>
+                
+                <p>
+                    ES calculates urgency based on severity and asset/identity priority:
+                </p>
+                
+                <pre><code class="language-text">URGENCY MATRIX:
+
+                    Asset/Identity Priority
+                 Low    Medium    High    Critical
+Severity    ┌─────────────────────────────────────┐
+  Low       │ info    low      low      medium   │
+  Medium    │ low     low      medium   high     │
+  High      │ low     medium   high     critical │
+  Critical  │ medium  high     critical critical │
+            └─────────────────────────────────────┘
+
+Urgency = f(Severity, max(Asset Priority, Identity Priority))</code></pre>
+                
+                <h3>Customizing Urgency</h3>
+                
+                <pre><code class="language-spl"># Override calculated urgency in correlation search
+| eval urgency = case(
+    risk_score > 80, "critical",
+    risk_score > 50, "high",
+    risk_score > 25, "medium",
+    1==1, "low"
+  )
+
+# Or use asset/identity priority lookup
+| lookup asset_lookup_by_str ip AS dest OUTPUT priority AS dest_priority
+| eval urgency = if(dest_priority=="critical", "critical", urgency)</code></pre>
+                
+                <h2 id="incident-review">Working in Incident Review</h2>
+                
+                <h3>Analyst Workflow</h3>
+                
+                <pre><code class="language-text">INCIDENT REVIEW WORKFLOW:
+
+1. TRIAGE
+   • Review notable event details
+   • Check urgency and security domain
+   • Review contributing events
+   • Assign to self or team member
+
+2. INVESTIGATE
+   • Use Investigation workbench
+   • Pivot to related events
+   • Check asset/identity context
+   • Review threat intelligence matches
+
+3. DOCUMENT
+   • Add comments with findings
+   • Update status as work progresses
+   • Link related notable events
+
+4. RESOLVE
+   • Determine disposition (TP/FP/BTP)
+   • Document resolution
+   • Update status to Resolved/Closed
+   • Create suppression if needed</code></pre>
+                
+                <h3>Bulk Actions</h3>
+                
+                <pre><code class="language-text">Incident Review supports bulk operations:
+
+• Select multiple notable events (checkbox)
+• Actions available:
+  - Change Status (all selected)
+  - Assign Owner (all selected)
+  - Change Urgency (all selected)
+  - Add Comment (all selected)
+  - Edit selected fields</code></pre>
+                
+                <h3>Investigation Workbench</h3>
+                
+                <pre><code class="language-spl"># From Incident Review, click "Investigate"
+# Pivots to Investigation dashboard with:
+
+# Asset Investigation
+| `investigate_asset("192.168.1.50")`
+# Shows all events related to asset
+
+# User Investigation  
+| `investigate_user("jsmith")`
+# Shows all events related to user
+
+# Related Notable Events
+index=notable src_ip="192.168.1.50" OR user="jsmith" earliest=-7d
+| table _time, rule_title, urgency, status_label</code></pre>
+                
+                <h2 id="notable-queries">Common Notable Event Queries</h2>
+                
+                <pre><code class="language-spl"># All unassigned notable events (last 24h)
+index=notable owner="unassigned" earliest=-24h
+| table _time, rule_title, urgency, src, dest, user
+
+# Notable events by rule (top 10)
+index=notable earliest=-7d
+| stats count by rule_name
+| sort -count
+| head 10
+
+# Notable events by urgency
+index=notable earliest=-24h
+| stats count by urgency
+| eval order = case(urgency=="critical", 1, urgency=="high", 2, 
+                    urgency=="medium", 3, urgency=="low", 4, 1==1, 5)
+| sort order
+
+# Mean time to acknowledge (MTTA)
+index=notable status_label="In Progress" earliest=-30d
+| eval time_to_ack = status_time - _time
+| stats avg(time_to_ack) AS avg_tta_seconds
+| eval avg_tta_minutes = round(avg_tta_seconds/60, 2)
+
+# Notable events per analyst
+index=notable earliest=-7d owner!="unassigned"
+| stats count by owner
+| sort -count
+
+# False positive rate by rule
+index=notable earliest=-30d status_label IN ("Resolved", "Closed")
+| stats count(eval(status_label="Resolved" AND disposition="False Positive")) AS fp,
+        count AS total by rule_name
+| eval fp_rate = round((fp/total)*100, 2)
+| sort -fp_rate
+
+# Notable events timeline
+index=notable earliest=-7d
+| timechart span=1h count by urgency</code></pre>
+                
+                <h2 id="suppression">Notable Event Suppression</h2>
+                
+                <p>
+                    Suppressions prevent specific notable events from being created based on field values:
+                </p>
+                
+                <h3>Creating Suppressions</h3>
+                
+                <pre><code class="language-text">Configure → Content → Suppression
+
+New Suppression:
+• Name: Suppress ServiceAccount_PatternedActivity
+• Description: Known service account behavior
+• Disabled: No
+• Expiration: +7d (or permanent)
+
+Suppression Rules:
+• rule_name: "Excessive Failed Logins"
+• user: "svc_backup"
+• src_ip: "10.0.0.50"</code></pre>
+                
+                <h3>Suppression Query</h3>
+                
+                <pre><code class="language-spl"># View active suppressions
+| rest /services/alerts/suppressions
+| where disabled=0
+| table title, description, suppression.field_* search
+
+# Check if event would be suppressed
+| makeresults
+| eval rule_name="Excessive Failed Logins"
+| eval user="svc_backup"
+| `apply_suppression`
+| table is_suppressed</code></pre>
+                
+                <div class="info-box warning">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">⚠️</span>
+                        Warning
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Suppressions create blind spots.</strong> Every suppression is a potential missed detection. Document the justification, set expiration dates, and review suppressions regularly. Consider tuning the correlation search instead of suppressing the output.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="notable-customization">Customizing Notable Events</h2>
+                
+                <h3>Adding Custom Fields</h3>
+                
+                <pre><code class="language-spl"># Add custom fields to notable events
+| tstats count FROM datamodel=Authentication 
+  WHERE Authentication.action=failure by Authentication.user Authentication.src
+| where count > 10
+| eval custom_field1 = "value1"
+| eval threat_category = "credential_access"
+| eval mitre_technique = "T1110.001"
+| `map_notable_fields`</code></pre>
+                
+                <h3>Custom Drilldowns</h3>
+                
+                <pre><code class="language-text"># Configure drilldown in correlation search settings:
+
+Drilldown Name: View All User Activity
+Drilldown Search: 
+  index=* user="$user$" earliest=-24h
+  | table _time, index, sourcetype, action, src_ip, dest
+  | sort -_time
+
+Drilldown Name: MITRE ATT&CK Reference
+Drilldown URI:
+  https://attack.mitre.org/techniques/$mitre_technique$</code></pre>
+                
+                <h2 id="notable-metrics">Notable Event Metrics</h2>
+                
+                <pre><code class="language-spl"># SOC Metrics Dashboard
+
+# MTTD - Mean Time to Detect (requires event_time field)
+index=notable earliest=-30d
+| eval detect_time = _time - event_time
+| stats avg(detect_time) AS mttd_seconds
+| eval mttd_minutes = round(mttd_seconds/60, 2)
+
+# MTTA - Mean Time to Acknowledge
+index=notable status_label!="New" earliest=-30d
+| eval ack_time = status_time - _time  
+| stats avg(ack_time) AS mtta_seconds
+| eval mtta_minutes = round(mtta_seconds/60, 2)
+
+# MTTR - Mean Time to Resolve
+index=notable status_label IN ("Resolved", "Closed") earliest=-30d
+| eval resolve_time = status_time - _time
+| stats avg(resolve_time) AS mttr_seconds
+| eval mttr_hours = round(mttr_seconds/3600, 2)
+
+# Alert Volume Trends
+index=notable earliest=-30d
+| timechart span=1d count AS notable_count
+| trendline sma5(notable_count) AS trend
+
+# True Positive Rate
+index=notable disposition=* earliest=-30d
+| stats count(eval(disposition="True Positive")) AS tp,
+        count(eval(disposition="False Positive")) AS fp,
+        count AS total
+| eval tp_rate = round((tp/total)*100, 2)
+| eval fp_rate = round((fp/total)*100, 2)</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"How do you manage false positives in Splunk ES?"</strong><br><br>
+                            <strong>1. Tune the correlation search</strong> - Adjust thresholds, add whitelists, or refine the detection logic<br>
+                            <strong>2. Use suppressions carefully</strong> - Create targeted suppressions with expiration dates for known benign patterns<br>
+                            <strong>3. Leverage asset/identity context</strong> - Use priority fields to adjust urgency rather than suppress entirely<br>
+                            <strong>4. Track FP rate</strong> - Monitor false positive rate by rule and prioritize tuning high-FP rules<br>
+                            <strong>5. Document everything</strong> - Record why each suppression exists and review periodically
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Notable events are stored in the <code>notable</code> index with standardized fields</li>
+                    <li>Created by correlation searches using adaptive response actions</li>
+                    <li>Urgency is calculated from severity × asset/identity priority</li>
+                    <li>Incident Review provides triage, investigation, and resolution workflow</li>
+                    <li>Suppressions prevent specific events but create blind spots</li>
+                    <li>Track metrics: MTTA, MTTR, TP rate, volume trends</li>
+                    <li>Customize notable events with drilldowns and additional fields</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="3-1-splunk-es-overview.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Splunk ES Overview</span>
+                        </div>
+                    </a>
+                    <a href="3-3-correlation-searches.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Correlation Searches</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Microsoft Sentinel Incidents and Investigation - Managing incidents, investigation graph, hunting, and analyst workflow.">
+    <title>Incidents & Investigation | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item active">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="5-1-sentinel-architecture.html">Sentinel Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Incidents & Investigation</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Incidents & Investigation</h1>
+                <p class="page-subtitle">Managing incidents, investigation tools, and threat hunting</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Incidents are the primary unit of work in Sentinel's SOC experience. This chapter covers incident management, the investigation graph, entity pages, threat hunting, and analyst workflows.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="incidents-overview">Incidents Overview</h2>
+                
+                <pre><code class="language-text">INCIDENT STRUCTURE:
+
+┌─────────────────────────────────────────────────────────┐
+│                      INCIDENT                           │
+│  Title: Brute Force Attack from 192.168.1.50           │
+│  Severity: High | Status: Active | Owner: analyst@     │
+├─────────────────────────────────────────────────────────┤
+│  ALERTS (grouped into incident)                        │
+│  ├── Alert 1: Multiple failed logins (10:00 AM)       │
+│  ├── Alert 2: Successful login after failures (10:15)  │
+│  └── Alert 3: Suspicious activity detected (10:30)     │
+├─────────────────────────────────────────────────────────┤
+│  ENTITIES (extracted from alerts)                       │
+│  ├── Account: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e382878e8a8da3808c8e93828d9acd808c8e">[email&#160;protected]</a>                        │
+│  ├── IP: 192.168.1.50                                  │
+│  └── Host: SERVER01                                    │
+├─────────────────────────────────────────────────────────┤
+│  EVIDENCE                                               │
+│  ├── Bookmarks: Saved query results                    │
+│  └── Comments: Analyst notes                           │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h3>Incident Statuses</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Description</th>
+                                <th>When to Use</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>New</strong></td>
+                                <td>Unreviewed</td>
+                                <td>Initial state, awaiting triage</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Active</strong></td>
+                                <td>Under investigation</td>
+                                <td>Analyst assigned and working</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Closed</strong></td>
+                                <td>Investigation complete</td>
+                                <td>Issue resolved or false positive</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Closure Classifications</h3>
+                
+                <pre><code class="language-text">CLOSURE OPTIONS:
+
+• True Positive - Suspicious activity
+  Confirmed malicious activity
+
+• Benign Positive - Suspicious but expected
+  Activity matches known good behavior
+
+• False Positive - Incorrect alert logic
+  Detection rule needs tuning
+
+• Undetermined
+  Insufficient information to determine</code></pre>
+                
+                <h2 id="investigation-graph">Investigation Graph</h2>
+                
+                <pre><code class="language-text">INVESTIGATION GRAPH:
+
+Visual representation of relationships between entities:
+
+                    ┌──────────────┐
+                    │   INCIDENT   │
+                    └──────┬───────┘
+                           │
+        ┌──────────────────┼──────────────────┐
+        ▼                  ▼                  ▼
+  ┌──────────┐      ┌──────────┐      ┌──────────┐
+  │  ALERT   │      │  ALERT   │      │  ALERT   │
+  │    1     │      │    2     │      │    3     │
+  └────┬─────┘      └────┬─────┘      └────┬─────┘
+       │                 │                 │
+       ▼                 ▼                 ▼
+  ┌──────────┐      ┌──────────┐      ┌──────────┐
+  │ ACCOUNT  │──────│    IP    │──────│   HOST   │
+  │  admin   │      │ 10.0.0.5 │      │ SERVER01 │
+  └──────────┘      └──────────┘      └──────────┘
+
+INTERACTIONS:
+• Click entity → View details and related alerts
+• Expand entity → See related events
+• Timeline view → Chronological event sequence</code></pre>
+                
+                <h2 id="entity-pages">Entity Pages</h2>
+                
+                <pre><code class="language-text">ENTITY PAGE (User: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e786838a8e89a784888a9786899ec984888a">[email&#160;protected]</a>):
+
+┌─────────────────────────────────────────────────────────┐
+│                    ENTITY DETAILS                       │
+│  Name: Admin User                                      │
+│  UPN: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f697929b9f98b695999b8697988fd895999b">[email&#160;protected]</a>                                │
+│  Department: IT | Title: System Administrator          │
+├─────────────────────────────────────────────────────────┤
+│                    INSIGHTS                             │
+│  • First seen: 2023-01-15                              │
+│  • Usual sign-in location: New York, USA               │
+│  • Risk Score: 75/100 (High)                           │
+│  • UEBA anomalies detected: 3                          │
+├─────────────────────────────────────────────────────────┤
+│                    TIMELINE                             │
+│  [Timeline of user's activities across all sources]    │
+├─────────────────────────────────────────────────────────┤
+│                 RELATED INCIDENTS                       │
+│  • Incident #123: Brute Force (Active)                 │
+│  • Incident #98: Unusual Login Location (Closed)       │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h2 id="hunting">Threat Hunting</h2>
+                
+                <pre><code class="language-kql">// Built-in hunting queries available in Sentinel → Hunting
+
+// Example: Hunt for suspicious PowerShell
+DeviceProcessEvents
+| where TimeGenerated > ago(7d)
+| where FileName == "powershell.exe"
+| where ProcessCommandLine contains "-enc" 
+    or ProcessCommandLine contains "-encoded"
+    or ProcessCommandLine contains "downloadstring"
+    or ProcessCommandLine contains "bypass"
+| project TimeGenerated, DeviceName, AccountName, ProcessCommandLine
+
+// Hunt for data exfiltration
+DeviceNetworkEvents
+| where TimeGenerated > ago(24h)
+| where RemotePort in (443, 80)
+| summarize 
+    TotalBytes = sum(SentBytes),
+    Connections = count()
+    by DeviceName, RemoteIP, bin(TimeGenerated, 1h)
+| where TotalBytes > 100000000 // 100 MB
+
+// Save results as bookmark
+// → Add to existing incident or create new incident</code></pre>
+                
+                <h3>Hunting Workflow</h3>
+                
+                <pre><code class="language-text">HUNTING WORKFLOW:
+
+1. HYPOTHESIS
+   "Attackers may be using encoded PowerShell for C2"
+
+2. QUERY
+   Run hunting query across relevant data
+
+3. ANALYZE
+   Review results, identify suspicious patterns
+
+4. BOOKMARK
+   Save interesting findings as bookmarks
+
+5. INVESTIGATE
+   Create incident or add to existing incident
+
+6. DOCUMENT
+   Record findings and update threat intel</code></pre>
+                
+                <h2 id="analyst-workflow">Analyst Workflow</h2>
+                
+                <pre><code class="language-text">SOC ANALYST WORKFLOW:
+
+1. TRIAGE
+   □ Review incident queue (sorted by severity)
+   □ Check incident details and alerts
+   □ Assign to self
+
+2. INVESTIGATE
+   □ Use investigation graph
+   □ Review entity pages
+   □ Query related events
+   □ Check threat intelligence
+
+3. CONTAIN
+   □ Run playbooks for automated response
+   □ Manual actions if needed
+   □ Document actions taken
+
+4. REMEDIATE
+   □ Coordinate with IT/owners
+   □ Verify threat eliminated
+   □ Monitor for recurrence
+
+5. CLOSE
+   □ Select closure classification
+   □ Add final comments
+   □ Update knowledge base</code></pre>
+                
+                <h2 id="querying-incidents">Querying Incidents</h2>
+                
+                <pre><code class="language-kql">// Get all incidents
+SecurityIncident
+| where TimeGenerated > ago(30d)
+| project TimeGenerated, IncidentNumber, Title, Severity, Status, Owner
+
+// Open high severity incidents
+SecurityIncident
+| where Status == "Active"
+| where Severity == "High"
+| project IncidentNumber, Title, Owner, CreatedTime
+
+// Incident metrics
+SecurityIncident
+| where TimeGenerated > ago(30d)
+| summarize 
+    Total = count(),
+    TruePositives = countif(Classification == "TruePositive"),
+    FalsePositives = countif(Classification == "FalsePositive")
+| extend TPRate = round(TruePositives * 100.0 / Total, 2)
+
+// Mean Time to Close
+SecurityIncident
+| where TimeGenerated > ago(30d)
+| where Status == "Closed"
+| extend MTTC = datetime_diff('hour', ClosedTime, CreatedTime)
+| summarize AvgMTTC = avg(MTTC), MedianMTTC = percentile(MTTC, 50)
+
+// Incidents by analytics rule
+SecurityIncident
+| where TimeGenerated > ago(7d)
+| mv-expand AlertId = AlertIds
+| join kind=inner (
+    SecurityAlert
+    | project AlertId = SystemAlertId, AlertName
+) on AlertId
+| summarize IncidentCount = dcount(IncidentNumber) by AlertName
+| sort by IncidentCount desc</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Investigation Best Practices
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Triage:</strong><br>
+                            □ Prioritize by severity and age<br>
+                            □ Check for related incidents first<br>
+                            □ Use entity pages for quick context<br><br>
+                            
+                            <strong>Investigation:</strong><br>
+                            □ Pivot from entities in the graph<br>
+                            □ Check timeline for sequence of events<br>
+                            □ Bookmark key findings<br>
+                            □ Document reasoning in comments<br><br>
+                            
+                            <strong>Closure:</strong><br>
+                            □ Always select classification<br>
+                            □ Add lessons learned for TPs<br>
+                            □ Note tuning needed for FPs
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"Walk me through how you would investigate an incident in Microsoft Sentinel."</strong><br><br>
+                            <strong>1. Review incident details:</strong> Check severity, title, description, and mapped MITRE techniques<br>
+                            <strong>2. Examine alerts:</strong> Understand what triggered the incident and review the raw events<br>
+                            <strong>3. Use investigation graph:</strong> Visualize relationships between entities (users, IPs, hosts)<br>
+                            <strong>4. Check entity pages:</strong> Review user/host history, risk score, and related incidents<br>
+                            <strong>5. Query related data:</strong> Search for additional context in logs<br>
+                            <strong>6. Bookmark findings:</strong> Save important evidence<br>
+                            <strong>7. Take action:</strong> Run playbooks or coordinate manual response<br>
+                            <strong>8. Document and close:</strong> Add comments and select appropriate classification
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Incidents group related alerts and entities</li>
+                    <li>Statuses: New, Active, Closed (with classification)</li>
+                    <li>Investigation graph shows entity relationships</li>
+                    <li>Entity pages provide context and history</li>
+                    <li>Hunting enables proactive threat detection</li>
+                    <li>Bookmark findings and add to incidents</li>
+                    <li>Query SecurityIncident table for metrics</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="5-6-analytics-rules.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Analytics Rules</span>
+                        </div>
+                    </a>
+                    <a href="5-8-workbooks-reporting.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+           

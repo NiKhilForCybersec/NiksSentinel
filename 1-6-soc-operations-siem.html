@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SOC Operations and SIEM - Tiered SOC model, alert triage workflows, investigation procedures, escalation, shift handoff, and key metrics.">
+    <title>SOC Operations & SIEM | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+                <div class="sidebar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search docs... (Ctrl+K)" aria-label="Search documentation">
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item active">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="1-1-introduction-to-siem.html">SIEM Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">SOC Operations & SIEM</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">SOC Operations & SIEM</h1>
+                <p class="page-subtitle">How Security Operations Centers use SIEM for alert triage, investigation, and incident response</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            The SIEM is the central nervous system of a Security Operations Center. This chapter covers how SOC teams are structured, alert triage workflows, investigation procedures, escalation processes, and the key metrics that measure SOC effectiveness.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="soc-model">Tiered SOC Model</h2>
+                
+                <p>
+                    Most SOCs organize analysts into tiers based on skill level and responsibility:
+                </p>
+                
+                <h3>Tier 1: Alert Triage (SOC Analyst)</h3>
+                
+                <p>
+                    First responders who handle initial alert review:
+                </p>
+                
+                <ul>
+                    <li>Monitor alert queues and dashboards</li>
+                    <li>Perform initial triage using runbooks</li>
+                    <li>Classify alerts: true positive, false positive, benign true positive</li>
+                    <li>Escalate confirmed incidents to Tier 2</li>
+                    <li>Document findings in case management system</li>
+                </ul>
+                
+                <p><strong>Typical metrics:</strong> Alerts triaged per hour, escalation accuracy, queue age</p>
+                
+                <h3>Tier 2: Investigation (Security Analyst)</h3>
+                
+                <p>
+                    Experienced analysts who investigate escalated incidents:
+                </p>
+                
+                <ul>
+                    <li>Conduct deep-dive investigation</li>
+                    <li>Correlate events across multiple sources</li>
+                    <li>Determine scope and impact</li>
+                    <li>Recommend or execute containment actions</li>
+                    <li>Escalate complex incidents to Tier 3</li>
+                </ul>
+                
+                <p><strong>Typical metrics:</strong> Mean time to investigate, containment success, false escalation rate</p>
+                
+                <h3>Tier 3: Advanced Response (Senior Analyst / IR)</h3>
+                
+                <p>
+                    Senior analysts and incident responders for complex threats:
+                </p>
+                
+                <ul>
+                    <li>Lead major incident response</li>
+                    <li>Perform forensic analysis</li>
+                    <li>Conduct threat hunting</li>
+                    <li>Develop new detection rules</li>
+                    <li>Mentor junior analysts</li>
+                </ul>
+                
+                <p><strong>Typical metrics:</strong> Incidents resolved, detection rules created, hunt findings</p>
+                
+                <pre><code class="language-text">Alert Flow Through SOC Tiers:
+
+    SIEM Alert Generated
+           │
+           ▼
+    ┌──────────────┐
+    │   TIER 1     │  Initial Triage (5-15 min)
+    │              │  - Review alert context
+    │ SOC Analyst  │  - Check known false positives
+    │              │  - Basic investigation
+    └──────┬───────┘
+           │
+     ┌─────┴─────┐
+     │           │
+  Closed     Escalate
+  (FP/BTP)      │
+                ▼
+         ┌──────────────┐
+         │   TIER 2     │  Investigation (15-60 min)
+         │              │  - Deep investigation
+         │ Security     │  - Scope determination
+         │ Analyst      │  - Containment actions
+         └──────┬───────┘
+                │
+          ┌─────┴─────┐
+          │           │
+       Resolved    Escalate
+                      │
+                      ▼
+              ┌──────────────┐
+              │   TIER 3     │  Advanced Response
+              │              │  - Full incident response
+              │ SR Analyst   │  - Forensics
+              │ / IR         │  - Eradication
+              └──────────────┘</code></pre>
+                
+                <div class="info-box tip">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💡</span>
+                        Modern SOC Evolution
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Many organizations are moving away from strict tiering toward "T-shaped" analysts who specialize in one area but can handle diverse alerts. Automation (SOAR) handles routine Tier 1 tasks, allowing analysts to focus on investigation and hunting. Some SOCs now use "pods" of mixed-skill analysts rather than tiers.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="alert-triage">Alert Triage Workflows</h2>
+                
+                <p>
+                    Effective triage quickly distinguishes threats from noise:
+                </p>
+                
+                <h3>Triage Process</h3>
+                
+                <pre><code class="language-text">1. RECEIVE ALERT
+   └── Alert appears in queue with severity, description, and entities
+
+2. INITIAL ASSESSMENT (30 seconds - 2 minutes)
+   ├── Read alert title and description
+   ├── Check severity and priority
+   ├── Identify key entities (user, host, IP)
+   └── Check if alert is in known FP list
+
+3. CONTEXT GATHERING (2-5 minutes)
+   ├── Review related events in SIEM
+   ├── Check entity history (user normal behavior?)
+   ├── Query threat intelligence
+   ├── Check asset criticality
+   └── Review similar past alerts
+
+4. DETERMINATION
+   ├── TRUE POSITIVE → Document and escalate
+   ├── FALSE POSITIVE → Document reason, close, consider tuning
+   └── BENIGN TRUE POSITIVE → Expected activity, document, close
+
+5. DOCUMENTATION
+   └── Record findings, actions, and disposition in case notes</code></pre>
+                
+                <h3>Triage Questions to Ask</h3>
+                
+                <ul>
+                    <li>Is this user/system expected to perform this activity?</li>
+                    <li>What is the asset criticality of affected systems?</li>
+                    <li>Is there threat intelligence on the indicators involved?</li>
+                    <li>Are there related alerts or events suggesting a pattern?</li>
+                    <li>What is the business context (maintenance window, known change)?</li>
+                </ul>
+                
+                <h3>Example Triage Runbook</h3>
+                
+                <pre><code class="language-text">RUNBOOK: Brute Force Authentication Alert
+
+ALERT: Multiple failed authentication attempts detected
+
+TRIAGE STEPS:
+1. Identify target account
+   - Is this a service account, admin, or standard user?
+   - Is the account currently locked out?
+
+2. Check source information
+   - Is source IP internal or external?
+   - GeoIP lookup - is location expected?
+   - Threat intel lookup on source IP
+
+3. Review authentication pattern
+   - How many failures? Over what time period?
+   - Was there a subsequent success?
+   - Multiple accounts targeted from same source?
+
+4. Verify with user (if needed)
+   - Did user forget password?
+   - Did user recently travel?
+
+DETERMINATION CRITERIA:
+- TRUE POSITIVE: External IP, many failures, subsequent success, no user travel
+- FALSE POSITIVE: User confirmed bad password, internal testing
+- ESCALATE: Successful login from suspicious source, privileged account
+
+RESPONSE ACTIONS:
+- TP: Reset password, block source IP, escalate to Tier 2
+- FP: Document, close, consider tuning if repeated</code></pre>
+                
+                <h2 id="investigation">Investigation Procedures</h2>
+                
+                <p>
+                    When an alert is confirmed as suspicious, Tier 2 analysts conduct systematic investigation:
+                </p>
+                
+                <h3>Investigation Framework</h3>
+                
+                <pre><code class="language-text">INVESTIGATION PHASES:
+
+1. SCOPE DETERMINATION
+   ├── What systems are affected?
+   ├── What users/accounts are involved?
+   ├── What data may be impacted?
+   └── What is the time range of activity?
+
+2. TIMELINE CONSTRUCTION
+   ├── When did suspicious activity begin?
+   ├── What was the initial access vector?
+   ├── What actions occurred chronologically?
+   └── Is activity ongoing?
+
+3. IMPACT ASSESSMENT
+   ├── What data was accessed/exfiltrated?
+   ├── Were credentials compromised?
+   ├── Was malware deployed?
+   └── Were systems modified?
+
+4. CONTAINMENT PLANNING
+   ├── What needs to be isolated?
+   ├── What credentials need reset?
+   ├── What access needs revocation?
+   └── Can business continue with containment?</code></pre>
+                
+                <h3>Investigation Queries</h3>
+                
+                <pre><code class="language-spl"># Splunk - User activity timeline
+index=* user="compromised_user" earliest=-7d
+| table _time, index, sourcetype, action, src_ip, dest, description
+| sort _time
+
+# All authentication for user
+index=authentication user="compromised_user" earliest=-7d
+| stats count by action, src_ip, dest, app
+| sort -count
+
+# Process execution on affected host
+index=sysmon host="infected_host" EventCode=1 earliest=-24h
+| table _time, User, ParentImage, Image, CommandLine
+| sort _time
+
+# Network connections from affected host
+index=sysmon host="infected_host" EventCode=3 earliest=-24h
+| stats count by DestinationIp, DestinationPort, Image
+| sort -count</code></pre>
+                
+                <pre><code class="language-kql">// KQL - User activity timeline
+union SecurityEvent, SigninLogs, AuditLogs, OfficeActivity
+| where UserPrincipalName =~ "<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="beddd1d3ceccd1d3d7cddbdae1cbcddbccfedad1d3dfd7d090ddd1d3">[email&#160;protected]</a>" or Account =~ "compromised_user"
+| where TimeGenerated > ago(7d)
+| project TimeGenerated, Type, Activity, IpAddress, TargetResource = coalesce(TargetUserName, Operation)
+| sort by TimeGenerated asc
+
+// Process execution on affected host
+DeviceProcessEvents
+| where DeviceName =~ "infected_host"
+| where Timestamp > ago(24h)
+| project Timestamp, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine
+| sort by Timestamp asc
+
+// Network connections from affected host
+DeviceNetworkEvents
+| where DeviceName =~ "infected_host"
+| where Timestamp > ago(24h)
+| summarize ConnectionCount = count() by RemoteIP, RemotePort, InitiatingProcessFileName
+| sort by ConnectionCount desc</code></pre>
+                
+                <h3>Investigation Documentation</h3>
+                
+                <pre><code class="language-text">INCIDENT INVESTIGATION REPORT
+
+Incident ID: INC-2024-0115
+Analyst: J. Smith
+Date: 2024-01-15
+
+SUMMARY:
+Brute force attack against user <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c4aea0aba184a7aba9b4a5aabdeaa7aba9">[email&#160;protected]</a> succeeded after 
+147 failed attempts from IP 203.0.113.50.
+
+TIMELINE:
+14:15:00 - First failed login attempt from 203.0.113.50
+14:18:32 - 147th failed attempt
+14:18:45 - Successful login
+14:19:02 - Outlook Web Access session initiated
+14:22:15 - Email forwarding rule created to external address
+14:25:00 - Alert generated for suspicious inbox rule
+
+SCOPE:
+- 1 user account compromised (<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2248464d4762414d4f52434c5b0c414d4f">[email&#160;protected]</a>)
+- Email accessed, forwarding rule created
+- No lateral movement detected
+- No malware detected
+
+CONTAINMENT ACTIONS:
+14:35 - Password reset forced
+14:36 - Active sessions terminated
+14:38 - Malicious forwarding rule removed
+14:40 - Source IP blocked at firewall
+
+INDICATORS OF COMPROMISE:
+- Source IP: 203.0.113.50 (VPN exit node, Bulgaria)
+- Email forwarding: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5a3b2e2e3b39313f281a2a28352e3534373b333674393537">[email&#160;protected]</a>
+
+RECOMMENDATIONS:
+- Enable MFA for user
+- Review similar external login patterns
+- Consider geo-blocking for high-risk countries</code></pre>
+                
+                <h2 id="escalation">Escalation Processes</h2>
+                
+                <p>
+                    Clear escalation criteria ensure appropriate response:
+                </p>
+                
+                <h3>Escalation Matrix</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Situation</th>
+                                <th>Escalate To</th>
+                                <th>Timeframe</th>
+                                <th>Method</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Confirmed malware execution</td>
+                                <td>Tier 2 + IR Team</td>
+                                <td>Immediate</td>
+                                <td>Phone + Ticket</td>
+                            </tr>
+                            <tr>
+                                <td>Suspected data exfiltration</td>
+                                <td>Tier 2 + IR + Legal</td>
+                                <td>Immediate</td>
+                                <td>Phone + Ticket</td>
+                            </tr>
+                            <tr>
+                                <td>Compromised privileged account</td>
+                                <td>Tier 2 + IAM Team</td>
+                                <td>Immediate</td>
+                                <td>Phone + Ticket</td>
+                            </tr>
+                            <tr>
+                                <td>Active ransomware</td>
+                                <td>IR + Management + Legal</td>
+                                <td>Immediate</td>
+                                <td>Emergency bridge</td>
+                            </tr>
+                            <tr>
+                                <td>Suspicious but unconfirmed</td>
+                                <td>Tier 2</td>
+                                <td>Within 30 min</td>
+                                <td>Ticket</td>
+                            </tr>
+                            <tr>
+                                <td>Complex investigation needed</td>
+                                <td>Tier 2/3</td>
+                                <td>Within 1 hour</td>
+                                <td>Ticket</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Escalation Communication Template</h3>
+                
+                <pre><code class="language-text">ESCALATION: [SEVERITY] - Brief Description
+
+WHAT: One sentence describing the issue
+WHEN: Time discovered, time range of activity  
+WHERE: Affected systems/users
+WHY ESCALATING: What makes this require escalation
+
+KEY FINDINGS:
+- Finding 1
+- Finding 2
+- Finding 3
+
+ACTIONS TAKEN:
+- Action 1
+- Action 2
+
+RECOMMENDED NEXT STEPS:
+- Recommendation 1
+- Recommendation 2
+
+CONTACT: Analyst name, phone, current status</code></pre>
+                
+                <h2 id="shift-handoff">Shift Handoff Documentation</h2>
+                
+                <p>
+                    24/7 SOCs require effective shift transitions:
+                </p>
+                
+                <h3>Handoff Checklist</h3>
+                
+                <pre><code class="language-text">SHIFT HANDOFF REPORT
+Date: 2024-01-15
+Outgoing Shift: Day (08:00-16:00)
+Incoming Shift: Evening (16:00-00:00)
+
+OPEN INCIDENTS:
+┌────────────┬────────────┬──────────┬─────────────────────────────┐
+│ Incident   │ Severity   │ Status   │ Notes                       │
+├────────────┼────────────┼──────────┼─────────────────────────────┤
+│ INC-0115   │ High       │ Active   │ Awaiting user confirmation  │
+│ INC-0114   │ Medium     │ Pending  │ IR reviewing malware sample │
+│ INC-0112   │ Low        │ Monitor  │ 24hr monitoring period      │
+└────────────┴────────────┴──────────┴─────────────────────────────┘
+
+NOTABLE EVENTS THIS SHIFT:
+- Phishing campaign targeting finance team (blocked, users notified)
+- False positive spike from new firewall rule (ticket #12345)
+- VPN maintenance scheduled 18:00-19:00 (expect auth anomalies)
+
+ALERT QUEUE STATUS:
+- Current queue: 12 alerts pending
+- Oldest alert: 45 minutes
+- Queue trend: Normal
+
+ONGOING ACTIVITIES:
+- Patch Tuesday deployments in progress (expect Windows reboots)
+- Red team exercise active (do not block 10.5.5.0/24)
+
+TOOL/SYSTEM STATUS:
+- All SIEM nodes healthy
+- EDR console slow (known issue, vendor aware)
+- Email gateway backup running
+
+FOLLOW-UP REQUIRED:
+- Call user jdoe at 17:00 to confirm account recovery
+- Check if malware sample analysis complete
+
+OUTGOING ANALYST: J. Smith (ext. 1234)
+HANDOFF TIME: 15:45</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Best Practice
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Schedule 15-30 minute overlap between shifts for verbal handoff. Use a standardized template in a shared location (wiki, Teams channel). Outgoing analyst should stay available by phone for 30 minutes after shift change for questions.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="metrics-kpis">Metrics and KPIs</h2>
+                
+                <p>
+                    Measure SOC performance with meaningful metrics:
+                </p>
+                
+                <h3>Detection Metrics</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Definition</th>
+                                <th>Target</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>MTTD</strong></td>
+                                <td>Mean Time to Detect - Time from attack to alert</td>
+                                <td>< 1 hour (varies by attack type)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Detection Coverage</strong></td>
+                                <td>% of ATT&CK techniques with detections</td>
+                                <td>> 60% of relevant techniques</td>
+                            </tr>
+                            <tr>
+                                <td><strong>True Positive Rate</strong></td>
+                                <td>% of alerts that are real threats</td>
+                                <td>> 70%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Response Metrics</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Definition</th>
+                                <th>Target</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>MTTA</strong></td>
+                                <td>Mean Time to Acknowledge - Time from alert to first analyst action</td>
+                                <td>< 15 minutes (critical), < 1 hour (high)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>MTTI</strong></td>
+                                <td>Mean Time to Investigate - Time to complete investigation</td>
+                                <td>< 4 hours (typical)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>MTTR</strong></td>
+                                <td>Mean Time to Respond/Remediate - Time to containment</td>
+                                <td>< 24 hours (varies by severity)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>MTTC</strong></td>
+                                <td>Mean Time to Contain - Time to stop active threat</td>
+                                <td>< 1 hour (critical)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Operational Metrics</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Definition</th>
+                                <th>Target</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Alert Volume</strong></td>
+                                <td>Total alerts per day/week</td>
+                                <td>Manageable by team (analyst capacity)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Queue Age</strong></td>
+                                <td>Oldest unacknowledged alert</td>
+                                <td>< 1 hour (critical), < 4 hours (all)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Alerts per Analyst</strong></td>
+                                <td>Average alerts triaged per analyst per shift</td>
+                                <td>20-40 (quality over quantity)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Escalation Accuracy</strong></td>
+                                <td>% of escalations that were appropriate</td>
+                                <td>> 90%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <pre><code class="language-spl"># Splunk - Calculate MTTA (Mean Time to Acknowledge)
+index=notable_events status!="new"
+| eval acknowledge_time = strptime(status_changed, "%Y-%m-%d %H:%M:%S")
+| eval alert_time = _time
+| eval time_to_acknowledge = (acknowledge_time - alert_time) / 60
+| stats avg(time_to_acknowledge) as MTTA_minutes by urgency
+
+# Alert volume trend
+index=notable_events
+| timechart span=1d count by urgency</code></pre>
+                
+                <pre><code class="language-kql">// KQL - Calculate MTTA
+SecurityIncident
+| where Status != "New"
+| extend TimeToAcknowledge = datetime_diff('minute', FirstModifiedTime, CreatedTime)
+| summarize MTTA_Minutes = avg(TimeToAcknowledge) by Severity
+
+// Alert volume trend
+SecurityAlert
+| summarize AlertCount = count() by bin(TimeGenerated, 1d), AlertSeverity
+| render timechart</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"What SOC metrics do you track, and why are they important?"</strong><br><br>
+                            Key metrics fall into three categories: (1) <strong>Detection</strong> - MTTD measures how quickly we detect threats, TP rate shows detection quality; (2) <strong>Response</strong> - MTTA, MTTI, MTTR measure how quickly we respond and resolve; (3) <strong>Operational</strong> - Queue age and alerts per analyst ensure sustainable workload. These metrics help identify bottlenecks, justify staffing, and demonstrate security program effectiveness to leadership.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>SOCs typically use a tiered model: Tier 1 (triage), Tier 2 (investigation), Tier 3 (advanced response)</li>
+                    <li>Alert triage follows a systematic process: receive, assess, gather context, determine, document</li>
+                    <li>Investigations should determine scope, build timeline, assess impact, and plan containment</li>
+                    <li>Clear escalation criteria and communication templates ensure appropriate response</li>
+                    <li>Shift handoffs require structured documentation of open incidents and notable events</li>
+                    <li>Key metrics include MTTD, MTTA, MTTI, MTTR, true positive rate, and queue age</li>
+                </ul>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">🎉</span>
+                        Section Complete
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Congratulations! You've completed <strong>Section 1: SIEM Fundamentals</strong>. You now understand core SIEM concepts, architecture, log sources, parsing, detection engineering, and SOC operations. Continue to <a href="2-1-splunk-architecture.html">Section 2: Splunk Fundamentals</a> or <a href="5-1-sentinel-architecture.html">Section 5: Microsoft Sentinel Fundamentals</a> based on your platform focus.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="page-navigation">
+                    <a href="1-5-detection-engineering-fundamentals.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Detection Engineering Fundamentals</span>
+                        </div>
+                    </a>
+                    <a href="2-1

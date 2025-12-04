@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SPL Transforming Commands - stats, chart, timechart, top, rare for aggregating and visualizing Splunk data.">
+    <title>SPL Transforming Commands | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+                <div class="sidebar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search docs... (Ctrl+K)" aria-label="Search documentation">
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item active">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="2-1-splunk-architecture.html">Splunk Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">SPL Transforming</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">SPL Transforming Commands</h1>
+                <p class="page-subtitle">Aggregating and summarizing data with stats, chart, timechart, top, and rare</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Transforming commands convert raw events into statistical results. They're essential for creating reports, dashboards, and meaningful security metrics. This chapter covers stats, chart, timechart, eventstats, streamstats, top, and rare.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="stats-command">stats Command</h2>
+                
+                <p>
+                    The <code>stats</code> command is the workhorse of SPL. It calculates statistics and groups results.
+                </p>
+                
+                <h3>Basic Aggregations</h3>
+                
+                <pre><code class="language-spl"># Count events
+index=security EventCode=4625 | stats count
+
+# Count by field
+index=security EventCode=4625 | stats count by user
+
+# Multiple groupings
+index=security EventCode=4625 | stats count by user, src_ip
+
+# Named result
+index=security EventCode=4625 | stats count AS failed_logins by user</code></pre>
+                
+                <h3>Statistical Functions</h3>
+                
+                <pre><code class="language-spl"># Common statistical functions
+index=network 
+| stats 
+    count                           # Total events
+    count(bytes) AS byte_events     # Count non-null values
+    sum(bytes) AS total_bytes       # Sum
+    avg(bytes) AS avg_bytes         # Average
+    min(bytes) AS min_bytes         # Minimum
+    max(bytes) AS max_bytes         # Maximum
+    median(bytes) AS median_bytes   # Median (50th percentile)
+    stdev(bytes) AS stddev_bytes    # Standard deviation
+    by src_ip
+
+# Percentiles
+index=network 
+| stats 
+    perc50(response_time) AS median,
+    perc90(response_time) AS p90,
+    perc95(response_time) AS p95,
+    perc99(response_time) AS p99
+    by dest
+
+# Range
+index=network | stats range(bytes) AS byte_range by src_ip</code></pre>
+                
+                <h3>Distinct Count and Values</h3>
+                
+                <pre><code class="language-spl"># Distinct count (unique values)
+index=security EventCode=4624 
+| stats dc(src_ip) AS unique_source_ips by user
+
+# List of values (multivalue)
+index=security EventCode=4624 
+| stats values(src_ip) AS source_ips by user
+
+# List of distinct values
+index=security EventCode=4624 
+| stats list(src_ip) AS all_source_ips by user
+# Note: list() includes duplicates, values() does not
+
+# First and last values
+index=security EventCode=4624 
+| stats 
+    first(_time) AS first_login,
+    last(_time) AS last_login,
+    first(src_ip) AS first_ip,
+    last(src_ip) AS last_ip
+    by user</code></pre>
+                
+                <h3>Complex stats Examples</h3>
+                
+                <pre><code class="language-spl"># Multiple stats with multiple by fields
+index=security (EventCode=4624 OR EventCode=4625)
+| stats 
+    count(eval(EventCode=4624)) AS success,
+    count(eval(EventCode=4625)) AS failed,
+    dc(src_ip) AS unique_ips
+    by user
+
+# Calculate ratio
+index=security (EventCode=4624 OR EventCode=4625)
+| stats 
+    count(eval(EventCode=4625)) AS failed,
+    count AS total
+    by user
+| eval failure_rate = round(failed/total*100, 2)
+| where failure_rate > 50
+
+# Nested eval in stats
+index=firewall
+| stats 
+    count(eval(action="allow")) AS allowed,
+    count(eval(action="deny")) AS denied,
+    sum(eval(if(action="allow",bytes,0))) AS allowed_bytes
+    by src_ip</code></pre>
+                
+                <div class="info-box tip">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💡</span>
+                        Stats Functions Reference
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Counting:</strong> count, dc (distinct count)<br>
+                            <strong>Aggregation:</strong> sum, avg, min, max, median, mode, range<br>
+                            <strong>Statistical:</strong> stdev, var, perc&lt;N&gt; (percentile)<br>
+                            <strong>Value Lists:</strong> values (unique), list (all), first, last, earliest, latest
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="chart-command">chart Command</h2>
+                
+                <p>
+                    Creates a table suitable for visualization. Similar to stats but optimized for charts.
+                </p>
+                
+                <pre><code class="language-spl"># Basic chart - count over one field, split by another
+index=security EventCode=4625
+| chart count by user
+
+# Chart with split-by (creates columns)
+index=security EventCode=4625
+| chart count by user, src_ip
+# Result: rows=users, columns=src_ips
+
+# Chart over time
+index=security EventCode=4625
+| chart count over _time by user span=1h
+
+# Limit split-by values
+index=security EventCode=4625
+| chart count by user, src_ip limit=10 useother=true
+# Shows top 10, groups rest as "OTHER"
+
+# Using different aggregations
+index=network
+| chart sum(bytes) AS total_bytes over src_ip by dest_port limit=5</code></pre>
+                
+                <h2 id="timechart-command">timechart Command</h2>
+                
+                <p>
+                    Creates time-series data for line charts and trend analysis. Automatically buckets by time.
+                </p>
+                
+                <pre><code class="language-spl"># Basic timechart
+index=security EventCode=4625 earliest=-24h
+| timechart count
+
+# Specify time span
+index=security EventCode=4625 earliest=-24h
+| timechart span=1h count
+
+# Split by field (creates multiple series)
+index=security EventCode=4625 earliest=-24h
+| timechart span=1h count by user limit=10
+
+# Multiple aggregations
+index=firewall earliest=-24h
+| timechart span=1h 
+    count AS total_events,
+    sum(bytes) AS total_bytes,
+    dc(src_ip) AS unique_sources
+
+# Partial time buckets
+index=security earliest=-24h
+| timechart span=1h count partial=false
+# Excludes incomplete time buckets at edges
+
+# Nulls and gaps
+index=security earliest=-24h
+| timechart span=1h count by user cont=true
+# cont=true fills gaps with 0 instead of null</code></pre>
+                
+                <h3>Time Spans Reference</h3>
+                
+                <pre><code class="language-spl"># Time span options
+span=1s    # 1 second
+span=1m    # 1 minute
+span=5m    # 5 minutes
+span=15m   # 15 minutes
+span=1h    # 1 hour
+span=1d    # 1 day
+span=1w    # 1 week
+span=1mon  # 1 month
+
+# Auto span (Splunk decides based on time range)
+| timechart count
+# Splunk automatically selects appropriate bucket size</code></pre>
+                
+                <h2 id="eventstats-command">eventstats Command</h2>
+                
+                <p>
+                    Like stats, but adds calculated fields to each event instead of replacing events.
+                </p>
+                
+                <pre><code class="language-spl"># Add total count to each event
+index=security EventCode=4625
+| eventstats count AS total_failed
+| eval percentage = round(1/total_failed*100, 4)
+
+# Add group statistics while keeping events
+index=security EventCode=4625
+| eventstats count AS user_failures by user
+| where user_failures > 10
+
+# Compare event to average
+index=network
+| eventstats avg(bytes) AS avg_bytes, stdev(bytes) AS stdev_bytes
+| eval zscore = (bytes - avg_bytes) / stdev_bytes
+| where zscore > 3
+
+# Running calculations per group
+index=security EventCode=4624
+| eventstats 
+    dc(src_ip) AS total_user_ips,
+    count AS total_user_logins
+    by user
+| table _time, user, src_ip, total_user_ips, total_user_logins</code></pre>
+                
+                <div class="info-box warning">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">⚠️</span>
+                        Warning
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>eventstats vs stats:</strong> eventstats keeps all events and adds calculated fields; stats replaces events with aggregated results. eventstats is slower because it processes all events twice. Use stats when you only need aggregated results.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="streamstats-command">streamstats Command</h2>
+                
+                <p>
+                    Calculate running statistics as events stream through the pipeline. Order matters!
+                </p>
+                
+                <pre><code class="language-spl"># Running count (row number)
+index=security EventCode=4625
+| sort _time
+| streamstats count AS row_number
+
+# Running total
+index=network
+| sort _time
+| streamstats sum(bytes) AS cumulative_bytes
+
+# Moving average (last 5 events)
+index=network
+| sort _time
+| streamstats avg(response_time) AS moving_avg window=5
+
+# Running stats per group
+index=security EventCode=4625
+| sort _time
+| streamstats count AS failed_count by user
+
+# Calculate time between events
+index=security user=admin
+| sort _time
+| streamstats current=false last(_time) AS prev_time
+| eval time_diff = _time - prev_time
+| where time_diff < 60
+# Events less than 60 seconds apart
+
+# Detect rapid activity
+index=security EventCode=4625
+| sort _time
+| streamstats time_window=5m count AS failures_5min by user
+| where failures_5min > 10</code></pre>
+                
+                <h2 id="top-rare">top and rare Commands</h2>
+                
+                <h3>top Command</h3>
+                
+                <pre><code class="language-spl"># Most common values
+index=security EventCode=4625
+| top user
+
+# Top N
+index=security EventCode=4625
+| top 10 user
+
+# Multiple fields
+index=security EventCode=4625
+| top 10 user, src_ip
+
+# By another field
+index=security EventCode=4625
+| top user by dest
+
+# Show all (no limit)
+index=security EventCode=4625
+| top 0 user
+
+# Customize output
+index=security EventCode=4625
+| top 10 user showcount=true showperc=false
+# Output includes count but not percentage
+
+# Count field name
+index=security EventCode=4625
+| top 10 user countfield=failures</code></pre>
+                
+                <h3>rare Command</h3>
+                
+                <pre><code class="language-spl"># Least common values (opposite of top)
+index=security EventCode=4624
+| rare user
+
+# Rare combinations
+index=security EventCode=4624
+| rare 10 user, src_ip
+
+# Find unusual activity
+index=network
+| rare 10 dest_port by src_ip
+
+# Anomaly detection use case
+index=proxy
+| rare 20 dest_host
+# Find rarely accessed domains</code></pre>
+                
+                <h2 id="security-examples">Security Use Cases</h2>
+                
+                <pre><code class="language-spl"># 1. Brute force detection - users with high failure rates
+index=security (EventCode=4624 OR EventCode=4625) earliest=-24h
+| stats 
+    count(eval(EventCode=4624)) AS success,
+    count(eval(EventCode=4625)) AS failed
+    by user
+| eval failure_rate = round(failed/(success+failed)*100, 2)
+| where failed > 10 AND failure_rate > 50
+| sort -failed
+
+# 2. Login activity timeline
+index=security EventCode=4624 earliest=-7d
+| timechart span=1h count by LogonType limit=5
+
+# 3. Detect abnormal data transfer
+index=proxy earliest=-24h
+| eventstats avg(bytes_out) AS avg_bytes, stdev(bytes_out) AS stdev_bytes
+| eval zscore = round((bytes_out - avg_bytes) / stdev_bytes, 2)
+| where zscore > 3
+| table _time, user, dest_host, bytes_out, zscore
+
+# 4. User behavior baseline deviation
+index=security EventCode=4624 earliest=-30d
+| stats dc(src_ip) AS unique_ips, count AS login_count by user
+| eventstats avg(unique_ips) AS avg_ips, stdev(unique_ips) AS stdev_ips
+| eval zscore = (unique_ips - avg_ips) / stdev_ips
+| where zscore > 2
+| table user, unique_ips, avg_ips, zscore
+
+# 5. Concurrent session monitoring
+index=security EventCode=4624 earliest=-1h
+| streamstats time_window=5m dc(src_ip) AS concurrent_ips by user
+| where concurrent_ips > 3
+| table _time, user, src_ip, concurrent_ips</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"What's the difference between stats, eventstats, and streamstats?"</strong><br><br>
+                            <strong>stats:</strong> Aggregates events into summary rows (events are replaced)<br>
+                            <strong>eventstats:</strong> Adds calculated fields to each event (events preserved)<br>
+                            <strong>streamstats:</strong> Calculates running statistics as events flow through (order-dependent)<br><br>
+                            Use stats for reports, eventstats for comparing events to group averages, streamstats for time-based analysis and detecting sequences.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li><strong>stats</strong> - Primary aggregation command with count, sum, avg, dc, values</li>
+                    <li><strong>chart</strong> - Creates pivot tables with "over" and "by" clauses</li>
+                    <li><strong>timechart</strong> - Time-series aggregation with automatic time bucketing</li>
+                    <li><strong>eventstats</strong> - Add statistics to events without aggregating</li>
+                    <li><strong>streamstats</strong> - Running calculations (moving averages, cumulative sums)</li>
+                    <li><strong>top</strong> - Find most common values</li>
+                    <li><strong>rare</strong> - Find least common values (anomaly detection)</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="2-6-spl-data-retrieval.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">SPL Data Retrieval</span>
+                        </div>
+                    </a>
+                    <a href="2-8-spl-manipulation.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">SPL Manipulation</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

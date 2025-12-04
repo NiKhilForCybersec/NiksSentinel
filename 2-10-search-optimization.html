@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Splunk Search Optimization - Performance tuning, Job Inspector, summary indexing, report acceleration, and search best practices.">
+    <title>Search Optimization | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+                <div class="sidebar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search docs... (Ctrl+K)" aria-label="Search documentation">
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item active">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="2-1-splunk-architecture.html">Splunk Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Search Optimization</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Search Optimization</h1>
+                <p class="page-subtitle">Writing efficient searches, using Job Inspector, summary indexing, and report acceleration</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Efficient searches are critical for responsive dashboards, timely alerts, and happy users. This chapter covers search optimization techniques, profiling with Job Inspector, acceleration strategies, and best practices that separate novice from expert Splunk users.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="optimization-principles">Core Optimization Principles</h2>
+                
+                <h3>The Golden Rules</h3>
+                
+                <pre><code class="language-text">SEARCH OPTIMIZATION HIERARCHY (most to least impact):
+
+1. TIME RANGE
+   • Narrow time = fewer events to scan
+   • Always specify earliest/latest
+
+2. INDEX
+   • Specify index= ALWAYS
+   • Never search index=* in production
+
+3. SOURCE/SOURCETYPE
+   • Further reduces search scope
+   • Use specific values, not wildcards
+
+4. FILTER EARLY
+   • Move filters left in the pipeline
+   • Remove unwanted events ASAP
+
+5. USE INDEXED FIELDS
+   • host, source, sourcetype, index = fast
+   • Extracted fields = slower
+
+6. EFFICIENT COMMANDS
+   • tstats &gt; stats &gt; transaction
+   • Use appropriate commands for the job</code></pre>
+                
+                <h3>Bad vs Good Searches</h3>
+                
+                <pre><code class="language-spl"># BAD: No index, no time, processes everything
+sourcetype=WinEventLog:Security EventCode=4625
+| stats count by user
+| where count > 10
+
+# GOOD: Specific index, time, filters early
+index=security sourcetype=WinEventLog:Security EventCode=4625 earliest=-24h
+| stats count by user
+| where count > 10
+
+# BAD: Leading wildcard, expensive regex
+index=* *admin*
+| rex field=_raw "(?i)password:\s*(?P&lt;password&gt;.+)"
+
+# GOOD: Specific index, efficient extraction
+index=security user=*admin* earliest=-24h
+| rex field=user "(?P&lt;admin_type&gt;admin|administrator)"
+
+# BAD: Stats after heavy processing
+index=security earliest=-24h
+| eval hour = strftime(_time, "%H")
+| eval is_business_hours = if(hour &gt;= 9 AND hour &lt; 17, 1, 0)
+| stats count by user, is_business_hours, hour
+
+# GOOD: Filter and transform efficiently
+index=security earliest=-24h
+| bin _time span=1h
+| stats count by user, _time
+| eval hour = strftime(_time, "%H")
+| eval is_business_hours = if(hour &gt;= 9 AND hour &lt; 17, 1, 0)</code></pre>
+                
+                <h2 id="job-inspector">Job Inspector</h2>
+                
+                <p>
+                    Job Inspector reveals exactly how Splunk executes your search. Essential for debugging slow searches.
+                </p>
+                
+                <h3>Accessing Job Inspector</h3>
+                
+                <pre><code class="language-text">After running a search:
+1. Click "Job" menu in search bar
+2. Select "Inspect Job"
+   OR
+   Append "&amp;display.page.search.inspect=1" to URL</code></pre>
+                
+                <h3>Key Metrics to Analyze</h3>
+                
+                <pre><code class="language-text">SEARCH JOB METRICS:
+
+┌─────────────────────────────────────────────────┐
+│ Overall Search Performance                       │
+├─────────────────────────────────────────────────┤
+│ Total Execution Time:  How long the search ran  │
+│ Scan Count:           Events scanned            │
+│ Event Count:          Events returned           │
+│ Result Count:         Final results             │
+└─────────────────────────────────────────────────┘
+
+KEY RATIOS:
+• Scan Count / Event Count = Filter efficiency
+  - High ratio = lots of scanning, poor filters
+  - Goal: Close to 1:1
+
+• Time in Commands = Where time is spent
+  - Identify expensive commands
+  - Look for commands taking &gt;50% of time
+
+EXECUTION COSTS (look for red flags):
+• remoteSearch:       Distributed search overhead
+• searchParsing:      Query parsing time
+• inputLookup:        Lookup table reads
+• commands.*:         Individual command times</code></pre>
+                
+                <h3>Search Job Properties Query</h3>
+                
+                <pre><code class="language-spl"># Search for expensive searches in audit logs
+index=_audit action=search info=completed
+| eval scan_ratio = scanCount / eventCount
+| eval efficiency = if(scan_ratio > 100, "Poor", if(scan_ratio > 10, "Fair", "Good"))
+| where total_run_time > 60
+| table _time, user, search, total_run_time, scanCount, eventCount, efficiency
+| sort -total_run_time
+
+# Find searches without index
+index=_audit action=search info=completed
+| where NOT match(search, "index\s*=")
+| stats count by user, search
+| sort -count</code></pre>
+                
+                <h2 id="filtering-strategies">Filtering Strategies</h2>
+                
+                <h3>Filter Early, Transform Late</h3>
+                
+                <pre><code class="language-spl"># PRINCIPLE: Remove unwanted events as early as possible
+
+# BAD: Filter after transformation
+index=security earliest=-24h
+| stats count by user, src_ip, EventCode
+| where EventCode=4625 AND count > 10
+
+# GOOD: Filter before transformation  
+index=security EventCode=4625 earliest=-24h
+| stats count by user, src_ip
+| where count > 10
+
+# BAD: Expensive regex on all events
+index=security earliest=-24h
+| rex field=_raw "user=(?P&lt;user&gt;\w+)"
+| where user="admin"
+
+# GOOD: Filter first, then extract if needed
+index=security user=admin earliest=-24h
+| rex field=_raw "details=(?P&lt;details&gt;.*)"</code></pre>
+                
+                <h3>Using fields Command</h3>
+                
+                <pre><code class="language-spl"># Limit fields passed through pipeline
+index=security EventCode=4625 earliest=-24h
+| fields _time, user, src_ip, dest, EventCode    # Only pass needed fields
+| stats count by user, src_ip
+
+# Exclude heavy fields
+index=sysmon EventCode=1 earliest=-1h
+| fields - _raw, Message, EventData     # Exclude large fields
+| stats count by Image, User</code></pre>
+                
+                <h2 id="summary-indexing">Summary Indexing</h2>
+                
+                <p>
+                    Summary indexes store pre-computed results for expensive searches. Run once, query many times.
+                </p>
+                
+                <h3>Creating Summary Indexes</h3>
+                
+                <pre><code class="language-spl"># Create summary index (indexes.conf)
+[summary_security]
+homePath = $SPLUNK_DB/summary_security/db
+coldPath = $SPLUNK_DB/summary_security/colddb
+thawedPath = $SPLUNK_DB/summary_security/thaweddb
+frozenTimePeriodInSecs = 31536000
+
+# Scheduled search to populate summary
+# Save as scheduled report with Summary Indexing enabled
+
+# Daily authentication summary
+index=security EventCode IN (4624, 4625) earliest=-1d@d latest=@d
+| stats count AS total_events,
+        count(eval(EventCode=4624)) AS successful_logins,
+        count(eval(EventCode=4625)) AS failed_logins,
+        dc(user) AS unique_users,
+        dc(src_ip) AS unique_sources
+  by user
+| eval report_date = strftime(relative_time(now(), "-1d@d"), "%Y-%m-%d")
+
+# The results go to summary index automatically</code></pre>
+                
+                <h3>Using collect Command</h3>
+                
+                <pre><code class="language-spl"># Manual summary indexing with collect
+index=security EventCode=4625 earliest=-1h
+| stats count by user, src_ip
+| eval report_time = now()
+| collect index=summary_security marker="report=failed_logins"
+
+# Query summary index
+index=summary_security marker="report=failed_logins" earliest=-7d
+| timechart span=1d sum(count) by user</code></pre>
+                
+                <h3>Using si* Commands</h3>
+                
+                <pre><code class="language-spl"># sistats - populates summary with stats
+index=security EventCode=4625 earliest=-1h
+| sistats count by user, src_ip
+
+# sichart - populates summary with chart
+index=security EventCode=4625 earliest=-1h
+| sichart count by user
+
+# sitimechart - populates summary with timechart
+index=security EventCode=4625 earliest=-1h
+| sitimechart span=5m count by user</code></pre>
+                
+                <h2 id="report-acceleration">Report Acceleration</h2>
+                
+                <p>
+                    Automatically accelerate scheduled reports for faster dashboard loading.
+                </p>
+                
+                <h3>Enabling Report Acceleration</h3>
+                
+                <pre><code class="language-text">Steps to enable:
+1. Edit the saved report
+2. Go to "Acceleration" settings
+3. Enable "Accelerate Report"
+4. Set summary range (7 days, 30 days, etc.)
+
+Requirements:
+• Search must be transforming (stats, chart, timechart)
+• Search must use streaming commands properly
+• Cannot use some commands (join, transaction, etc.)</code></pre>
+                
+                <h3>Checking Acceleration Status</h3>
+                
+                <pre><code class="language-spl"># Check report acceleration status
+| rest /servicesNS/-/-/saved/searches
+| where acceleration.enabled=1
+| table title, acceleration.enabled, acceleration.cron_schedule, 
+        acceleration.earliest_time, acceleration.backfill_time
+
+# Check data model acceleration
+| rest /services/admin/summarization by_tstats=t
+| search datamodel_acceleration.* 
+| table title, *acceleration*</code></pre>
+                
+                <h2 id="data-model-acceleration">Data Model Acceleration</h2>
+                
+                <pre><code class="language-spl"># Enable data model acceleration
+# Settings → Data Models → Select model → Edit Acceleration
+
+# Check acceleration status
+| datamodelsimple type=models
+| table modelName, acceleration, acceleration.cron_schedule
+
+# Query accelerated data model with tstats
+| tstats summariesonly=true count 
+  FROM datamodel=Authentication 
+  WHERE Authentication.action=failure 
+  by Authentication.user _time span=1h
+
+# Verify tstats is using acceleration
+# Look for "summariesonly=true" working
+| tstats summariesonly=true prestats=true count 
+  FROM datamodel=Authentication by Authentication.user
+| stats count by Authentication.user</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Best Practice
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            For security dashboards, use <strong>data model acceleration</strong> with <code>tstats</code>. Accelerate the CIM data models (Authentication, Network_Traffic, Endpoint) and rewrite dashboard searches to use tstats. This can improve dashboard load times from minutes to seconds.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="command-efficiency">Command Efficiency</h2>
+                
+                <h3>stats vs transaction</h3>
+                
+                <pre><code class="language-spl"># TRANSACTION: Preserves events, calculates duration
+# Use when: Need original events, complex grouping, duration
+index=security EventCode IN (4624, 4634) earliest=-24h
+| transaction user startswith="EventCode=4624" endswith="EventCode=4634"
+| where duration > 28800
+# Slow: Processes and groups all events
+
+# STATS: Aggregates only, much faster
+# Use when: Only need statistics
+index=security EventCode IN (4624, 4634) earliest=-24h
+| stats earliest(_time) AS login_time, latest(_time) AS logout_time by user
+| eval duration = logout_time - login_time
+| where duration > 28800
+# Fast: Just calculates statistics
+
+# RULE: Use stats unless you specifically need:
+# • Original events preserved
+# • Complex multi-field grouping
+# • Event sequence matters</code></pre>
+                
+                <h3>Efficient Alternatives</h3>
+                
+                <pre><code class="language-spl"># Instead of join, use stats
+# BAD: Join
+index=auth | join user [search index=hr | fields user, dept]
+
+# GOOD: Stats
+index=auth 
+| lookup hr_data user OUTPUT dept
+
+# Instead of transaction for counting
+# BAD: Transaction then count
+index=web | transaction session_id | stats count
+
+# GOOD: Direct stats
+index=web | stats dc(session_id) AS sessions
+
+# Instead of multiple subsearches
+# BAD: Multiple subsearches
+index=security [search index=watchlist | fields user]
+
+# GOOD: Lookup
+index=security | lookup watchlist user OUTPUT is_watched
+| where is_watched=1</code></pre>
+                
+                <h2 id="optimization-checklist">Optimization Checklist</h2>
+                
+                <pre><code class="language-text">BEFORE RUNNING/SAVING A SEARCH:
+
+□ Is index= specified?
+□ Is time range as narrow as possible?
+□ Is sourcetype specified (if applicable)?
+□ Are filters before transforming commands?
+□ Are only needed fields passed through pipeline?
+□ Can tstats replace stats? (for indexed fields/data models)
+□ Can lookup replace join?
+□ Can stats replace transaction?
+□ Is this search a candidate for acceleration?
+□ Have I checked Job Inspector for bottlenecks?
+
+FOR DASHBOARDS:
+□ Use base searches with post-process
+□ Enable report acceleration where applicable
+□ Use tstats with accelerated data models
+□ Limit time ranges in panels
+□ Avoid using * for index
+
+FOR ALERTS:
+□ Use real-time only when necessary
+□ Prefer scheduled searches
+□ Filter to minimize event count
+□ Test and profile before enabling</code></pre>
+                
+                <h2 id="monitoring-performance">Monitoring Search Performance</h2>
+                
+                <pre><code class="language-spl"># Find long-running searches
+index=_audit action=search info=completed
+| where total_run_time > 300
+| stats count, avg(total_run_time) AS avg_runtime by user, search
+| sort -avg_runtime
+
+# Find resource-intensive searches
+index=_introspection sourcetype=splunk_resource_usage component=PerProcess
+| where data.search_props.sid != ""
+| stats max(data.mem_used) AS max_mem, avg(data.pct_cpu) AS avg_cpu by data.search_props.user
+| sort -max_mem
+
+# Dashboard panel load times
+index=_internal sourcetype=splunkd_access method=GET uri_path="*search/jobs/*"
+| rex field=uri_path "/search/jobs/(?P&lt;sid&gt;[^/]+)"
+| stats avg(spent) AS avg_ms, max(spent) AS max_ms by sid
+| where avg_ms > 5000
+
+# Identify searches without acceleration benefit
+index=_internal sourcetype=scheduler status=completed
+| where acceleration != "complete" AND run_time > 60
+| stats count, avg(run_time) by savedsearch_name
+| where count > 10
+| sort -avg(run_time)</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"A dashboard is taking 5 minutes to load. How would you troubleshoot and fix it?"</strong><br><br>
+                            <strong>1. Profile:</strong> Use Job Inspector on each panel's search to identify slowest queries<br>
+                            <strong>2. Check basics:</strong> Ensure index, sourcetype, and time ranges are specified<br>
+                            <strong>3. Filter early:</strong> Move filters before transforming commands<br>
+                            <strong>4. Use tstats:</strong> Replace stats with tstats if using indexed fields or data models<br>
+                            <strong>5. Accelerate:</strong> Enable report acceleration or use summary indexing<br>
+                            <strong>6. Base searches:</strong> Use a single base search with post-process for similar panels<br>
+                            <strong>7. Reduce scope:</strong> Limit time range or add filters to reduce event count
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li><strong>Core principles:</strong> Time range, index, sourcetype, filter early, use indexed fields</li>
+                    <li><strong>Job Inspector:</strong> Profile searches to identify bottlenecks</li>
+                    <li><strong>Summary indexing:</strong> Pre-compute expensive aggregations</li>
+                    <li><strong>Report acceleration:</strong> Automatic acceleration for scheduled reports</li>
+                    <li><strong>Data model acceleration:</strong> Use with tstats for fastest queries</li>
+                    <li><strong>Command efficiency:</strong> stats > transaction, lookup > join</li>
+                    <li><strong>Monitor performance:</strong> Use _audit and _internal indexes</li>
+                </ul>
+                
+                <div class="info-box tip">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">🎉</span>
+                        Section Complete
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Congratulations! You've completed <strong>Section 2: Splunk Fundamentals</strong>. You now have a solid foundation in Splunk architecture, configuration, data ingestion, indexing, and SPL. Continue to <a href="3-1-splunk-es-overview.html">Section 3: Splunk Security Operations</a> to learn about Splunk Enterprise Security, or explore <a href="5-1-sentinel-architecture.html">Section 5: Microsoft Sentinel</a>.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="page-navigation">
+                    <a href="2-9-spl-advanced.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">SPL Advanced</span>
+                        </div>
+                    </a>
+                    <a href="3-1-splunk-es-overview.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Splunk ES Overview</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

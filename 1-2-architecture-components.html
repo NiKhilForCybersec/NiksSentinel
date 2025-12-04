@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SIEM Architecture and Components - Data collection, indexing, correlation engines, alerting, dashboards, high availability, and capacity planning.">
+    <title>SIEM Architecture & Components | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+                <div class="sidebar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search docs... (Ctrl+K)" aria-label="Search documentation">
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item active">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="1-1-introduction-to-siem.html">SIEM Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Architecture & Components</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">SIEM Architecture & Components</h1>
+                <p class="page-subtitle">Understanding the building blocks: data collection, indexing, correlation engines, and infrastructure design</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            This chapter explores the architectural components that make up a SIEM solution. Understanding this architecture is essential for deployment planning, troubleshooting, and optimizing performance. We'll cover data flow from collection through alerting, storage tiers, high availability patterns, and capacity planning fundamentals.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="high-level-architecture">High-Level SIEM Architecture</h2>
+                
+                <p>
+                    Regardless of vendor, all SIEM platforms share a common architectural pattern consisting of four primary layers:
+                </p>
+                
+                <pre><code class="language-text">┌─────────────────────────────────────────────────────────────────┐
+│                    PRESENTATION LAYER                           │
+│    Dashboards │ Alerts │ Reports │ Investigation │ API          │
+├─────────────────────────────────────────────────────────────────┤
+│                    ANALYTICS LAYER                              │
+│    Correlation Engine │ UEBA │ ML Models │ Threat Intel         │
+├─────────────────────────────────────────────────────────────────┤
+│                    DATA LAYER                                   │
+│    Indexing │ Search │ Storage Tiers │ Data Models              │
+├─────────────────────────────────────────────────────────────────┤
+│                    COLLECTION LAYER                             │
+│    Agents │ Forwarders │ API Collectors │ Syslog │ Cloud        │
+└─────────────────────────────────────────────────────────────────┘
+                              ▲
+          ┌───────────────────┼───────────────────┐
+          │                   │                   │
+    ┌─────┴─────┐      ┌─────┴─────┐      ┌─────┴─────┐
+    │  Endpoints │      │  Network  │      │   Cloud   │
+    │  Servers   │      │  Devices  │      │  Services │
+    └───────────┘      └───────────┘      └───────────┘</code></pre>
+                
+                <h2 id="collection-architecture">Data Collection Architecture</h2>
+                
+                <p>
+                    The collection layer is responsible for gathering data from all sources and transporting it to the SIEM. This is often the most complex component to design correctly.
+                </p>
+                
+                <h3>Collection Methods</h3>
+                
+                <h4>Agent-Based Collection</h4>
+                
+                <p>
+                    Software installed on endpoints or servers that collects and forwards logs:
+                </p>
+                
+                <ul>
+                    <li><strong>Splunk Universal Forwarder</strong> - Lightweight agent for Windows/Linux/Mac</li>
+                    <li><strong>Azure Monitor Agent (AMA)</strong> - Microsoft's unified agent for Sentinel</li>
+                    <li><strong>Elastic Agent</strong> - Unified agent for Elastic Security</li>
+                    <li><strong>NXLog</strong> - Cross-platform log collector</li>
+                </ul>
+                
+                <pre><code class="language-bash"># Example: Splunk Universal Forwarder inputs.conf
+[monitor:///var/log/secure]
+disabled = false
+index = linux_security
+sourcetype = linux_secure
+
+[monitor:///var/log/messages]
+disabled = false
+index = linux_os
+sourcetype = syslog</code></pre>
+                
+                <h4>Agentless Collection</h4>
+                
+                <p>
+                    Data collected without installing software on the source:
+                </p>
+                
+                <ul>
+                    <li><strong>Syslog (UDP/TCP/TLS)</strong> - Network devices, Linux systems</li>
+                    <li><strong>Windows Event Forwarding (WEF)</strong> - Centralized Windows event collection</li>
+                    <li><strong>WMI/WinRM</strong> - Remote Windows data collection</li>
+                    <li><strong>SNMP</strong> - Network device polling</li>
+                    <li><strong>API Polling</strong> - Cloud services, SaaS applications</li>
+                </ul>
+                
+                <pre><code class="language-xml">&lt;!-- Windows Event Forwarding Subscription --&gt;
+&lt;Subscription xmlns="http://schemas.microsoft.com/2006/03/windows/events/subscription"&gt;
+  &lt;SubscriptionId&gt;Security-Events&lt;/SubscriptionId&gt;
+  &lt;SubscriptionType&gt;SourceInitiated&lt;/SubscriptionType&gt;
+  &lt;Description&gt;Security events from all domain computers&lt;/Description&gt;
+  &lt;Enabled&gt;true&lt;/Enabled&gt;
+  &lt;Uri&gt;http://schemas.microsoft.com/wbem/wsman/1/windows/EventLog&lt;/Uri&gt;
+  &lt;Query&gt;
+    &lt;![CDATA[
+      &lt;QueryList&gt;
+        &lt;Query Path="Security"&gt;
+          &lt;Select&gt;*[System[(EventID=4624 or EventID=4625 or EventID=4648)]]&lt;/Select&gt;
+        &lt;/Query&gt;
+      &lt;/QueryList&gt;
+    ]]&gt;
+  &lt;/Query&gt;
+&lt;/Subscription&gt;</code></pre>
+                
+                <h4>Network-Based Collection</h4>
+                
+                <ul>
+                    <li><strong>Network TAPs/SPAN</strong> - Full packet capture</li>
+                    <li><strong>NetFlow/IPFIX/sFlow</strong> - Network flow data</li>
+                    <li><strong>DNS Logs</strong> - DNS query logging</li>
+                </ul>
+                
+                <h3>Collection Topology Patterns</h3>
+                
+                <h4>Direct Collection</h4>
+                
+                <p>
+                    Sources send directly to the SIEM. Simple but doesn't scale well.
+                </p>
+                
+                <pre><code class="language-text">┌──────────┐     ┌──────────┐     ┌──────────┐
+│ Source 1 │────▶│          │     │ Source 2 │
+└──────────┘     │   SIEM   │◀────└──────────┘
+┌──────────┐     │          │     ┌──────────┐
+│ Source 3 │────▶│          │◀────│ Source 4 │
+└──────────┘     └──────────┘     └──────────┘</code></pre>
+                
+                <h4>Aggregation Tier</h4>
+                
+                <p>
+                    Intermediate collectors aggregate and forward. Better for scale and filtering.
+                </p>
+                
+                <pre><code class="language-text">┌──────────┐     ┌────────────┐
+│ Source 1 │────▶│            │
+│ Source 2 │────▶│ Aggregator │────┐
+│ Source 3 │────▶│   (Site A) │    │
+└──────────┘     └────────────┘    │     ┌──────────┐
+                                   ├────▶│   SIEM   │
+┌──────────┐     ┌────────────┐    │     └──────────┘
+│ Source 4 │────▶│            │    │
+│ Source 5 │────▶│ Aggregator │────┘
+│ Source 6 │────▶│   (Site B) │
+└──────────┘     └────────────┘</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Best Practice
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Use aggregation tiers for environments with multiple sites, high log volumes, or WAN constraints. Aggregators can filter, route, and buffer data, reducing bandwidth and improving reliability. In Splunk, this is the Heavy Forwarder; in Sentinel, this is a Log Analytics Gateway.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="indexing-storage">Indexing and Storage</h2>
+                
+                <p>
+                    The data layer indexes incoming events and stores them for search and analysis. This is typically the most resource-intensive component.
+                </p>
+                
+                <h3>Indexing Process</h3>
+                
+                <ol>
+                    <li><strong>Parsing</strong> - Break raw data into events</li>
+                    <li><strong>Field Extraction</strong> - Identify key-value pairs</li>
+                    <li><strong>Timestamping</strong> - Assign event time</li>
+                    <li><strong>Index Assignment</strong> - Route to appropriate index</li>
+                    <li><strong>Compression</strong> - Reduce storage footprint</li>
+                    <li><strong>Index Writing</strong> - Write to search-optimized structures</li>
+                </ol>
+                
+                <h3>Storage Tiers</h3>
+                
+                <p>
+                    Modern SIEMs implement tiered storage to balance performance and cost:
+                </p>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tier</th>
+                                <th>Storage Type</th>
+                                <th>Performance</th>
+                                <th>Use Case</th>
+                                <th>Typical Retention</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Hot</strong></td>
+                                <td>NVMe SSD</td>
+                                <td>Highest</td>
+                                <td>Active searching, recent data</td>
+                                <td>7-30 days</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Warm</strong></td>
+                                <td>SSD/HDD</td>
+                                <td>Medium</td>
+                                <td>Less frequent searches</td>
+                                <td>30-90 days</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cold</strong></td>
+                                <td>HDD/Object Storage</td>
+                                <td>Lower</td>
+                                <td>Occasional searches</td>
+                                <td>90 days - 1 year</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Frozen/Archive</strong></td>
+                                <td>Object Storage (S3, Blob)</td>
+                                <td>Lowest</td>
+                                <td>Compliance, rare access</td>
+                                <td>1-7+ years</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <pre><code class="language-text"># Splunk Index Lifecycle
+Hot Bucket (actively written)
+    ↓ maxDataSize reached
+Warm Bucket (searchable, read-only)
+    ↓ maxWarmDBCount or age
+Cold Bucket (searchable, slower storage)
+    ↓ frozenTimePeriodInSecs
+Frozen (deleted or archived to external storage)</code></pre>
+                
+                <h3>Index Design Considerations</h3>
+                
+                <ul>
+                    <li><strong>Separate indexes by data type</strong> - Different retention, access patterns, security</li>
+                    <li><strong>Consider search performance</strong> - More targeted searches are faster</li>
+                    <li><strong>Plan for growth</strong> - Data volumes typically increase 20-30% annually</li>
+                    <li><strong>Align with compliance</strong> - Different data types may have different retention requirements</li>
+                </ul>
+                
+                <pre><code class="language-text"># Example index structure
+windows_security    - Windows Security events (90 days hot, 1 year total)
+windows_system      - Windows System/Application (30 days)
+linux_secure        - Linux auth logs (90 days hot, 1 year total)
+network_firewall    - Firewall logs (30 days hot, 90 days total)
+network_proxy       - Web proxy logs (30 days)
+cloud_aws           - AWS CloudTrail (90 days hot, 1 year total)
+endpoint_edr        - EDR telemetry (30 days)
+notable_events      - SIEM-generated alerts (2 years)</code></pre>
+                
+                <h2 id="search-correlation">Search and Correlation Engines</h2>
+                
+                <p>
+                    The analytics layer provides the intelligence that transforms raw data into security insights.
+                </p>
+                
+                <h3>Search Engine</h3>
+                
+                <p>
+                    The search engine enables analysts to query data interactively and powers scheduled searches:
+                </p>
+                
+                <ul>
+                    <li><strong>Full-text search</strong> - Find any term across all data</li>
+                    <li><strong>Field-based search</strong> - Query specific fields efficiently</li>
+                    <li><strong>Statistical operations</strong> - Aggregations, counts, averages</li>
+                    <li><strong>Time-series analysis</strong> - Trends, baselines, anomalies</li>
+                </ul>
+                
+                <h3>Correlation Engine</h3>
+                
+                <p>
+                    The correlation engine identifies security-relevant patterns by connecting related events:
+                </p>
+                
+                <h4>Rule-Based Correlation</h4>
+                
+                <p>
+                    Predefined logic triggers when conditions are met:
+                </p>
+                
+                <pre><code class="language-text"># Example correlation rule structure
+RULE: Brute Force Followed by Success
+CONDITIONS:
+  1. Count(failed_login) >= 5 WHERE user=X AND time_window=5min
+  2. FOLLOWED BY success_login WHERE user=X AND time_window=10min
+ACTIONS:
+  - Create alert with priority=HIGH
+  - Enrich with user context
+  - Trigger SOAR playbook</code></pre>
+                
+                <h4>Statistical Correlation</h4>
+                
+                <p>
+                    Detects anomalies based on baselines and thresholds:
+                </p>
+                
+                <ul>
+                    <li>Baseline deviation (user behavior changed significantly)</li>
+                    <li>Threshold breach (more than X events in Y time)</li>
+                    <li>Peer comparison (user acts differently than peers)</li>
+                </ul>
+                
+                <h4>Behavioral Analytics (UEBA)</h4>
+                
+                <p>
+                    Machine learning models profile normal behavior and detect anomalies:
+                </p>
+                
+                <ul>
+                    <li>User behavior profiling (login times, accessed resources)</li>
+                    <li>Entity behavior (host communication patterns)</li>
+                    <li>Risk scoring (aggregate risk indicators)</li>
+                </ul>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"Explain the difference between rule-based and behavioral detection."</strong><br><br>
+                            Rule-based detection uses predefined logic (if X happens, alert). It's precise but only catches known patterns. Behavioral detection learns normal patterns and alerts on deviations. It can catch unknown threats but may generate more false positives. A mature SIEM uses both: rules for known attack patterns and behavioral analytics for novel threats.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="alerting-notification">Alerting and Notification Systems</h2>
+                
+                <p>
+                    When detection rules match, the alerting system notifies the appropriate team:
+                </p>
+                
+                <h3>Alert Lifecycle</h3>
+                
+                <pre><code class="language-text">Detection Trigger
+       ↓
+┌──────────────────┐
+│ Alert Generated  │
+│ - Assign severity│
+│ - Enrich context │
+│ - Deduplicate    │
+└────────┬─────────┘
+         ↓
+┌──────────────────┐
+│ Throttle/Suppress│  ←── Prevent alert storms
+└────────┬─────────┘
+         ↓
+┌──────────────────┐
+│   Route Alert    │
+│ - Queue          │
+│ - Email/Slack    │
+│ - Ticketing      │
+│ - SOAR           │
+└────────┬─────────┘
+         ↓
+┌──────────────────┐
+│ Analyst Triage   │
+└──────────────────┘</code></pre>
+                
+                <h3>Alert Severity Levels</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Severity</th>
+                                <th>Response Time</th>
+                                <th>Examples</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Critical</strong></td>
+                                <td>Immediate (15 min)</td>
+                                <td>Active ransomware, confirmed breach, data exfiltration</td>
+                            </tr>
+                            <tr>
+                                <td><strong>High</strong></td>
+                                <td>1-4 hours</td>
+                                <td>Successful brute force, malware execution, privilege escalation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Medium</strong></td>
+                                <td>Same business day</td>
+                                <td>Policy violations, suspicious activity, failed attacks</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Low</strong></td>
+                                <td>24-48 hours</td>
+                                <td>Informational, audit findings, minor policy deviations</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="dashboards-visualization">Dashboards and Visualization</h2>
+                
+                <p>
+                    The presentation layer provides visual interfaces for different audiences:
+                </p>
+                
+                <h3>Dashboard Types</h3>
+                
+                <ul>
+                    <li><strong>Executive Dashboard</strong> - High-level KPIs, trends, risk posture</li>
+                    <li><strong>SOC Operational Dashboard</strong> - Alert queue, metrics, team workload</li>
+                    <li><strong>Investigation Dashboard</strong> - Deep-dive into specific incidents</li>
+                    <li><strong>Compliance Dashboard</strong> - Audit-ready views, control status</li>
+                    <li><strong>Threat Intelligence Dashboard</strong> - IOC matches, threat landscape</li>
+                </ul>
+                
+                <h3>Key Visualizations</h3>
+                
+                <ul>
+                    <li><strong>Time-series charts</strong> - Event volume trends, anomaly detection</li>
+                    <li><strong>Geo maps</strong> - Attack origins, user locations</li>
+                    <li><strong>Tables</strong> - Alert queues, top talkers, detailed data</li>
+                    <li><strong>Sankey diagrams</strong> - Data flow, attack paths</li>
+                    <li><strong>Network graphs</strong> - Entity relationships, lateral movement</li>
+                </ul>
+                
+                <h2 id="high-availability">High Availability and Disaster Recovery</h2>
+                
+                <p>
+                    Production SIEMs require high availability to ensure continuous monitoring:
+                </p>
+                
+                <h3>HA Patterns</h3>
+                
+                <h4>Single-Site HA</h4>
+                
+                <pre><code class="language-text">                  ┌─────────────────┐
+                  │  Load Balancer  │
+                  └────────┬────────┘
+           ┌───────────────┼───────────────┐
+           ▼               ▼               ▼
+    ┌────────────┐  ┌────────────┐  ┌────────────┐
+    │  Search    │  │  Search    │  │  Search    │
+    │  Head 1    │  │  Head 2    │  │  Head 3    │
+    └────────────┘  └────────────┘  └────────────┘
+           │               │               │
+           └───────────────┼───────────────┘
+                           ▼
+    ┌────────────┐  ┌────────────┐  ┌────────────┐
+    │  Indexer   │  │  Indexer   │  │  Indexer   │
+    │  Cluster   │  │  Cluster   │  │  Cluster   │
+    │  Node 1    │  │  Node 2    │  │  Node 3    │
+    └────────────┘  └────────────┘  └────────────┘</code></pre>
+                
+                <h4>Multi-Site DR</h4>
+                
+                <ul>
+                    <li><strong>Active-Passive</strong> - Secondary site syncs but doesn't serve traffic</li>
+                    <li><strong>Active-Active</strong> - Both sites serve traffic, data replicated</li>
+                    <li><strong>Cloud Backup</strong> - Archive tier in cloud for DR</li>
+                </ul>
+                
+                <div class="info-box warning">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">⚠️</span>
+                        Warning
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            SIEM downtime means blind spots in security monitoring. Plan for both planned maintenance (upgrades, patching) and unplanned outages. Establish clear RTO (Recovery Time Objective) and RPO (Recovery Point Objective) targets. Most enterprises target 99.9% uptime (8.7 hours downtime/year).
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="capacity-planning">Capacity Planning Fundamentals</h2>
+                
+                <p>
+                    Proper capacity planning ensures the SIEM performs well as data volumes grow.
+                </p>
+                
+                <h3>Key Metrics</h3>
+                
+                <ul>
+                    <li><strong>Events Per Second (EPS)</strong> - Raw event ingestion rate</li>
+                    <li><strong>Gigabytes Per Day (GB/day)</strong> - Daily data volume</li>
+                    <li><strong>Concurrent Users</strong> - Analysts running searches</li>
+                    <li><strong>Search Concurrency</strong> - Simultaneous queries</li>
+                    <li><strong>Retention Period</strong> - How long data is kept</li>
+                </ul>
+                
+                <h3>Sizing Calculations</h3>
+                
+                <pre><code class="language-text"># Basic sizing example
+Daily Volume:        500 GB/day
+Retention:           90 days hot, 365 days total
+Compression Ratio:   ~50%
+
+Hot Storage Required:
+  500 GB × 90 days × 0.5 (compression) = 22.5 TB
+
+Total Storage Required:
+  500 GB × 365 days × 0.5 (compression) = 91.25 TB
+
+# Add 30% headroom for growth and overhead
+Hot Storage:   ~30 TB
+Total Storage: ~120 TB</code></pre>
+                
+                <h3>Sizing by Component</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Key Resources</th>
+                                <th>Scaling Factor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Collection/Forwarders</td>
+                                <td>CPU, Network</td>
+                                <td>EPS, number of sources</td>
+                            </tr>
+                            <tr>
+                                <td>Indexers</td>
+                                <td>CPU, Disk I/O, Storage</td>
+                                <td>GB/day, retention</td>
+                            </tr>
+                            <tr>
+                                <td>Search Heads</td>
+                                <td>CPU, Memory</td>
+                                <td>Concurrent users, query complexity</td>
+                            </tr>
+                            <tr>
+                                <td>Correlation Engine</td>
+                                <td>CPU, Memory</td>
+                                <td>Number of rules, data volume</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="info-box tip">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💡</span>
+                        Capacity Planning Tips
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>1.</strong> Measure before you buy - Run a POC to understand actual data volumes<br>
+                            <strong>2.</strong> Plan for 2-3 years of growth (typically 20-30% annual increase)<br>
+                            <strong>3.</strong> Consider burst capacity for incident investigations<br>
+                            <strong>4.</strong> Factor in compliance-driven log sources you may add later<br>
+                            <strong>5.</strong> Cloud SIEMs reduce capacity planning burden but watch costs
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="comparison">Splunk vs Sentinel Architecture Comparison</h2>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Splunk</th>
+                                <th>Microsoft Sentinel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Collection</strong></td>
+                                <td>Universal/Heavy Forwarder, HEC, Syslog</td>
+                                <td>Azure Monitor Agent, Data Connectors, Syslog</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Indexing</strong></td>
+                                <td>Indexer cluster (self-managed)</td>
+                                <td>Log Analytics workspace (managed)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Search</strong></td>
+                                <td>Search Head cluster, SPL</td>
+                                <td>Azure Data Explorer, KQL</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Correlation</strong></td>
+                                <td>Enterprise Security, Correlation Searches</td>
+                                <td>Analytics Rules, Fusion</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Storage</strong></td>
+                                <td>Hot/Warm/Cold/Frozen (SmartStore)</td>
+                                <td>Analytics/Basic Logs, Archive</td>
+                            </tr>
+                            <tr>
+                                <td><strong>HA/DR</strong></td>
+                                <td>Indexer/SH clustering, multi-site</td>
+                                <td>Azure region redundancy (built-in)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>SIEM architecture consists of four layers: Collection, Data, Analytics, and Presentation</li>
+                    <li>Collection methods include agent-based, agentless (syslog, WEF, API), and network-based approaches</li>
+                    <li>Storage tiers (hot/warm/cold/frozen) balance performance and cost</li>
+                    <li>The correlation engine provides rule-based, statistical, and behavioral detection</li>
+                    <li>High availability requires redundancy at each layer with defined RTO/RPO</li>
+                    <li>Capacity planning should account for EPS, GB/day, retention, and 2-3 year growth</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="1-1-introduction-to-siem.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Introduction to SIEM</span>
+                        </div>
+                    </a>
+                    <a href="1-3-log-sources-onboarding.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Log Sources & Data Onboarding</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

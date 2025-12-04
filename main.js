@@ -1,348 +1,637 @@
-// Microsoft Sentinel Ultimate Guide - Main JavaScript
+/* ============================================
+   SIEM Mastery Guide - Main JavaScript
+   Navigation, Search, and Interactivity
+   ============================================ */
 
 document.addEventListener('DOMContentLoaded', function() {
-    initCopyButtons();
-    initMobileNav();
-    initAccordions();
-    initTabs();
-    initSidebarHighlight();
-    initSmoothScroll();
-    initSearchFilter();
+    initSidebar();
+    initSearch();
+    initCodeCopy();
+    initNavSections();
+    initScrollSpy();
+    initKeyboardShortcuts();
 });
 
-// ===== Copy to Clipboard =====
-function initCopyButtons() {
-    document.querySelectorAll('.copy-btn').forEach(btn => {
-        btn.addEventListener('click', async function() {
-            const codeBlock = this.closest('.code-block');
-            const code = codeBlock.querySelector('pre').textContent;
-            
-            try {
-                await navigator.clipboard.writeText(code);
-                
-                // Visual feedback
-                const originalHTML = this.innerHTML;
-                this.classList.add('copied');
-                this.innerHTML = `
-                    <svg viewBox="0 0 16 16" fill="currentColor">
-                        <path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/>
-                    </svg>
-                    Copied!
-                `;
-                
-                setTimeout(() => {
-                    this.classList.remove('copied');
-                    this.innerHTML = originalHTML;
-                }, 2000);
-            } catch (err) {
-                console.error('Failed to copy:', err);
-                
-                // Fallback for older browsers
-                const textarea = document.createElement('textarea');
-                textarea.value = code;
-                textarea.style.position = 'fixed';
-                textarea.style.opacity = '0';
-                document.body.appendChild(textarea);
-                textarea.select();
-                
-                try {
-                    document.execCommand('copy');
-                    this.textContent = 'Copied!';
-                    setTimeout(() => {
-                        this.innerHTML = `
-                            <svg viewBox="0 0 16 16" fill="currentColor">
-                                <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"/>
-                                <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"/>
-                            </svg>
-                            Copy
-                        `;
-                    }, 2000);
-                } catch (e) {
-                    console.error('Fallback copy failed:', e);
-                }
-                
-                document.body.removeChild(textarea);
-            }
-        });
-    });
-}
+/* ============================================
+   Sidebar Toggle (Mobile)
+   ============================================ */
 
-// ===== Mobile Navigation =====
-function initMobileNav() {
-    const toggle = document.querySelector('.mobile-toggle');
+function initSidebar() {
+    const toggle = document.querySelector('.mobile-menu-toggle');
     const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
     
     if (!toggle || !sidebar) return;
     
+    function openSidebar() {
+        sidebar.classList.add('open');
+        toggle.classList.add('active');
+        if (overlay) overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeSidebar() {
+        sidebar.classList.remove('open');
+        toggle.classList.remove('active');
+        if (overlay) overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
     toggle.addEventListener('click', function() {
-        sidebar.classList.toggle('active');
-        this.classList.toggle('active');
-        
-        // Update icon
-        const icon = this.querySelector('svg');
-        if (sidebar.classList.contains('active')) {
-            icon.innerHTML = `
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-            `;
+        if (sidebar.classList.contains('open')) {
+            closeSidebar();
         } else {
-            icon.innerHTML = `
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-            `;
+            openSidebar();
         }
     });
     
-    // Close sidebar when clicking outside
-    document.addEventListener('click', function(e) {
-        if (window.innerWidth <= 1024) {
-            if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
-                sidebar.classList.remove('active');
-                toggle.classList.remove('active');
-            }
+    if (overlay) {
+        overlay.addEventListener('click', closeSidebar);
+    }
+    
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+            closeSidebar();
         }
     });
     
-    // Close sidebar on link click (mobile)
-    sidebar.querySelectorAll('a').forEach(link => {
+    // Close when clicking a nav link on mobile
+    const navLinks = sidebar.querySelectorAll('.nav-item');
+    navLinks.forEach(link => {
         link.addEventListener('click', function() {
             if (window.innerWidth <= 1024) {
-                sidebar.classList.remove('active');
-                toggle.classList.remove('active');
+                closeSidebar();
             }
         });
     });
 }
 
-// ===== Accordions =====
-function initAccordions() {
-    document.querySelectorAll('.accordion-header').forEach(header => {
-        header.addEventListener('click', function() {
-            const content = this.nextElementSibling;
-            const isActive = this.classList.contains('active');
-            
-            // Close all other accordions in the same container
-            const accordion = this.closest('.accordion');
-            if (accordion) {
-                accordion.querySelectorAll('.accordion-header').forEach(h => {
-                    h.classList.remove('active');
-                    h.nextElementSibling.classList.remove('active');
-                });
-            }
-            
-            // Toggle current accordion
-            if (!isActive) {
-                this.classList.add('active');
-                content.classList.add('active');
-            }
-        });
-    });
-}
+/* ============================================
+   Search Functionality
+   ============================================ */
 
-// ===== Tabs =====
-function initTabs() {
-    document.querySelectorAll('.tabs').forEach(tabContainer => {
-        const buttons = tabContainer.querySelectorAll('.tab-btn');
-        const contents = tabContainer.querySelectorAll('.tab-content');
-        
-        buttons.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const target = this.dataset.tab;
-                
-                // Update buttons
-                buttons.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Update content
-                contents.forEach(c => {
-                    c.classList.remove('active');
-                    if (c.id === target) {
-                        c.classList.add('active');
-                    }
-                });
-            });
-        });
-    });
-}
-
-// ===== Sidebar Active State =====
-function initSidebarHighlight() {
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    
-    document.querySelectorAll('.sidebar-nav a').forEach(link => {
-        const href = link.getAttribute('href');
-        if (href === currentPage) {
-            link.classList.add('active');
-        }
-    });
-}
-
-// ===== Smooth Scroll =====
-function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-                
-                // Update URL
-                history.pushState(null, null, this.getAttribute('href'));
-            }
-        });
-    });
-}
-
-// ===== Search/Filter Functionality =====
-function initSearchFilter() {
-    const searchInput = document.querySelector('.search-input');
+function initSearch() {
+    const searchInput = document.querySelector('.sidebar-search input');
     if (!searchInput) return;
     
-    const filterTarget = searchInput.dataset.filter;
-    const items = document.querySelectorAll(filterTarget);
+    // Search data - will be populated from navigation
+    const searchIndex = buildSearchIndex();
     
-    searchInput.addEventListener('input', function() {
-        const query = this.value.toLowerCase().trim();
+    searchInput.addEventListener('input', function(e) {
+        const query = e.target.value.toLowerCase().trim();
         
-        items.forEach(item => {
-            const text = item.textContent.toLowerCase();
-            const match = text.includes(query);
-            item.style.display = match ? '' : 'none';
+        if (query.length < 2) {
+            clearSearchResults();
+            return;
+        }
+        
+        const results = searchIndex.filter(item => 
+            item.title.toLowerCase().includes(query) ||
+            item.section.toLowerCase().includes(query)
+        );
+        
+        displaySearchResults(results, query);
+    });
+    
+    searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            searchInput.value = '';
+            clearSearchResults();
+            searchInput.blur();
+        }
+    });
+}
+
+function buildSearchIndex() {
+    const index = [];
+    const navItems = document.querySelectorAll('.nav-item');
+    
+    navItems.forEach(item => {
+        const section = item.closest('.nav-section');
+        const sectionTitle = section ? section.querySelector('.nav-section-title span:last-child')?.textContent : '';
+        
+        index.push({
+            title: item.textContent.trim(),
+            section: sectionTitle || '',
+            url: item.getAttribute('href')
+        });
+    });
+    
+    return index;
+}
+
+function displaySearchResults(results, query) {
+    let container = document.querySelector('.search-results');
+    
+    if (!container) {
+        container = document.createElement('div');
+        container.className = 'search-results';
+        const searchWrapper = document.querySelector('.sidebar-search');
+        searchWrapper.appendChild(container);
+    }
+    
+    if (results.length === 0) {
+        container.innerHTML = '<div class="search-no-results">No results found</div>';
+        container.style.display = 'block';
+        return;
+    }
+    
+    const html = results.slice(0, 10).map(item => `
+        <a href="${item.url}" class="search-result-item">
+            <span class="search-result-title">${highlightMatch(item.title, query)}</span>
+            <span class="search-result-section">${item.section}</span>
+        </a>
+    `).join('');
+    
+    container.innerHTML = html;
+    container.style.display = 'block';
+}
+
+function clearSearchResults() {
+    const container = document.querySelector('.search-results');
+    if (container) {
+        container.style.display = 'none';
+        container.innerHTML = '';
+    }
+}
+
+function highlightMatch(text, query) {
+    const regex = new RegExp(`(${escapeRegex(query)})`, 'gi');
+    return text.replace(regex, '<mark>$1</mark>');
+}
+
+function escapeRegex(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/* ============================================
+   Navigation Sections (Collapsible)
+   ============================================ */
+
+function initNavSections() {
+    const sections = document.querySelectorAll('.nav-section');
+    
+    sections.forEach(section => {
+        const header = section.querySelector('.nav-section-header');
+        if (!header) return;
+        
+        // Check if this section contains the active page
+        const activeItem = section.querySelector('.nav-item.active');
+        if (activeItem) {
+            section.classList.add('expanded');
+        }
+        
+        header.addEventListener('click', function() {
+            // Toggle this section
+            section.classList.toggle('expanded');
+            
+            // Save state to localStorage
+            saveNavState();
+        });
+    });
+    
+    // Restore saved state
+    restoreNavState();
+}
+
+function saveNavState() {
+    const sections = document.querySelectorAll('.nav-section');
+    const state = {};
+    
+    sections.forEach((section, index) => {
+        state[index] = section.classList.contains('expanded');
+    });
+    
+    localStorage.setItem('siemDocsNavState', JSON.stringify(state));
+}
+
+function restoreNavState() {
+    const saved = localStorage.getItem('siemDocsNavState');
+    if (!saved) return;
+    
+    try {
+        const state = JSON.parse(saved);
+        const sections = document.querySelectorAll('.nav-section');
+        
+        sections.forEach((section, index) => {
+            // Don't override if section has active item
+            if (section.querySelector('.nav-item.active')) return;
+            
+            if (state[index]) {
+                section.classList.add('expanded');
+            } else {
+                section.classList.remove('expanded');
+            }
+        });
+    } catch (e) {
+        console.error('Error restoring nav state:', e);
+    }
+}
+
+/* ============================================
+   Code Block Copy
+   ============================================ */
+
+function initCodeCopy() {
+    // Find all pre elements and add copy buttons
+    const codeBlocks = document.querySelectorAll('pre');
+    
+    codeBlocks.forEach(pre => {
+        // Skip if already has header
+        if (pre.querySelector('.code-header')) return;
+        
+        const code = pre.querySelector('code');
+        if (!code) return;
+        
+        // Try to detect language from class
+        const langClass = Array.from(code.classList).find(c => c.startsWith('language-'));
+        const lang = langClass ? langClass.replace('language-', '') : 'code';
+        
+        // Create header
+        const header = document.createElement('div');
+        header.className = 'code-header';
+        header.innerHTML = `
+            <span class="code-lang">${lang}</span>
+            <button class="code-copy" aria-label="Copy code">
+                <span class="copy-icon">📋</span>
+                <span class="copy-text">Copy</span>
+            </button>
+        `;
+        
+        pre.insertBefore(header, pre.firstChild);
+        
+        // Add click handler
+        const copyBtn = header.querySelector('.code-copy');
+        copyBtn.addEventListener('click', async function() {
+            const text = code.textContent;
+            
+            try {
+                await navigator.clipboard.writeText(text);
+                
+                copyBtn.classList.add('copied');
+                copyBtn.querySelector('.copy-text').textContent = 'Copied!';
+                copyBtn.querySelector('.copy-icon').textContent = '✓';
+                
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyBtn.querySelector('.copy-text').textContent = 'Copy';
+                    copyBtn.querySelector('.copy-icon').textContent = '📋';
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy:', err);
+                // Fallback for older browsers
+                fallbackCopy(text, copyBtn);
+            }
         });
     });
 }
 
-// ===== Utility: Debounce =====
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
+function fallbackCopy(text, button) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    
+    try {
+        document.execCommand('copy');
+        button.classList.add('copied');
+        button.querySelector('.copy-text').textContent = 'Copied!';
+        
+        setTimeout(() => {
+            button.classList.remove('copied');
+            button.querySelector('.copy-text').textContent = 'Copy';
+        }, 2000);
+    } catch (err) {
+        console.error('Fallback copy failed:', err);
+    }
+    
+    document.body.removeChild(textarea);
 }
 
-// ===== KQL Syntax Highlighting =====
-function highlightKQL(code) {
-    const keywords = ['where', 'project', 'extend', 'summarize', 'join', 'union', 'let', 'datatable', 
-                      'parse', 'evaluate', 'render', 'order by', 'sort by', 'top', 'take', 'limit',
-                      'distinct', 'count', 'sum', 'avg', 'min', 'max', 'make_list', 'make_set',
-                      'by', 'on', 'and', 'or', 'not', 'in', 'has', 'contains', 'startswith', 'endswith',
-                      'between', 'ago', 'now', 'datetime', 'timespan', 'bin', 'todynamic', 'tostring',
-                      'toint', 'tolong', 'todouble', 'tobool', 'if', 'case', 'iff', 'iif'];
+/* ============================================
+   Scroll Spy (Active nav item)
+   ============================================ */
+
+function initScrollSpy() {
+    const headings = document.querySelectorAll('h2[id], h3[id]');
+    if (headings.length === 0) return;
     
-    const tables = ['SecurityEvent', 'SigninLogs', 'AuditLogs', 'DeviceProcessEvents', 
-                    'DeviceNetworkEvents', 'DeviceFileEvents', 'DeviceLogonEvents',
-                    'EmailEvents', 'CloudAppEvents', 'AzureActivity', 'Syslog',
-                    'CommonSecurityLog', 'SecurityAlert', 'SecurityIncident'];
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Update URL hash without scrolling
+                const id = entry.target.getAttribute('id');
+                if (id && history.replaceState) {
+                    history.replaceState(null, null, `#${id}`);
+                }
+            }
+        });
+    }, {
+        rootMargin: '-100px 0px -66%'
+    });
     
-    let highlighted = code;
+    headings.forEach(heading => observer.observe(heading));
+}
+
+/* ============================================
+   Keyboard Shortcuts
+   ============================================ */
+
+function initKeyboardShortcuts() {
+    document.addEventListener('keydown', function(e) {
+        // Focus search: Ctrl/Cmd + K or /
+        if ((e.key === 'k' && (e.ctrlKey || e.metaKey)) || (e.key === '/' && !isInputFocused())) {
+            e.preventDefault();
+            const searchInput = document.querySelector('.sidebar-search input');
+            if (searchInput) {
+                searchInput.focus();
+                searchInput.select();
+            }
+        }
+        
+        // Navigate with arrow keys when search focused
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+            const results = document.querySelectorAll('.search-result-item');
+            if (results.length === 0) return;
+            
+            const focused = document.querySelector('.search-result-item:focus');
+            if (!focused && e.key === 'ArrowDown') {
+                e.preventDefault();
+                results[0].focus();
+            } else if (focused) {
+                e.preventDefault();
+                const index = Array.from(results).indexOf(focused);
+                if (e.key === 'ArrowDown' && index < results.length - 1) {
+                    results[index + 1].focus();
+                } else if (e.key === 'ArrowUp' && index > 0) {
+                    results[index - 1].focus();
+                }
+            }
+        }
+    });
+}
+
+function isInputFocused() {
+    const active = document.activeElement;
+    return active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable);
+}
+
+/* ============================================
+   Utility Functions
+   ============================================ */
+
+// Smooth scroll to anchor
+function scrollToAnchor(hash) {
+    if (!hash) return;
     
-    // Highlight comments
-    highlighted = highlighted.replace(/(\/\/.*)$/gm, '<span class="kql-comment">$1</span>');
+    const target = document.querySelector(hash);
+    if (target) {
+        target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+}
+
+// Handle anchor clicks
+document.addEventListener('click', function(e) {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+    
+    const hash = link.getAttribute('href');
+    if (hash && hash !== '#') {
+        e.preventDefault();
+        scrollToAnchor(hash);
+        history.pushState(null, null, hash);
+    }
+});
+
+// Handle initial hash
+if (window.location.hash) {
+    setTimeout(() => scrollToAnchor(window.location.hash), 100);
+}
+
+/* ============================================
+   Syntax Highlighting (Basic)
+   ============================================ */
+
+function highlightCode() {
+    const codeBlocks = document.querySelectorAll('pre code');
+    
+    codeBlocks.forEach(code => {
+        // Skip if already highlighted
+        if (code.dataset.highlighted) return;
+        
+        let html = code.innerHTML;
+        
+        // SPL highlighting
+        if (code.classList.contains('language-spl') || code.classList.contains('language-splunk')) {
+            html = highlightSPL(html);
+        }
+        // KQL highlighting
+        else if (code.classList.contains('language-kql') || code.classList.contains('language-kusto')) {
+            html = highlightKQL(html);
+        }
+        // PowerShell highlighting
+        else if (code.classList.contains('language-powershell') || code.classList.contains('language-ps1')) {
+            html = highlightPowerShell(html);
+        }
+        // Generic highlighting for other languages
+        else {
+            html = highlightGeneric(html);
+        }
+        
+        code.innerHTML = html;
+        code.dataset.highlighted = 'true';
+    });
+}
+
+function highlightSPL(code) {
+    // SPL keywords
+    const keywords = ['index', 'sourcetype', 'source', 'host', 'search', 'where', 'stats', 'table', 'fields', 'rename', 'sort', 'dedup', 'head', 'tail', 'top', 'rare', 'eval', 'rex', 'lookup', 'join', 'append', 'chart', 'timechart', 'eventstats', 'streamstats', 'transaction', 'bucket', 'bin', 'tstats', 'datamodel', 'inputlookup', 'outputlookup', 'makeresults', 'mvexpand', 'foreach', 'map', 'by', 'as', 'over', 'span', 'earliest', 'latest', 'NOT', 'AND', 'OR'];
+    
+    // Functions
+    const functions = ['count', 'sum', 'avg', 'min', 'max', 'dc', 'values', 'list', 'first', 'last', 'range', 'stdev', 'var', 'perc', 'percentile', 'median', 'mode', 'earliest', 'latest', 'rate', 'if', 'case', 'coalesce', 'null', 'nullif', 'true', 'false', 'len', 'lower', 'upper', 'substr', 'replace', 'split', 'mvcount', 'mvindex', 'mvjoin', 'now', 'time', 'strftime', 'strptime', 'relative_time', 'tostring', 'tonumber', 'typeof'];
     
     // Highlight strings
-    highlighted = highlighted.replace(/(".*?")/g, '<span class="kql-string">$1</span>');
-    highlighted = highlighted.replace(/('.*?')/g, '<span class="kql-string">$1</span>');
+    code = code.replace(/"([^"\\]|\\.)*"/g, '<span class="token-string">"$&"</span>');
+    code = code.replace(/'([^'\\]|\\.)*'/g, '<span class="token-string">\'$&\'</span>');
     
-    // Highlight numbers
-    highlighted = highlighted.replace(/\b(\d+)\b/g, '<span class="kql-number">$1</span>');
+    // Highlight comments
+    code = code.replace(/`([^`]*)`/g, '<span class="token-comment">`$1`</span>');
     
     // Highlight keywords
-    keywords.forEach(keyword => {
-        const regex = new RegExp(`\\b(${keyword})\\b`, 'gi');
-        highlighted = highlighted.replace(regex, '<span class="kql-keyword">$1</span>');
+    keywords.forEach(kw => {
+        const regex = new RegExp(`\\b(${kw})\\b`, 'gi');
+        code = code.replace(regex, '<span class="token-keyword">$1</span>');
     });
     
-    // Highlight tables
-    tables.forEach(table => {
-        const regex = new RegExp(`\\b(${table})\\b`, 'g');
-        highlighted = highlighted.replace(regex, '<span class="kql-table">$1</span>');
+    // Highlight functions
+    functions.forEach(fn => {
+        const regex = new RegExp(`\\b(${fn})\\s*\\(`, 'gi');
+        code = code.replace(regex, '<span class="token-function">$1</span>(');
     });
     
-    return highlighted;
+    // Highlight numbers
+    code = code.replace(/\b(\d+)\b/g, '<span class="token-number">$1</span>');
+    
+    return code;
 }
 
-// ===== Table of Contents Generator =====
-function generateTOC() {
-    const toc = document.querySelector('.toc-list');
-    if (!toc) return;
+function highlightKQL(code) {
+    // KQL keywords
+    const keywords = ['where', 'project', 'extend', 'summarize', 'join', 'union', 'let', 'datatable', 'print', 'render', 'sort', 'order', 'take', 'limit', 'top', 'distinct', 'count', 'by', 'on', 'kind', 'ago', 'between', 'contains', 'has', 'startswith', 'endswith', 'matches', 'regex', 'in', 'and', 'or', 'not', 'true', 'false', 'null', 'asc', 'desc', 'nulls', 'first', 'last', 'inner', 'outer', 'left', 'right', 'full', 'anti', 'semi', 'innerunique', 'mv-expand', 'mv-apply', 'parse', 'evaluate', 'invoke', 'as', 'of', 'with', 'bag_unpack', 'pivot'];
     
-    const headings = document.querySelectorAll('.content-container h2, .content-container h3');
+    // Functions
+    const functions = ['count', 'sum', 'avg', 'min', 'max', 'dcount', 'make_set', 'make_list', 'arg_max', 'arg_min', 'any', 'stdev', 'variance', 'percentile', 'countif', 'sumif', 'avgif', 'dcountif', 'strcat', 'strlen', 'substring', 'tolower', 'toupper', 'trim', 'split', 'parse_json', 'tostring', 'toint', 'tolong', 'todouble', 'todatetime', 'totimespan', 'now', 'ago', 'datetime', 'timespan', 'format_datetime', 'bin', 'floor', 'ceiling', 'round', 'iif', 'iff', 'case', 'coalesce', 'isempty', 'isnotempty', 'isnull', 'isnotnull', 'pack', 'pack_all', 'bag_keys', 'extract', 'extract_all', 'replace', 'ipv4_is_private', 'geo_point_to_geohash', 'make-series', 'series_stats'];
     
-    headings.forEach((heading, index) => {
-        // Add ID if not present
-        if (!heading.id) {
-            heading.id = `section-${index}`;
-        }
-        
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = `#${heading.id}`;
-        a.textContent = heading.textContent;
-        
-        if (heading.tagName === 'H3') {
-            a.classList.add('toc-h3');
-        }
-        
-        li.appendChild(a);
-        toc.appendChild(li);
+    // Highlight strings
+    code = code.replace(/"([^"\\]|\\.)*"/g, '<span class="token-string">$&</span>');
+    code = code.replace(/'([^'\\]|\\.)*'/g, '<span class="token-string">$&</span>');
+    
+    // Highlight comments
+    code = code.replace(/\/\/.*$/gm, '<span class="token-comment">$&</span>');
+    
+    // Highlight keywords
+    keywords.forEach(kw => {
+        const regex = new RegExp(`\\b(${kw})\\b`, 'gi');
+        code = code.replace(regex, '<span class="token-keyword">$1</span>');
     });
+    
+    // Highlight functions
+    functions.forEach(fn => {
+        const regex = new RegExp(`\\b(${fn})\\s*\\(`, 'gi');
+        code = code.replace(regex, '<span class="token-function">$1</span>(');
+    });
+    
+    // Highlight table names (common ones)
+    const tables = ['SecurityEvent', 'Syslog', 'SigninLogs', 'AuditLogs', 'AzureActivity', 'CommonSecurityLog', 'OfficeActivity', 'DeviceEvents', 'DeviceProcessEvents', 'DeviceNetworkEvents', 'DeviceFileEvents', 'DeviceLogonEvents', 'AADSignInEventsBeta', 'IdentityLogonEvents'];
+    tables.forEach(t => {
+        const regex = new RegExp(`\\b(${t})\\b`, 'g');
+        code = code.replace(regex, '<span class="token-variable">$1</span>');
+    });
+    
+    // Highlight numbers
+    code = code.replace(/\b(\d+[hdms]?)\b/g, '<span class="token-number">$1</span>');
+    
+    return code;
 }
 
-// ===== Back to Top Button =====
-function initBackToTop() {
-    const btn = document.createElement('button');
-    btn.className = 'back-to-top';
-    btn.innerHTML = `
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M18 15l-6-6-6 6"/>
-        </svg>
-    `;
-    btn.style.cssText = `
-        position: fixed;
-        bottom: 2rem;
-        right: 2rem;
-        width: 44px;
-        height: 44px;
-        background: var(--accent-primary);
-        border: none;
-        border-radius: 50%;
-        color: white;
-        cursor: pointer;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    `;
+function highlightPowerShell(code) {
+    // PowerShell keywords
+    const keywords = ['function', 'param', 'begin', 'process', 'end', 'if', 'else', 'elseif', 'switch', 'while', 'for', 'foreach', 'do', 'until', 'break', 'continue', 'return', 'exit', 'throw', 'try', 'catch', 'finally', 'trap', 'filter', 'class', 'enum', 'using', 'in', 'where', 'select', 'sort', 'group'];
     
-    document.body.appendChild(btn);
+    // Highlight strings
+    code = code.replace(/"([^"\\]|\\.)*"/g, '<span class="token-string">$&</span>');
+    code = code.replace(/'([^'\\]|\\.)*'/g, '<span class="token-string">$&</span>');
     
-    window.addEventListener('scroll', debounce(() => {
-        if (window.scrollY > 500) {
-            btn.style.opacity = '1';
-            btn.style.visibility = 'visible';
-        } else {
-            btn.style.opacity = '0';
-            btn.style.visibility = 'hidden';
-        }
-    }, 100));
+    // Highlight comments
+    code = code.replace(/#.*$/gm, '<span class="token-comment">$&</span>');
+    code = code.replace(/<#[\s\S]*?#>/g, '<span class="token-comment">$&</span>');
     
-    btn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Highlight variables
+    code = code.replace(/\$\w+/g, '<span class="token-variable">$&</span>');
+    
+    // Highlight keywords
+    keywords.forEach(kw => {
+        const regex = new RegExp(`\\b(${kw})\\b`, 'gi');
+        code = code.replace(regex, '<span class="token-keyword">$1</span>');
     });
+    
+    // Highlight cmdlets (Verb-Noun pattern)
+    code = code.replace(/\b([A-Z][a-z]+-[A-Z][a-zA-Z]+)\b/g, '<span class="token-function">$1</span>');
+    
+    return code;
 }
 
-// Initialize on load
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initBackToTop);
-} else {
-    initBackToTop();
+function highlightGeneric(code) {
+    // Generic highlighting for bash, etc.
+    
+    // Highlight strings
+    code = code.replace(/"([^"\\]|\\.)*"/g, '<span class="token-string">$&</span>');
+    code = code.replace(/'([^'\\]|\\.)*'/g, '<span class="token-string">$&</span>');
+    
+    // Highlight comments
+    code = code.replace(/#.*$/gm, '<span class="token-comment">$&</span>');
+    
+    // Highlight variables
+    code = code.replace(/\$\w+/g, '<span class="token-variable">$&</span>');
+    code = code.replace(/\$\{[^}]+\}/g, '<span class="token-variable">$&</span>');
+    
+    return code;
 }
+
+// Run syntax highlighting after DOM is ready
+document.addEventListener('DOMContentLoaded', highlightCode);
+
+/* ============================================
+   Search Results Styles (injected)
+   ============================================ */
+
+const searchStyles = document.createElement('style');
+searchStyles.textContent = `
+    .search-results {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg-primary);
+        border: 1px solid var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        margin-top: var(--spacing-xs);
+        max-height: 300px;
+        overflow-y: auto;
+        z-index: 100;
+        display: none;
+        box-shadow: var(--shadow-lg);
+    }
+    
+    .search-result-item {
+        display: block;
+        padding: var(--spacing-sm) var(--spacing-md);
+        text-decoration: none;
+        border-bottom: 1px solid var(--bg-tertiary);
+        transition: background var(--transition-fast);
+    }
+    
+    .search-result-item:last-child {
+        border-bottom: none;
+    }
+    
+    .search-result-item:hover,
+    .search-result-item:focus {
+        background: var(--bg-hover);
+        outline: none;
+    }
+    
+    .search-result-title {
+        display: block;
+        color: var(--text-primary);
+        font-size: 0.9rem;
+    }
+    
+    .search-result-title mark {
+        background: var(--cyan-dim);
+        color: var(--cyan-primary);
+        border-radius: 2px;
+        padding: 0 2px;
+    }
+    
+    .search-result-section {
+        display: block;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-top: 2px;
+    }
+    
+    .search-no-results {
+        padding: var(--spacing-md);
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+`;
+document.head.appendChild(searchStyles);

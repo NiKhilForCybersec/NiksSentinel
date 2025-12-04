@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Splunk SOAR Playbooks - Building automated workflows with Visual Playbook Editor and Python playbooks.">
+    <title>Playbooks | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item active">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="4-1-soar-overview.html">Splunk SOAR</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Playbooks</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">SOAR Playbooks</h1>
+                <p class="page-subtitle">Building automated security workflows</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Playbooks are the heart of SOAR automation. They define the sequence of actions to take when an event occurs. This chapter covers playbook concepts, the Visual Playbook Editor, Python playbooks, and best practices for effective automation.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="playbook-concepts">Playbook Concepts</h2>
+                
+                <pre><code class="language-text">PLAYBOOK STRUCTURE:
+
+┌─────────────────────────────────────────────────────────┐
+│                      TRIGGER                            │
+│         (Event label, artifact type, manual)            │
+└───────────────────────┬─────────────────────────────────┘
+                        │
+                        ▼
+┌─────────────────────────────────────────────────────────┐
+│                   ACTION BLOCKS                         │
+│  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐   │
+│  │ Action  │  │ Filter  │  │Decision │  │  Code   │   │
+│  │  Block  │  │  Block  │  │  Block  │  │  Block  │   │
+│  └─────────┘  └─────────┘  └─────────┘  └─────────┘   │
+└───────────────────────┬─────────────────────────────────┘
+                        │
+                        ▼
+┌─────────────────────────────────────────────────────────┐
+│                    END BLOCK                            │
+│            (Update status, close event)                 │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h3>Block Types</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Block Type</th>
+                                <th>Purpose</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Start</strong></td>
+                                <td>Entry point with filters</td>
+                                <td>On new event with label "malware"</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Action</strong></td>
+                                <td>Execute app action</td>
+                                <td>Run "ip reputation" on VirusTotal</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Filter</strong></td>
+                                <td>Filter artifacts</td>
+                                <td>Only IPs, only external IPs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Decision</strong></td>
+                                <td>Conditional branching</td>
+                                <td>If malicious, go to containment</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Code</strong></td>
+                                <td>Custom Python logic</td>
+                                <td>Parse data, complex decisions</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Format</strong></td>
+                                <td>Build output strings</td>
+                                <td>Create email body or ticket</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Prompt</strong></td>
+                                <td>Request human input</td>
+                                <td>Approve containment action</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Playbook</strong></td>
+                                <td>Call another playbook</td>
+                                <td>Run enrichment sub-playbook</td>
+                            </tr>
+                            <tr>
+                                <td><strong>End</strong></td>
+                                <td>Terminate playbook</td>
+                                <td>Update container status</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="visual-editor">Visual Playbook Editor</h2>
+                
+                <pre><code class="language-text">VISUAL EDITOR WORKFLOW:
+
+1. Create New Playbook
+   Playbooks → + New Playbook → Classic Playbook
+
+2. Configure Start Block
+   • Select label filter (e.g., "events")
+   • Set artifact scope (new or all)
+
+3. Add Blocks
+   • Drag blocks from palette
+   • Connect with lines
+   • Configure each block
+
+4. Configure Actions
+   • Select app (e.g., VirusTotal)
+   • Select action (e.g., ip reputation)
+   • Map input parameters
+   • Handle outputs
+
+5. Test and Activate
+   • Use Playbook Debugger
+   • Set to Active when ready</code></pre>
+                
+                <h3>Example: IP Enrichment Playbook</h3>
+                
+                <pre><code class="language-text">VISUAL PLAYBOOK LAYOUT:
+
+[START] ─────────────────────────────────────────────────┐
+    │  Filter: label = "notable"                         │
+    │  Scope: New artifacts only                         │
+    ▼                                                    │
+[FILTER: ip_filter] ─────────────────────────────────────┤
+    │  Type: artifact                                    │
+    │  Condition: artifact:*.cef.sourceAddress exists    │
+    ▼                                                    │
+[ACTION: vt_lookup] ─────────────────────────────────────┤
+    │  App: VirusTotal                                   │
+    │  Action: ip reputation                             │
+    │  Input: artifact:*.cef.sourceAddress               │
+    ▼                                                    │
+[DECISION: is_malicious] ────────────────────────────────┤
+    │  Condition: action_result.summary.malicious > 5    │
+    │                                                    │
+    ├── YES ──► [ACTION: block_ip]                       │
+    │              App: Firewall                         │
+    │              Action: block ip                      │
+    │                                                    │
+    └── NO ───► [ACTION: add_comment]                    │
+                   Add enrichment note                   │
+    ▼                                                    │
+[END] ───────────────────────────────────────────────────┘
+    Update container with results</code></pre>
+                
+                <h2 id="python-playbooks">Python Playbooks</h2>
+                
+                <p>
+                    For complex logic, SOAR supports Python playbooks:
+                </p>
+                
+                <h3>Basic Python Playbook Structure</h3>
+                
+                <pre><code class="language-python">import phantom.rules as phantom
+import json
+
+def on_start(container):
+    """Entry point for playbook"""
+    
+    # Get container info
+    container_id = container['id']
+    container_name = container['name']
+    
+    # Get artifacts
+    success, message, artifacts = phantom.get_artifacts(
+        container_id=container_id,
+        artifact_type='ip'
+    )
+    
+    if not artifacts:
+        phantom.debug("No IP artifacts found")
+        return
+    
+    # Process each IP
+    for artifact in artifacts:
+        ip = artifact['cef'].get('sourceAddress')
+        if ip:
+            # Run VirusTotal lookup
+            phantom.act(
+                "ip reputation",
+                parameters=[{"ip": ip}],
+                assets=["virustotal"],
+                callback=vt_callback,
+                name="lookup_ip"
+            )
+
+def vt_callback(action, success, container, results, handle):
+    """Process VirusTotal results"""
+    
+    if not success:
+        phantom.error("VirusTotal lookup failed")
+        return
+    
+    for result in results:
+        ip = result['parameter']['ip']
+        malicious = result['summary'].get('malicious', 0)
+        
+        if malicious > 5:
+            # IP is malicious - take action
+            phantom.act(
+                "block ip",
+                parameters=[{"ip": ip}],
+                assets=["firewall"],
+                callback=block_callback,
+                name="block_ip"
+            )
+        else:
+            # Add enrichment comment
+            phantom.comment(
+                container=container,
+                comment=f"IP {ip} checked - {malicious} detections"
+            )
+
+def block_callback(action, success, container, results, handle):
+    """Handle block action completion"""
+    
+    if success:
+        phantom.set_status(container, "resolved")
+        phantom.comment(
+            container=container,
+            comment="Malicious IP blocked at firewall"
+        )
+    else:
+        phantom.set_severity(container, "high")
+        phantom.comment(
+            container=container,
+            comment="Failed to block IP - manual review required"
+        )</code></pre>
+                
+                <h3>Common Phantom Functions</h3>
+                
+                <pre><code class="language-python"># Get container data
+container = phantom.get_container(container_id)
+
+# Get artifacts
+success, message, artifacts = phantom.get_artifacts(
+    container_id=container_id,
+    artifact_type='ip'  # Optional filter
+)
+
+# Run action
+phantom.act(
+    action="ip reputation",
+    parameters=[{"ip": "1.2.3.4"}],
+    assets=["virustotal"],
+    callback=my_callback,
+    name="action_name"
+)
+
+# Add comment
+phantom.comment(container=container, comment="My comment")
+
+# Set severity
+phantom.set_severity(container=container, severity="high")
+
+# Set status
+phantom.set_status(container=container, status="closed")
+
+# Add artifact
+phantom.add_artifact(
+    container=container,
+    raw_data={},
+    cef_data={"destinationAddress": "10.0.0.1"},
+    label="artifact",
+    name="new_artifact",
+    artifact_type="ip"
+)
+
+# Format output
+phantom.format(
+    container=container,
+    template="IP {0} has {1} detections",
+    parameters=[ip, count]
+)
+
+# Prompt user
+phantom.prompt(
+    container=container,
+    message="Approve blocking IP?",
+    respond_in_mins=30,
+    callback=prompt_callback
+)
+
+# Call sub-playbook
+phantom.playbook(
+    playbook="local/enrichment_playbook",
+    container=container,
+    callback=playbook_callback
+)</code></pre>
+                
+                <h2 id="playbook-patterns">Common Playbook Patterns</h2>
+                
+                <h3>Pattern 1: Enrich and Triage</h3>
+                
+                <pre><code class="language-text">PURPOSE: Automatically enrich all alerts and set severity
+
+FLOW:
+1. Start: New container
+2. Filter: Extract all artifact types
+3. Actions (parallel):
+   - IP reputation (VirusTotal, AbuseIPDB)
+   - Domain lookup (DomainTools)
+   - Hash lookup (VirusTotal)
+   - User lookup (Active Directory)
+4. Code: Calculate risk score from results
+5. Decision: Set severity based on score
+6. End: Update container</code></pre>
+                
+                <h3>Pattern 2: Human-in-the-Loop</h3>
+                
+                <pre><code class="language-text">PURPOSE: Require approval for high-impact actions
+
+FLOW:
+1. Start: Malware detected
+2. Action: Get host details
+3. Action: Check file reputation
+4. Decision: Is confirmed malware?
+   - YES: Continue
+   - NO: End
+5. Prompt: "Approve host isolation for {hostname}?"
+6. Decision: Approved?
+   - YES: Action: Isolate host
+   - NO: Action: Add comment, escalate
+7. End: Update status</code></pre>
+                
+                <h3>Pattern 3: Sub-Playbook Composition</h3>
+                
+                <pre><code class="language-text">PURPOSE: Reusable modular playbooks
+
+MAIN PLAYBOOK:
+1. Start: Notable event
+2. Playbook: Call "IP Enrichment" sub-playbook
+3. Playbook: Call "User Enrichment" sub-playbook
+4. Code: Combine results
+5. Decision: Route to appropriate response
+6. Playbook: Call response sub-playbook
+7. End
+
+SUB-PLAYBOOKS:
+• IP Enrichment (reusable)
+• User Enrichment (reusable)
+• Malware Response (reusable)
+• Phishing Response (reusable)</code></pre>
+                
+                <h2 id="best-practices">Playbook Best Practices</h2>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Playbook Development Guidelines
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Design:</strong><br>
+                            □ Start simple, iterate to complex<br>
+                            □ Use sub-playbooks for reusability<br>
+                            □ Include human approval for destructive actions<br>
+                            □ Always have error handling paths<br><br>
+                            
+                            <strong>Implementation:</strong><br>
+                            □ Test with sample containers before activating<br>
+                            □ Use descriptive block names<br>
+                            □ Add comments explaining complex logic<br>
+                            □ Handle empty results gracefully<br><br>
+                            
+                            <strong>Operations:</strong><br>
+                            □ Monitor playbook run times<br>
+                            □ Review failed runs regularly<br>
+                            □ Version control playbook exports<br>
+                            □ Document playbook purpose and triggers
+                        </p>
+                    </div>
+                </div>
+                
+                <h3>Error Handling</h3>
+                
+                <pre><code class="language-python"># Always handle action failures
+def action_callback(action, success, container, results, handle):
+    if not success:
+        phantom.error(f"Action failed: {action}")
+        phantom.comment(
+            container=container,
+            comment=f"Automation failed at {action} - manual review needed"
+        )
+        phantom.set_status(container, "open")
+        return  # Stop processing
+    
+    # Continue with success handling
+    process_results(results)</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"Walk me through building a SOAR playbook for phishing response."</strong><br><br>
+                            <strong>1. Trigger:</strong> New container with label "phishing"<br>
+                            <strong>2. Parse:</strong> Extract sender, URLs, attachments from email<br>
+                            <strong>3. Enrich:</strong> Check URLs against threat intel (VirusTotal, URLScan), check sender reputation<br>
+                            <strong>4. Analyze:</strong> Detonate attachments in sandbox (Joe Sandbox, Any.Run)<br>
+                            <strong>5. Search:</strong> Query email gateway for similar messages across org<br>
+                            <strong>6. Decision:</strong> Based on findings, determine if malicious<br>
+                            <strong>7. Respond:</strong> If malicious: delete emails org-wide, block sender/URLs, reset compromised credentials<br>
+                            <strong>8. Notify:</strong> Send summary to reporter and SOC<br>
+                            <strong>9. Document:</strong> Create case, update container status
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Playbooks are automated workflows triggered by events</li>
+                    <li>Block types: Start, Action, Filter, Decision, Code, Format, Prompt, End</li>
+                    <li>Visual Editor for drag-and-drop playbook building</li>
+                    <li>Python playbooks for complex logic</li>
+                    <li>Use sub-playbooks for reusability</li>
+                    <li>Include human approval for high-impact actions</li>
+                    <li>Always implement error handling</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="4-1-soar-overview.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">SOAR Overview</span>
+                        </div>
+                    </a>
+                    <a href="4-3-apps-integrations.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Apps & Integrations</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

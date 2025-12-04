@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Splunk Installation and Configuration - Linux and Windows installation, key configuration files, authentication setup, and SSL configuration.">
+    <title>Splunk Installation & Configuration | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+                <div class="sidebar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search docs... (Ctrl+K)" aria-label="Search documentation">
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item active">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="2-1-splunk-architecture.html">Splunk Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Installation & Configuration</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Splunk Installation & Configuration</h1>
+                <p class="page-subtitle">Installing Splunk Enterprise on Linux and Windows, key configuration files, and initial setup</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            This chapter walks through installing Splunk Enterprise on Linux and Windows, configuring essential settings, setting up authentication, and enabling SSL/TLS. You'll learn the key configuration files and their purposes.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="linux-installation">Linux Installation</h2>
+                
+                <h3>System Requirements</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Minimum</th>
+                                <th>Recommended (Production)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CPU</td>
+                                <td>2 cores</td>
+                                <td>16+ cores (indexer)</td>
+                            </tr>
+                            <tr>
+                                <td>RAM</td>
+                                <td>4 GB</td>
+                                <td>32-64 GB</td>
+                            </tr>
+                            <tr>
+                                <td>Disk</td>
+                                <td>20 GB</td>
+                                <td>SSD/NVMe, size based on retention</td>
+                            </tr>
+                            <tr>
+                                <td>OS</td>
+                                <td colspan="2">RHEL 7-9, Ubuntu 18.04+, Amazon Linux 2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Installation Steps</h3>
+                
+                <pre><code class="language-bash"># Download Splunk Enterprise (example for 9.x)
+wget -O splunk-9.1.0-linux-2.6-x86_64.rpm \
+  "https://download.splunk.com/products/splunk/releases/9.1.0/linux/splunk-9.1.0-linux-2.6-x86_64.rpm"
+
+# Install RPM package (RHEL/CentOS)
+sudo rpm -ivh splunk-9.1.0-linux-2.6-x86_64.rpm
+
+# Or for Debian/Ubuntu (.deb)
+wget -O splunk-9.1.0-linux-2.6-amd64.deb \
+  "https://download.splunk.com/products/splunk/releases/9.1.0/linux/splunk-9.1.0-linux-2.6-amd64.deb"
+sudo dpkg -i splunk-9.1.0-linux-2.6-amd64.deb
+
+# Or extract tarball (any Linux)
+tar -xvzf splunk-9.1.0-Linux-x86_64.tgz -C /opt
+
+# Default installation location
+/opt/splunk
+
+# Start Splunk and accept license
+sudo /opt/splunk/bin/splunk start --accept-license
+
+# Enable boot start (systemd)
+sudo /opt/splunk/bin/splunk enable boot-start -systemd-managed 1 -user splunk
+
+# Create dedicated splunk user (recommended)
+sudo useradd -m -r splunk
+sudo chown -R splunk:splunk /opt/splunk</code></pre>
+                
+                <h3>Post-Installation Configuration</h3>
+                
+                <pre><code class="language-bash"># Set admin password during first start
+/opt/splunk/bin/splunk start --accept-license --answer-yes --seed-passwd 'YourSecurePassword123!'
+
+# Or interactively
+/opt/splunk/bin/splunk start --accept-license
+# Follow prompts to create admin credentials
+
+# Verify installation
+/opt/splunk/bin/splunk status
+/opt/splunk/bin/splunk version
+
+# Access Web UI
+# https://your-server:8000</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Best Practice
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Always run Splunk as a dedicated non-root user (e.g., 'splunk'). Configure resource limits in <code>/etc/security/limits.conf</code> for the splunk user: increase open file limits (ulimit -n 64000) and process limits. Use systemd for service management in production.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="windows-installation">Windows Installation</h2>
+                
+                <pre><code class="language-powershell"># Download MSI from splunk.com
+# Run installer (GUI or silent)
+
+# Silent installation
+msiexec.exe /i splunk-9.1.0-x64-release.msi AGREETOLICENSE=yes ^
+  SPLUNKPASSWORD=YourSecurePassword123! ^
+  LAUNCHSPLUNK=1 /quiet
+
+# Installation location
+C:\Program Files\Splunk
+
+# Service management
+# Splunk runs as "Splunkd Service"
+Get-Service -Name Splunkd
+Start-Service -Name Splunkd
+Stop-Service -Name Splunkd
+
+# Splunk CLI
+& "C:\Program Files\Splunk\bin\splunk.exe" status
+& "C:\Program Files\Splunk\bin\splunk.exe" restart</code></pre>
+                
+                <h2 id="config-files">Key Configuration Files</h2>
+                
+                <p>
+                    Splunk configuration lives in <code>.conf</code> files. Understanding these files is essential for administration:
+                </p>
+                
+                <h3>Configuration File Locations</h3>
+                
+                <pre><code class="language-text">$SPLUNK_HOME/
+├── etc/
+│   ├── system/
+│   │   ├── default/     # Splunk defaults (DO NOT EDIT)
+│   │   └── local/       # System-wide custom settings
+│   ├── apps/
+│   │   └── &lt;app_name&gt;/
+│   │       ├── default/ # App defaults
+│   │       └── local/   # App customizations
+│   └── users/
+│       └── &lt;username&gt;/
+│           └── &lt;app&gt;/
+│               └── local/ # User-specific settings</code></pre>
+                
+                <h3>Configuration Precedence</h3>
+                
+                <pre><code class="language-text">Configuration Priority (highest to lowest):
+1. etc/users/&lt;user&gt;/&lt;app&gt;/local/
+2. etc/apps/&lt;app&gt;/local/
+3. etc/apps/&lt;app&gt;/default/
+4. etc/system/local/
+5. etc/system/default/
+
+Rule: NEVER edit files in 'default' directories.
+      Always make changes in 'local' directories.</code></pre>
+                
+                <h3>Essential Configuration Files</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>File</th>
+                                <th>Purpose</th>
+                                <th>Common Settings</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>inputs.conf</strong></td>
+                                <td>Define data inputs</td>
+                                <td>Monitor files, network inputs, scripts</td>
+                            </tr>
+                            <tr>
+                                <td><strong>outputs.conf</strong></td>
+                                <td>Define forwarding destinations</td>
+                                <td>Target indexers, load balancing</td>
+                            </tr>
+                            <tr>
+                                <td><strong>props.conf</strong></td>
+                                <td>Data parsing properties</td>
+                                <td>Timestamp, line breaking, transforms</td>
+                            </tr>
+                            <tr>
+                                <td><strong>transforms.conf</strong></td>
+                                <td>Data transformation rules</td>
+                                <td>Field extraction, routing, masking</td>
+                            </tr>
+                            <tr>
+                                <td><strong>indexes.conf</strong></td>
+                                <td>Index configuration</td>
+                                <td>Index creation, retention, paths</td>
+                            </tr>
+                            <tr>
+                                <td><strong>server.conf</strong></td>
+                                <td>Server settings</td>
+                                <td>Clustering, SSL, general server config</td>
+                            </tr>
+                            <tr>
+                                <td><strong>authorize.conf</strong></td>
+                                <td>Role definitions</td>
+                                <td>Capabilities, index access</td>
+                            </tr>
+                            <tr>
+                                <td><strong>authentication.conf</strong></td>
+                                <td>Authentication settings</td>
+                                <td>LDAP, SAML, native auth</td>
+                            </tr>
+                            <tr>
+                                <td><strong>web.conf</strong></td>
+                                <td>Web interface settings</td>
+                                <td>SSL, ports, session timeout</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>inputs.conf Examples</h3>
+                
+                <pre><code class="language-ini"># $SPLUNK_HOME/etc/system/local/inputs.conf
+
+# Monitor a log file
+[monitor:///var/log/secure]
+disabled = false
+index = linux_security
+sourcetype = linux_secure
+# Recursive monitoring
+# whitelist = \.log$
+# blacklist = \.gz$
+
+# Monitor a directory
+[monitor:///var/log/apache2/]
+disabled = false
+index = web
+sourcetype = apache_access
+whitelist = access\.log$
+
+# Network input - Syslog UDP
+[udp://514]
+disabled = false
+connection_host = dns
+sourcetype = syslog
+index = network
+
+# Network input - Syslog TCP
+[tcp://514]
+disabled = false
+connection_host = dns
+sourcetype = syslog
+index = network
+
+# Scripted input
+[script:///opt/splunk/etc/apps/myapp/bin/get_data.sh]
+disabled = false
+index = custom
+sourcetype = custom_script
+interval = 300
+# Run every 5 minutes</code></pre>
+                
+                <h3>outputs.conf Examples</h3>
+                
+                <pre><code class="language-ini"># $SPLUNK_HOME/etc/system/local/outputs.conf
+
+# Forward to indexer cluster with load balancing
+[tcpout]
+defaultGroup = indexer_cluster
+
+[tcpout:indexer_cluster]
+server = idx1.company.com:9997, idx2.company.com:9997, idx3.company.com:9997
+autoLBFrequency = 30
+# Switch to another indexer every 30 seconds
+
+# SSL forwarding
+useSSL = true
+sslCertPath = $SPLUNK_HOME/etc/auth/server.pem
+sslRootCAPath = $SPLUNK_HOME/etc/auth/cacert.pem
+sslPassword = password
+sslVerifyServerCert = true
+
+# Indexer acknowledgment (ensures delivery)
+useACK = true
+
+# Compression
+compressed = true</code></pre>
+                
+                <h3>props.conf Examples</h3>
+                
+                <pre><code class="language-ini"># $SPLUNK_HOME/etc/system/local/props.conf
+
+# Define sourcetype properties
+[linux_secure]
+TIME_FORMAT = %b %d %H:%M:%S
+TIME_PREFIX = ^
+MAX_TIMESTAMP_LOOKAHEAD = 20
+SHOULD_LINEMERGE = false
+LINE_BREAKER = ([\r\n]+)
+TRUNCATE = 10000
+
+# JSON sourcetype
+[json_logs]
+KV_MODE = json
+TIME_FORMAT = %Y-%m-%dT%H:%M:%S.%3N%Z
+TIME_PREFIX = "timestamp"\s*:\s*"
+SHOULD_LINEMERGE = false
+
+# Apply transforms
+[firewall_logs]
+TRANSFORMS-set_index = route_by_severity
+TRANSFORMS-extract_fields = extract_firewall_fields
+
+# Field extraction at search time
+[web_access]
+EXTRACT-client_ip = ^(?P<client_ip>\d+\.\d+\.\d+\.\d+)
+EXTRACT-status = HTTP/\d\.\d"\s+(?P<status>\d+)</code></pre>
+                
+                <h3>transforms.conf Examples</h3>
+                
+                <pre><code class="language-ini"># $SPLUNK_HOME/etc/system/local/transforms.conf
+
+# Route events to different indexes based on content
+[route_by_severity]
+REGEX = severity=(critical|high)
+DEST_KEY = _MetaData:Index
+FORMAT = security_critical
+
+# Field extraction
+[extract_firewall_fields]
+REGEX = src=(?P<src_ip>\d+\.\d+\.\d+\.\d+)\s+dst=(?P<dst_ip>\d+\.\d+\.\d+\.\d+)\s+action=(?P<action>\w+)
+FORMAT = src_ip::$1 dst_ip::$2 action::$3
+
+# Mask sensitive data (credit card numbers)
+[mask_credit_card]
+REGEX = (\d{4})[- ]?(\d{4})[- ]?(\d{4})[- ]?(\d{4})
+FORMAT = XXXX-XXXX-XXXX-$4
+DEST_KEY = _raw
+
+# Null queue (drop events)
+[drop_debug_events]
+REGEX = DEBUG
+DEST_KEY = queue
+FORMAT = nullQueue</code></pre>
+                
+                <h2 id="authentication">Authentication Configuration</h2>
+                
+                <h3>LDAP Authentication</h3>
+                
+                <pre><code class="language-ini"># $SPLUNK_HOME/etc/system/local/authentication.conf
+
+[authentication]
+authType = LDAP
+authSettings = company_ldap
+
+[company_ldap]
+SSLEnabled = 1
+host = ldap.company.com
+port = 636
+bindDN = CN=splunk_svc,OU=Service Accounts,DC=company,DC=com
+bindDNpassword = $7$encrypted_password
+userBaseDN = OU=Users,DC=company,DC=com
+userBaseFilter = (objectClass=user)
+userNameAttribute = sAMAccountName
+realNameAttribute = displayName
+emailAttribute = mail
+groupMappingAttribute = dn
+groupBaseDN = OU=Groups,DC=company,DC=com
+groupBaseFilter = (objectClass=group)
+groupNameAttribute = cn
+groupMemberAttribute = member
+nestedGroups = true
+charset = utf-8
+anonymous_referrals = 0
+timelimit = 15
+network_timeout = 20</code></pre>
+                
+                <h3>SAML Authentication</h3>
+                
+                <pre><code class="language-ini"># $SPLUNK_HOME/etc/system/local/authentication.conf
+
+[authentication]
+authType = SAML
+authSettings = saml_idp
+
+[saml_idp]
+idpSSOUrl = https://idp.company.com/saml/sso
+idpCertPath = /opt/splunk/etc/auth/idp_cert.pem
+entityId = https://splunk.company.com
+signAuthnRequest = true
+signedAssertion = true
+attributeQueryTTL = 3600
+fqdn = splunk.company.com
+redirectPort = 443
+
+# Role mapping based on SAML attributes
+[roleMap_saml_idp]
+admin = Splunk_Admins
+power = Splunk_Power_Users
+user = Splunk_Users</code></pre>
+                
+                <h3>Role-Based Access Control</h3>
+                
+                <pre><code class="language-ini"># $SPLUNK_HOME/etc/system/local/authorize.conf
+
+# Custom role for SOC analysts
+[role_soc_analyst]
+importRoles = user
+srchIndexesAllowed = main;security;network;windows
+srchIndexesDefault = security
+srchJobsQuota = 10
+rtSrchJobsQuota = 3
+srchDiskQuota = 1000
+srchTimeWin = -30d
+cumulativeSrchJobsQuota = 50
+cumulativeRTSrchJobsQuota = 10
+
+# Capabilities
+schedule_search = enabled
+accelerate_datamodel = enabled
+list_settings = enabled
+dispatch_rest_to_indexers = enabled
+
+# Custom admin role
+[role_security_admin]
+importRoles = power
+srchIndexesAllowed = *
+srchIndexesDefault = main
+admin_all_objects = enabled
+change_own_password = enabled
+edit_roles = enabled
+edit_user = enabled</code></pre>
+                
+                <h2 id="ssl-configuration">SSL/TLS Configuration</h2>
+                
+                <h3>Web Interface SSL</h3>
+                
+                <pre><code class="language-ini"># $SPLUNK_HOME/etc/system/local/web.conf
+
+[settings]
+enableSplunkWebSSL = true
+privKeyPath = /opt/splunk/etc/auth/splunkweb/privkey.pem
+serverCert = /opt/splunk/etc/auth/splunkweb/cert.pem
+sslPassword = password
+httpport = 8000
+# Redirect HTTP to HTTPS
+# requireClientCert = true (for mutual TLS)</code></pre>
+                
+                <h3>Splunk-to-Splunk SSL</h3>
+                
+                <pre><code class="language-ini"># $SPLUNK_HOME/etc/system/local/server.conf
+
+[sslConfig]
+sslPassword = $7$encrypted_password
+serverCert = /opt/splunk/etc/auth/server.pem
+sslRootCAPath = /opt/splunk/etc/auth/cacert.pem
+sslVerifyServerCert = true
+requireClientCert = true
+sslCommonNameToCheck = *.company.com
+# Minimum TLS version
+sslVersions = tls1.2
+# Strong ciphers only
+cipherSuite = TLSv1.2:!eNULL:!aNULL</code></pre>
+                
+                <h3>Generate Self-Signed Certificates</h3>
+                
+                <pre><code class="language-bash"># Generate CA
+openssl genrsa -out ca.key 2048
+openssl req -new -x509 -days 3650 -key ca.key -out ca.pem \
+  -subj "/C=US/ST=CA/L=SF/O=Company/CN=SplunkCA"
+
+# Generate server certificate
+openssl genrsa -out server.key 2048
+openssl req -new -key server.key -out server.csr \
+  -subj "/C=US/ST=CA/L=SF/O=Company/CN=splunk.company.com"
+openssl x509 -req -days 365 -in server.csr -CA ca.pem -CAkey ca.key \
+  -CAcreateserial -out server.pem
+
+# Combine key and cert (required for Splunk)
+cat server.key server.pem > server-combined.pem
+
+# Copy to Splunk
+cp ca.pem /opt/splunk/etc/auth/cacert.pem
+cp server-combined.pem /opt/splunk/etc/auth/server.pem</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"Explain the Splunk configuration file precedence. Where would you make a customization?"</strong><br><br>
+                            Splunk configuration files have a layered precedence: user-level settings override app-level, which override system-level, which override defaults. Within each level, 'local' directories override 'default'. <strong>Never edit default directories</strong>—always make changes in local directories. For system-wide settings, use <code>etc/system/local/</code>. For app-specific changes, use <code>etc/apps/&lt;app&gt;/local/</code>. This ensures upgrades don't overwrite customizations.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="initial-config">Initial Configuration Checklist</h2>
+                
+                <pre><code class="language-text">Post-Installation Configuration Checklist:
+
+□ Change default admin password
+□ Configure SSL for web interface
+□ Configure SSL for Splunk-to-Splunk communication
+□ Set up authentication (LDAP/SAML)
+□ Create custom roles for users
+□ Configure receiving on indexers (inputs.conf)
+□ Set up license master
+□ Configure indexes (indexes.conf)
+□ Set timezone (server.conf: [general] serverTimezone)
+□ Configure email alerts (alert_actions.conf)
+□ Enable audit logging
+□ Set up monitoring console
+□ Configure backup schedule
+□ Document deployment</code></pre>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Splunk installs via RPM, DEB, or tarball on Linux; MSI on Windows</li>
+                    <li>Run Splunk as a dedicated non-root user with appropriate resource limits</li>
+                    <li>Configuration files use .conf format with precedence: user → app → system</li>
+                    <li>Key files: inputs.conf (data in), outputs.conf (forwarding), props.conf (parsing)</li>
+                    <li>Always edit 'local' directories, never 'default'</li>
+                    <li>Configure LDAP or SAML for enterprise authentication</li>
+                    <li>Enable SSL/TLS for web interface and Splunk-to-Splunk communication</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="2-1-splunk-architecture.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Splunk Architecture</span>
+                        </div>
+                    </a>
+                    <a href="2-3-data-ingestion.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Data Ingestion</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

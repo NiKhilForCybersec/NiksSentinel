@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Splunk ES Correlation Searches - Building, configuring, and managing detection rules in Splunk Enterprise Security.">
+    <title>Correlation Searches | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+                <div class="sidebar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search docs... (Ctrl+K)" aria-label="Search documentation">
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item active">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="3-1-splunk-es-overview.html">Splunk Security Ops</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Correlation Searches</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Correlation Searches</h1>
+                <p class="page-subtitle">Building detection rules and automated threat detection in Splunk ES</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Correlation searches are the detection engine of Splunk ES. They run on a schedule, detect security threats, and trigger responses like notable events and risk modifications. This chapter covers creating, configuring, and managing correlation searches for effective threat detection.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="correlation-basics">Correlation Search Fundamentals</h2>
+                
+                <p>
+                    A correlation search is a scheduled saved search that:
+                </p>
+                
+                <ul>
+                    <li>Runs on a defined schedule (cron)</li>
+                    <li>Searches over a defined time window</li>
+                    <li>Triggers adaptive response actions when results are found</li>
+                    <li>Can create notable events, modify risk scores, or run custom actions</li>
+                </ul>
+                
+                <pre><code class="language-text">CORRELATION SEARCH COMPONENTS:
+
+┌─────────────────────────────────────────────────────────┐
+│               CORRELATION SEARCH                        │
+├─────────────────────────────────────────────────────────┤
+│  Name: Brute Force Access Behavior Detected            │
+│  Description: Detects multiple failed logins           │
+├─────────────────────────────────────────────────────────┤
+│  SEARCH:                                                │
+│  | tstats count FROM datamodel=Authentication          │
+│    WHERE Authentication.action=failure                 │
+│    by Authentication.user Authentication.src           │
+│  | where count > 10                                    │
+├─────────────────────────────────────────────────────────┤
+│  SCHEDULE: */5 * * * * (every 5 minutes)               │
+│  TIME RANGE: -5m to now                                │
+├─────────────────────────────────────────────────────────┤
+│  ADAPTIVE RESPONSE ACTIONS:                            │
+│  • Create Notable Event (severity: high)               │
+│  • Modify Risk Score (+25 to user)                     │
+│  • Send Email to SOC                                   │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h2 id="creating-correlation">Creating Correlation Searches</h2>
+                
+                <h3>Via ES Content Management</h3>
+                
+                <pre><code class="language-text">Configure → Content → Content Management → Create New Content
+
+Step 1: Basic Information
+• Name: Brute_Force_Access_Behavior
+• App: SA-AccessProtection
+• Description: Detects brute force login attempts
+• Security Domain: Access
+
+Step 2: Search
+• Search: [your SPL]
+• Scheduling: Every 5 minutes
+• Time Range: Last 5 minutes
+
+Step 3: Adaptive Response Actions
+• Notable Event:
+  - Title: Brute Force Access Behavior - $user$
+  - Severity: High
+  - Urgency Override: (use default)
+  - Drilldowns: (configure)
+
+Step 4: Additional Settings
+• Throttling: 1 per user per hour
+• Mapping: MITRE ATT&CK, Kill Chain</code></pre>
+                
+                <h3>Example Correlation Searches</h3>
+                
+                <h4>Brute Force Detection</h4>
+                
+                <pre><code class="language-spl"># Brute Force Access Behavior
+| tstats summariesonly=true count FROM datamodel=Authentication 
+  WHERE Authentication.action=failure 
+  BY Authentication.user, Authentication.src, Authentication.dest, _time span=5m
+| `drop_dm_object_name("Authentication")`
+| where count > 10
+| `map_notable_fields`</code></pre>
+                
+                <h4>Impossible Travel</h4>
+                
+                <pre><code class="language-spl"># Geographically Improbable Access
+| tstats summariesonly=true earliest(_time) AS first_time, latest(_time) AS last_time 
+  FROM datamodel=Authentication 
+  WHERE Authentication.action=success 
+  BY Authentication.user, Authentication.src_ip
+| iplocation src_ip
+| stats earliest(first_time) AS first_time, latest(last_time) AS last_time,
+        values(City) AS cities, values(Country) AS countries, 
+        dc(Country) AS country_count BY user
+| where country_count > 1
+| eval time_diff_hours = (last_time - first_time) / 3600
+| where time_diff_hours < 2
+| `map_notable_fields`</code></pre>
+                
+                <h4>Lateral Movement - RDP</h4>
+                
+                <pre><code class="language-spl"># Lateral Movement via RDP
+| tstats summariesonly=true count FROM datamodel=Authentication 
+  WHERE Authentication.action=success 
+    AND Authentication.app=rdp 
+  BY Authentication.user, Authentication.src, Authentication.dest, _time span=1h
+| `drop_dm_object_name("Authentication")`
+| stats dc(dest) AS dest_count, values(dest) AS destinations BY user, src
+| where dest_count > 3
+| eval rule_title = "Lateral Movement - User ".user." accessed ".dest_count." systems via RDP"
+| `map_notable_fields`</code></pre>
+                
+                <h4>Data Exfiltration</h4>
+                
+                <pre><code class="language-spl"># Abnormal Data Transfer Volume
+| tstats summariesonly=true sum(All_Traffic.bytes_out) AS bytes_out 
+  FROM datamodel=Network_Traffic 
+  WHERE All_Traffic.action=allowed 
+  BY All_Traffic.src_ip, _time span=1h
+| `drop_dm_object_name("All_Traffic")`
+| eventstats avg(bytes_out) AS avg_bytes, stdev(bytes_out) AS stdev_bytes BY src_ip
+| eval zscore = (bytes_out - avg_bytes) / stdev_bytes
+| where zscore > 3
+| eval MB_transferred = round(bytes_out / 1024 / 1024, 2)
+| `map_notable_fields`</code></pre>
+                
+                <h4>Malware Execution</h4>
+                
+                <pre><code class="language-spl"># Suspicious Process Execution
+| tstats summariesonly=true count FROM datamodel=Endpoint.Processes 
+  WHERE Processes.process_name IN ("powershell.exe", "cmd.exe", "wscript.exe", "cscript.exe", "mshta.exe")
+    AND (Processes.process LIKE "%-enc%" OR Processes.process LIKE "%downloadstring%"
+         OR Processes.process LIKE "%bypass%" OR Processes.process LIKE "%-nop%")
+  BY Processes.user, Processes.dest, Processes.process_name, Processes.process
+| `drop_dm_object_name("Processes")`
+| `map_notable_fields`</code></pre>
+                
+                <h2 id="adaptive-response">Adaptive Response Actions</h2>
+                
+                <p>
+                    Actions triggered when correlation search returns results:
+                </p>
+                
+                <h3>Built-in Actions</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Purpose</th>
+                                <th>Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Notable Event</strong></td>
+                                <td>Create notable for analyst review</td>
+                                <td>Primary alert mechanism</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Risk Analysis</strong></td>
+                                <td>Add risk score to entity</td>
+                                <td>Risk-based alerting</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Send Email</strong></td>
+                                <td>Email notification</td>
+                                <td>Urgent alerts to team</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Run Script</strong></td>
+                                <td>Execute custom script</td>
+                                <td>Custom integrations</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Send to UBA</strong></td>
+                                <td>Enrich user analytics</td>
+                                <td>Behavioral analysis</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Phantom/SOAR</strong></td>
+                                <td>Trigger SOAR playbook</td>
+                                <td>Automated response</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Notable Event Configuration</h3>
+                
+                <pre><code class="language-text">NOTABLE EVENT SETTINGS:
+
+Title: Brute Force Attack - $user$ from $src$
+Description: User $user$ had $count$ failed login attempts from $src$ to $dest$
+
+Security Domain: access
+Severity: high
+
+Default Owner: unassigned
+Recommended Status: New
+
+Drilldown Searches:
+• Name: View All Authentication for User
+  Search: index=* sourcetype=WinEventLog:Security user=$user$ earliest=-24h
+  
+• Name: View Source IP Activity
+  Search: index=* src_ip=$src$ earliest=-24h
+
+Next Steps:
+1. Verify if user account is legitimate
+2. Check if source IP is known
+3. Review successful logins after failures
+4. Consider account lockout if attack ongoing</code></pre>
+                
+                <h2 id="throttling">Throttling and Suppression</h2>
+                
+                <h3>Correlation Search Throttling</h3>
+                
+                <pre><code class="language-text"># Prevent alert fatigue with throttling
+
+Throttle Settings:
+• Window Duration: 3600 (1 hour)
+• Fields to Group By: user, src
+• Suppress Results: Yes
+
+Effect: Only one notable event per user+src combination per hour,
+even if correlation search matches multiple times</code></pre>
+                
+                <h3>Within-Search Deduplication</h3>
+                
+                <pre><code class="language-spl"># Deduplicate within the search itself
+| tstats count FROM datamodel=Authentication 
+  WHERE Authentication.action=failure 
+  BY Authentication.user, Authentication.src
+| where count > 10
+| dedup user src    # Only one result per user+src
+| `map_notable_fields`</code></pre>
+                
+                <h2 id="scheduling">Scheduling Best Practices</h2>
+                
+                <pre><code class="language-text">SCHEDULING GUIDELINES:
+
+┌─────────────────────────────────────────────────────────┐
+│ Detection Type        │ Schedule    │ Time Range       │
+├───────────────────────┼─────────────┼──────────────────┤
+│ Real-time critical    │ Every 1m    │ -2m to -0m       │
+│ Near real-time        │ Every 5m    │ -6m to -1m       │
+│ Frequent monitoring   │ Every 15m   │ -16m to -1m      │
+│ Standard detection    │ Every 1h    │ -70m to -10m     │
+│ Daily aggregation     │ Daily @6am  │ -25h to -1h      │
+│ Weekly summary        │ Weekly      │ -8d to -1d       │
+└─────────────────────────────────────────────────────────┘
+
+KEY PRINCIPLES:
+• Overlap time ranges slightly to avoid gaps
+• Offset scheduling to spread load
+• Use -Xm to -Ym (not -Xm to now) to allow indexing delay
+• Consider data model acceleration build time</code></pre>
+                
+                <h3>Cron Expression Reference</h3>
+                
+                <pre><code class="language-text">Cron Format: minute hour day month day_of_week
+
+*/5 * * * *     Every 5 minutes
+0 * * * *       Every hour at :00
+*/15 * * * *    Every 15 minutes
+0 6 * * *       Daily at 6:00 AM
+0 0 * * 0       Weekly on Sunday at midnight
+30 */2 * * *    Every 2 hours at :30
+
+# Offset to spread load
+*/5 * * * *     Search A (0, 5, 10...)
+2-59/5 * * * *  Search B (2, 7, 12...)  
+4-59/5 * * * *  Search C (4, 9, 14...)</code></pre>
+                
+                <h2 id="testing-validation">Testing and Validation</h2>
+                
+                <h3>Testing Correlation Searches</h3>
+                
+                <pre><code class="language-spl"># Test the search logic without triggering actions
+# Step 1: Run search in Search app
+| tstats summariesonly=true count FROM datamodel=Authentication 
+  WHERE Authentication.action=failure 
+  BY Authentication.user, Authentication.src
+| where count > 10
+
+# Step 2: Add map_notable_fields to verify output
+| tstats summariesonly=true count FROM datamodel=Authentication 
+  WHERE Authentication.action=failure 
+  BY Authentication.user, Authentication.src
+| where count > 10
+| `map_notable_fields`
+| table *    # Review all fields
+
+# Step 3: Verify data model coverage
+| datamodel Authentication search
+| head 10
+
+# Step 4: Create test notable (optional)
+| makeresults
+| eval user="test_user", src="1.2.3.4", count=15
+| `map_notable_fields`
+| sendalert notable param.rule_title="Test Notable"</code></pre>
+                
+                <h3>Validation Checklist</h3>
+                
+                <pre><code class="language-text">CORRELATION SEARCH VALIDATION:
+
+□ Search returns expected results in testing
+□ Data model fields are populated correctly
+□ Time range covers appropriate window
+□ Schedule frequency matches detection need
+□ Throttling prevents alert fatigue
+□ Notable event fields are populated
+□ Drilldown searches work correctly
+□ MITRE ATT&CK mapping is accurate
+□ False positive rate is acceptable
+□ Performance impact is reasonable</code></pre>
+                
+                <h2 id="built-in-searches">Built-in Correlation Searches</h2>
+                
+                <p>
+                    ES includes 100+ pre-built correlation searches organized by security domain:
+                </p>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Domain</th>
+                                <th>Example Searches</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Access</strong></td>
+                                <td>Brute Force, Concurrent Logins, Default Account, Inactive Account</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Endpoint</strong></td>
+                                <td>Malware, Prohibited Process, Registry Change, Sysmon Alerts</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Network</strong></td>
+                                <td>Port Scanning, Protocol Anomaly, DNS Exfiltration, TOR Activity</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Threat</strong></td>
+                                <td>Threat Intelligence Matches, IOC Hits, Known Bad IP/Domain</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Audit</strong></td>
+                                <td>Audit Log Cleared, Policy Violation, Privilege Escalation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <pre><code class="language-spl"># List all correlation searches
+| rest /servicesNS/-/-/saved/searches
+| search action.correlationsearch.enabled=1
+| table title, search, cron_schedule, action.notable.param.severity</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Best Practice
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Don't enable all searches at once.</strong> Start with high-priority detections, validate and tune them, then gradually enable more. Focus on your specific threat landscape and data sources. A few well-tuned detections are better than hundreds of noisy ones.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"Walk me through creating a correlation search for detecting suspicious PowerShell activity."</strong><br><br>
+                            <strong>1. Define the detection logic:</strong> Look for PowerShell with encoded commands, download cradles, or bypass flags<br>
+                            <strong>2. Write the SPL:</strong> Use tstats against Endpoint.Processes data model, filter for powershell.exe with suspicious command line patterns<br>
+                            <strong>3. Configure schedule:</strong> Every 5 minutes, looking back 6 minutes with 1-minute offset<br>
+                            <strong>4. Set adaptive responses:</strong> Create notable event (high severity), add risk score (+20 to host)<br>
+                            <strong>5. Add context:</strong> Map to MITRE T1059.001 (PowerShell), add drilldowns to view full command and parent process<br>
+                            <strong>6. Configure throttling:</strong> Once per host per hour to prevent flooding<br>
+                            <strong>7. Test and tune:</strong> Run against historical data, identify false positives, add exclusions for known good activity
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Correlation searches are scheduled SPL searches that detect threats</li>
+                    <li>Use <code>tstats</code> with accelerated data models for performance</li>
+                    <li>Adaptive response actions include notable events, risk scores, and SOAR triggers</li>
+                    <li>Configure throttling to prevent alert fatigue</li>
+                    <li>Schedule with overlapping time ranges to avoid gaps</li>
+                    <li>Test thoroughly before enabling in production</li>
+                    <li>Start with high-priority detections and expand gradually</li>
+                    <li>Map to MITRE ATT&CK for coverage tracking</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="3-2-notable-events.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Notable Events</span>
+                        </div>
+                    </a>
+                    <a href="3-4-risk-based-alerting.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Risk-Based Alerting</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

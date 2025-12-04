@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Microsoft Sentinel Administration - Health monitoring, cost management, content hub, and operational best practices.">
+    <title>Sentinel Administration | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item active">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="6-1-automation-playbooks.html">Sentinel Security Ops</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Sentinel Administration</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Sentinel Administration</h1>
+                <p class="page-subtitle">Health monitoring, cost management, and operational maintenance</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Effective Sentinel administration ensures the platform delivers value while controlling costs. This chapter covers health monitoring, cost optimization, content management, and operational best practices.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="health-monitoring">Health Monitoring</h2>
+                
+                <h3>Data Connector Health</h3>
+                
+                <pre><code class="language-kql">// Check connector status
+SentinelHealth
+| where TimeGenerated > ago(24h)
+| where SentinelResourceType == "Data connector"
+| summarize 
+    LastStatus = arg_max(TimeGenerated, Status),
+    ErrorCount = countif(Status == "Failure")
+    by SentinelResourceName
+| project SentinelResourceName, Status = LastStatus, ErrorCount
+
+// Data ingestion by connector
+Usage
+| where TimeGenerated > ago(24h)
+| summarize TotalGB = sum(Quantity) / 1000 by Solution
+| sort by TotalGB desc
+
+// Detect ingestion gaps
+let ExpectedTables = dynamic(["SigninLogs", "SecurityEvent", "AzureActivity"]);
+ExpectedTables
+| mv-expand TableName = ExpectedTables to typeof(string)
+| join kind=leftouter (
+    union withsource=Table *
+    | where TimeGenerated > ago(1h)
+    | summarize LastEvent = max(TimeGenerated) by Table
+) on $left.TableName == $right.Table
+| extend MinutesSinceLastEvent = datetime_diff('minute', now(), LastEvent)
+| where MinutesSinceLastEvent > 30 or isnull(LastEvent)</code></pre>
+                
+                <h3>Analytics Rule Health</h3>
+                
+                <pre><code class="language-kql">// Rule execution status
+SentinelHealth
+| where TimeGenerated > ago(24h)
+| where SentinelResourceType == "Scheduled analytics rule"
+| summarize 
+    Runs = count(),
+    Failures = countif(Status == "Failure"),
+    LastRun = max(TimeGenerated)
+    by SentinelResourceName
+| extend FailureRate = round(Failures * 100.0 / Runs, 2)
+| where FailureRate > 10
+| sort by FailureRate desc
+
+// Rule with no incidents (may need review)
+let RulesWithIncidents = SecurityIncident
+| where TimeGenerated > ago(30d)
+| mv-expand AlertId = AlertIds
+| join kind=inner (SecurityAlert | project AlertId = SystemAlertId, AlertName) on AlertId
+| distinct AlertName;
+resources
+| where type == "microsoft.securityinsights/alertrules"
+| where properties.enabled == true
+| extend RuleName = name
+| where RuleName !in (RulesWithIncidents)</code></pre>
+                
+                <h2 id="cost-management">Cost Management</h2>
+                
+                <pre><code class="language-kql">// Daily ingestion trend
+Usage
+| where TimeGenerated > ago(30d)
+| summarize DailyGB = sum(Quantity) / 1000 by bin(TimeGenerated, 1d)
+| render timechart
+
+// Cost by data type
+Usage
+| where TimeGenerated > ago(30d)
+| where IsBillable == true
+| summarize BillableGB = sum(Quantity) / 1000 by DataType
+| sort by BillableGB desc
+| take 10
+
+// Identify high-volume sources
+Usage
+| where TimeGenerated > ago(7d)
+| summarize GB = sum(Quantity) / 1000 by DataType, Computer
+| top 20 by GB
+
+// Free vs billable data
+Usage
+| where TimeGenerated > ago(30d)
+| summarize 
+    BillableGB = sumif(Quantity, IsBillable == true) / 1000,
+    FreeGB = sumif(Quantity, IsBillable == false) / 1000
+| extend TotalGB = BillableGB + FreeGB
+| extend BillablePct = round(BillableGB * 100 / TotalGB, 1)</code></pre>
+                
+                <h3>Cost Optimization Strategies</h3>
+                
+                <pre><code class="language-text">COST OPTIMIZATION:
+
+1. DATA COLLECTION RULES (DCR)
+   • Filter events at source
+   • Collect only needed EventIDs
+   • Transform to reduce field count
+
+2. BASIC LOGS
+   • Use for verbose, rarely queried data
+   • ContainerLog, custom verbose logs
+   • ~67% cost reduction
+
+3. COMMITMENT TIERS
+   • 100 GB/day: 16% discount
+   • 200 GB/day: 23% discount
+   • 500 GB/day: 32% discount
+
+4. FREE DATA SOURCES
+   • Azure Activity Logs
+   • Microsoft Defender XDR alerts
+   • Office 365 management logs
+
+5. RETENTION OPTIMIZATION
+   • Archive data after 90 days
+   • Set per-table retention
+   • Use search jobs for archived data</code></pre>
+                
+                <h2 id="content-hub">Content Hub Management</h2>
+                
+                <pre><code class="language-text">CONTENT HUB:
+
+Sentinel → Content Hub
+
+SOLUTION TYPES:
+• Data connectors
+• Analytics rules
+• Workbooks
+• Hunting queries
+• Playbooks
+• Watchlists
+
+MANAGING CONTENT:
+1. Install solutions for your data sources
+2. Review installed rules before enabling
+3. Customize templates for your environment
+4. Keep content updated (check for updates)
+
+RECOMMENDED SOLUTIONS:
+• Microsoft Entra ID (Azure AD)
+• Microsoft Defender XDR
+• Azure Activity
+• Windows Security Events
+• Threat Intelligence
+• UEBA Essentials
+• MITRE ATT&CK</code></pre>
+                
+                <h2 id="maintenance">Regular Maintenance</h2>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Maintenance Checklist
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Daily:</strong><br>
+                            □ Review data connector health<br>
+                            □ Check for failed playbook runs<br>
+                            □ Monitor incident queue<br><br>
+                            
+                            <strong>Weekly:</strong><br>
+                            □ Review analytics rule performance<br>
+                            □ Check ingestion volume trends<br>
+                            □ Update watchlists<br>
+                            □ Review high false-positive rules<br><br>
+                            
+                            <strong>Monthly:</strong><br>
+                            □ Review and tune analytics rules<br>
+                            □ Update Content Hub solutions<br>
+                            □ Optimize costs (Basic Logs, retention)<br>
+                            □ Review RBAC assignments<br><br>
+                            
+                            <strong>Quarterly:</strong><br>
+                            □ Detection coverage review (MITRE)<br>
+                            □ Capacity planning<br>
+                            □ Playbook effectiveness review<br>
+                            □ Documentation update
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="backup">Backup and Recovery</h2>
+                
+                <pre><code class="language-text">WHAT TO BACKUP:
+
+ANALYTICS RULES:
+• Export as ARM templates
+• Store in source control (Git)
+• Use Azure DevOps or GitHub Actions
+
+PLAYBOOKS:
+• Logic Apps export as ARM
+• Version control workflows
+
+WORKBOOKS:
+• Export as JSON/ARM
+• Store in repository
+
+WATCHLISTS:
+• Export as CSV
+• Schedule regular exports
+
+AUTOMATION RULES:
+• Export via API or ARM</code></pre>
+                
+                <h3>Export Analytics Rules</h3>
+                
+                <pre><code class="language-bash"># Export all analytics rules via Azure CLI
+az sentinel alert-rule list \
+    --resource-group rg-sentinel \
+    --workspace-name law-sentinel \
+    --output json > analytics_rules_backup.json
+
+# Export via REST API (PowerShell)
+$rules = Invoke-AzRestMethod -Path "/subscriptions/{sub}/resourceGroups/{rg}/providers/Microsoft.OperationalInsights/workspaces/{ws}/providers/Microsoft.SecurityInsights/alertRules?api-version=2023-02-01" -Method GET
+$rules.Content | Out-File "analytics_rules.json"</code></pre>
+                
+                <h2 id="troubleshooting">Troubleshooting</h2>
+                
+                <pre><code class="language-text">COMMON ISSUES:
+
+ISSUE: No data in table
+─────────────────────
+1. Check connector status
+2. Verify permissions
+3. Check DCR configuration
+4. Review agent health (Heartbeat table)
+
+ISSUE: Analytics rule not triggering
+─────────────────────
+1. Run query manually
+2. Check schedule and lookback
+3. Verify entity mapping
+4. Check SentinelHealth for errors
+
+ISSUE: Playbook failing
+─────────────────────
+1. Check Logic App run history
+2. Verify managed identity permissions
+3. Review connector authentication
+4. Check API quotas/throttling
+
+ISSUE: High costs
+─────────────────────
+1. Identify high-volume data types
+2. Review DCR filters
+3. Convert to Basic Logs
+4. Check for unexpected data sources</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"How do you ensure Sentinel is performing optimally?"</strong><br><br>
+                            <strong>1. Health Monitoring:</strong> Check SentinelHealth table for connector and rule status, monitor data ingestion gaps<br>
+                            <strong>2. Cost Management:</strong> Track ingestion volume, use Basic Logs for verbose data, leverage commitment tiers<br>
+                            <strong>3. Detection Quality:</strong> Review false positive rates, tune rules, maintain MITRE coverage<br>
+                            <strong>4. Automation:</strong> Monitor playbook success rates, verify permissions<br>
+                            <strong>5. Regular Maintenance:</strong> Update content, refresh watchlists, review access controls<br>
+                            <strong>6. Documentation:</strong> Keep runbooks current, document customizations
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Monitor SentinelHealth table for connector and rule status</li>
+                    <li>Track costs via Usage table</li>
+                    <li>Optimize with DCRs, Basic Logs, and commitment tiers</li>
+                    <li>Use Content Hub for managed solutions</li>
+                    <li>Perform regular maintenance: daily, weekly, monthly</li>
+                    <li>Backup configurations via ARM templates and source control</li>
+                </ul>
+                
+                <div class="info-box tip">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">🎉</span>
+                        Section Complete
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Congratulations! You've completed <strong>Section 6: Sentinel Security Operations</strong>. You now understand automation, watchlists, threat intelligence, UEBA, and administration. Continue to <a href="7-1-splunk-vs-sentinel.html">Section 7: SIEM Comparison</a> to understand the differences between Splunk and Sentinel.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="page-navigation">
+                    <a href="6-3-ueba.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">UEBA</span>
+                        </div>
+                    </a>
+                    <a href="7-1-splunk-vs-sentinel.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Splunk vs Sentinel</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

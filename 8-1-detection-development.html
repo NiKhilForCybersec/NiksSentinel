@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detection Development - Building effective security detections with MITRE ATT&CK mapping, testing, and tuning.">
+    <title>Detection Development | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item active">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="8-1-detection-development.html">Detection Engineering</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Detection Development</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Detection Development</h1>
+                <p class="page-subtitle">Building effective security detections from concept to production</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Detection engineering is the practice of developing, testing, and maintaining security detections. This chapter covers the detection development lifecycle, writing effective detection logic, and detection documentation best practices.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="detection-lifecycle">Detection Development Lifecycle</h2>
+                
+                <pre><code class="language-text">DETECTION LIFECYCLE:
+
+1. IDENTIFY THREAT
+   │ • Threat intelligence
+   │ • Incident learnings
+   │ • Coverage gaps (MITRE)
+   │ • Red team findings
+   ▼
+2. RESEARCH
+   │ • Understand attack technique
+   │ • Identify data sources needed
+   │ • Research existing detections
+   │ • Determine detection approach
+   ▼
+3. DEVELOP
+   │ • Write detection query
+   │ • Define thresholds
+   │ • Create entity mappings
+   │ • Document the detection
+   ▼
+4. TEST
+   │ • Validate with attack simulation
+   │ • Check for false positives
+   │ • Performance testing
+   │ • Peer review
+   ▼
+5. DEPLOY
+   │ • Deploy to production
+   │ • Configure alerting
+   │ • Set up automation
+   │ • Update runbooks
+   ▼
+6. MONITOR & TUNE
+   • Track effectiveness
+   • Reduce false positives
+   • Update as threats evolve
+   • Deprecate when obsolete</code></pre>
+                
+                <h2 id="detection-types">Detection Types</h2>
+                
+                <pre><code class="language-text">DETECTION APPROACHES:
+
+SIGNATURE-BASED (Known Bad):
+─────────────────────────────
+• Match specific IOCs (IPs, hashes, domains)
+• Known malware patterns
+• Specific command patterns
+• High confidence, limited scope
+
+Example: Detect known C2 IP
+| where IPAddress in (ThreatIntel_IPs)
+
+BEHAVIORAL (Suspicious Activity):
+─────────────────────────────
+• Anomalous patterns
+• Unusual sequences
+• Threshold violations
+• Broader coverage, more tuning needed
+
+Example: Unusual login time
+| where hour < 6 or hour > 22
+| where not user in (night_shift_users)
+
+ANOMALY-BASED (Deviation from Normal):
+─────────────────────────────
+• Statistical outliers
+• Machine learning models
+• Baseline deviations
+• Catches unknown threats, higher FP rate
+
+Example: Login count anomaly
+| make-series logins = count() on TimeGenerated step 1h
+| extend anomalies = series_decompose_anomalies(logins)</code></pre>
+                
+                <h2 id="detection-logic">Writing Detection Logic</h2>
+                
+                <h3>Detection Components</h3>
+                
+                <pre><code class="language-text">DETECTION STRUCTURE:
+
+┌─────────────────────────────────────────────────────────┐
+│ 1. DATA SOURCE                                          │
+│    What logs/events does this detection need?           │
+│    SecurityEvent, SigninLogs, DeviceProcessEvents       │
+└─────────────────────────────────────────────────────────┘
+                    ▼
+┌─────────────────────────────────────────────────────────┐
+│ 2. FILTER CRITERIA                                      │
+│    What specific events indicate the threat?            │
+│    EventID, process name, command line patterns         │
+└─────────────────────────────────────────────────────────┘
+                    ▼
+┌─────────────────────────────────────────────────────────┐
+│ 3. AGGREGATION/THRESHOLD                               │
+│    How much activity triggers the alert?                │
+│    Count > 10, distinct count > 5, within timeframe    │
+└─────────────────────────────────────────────────────────┘
+                    ▼
+┌─────────────────────────────────────────────────────────┐
+│ 4. EXCLUSIONS                                           │
+│    What legitimate activity should be excluded?         │
+│    Known IPs, service accounts, approved processes      │
+└─────────────────────────────────────────────────────────┘
+                    ▼
+┌─────────────────────────────────────────────────────────┐
+│ 5. ENRICHMENT                                           │
+│    What context helps investigation?                    │
+│    User info, asset criticality, threat intel          │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h3>Example: Building a Detection</h3>
+                
+                <pre><code class="language-text">THREAT: Password Spray Attack
+
+RESEARCH:
+• Attack pattern: Many failed logins across multiple users from single IP
+• Data source: Sign-in logs (Azure AD) or Security Events (Windows)
+• Key indicators: ResultType != 0, many unique users, single source IP
+• Threshold: 5+ targeted users within 10 minutes is suspicious
+
+DETECTION LOGIC (KQL):
+</code></pre>
+
+<pre><code class="language-kql">// Password Spray Detection
+let TimeWindow = 10m;
+let UserThreshold = 5;
+let FailureThreshold = 10;
+// Exclusions
+let ExcludedIPs = _GetWatchlist('approved_ips') | project IPAddress;
+let ServiceAccounts = _GetWatchlist('service_accounts') | project UserPrincipalName;
+// Detection query
+SigninLogs
+| where TimeGenerated > ago(1h)
+| where ResultType != 0                          // Failed logins
+| where ResultType == "50126"                    // Invalid password
+| where IPAddress !in (ExcludedIPs)              // Exclude known IPs
+| where UserPrincipalName !in (ServiceAccounts)  // Exclude service accounts
+| summarize 
+    TargetedUsers = dcount(UserPrincipalName),
+    UserList = make_set(UserPrincipalName, 10),
+    TotalAttempts = count(),
+    FirstAttempt = min(TimeGenerated),
+    LastAttempt = max(TimeGenerated)
+    by IPAddress, bin(TimeGenerated, TimeWindow)
+| where TargetedUsers >= UserThreshold
+| where TotalAttempts >= FailureThreshold
+| extend Description = strcat("Password spray detected from ", IPAddress, 
+         " targeting ", TargetedUsers, " users with ", TotalAttempts, " attempts")
+| project TimeGenerated, IPAddress, TargetedUsers, UserList, TotalAttempts, Description</code></pre>
+                
+                <h2 id="detection-patterns">Common Detection Patterns</h2>
+                
+                <pre><code class="language-text">PATTERN 1: THRESHOLD EXCEEDED
+─────────────────────────────
+| summarize count() by field
+| where count_ > threshold
+
+Use: Brute force, scanning, mass operations
+
+
+PATTERN 2: FIRST TIME OCCURRENCE
+─────────────────────────────
+let Historical = Table | where TimeGenerated < ago(24h) | distinct field;
+Table
+| where TimeGenerated > ago(24h)
+| where field !in (Historical)
+
+Use: New user, new IP, new process
+
+
+PATTERN 3: SEQUENCE OF EVENTS
+─────────────────────────────
+Table
+| where Activity in ("EventA", "EventB", "EventC")
+| summarize Events = make_list(Activity) by User
+| where Events has_all ("EventA", "EventB", "EventC")
+
+Use: Kill chain, multi-stage attacks
+
+
+PATTERN 4: TIME-BASED ANOMALY
+─────────────────────────────
+| extend Hour = datetime_part("hour", TimeGenerated)
+| where Hour < 6 or Hour > 22
+| where DayOfWeek in (0, 6)  // Weekend
+
+Use: Off-hours activity, unusual timing
+
+
+PATTERN 5: PEER GROUP OUTLIER
+─────────────────────────────
+let PeerGroup = Users | where Department == "Finance";
+Table
+| join kind=inner PeerGroup on UserPrincipalName
+| summarize actions = dcount(Action) by UserPrincipalName
+| where actions > avg(actions) * 3
+
+Use: Insider threat, compromised accounts</code></pre>
+                
+                <h2 id="documentation">Detection Documentation</h2>
+                
+                <pre><code class="language-text">DETECTION DOCUMENTATION TEMPLATE:
+
+┌─────────────────────────────────────────────────────────┐
+│ DETECTION: Password Spray Attack                       │
+├─────────────────────────────────────────────────────────┤
+│ ID: DET-2024-001                                       │
+│ Author: Security Team                                  │
+│ Created: 2024-01-15                                    │
+│ Last Updated: 2024-03-01                               │
+│ Status: Production                                      │
+├─────────────────────────────────────────────────────────┤
+│ MITRE ATT&CK:                                          │
+│ • Tactic: Credential Access (TA0006)                   │
+│ • Technique: Brute Force (T1110)                       │
+│ • Sub-technique: Password Spraying (T1110.003)         │
+├─────────────────────────────────────────────────────────┤
+│ DESCRIPTION:                                           │
+│ Detects password spray attacks where an attacker       │
+│ attempts common passwords against many accounts        │
+│ from a single source IP.                               │
+├─────────────────────────────────────────────────────────┤
+│ DATA SOURCES:                                          │
+│ • SigninLogs (Azure AD)                                │
+│ • Required fields: IPAddress, UserPrincipalName,       │
+│   ResultType, TimeGenerated                            │
+├─────────────────────────────────────────────────────────┤
+│ DETECTION LOGIC:                                       │
+│ Alert when a single IP has failed logins to 5+         │
+│ unique users within 10 minutes                         │
+├─────────────────────────────────────────────────────────┤
+│ FALSE POSITIVE SOURCES:                                │
+│ • Shared NAT/proxy IPs                                 │
+│ • Load balancer health checks                          │
+│ • Legitimate password resets                           │
+├─────────────────────────────────────────────────────────┤
+│ RECOMMENDED ACTIONS:                                   │
+│ 1. Verify source IP reputation                         │
+│ 2. Check if targeted accounts are compromised          │
+│ 3. Block IP at firewall if confirmed malicious         │
+│ 4. Reset passwords for targeted accounts               │
+├─────────────────────────────────────────────────────────┤
+│ REFERENCES:                                            │
+│ • https://attack.mitre.org/techniques/T1110/003/       │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Detection Development Best Practices
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Quality:</strong><br>
+                            □ Start with threat research, not query writing<br>
+                            □ Use variables for thresholds (easy tuning)<br>
+                            □ Include exclusion lists from day one<br>
+                            □ Add context for faster investigation<br><br>
+                            
+                            <strong>Performance:</strong><br>
+                            □ Filter early in the query (reduce data)<br>
+                            □ Avoid searching all tables (specify source)<br>
+                            □ Test query performance before deployment<br>
+                            □ Use appropriate time windows<br><br>
+                            
+                            <strong>Maintenance:</strong><br>
+                            □ Document everything<br>
+                            □ Version control detection code<br>
+                            □ Review and update quarterly<br>
+                            □ Track false positive feedback
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"Walk me through how you would develop a new detection rule."</strong><br><br>
+                            <strong>1. Identify the Threat:</strong> Start with threat intelligence, incident findings, or coverage gaps. Understand what attack technique I'm trying to detect.<br>
+                            <strong>2. Research:</strong> Study the attack, identify required data sources, review existing detections (SIGMA, vendor content).<br>
+                            <strong>3. Develop:</strong> Write the query with clear thresholds, include exclusions for known false positives, add entity mappings for investigation.<br>
+                            <strong>4. Test:</strong> Validate with attack simulation (atomic tests), run against historical data, check performance.<br>
+                            <strong>5. Document:</strong> Create detection documentation with MITRE mapping, response procedures, and false positive guidance.<br>
+                            <strong>6. Deploy & Monitor:</strong> Enable in production, track effectiveness, tune based on feedback.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Detection development follows a lifecycle: identify, research, develop, test, deploy, monitor</li>
+                    <li>Three detection approaches: signature, behavioral, anomaly</li>
+                    <li>Detection structure: data source, filter, threshold, exclusions, enrichment</li>
+                    <li>Common patterns: threshold, first-time, sequence, time-based, peer outlier</li>
+                    <li>Documentation is critical for maintenance and SOC usage</li>
+                    <li>Always include exclusion lists for tuning</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="7-3-migration-considerations.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Migration Guide</span>
+                        </div>
+                    </a>
+                    <a href="8-2-mitre-attack.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">MITRE ATT&CK</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Log Parsing and Normalization - Common log formats, field extraction techniques, timestamp normalization, data enrichment, and common information models.">
+    <title>Log Parsing & Normalization | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+                <div class="sidebar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search docs... (Ctrl+K)" aria-label="Search documentation">
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item active">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="1-1-introduction-to-siem.html">SIEM Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Log Parsing & Normalization</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Log Parsing & Normalization</h1>
+                <p class="page-subtitle">Transforming raw log data into structured, searchable information through parsing, field extraction, and normalization</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Raw logs come in hundreds of different formats. Before the SIEM can correlate and analyze this data, it must parse logs into fields, normalize timestamps, and map data to common schemas. This chapter covers log formats, parsing techniques, and normalization strategies that enable effective cross-source analysis.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="common-formats">Common Log Formats</h2>
+                
+                <p>
+                    Understanding log formats is essential for effective parsing. Here are the most common formats you'll encounter:
+                </p>
+                
+                <h3>Syslog (RFC 5424)</h3>
+                
+                <p>
+                    The standard format for network devices, Linux systems, and many applications:
+                </p>
+                
+                <pre><code class="language-text"># RFC 5424 format
+&lt;priority&gt;version timestamp hostname app-name procid msgid structured-data msg
+
+# Example
+&lt;134&gt;1 2024-01-15T14:30:00.000Z firewall01 paloalto - - - TRAFFIC,allow,192.168.1.50,8.8.8.8,53,dns
+
+# Priority breakdown: facility * 8 + severity
+# 134 = 16 (local0) * 8 + 6 (informational)
+
+# Legacy BSD format (RFC 3164) - still common
+&lt;134&gt;Jan 15 14:30:00 firewall01 paloalto: TRAFFIC,allow,192.168.1.50,8.8.8.8</code></pre>
+                
+                <h3>Common Event Format (CEF)</h3>
+                
+                <p>
+                    Developed by ArcSight, widely adopted for security devices:
+                </p>
+                
+                <pre><code class="language-text"># CEF format
+CEF:Version|Device Vendor|Device Product|Device Version|Signature ID|Name|Severity|Extension
+
+# Example
+CEF:0|Palo Alto Networks|PAN-OS|10.0|TRAFFIC|traffic|3|src=192.168.1.50 dst=8.8.8.8 spt=54321 dpt=53 proto=UDP act=allow
+
+# Key-value pairs in extension
+src = source address
+dst = destination address  
+spt = source port
+dpt = destination port
+act = action taken
+cs1-cs6 = custom strings
+cn1-cn3 = custom numbers</code></pre>
+                
+                <h3>Log Event Extended Format (LEEF)</h3>
+                
+                <p>
+                    IBM QRadar's format, similar to CEF:
+                </p>
+                
+                <pre><code class="language-text"># LEEF format
+LEEF:Version|Vendor|Product|Version|EventID|delimiter|Extension
+
+# Example (tab-delimited)
+LEEF:1.0|Microsoft|MSExchange|15.0|12345|    src=10.0.0.1    dst=10.0.0.2    sev=5</code></pre>
+                
+                <h3>JSON</h3>
+                
+                <p>
+                    Increasingly common for cloud services and modern applications:
+                </p>
+                
+                <pre><code class="language-json">{
+  "timestamp": "2024-01-15T14:30:00.000Z",
+  "eventType": "authentication",
+  "outcome": "success",
+  "user": {
+    "name": "jsmith",
+    "domain": "CORP"
+  },
+  "source": {
+    "ip": "192.168.1.50",
+    "hostname": "workstation01"
+  },
+  "target": {
+    "service": "SharePoint",
+    "resource": "/sites/finance"
+  }
+}</code></pre>
+                
+                <h3>Windows Event Log (EVTX/XML)</h3>
+                
+                <pre><code class="language-xml">&lt;Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event"&gt;
+  &lt;System&gt;
+    &lt;Provider Name="Microsoft-Windows-Security-Auditing" Guid="{...}"/&gt;
+    &lt;EventID&gt;4624&lt;/EventID&gt;
+    &lt;TimeCreated SystemTime="2024-01-15T14:30:00.000Z"/&gt;
+    &lt;Computer&gt;DC01.corp.local&lt;/Computer&gt;
+  &lt;/System&gt;
+  &lt;EventData&gt;
+    &lt;Data Name="TargetUserName"&gt;jsmith&lt;/Data&gt;
+    &lt;Data Name="TargetDomainName"&gt;CORP&lt;/Data&gt;
+    &lt;Data Name="LogonType"&gt;10&lt;/Data&gt;
+    &lt;Data Name="IpAddress"&gt;192.168.1.50&lt;/Data&gt;
+  &lt;/EventData&gt;
+&lt;/Event&gt;</code></pre>
+                
+                <h3>W3C Extended Log Format</h3>
+                
+                <p>
+                    Common for web servers (IIS, Apache) and proxies:
+                </p>
+                
+                <pre><code class="language-text">#Fields: date time s-ip cs-method cs-uri-stem cs-uri-query s-port cs-username c-ip cs(User-Agent) sc-status sc-bytes cs-bytes time-taken
+2024-01-15 14:30:00 192.168.1.10 GET /api/users - 443 jsmith 10.0.0.50 Mozilla/5.0 200 1234 567 125</code></pre>
+                
+                <h2 id="field-extraction">Field Extraction Techniques</h2>
+                
+                <p>
+                    Field extraction transforms raw log text into structured key-value pairs. The technique depends on the log format:
+                </p>
+                
+                <h3>Delimiter-Based Extraction</h3>
+                
+                <p>
+                    For logs with consistent separators (CSV, pipe-delimited):
+                </p>
+                
+                <pre><code class="language-spl"># Splunk - CSV extraction
+| rex field=_raw "^(?P&lt;timestamp&gt;[^,]+),(?P&lt;action&gt;[^,]+),(?P&lt;src_ip&gt;[^,]+),(?P&lt;dst_ip&gt;[^,]+)"
+
+# Or using automatic field extraction
+| makemv delim="," _raw
+| eval timestamp=mvindex(_raw,0), action=mvindex(_raw,1)</code></pre>
+                
+                <pre><code class="language-kql">// KQL - Split by delimiter
+RawData
+| extend ParsedFields = split(RawData, ",")
+| extend Timestamp = ParsedFields[0], 
+         Action = ParsedFields[1],
+         SourceIP = ParsedFields[2]</code></pre>
+                
+                <h3>Regular Expression Extraction</h3>
+                
+                <p>
+                    For complex or irregular formats:
+                </p>
+                
+                <pre><code class="language-spl"># Splunk rex command
+| rex field=_raw "src=(?P&lt;src_ip&gt;\d+\.\d+\.\d+\.\d+)"
+| rex field=_raw "user=(?P&lt;username&gt;[^\s]+)"
+| rex field=_raw "action=(?P&lt;action&gt;\w+)"
+
+# Named capture groups become fields</code></pre>
+                
+                <pre><code class="language-kql">// KQL extract/parse
+Syslog
+| parse SyslogMessage with * "src=" SourceIP:string " " *
+| parse SyslogMessage with * "user=" Username:string " " *
+
+// Using regex
+| extend SourceIP = extract(@"src=(\d+\.\d+\.\d+\.\d+)", 1, SyslogMessage)</code></pre>
+                
+                <h3>Key-Value Pair Extraction</h3>
+                
+                <p>
+                    For formats like CEF with key=value patterns:
+                </p>
+                
+                <pre><code class="language-spl"># Splunk - automatic KV extraction
+| kvdelim
+| table src, dst, spt, dpt, act
+
+# Or explicit
+| rex field=_raw "(?P&lt;key&gt;\w+)=(?P&lt;value&gt;[^\s]+)" max_match=0</code></pre>
+                
+                <pre><code class="language-kql">// KQL - parse_kv for key=value
+CommonSecurityLog
+| extend ParsedExtension = parse_kv(AdditionalExtensions, "=", " ")
+| extend SourceIP = tostring(ParsedExtension.src)</code></pre>
+                
+                <h3>JSON Extraction</h3>
+                
+                <pre><code class="language-spl"># Splunk - automatic JSON parsing
+| spath
+| table timestamp, eventType, user.name, source.ip
+
+# Extract specific fields
+| spath input=_raw output=user_name path=user.name</code></pre>
+                
+                <pre><code class="language-kql">// KQL - JSON parsing
+CustomLogs
+| extend ParsedData = parse_json(RawData)
+| extend UserName = tostring(ParsedData.user.name),
+         SourceIP = tostring(ParsedData.source.ip)</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Best Practice
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Index-time vs Search-time extraction:</strong> Extract frequently-searched fields at index time for better performance (Splunk props.conf/transforms.conf). Extract rarely-used fields at search time to save storage. In Sentinel, use Data Collection Rules (DCR) transformations for index-time parsing.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="timestamp-normalization">Timestamp Normalization</h2>
+                
+                <p>
+                    Accurate timestamps are critical for event correlation. Logs arrive with various timestamp formats that must be normalized:
+                </p>
+                
+                <h3>Common Timestamp Formats</h3>
+                
+                <pre><code class="language-text"># ISO 8601 (preferred)
+2024-01-15T14:30:00.000Z
+2024-01-15T14:30:00+00:00
+
+# RFC 2822
+Mon, 15 Jan 2024 14:30:00 +0000
+
+# Unix Epoch
+1705329000 (seconds)
+1705329000000 (milliseconds)
+
+# Syslog
+Jan 15 14:30:00 (no year!)
+
+# US format
+01/15/2024 2:30:00 PM
+
+# European format
+15/01/2024 14:30:00
+
+# Windows FileTime
+133502658000000000 (100-nanosecond intervals since 1601)</code></pre>
+                
+                <h3>Timestamp Parsing</h3>
+                
+                <pre><code class="language-spl"># Splunk - props.conf
+[source::firewall]
+TIME_FORMAT = %Y-%m-%dT%H:%M:%S.%3N%Z
+MAX_TIMESTAMP_LOOKAHEAD = 30
+TIME_PREFIX = timestamp=
+TZ = UTC
+
+# Common strftime codes:
+# %Y = 4-digit year, %m = month, %d = day
+# %H = 24-hour, %M = minute, %S = second
+# %3N = milliseconds, %Z = timezone name</code></pre>
+                
+                <pre><code class="language-kql">// KQL - timestamp parsing
+RawData
+| extend EventTime = todatetime(extract(@"timestamp=([^\s]+)", 1, RawData))
+
+// Handle epoch timestamps
+| extend EventTime = unixtime_seconds_todatetime(toint(EpochTimestamp))
+
+// Handle multiple formats
+| extend EventTime = coalesce(
+    todatetime(Timestamp1),
+    todatetime(Timestamp2),
+    now()
+)</code></pre>
+                
+                <div class="info-box warning">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">⚠️</span>
+                        Warning
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Timezone issues cause correlation failures.</strong> Always normalize to UTC. Watch for logs without timezone info (like syslog without year). Ensure NTP is configured on all log sources. A 1-hour timezone error means your correlation rules won't match related events.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="data-enrichment">Data Enrichment Strategies</h2>
+                
+                <p>
+                    Enrichment adds context to events, making them more actionable:
+                </p>
+                
+                <h3>Common Enrichment Sources</h3>
+                
+                <ul>
+                    <li><strong>Asset database</strong> - Hostname, owner, criticality, business unit</li>
+                    <li><strong>Identity data</strong> - User's department, manager, risk score</li>
+                    <li><strong>Threat intelligence</strong> - IOC reputation, threat actor attribution</li>
+                    <li><strong>GeoIP</strong> - Country, city, ASN from IP addresses</li>
+                    <li><strong>WHOIS/DNS</strong> - Domain registration, DNS resolution</li>
+                </ul>
+                
+                <h3>Enrichment Implementation</h3>
+                
+                <pre><code class="language-spl"># Splunk - Lookup enrichment
+| lookup asset_inventory ip AS src_ip OUTPUT hostname, owner, criticality
+| lookup threat_intel ip AS src_ip OUTPUT threat_score, threat_category
+| iplocation src_ip
+| table _time, src_ip, hostname, owner, Country, threat_score</code></pre>
+                
+                <pre><code class="language-kql">// KQL - Enrichment with externaldata or watchlists
+let AssetInventory = externaldata(IPAddress:string, Hostname:string, Owner:string, Criticality:string)
+    [@"https://storage.blob.core.windows.net/lookups/assets.csv"] with (format="csv");
+SecurityEvent
+| join kind=leftouter (AssetInventory) on $left.IpAddress == $right.IPAddress
+| extend GeoInfo = geo_info_from_ip_address(IpAddress)
+| extend Country = tostring(GeoInfo.country)</code></pre>
+                
+                <div class="info-box tip">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💡</span>
+                        Enrichment Timing
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Index-time enrichment:</strong> Adds fields permanently, great for stable data (GeoIP, asset criticality). Increases storage.<br><br>
+                            <strong>Search-time enrichment:</strong> Lookups applied during queries. More flexible, always current data, but slower searches.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="common-information-model">Common Information Model (CIM)</h2>
+                
+                <p>
+                    Data models normalize diverse log sources into consistent schemas, enabling vendor-agnostic detection rules:
+                </p>
+                
+                <h3>Splunk CIM</h3>
+                
+                <p>
+                    Splunk's Common Information Model provides standardized field names across data sources:
+                </p>
+                
+                <pre><code class="language-text"># CIM Authentication Data Model
+action          = success, failure
+app             = application name
+dest            = destination host
+src             = source address
+user            = username
+src_user        = source user (for privilege escalation)
+signature       = detection rule name
+
+# Example: Same query works for Windows, Linux, Okta
+| datamodel Authentication Successful_Authentication search
+| stats count by user, src, dest</code></pre>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>CIM Data Model</th>
+                                <th>Use Cases</th>
+                                <th>Key Fields</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Authentication</strong></td>
+                                <td>Login success/failure</td>
+                                <td>user, src, dest, action, app</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Network Traffic</strong></td>
+                                <td>Firewall, flow data</td>
+                                <td>src_ip, dest_ip, src_port, dest_port, action</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Endpoint</strong></td>
+                                <td>Process, file events</td>
+                                <td>process, parent_process, user, file_path</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Web</strong></td>
+                                <td>Proxy, web server</td>
+                                <td>url, http_method, status, user_agent</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Malware</strong></td>
+                                <td>AV, EDR alerts</td>
+                                <td>signature, file_name, file_hash, action</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Microsoft Sentinel ASIM</h3>
+                
+                <p>
+                    Advanced Security Information Model provides similar normalization for Sentinel:
+                </p>
+                
+                <pre><code class="language-kql">// ASIM - Normalized authentication query
+imAuthentication
+| where EventResult == "Failure"
+| summarize FailedAttempts = count() by TargetUsername, SrcIpAddr, bin(TimeGenerated, 5m)
+| where FailedAttempts > 5
+
+// This query works across:
+// - Windows Security Events
+// - Azure AD Sign-in Logs
+// - Linux auth.log
+// - AWS CloudTrail
+// Any source with an ASIM parser</code></pre>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ASIM Schema</th>
+                                <th>Sentinel Tables</th>
+                                <th>Key Fields</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Authentication</strong></td>
+                                <td>SecurityEvent, SigninLogs</td>
+                                <td>TargetUsername, SrcIpAddr, EventResult</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Network Session</strong></td>
+                                <td>CommonSecurityLog, AzureNetworkAnalytics</td>
+                                <td>SrcIpAddr, DstIpAddr, DstPortNumber</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Process Event</strong></td>
+                                <td>SecurityEvent, DeviceProcessEvents</td>
+                                <td>Process, ParentProcess, CommandLine</td>
+                            </tr>
+                            <tr>
+                                <td><strong>DNS</strong></td>
+                                <td>DnsEvents, various</td>
+                                <td>Query, QueryType, ResponseCode</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Web Session</strong></td>
+                                <td>CommonSecurityLog (proxy)</td>
+                                <td>Url, HttpRequestMethod, HttpStatusCode</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>OCSF (Open Cybersecurity Schema Framework)</h3>
+                
+                <p>
+                    Emerging industry standard for security data normalization:
+                </p>
+                
+                <pre><code class="language-json">// OCSF Authentication event example
+{
+  "class_uid": 3002,
+  "class_name": "Authentication",
+  "activity_id": 1,
+  "activity_name": "Logon",
+  "status_id": 1,
+  "status": "Success",
+  "time": 1705329000000,
+  "actor": {
+    "user": {
+      "name": "jsmith",
+      "uid": "S-1-5-21-..."
+    }
+  },
+  "src_endpoint": {
+    "ip": "192.168.1.50",
+    "hostname": "workstation01"
+  },
+  "dst_endpoint": {
+    "ip": "10.0.0.10",
+    "hostname": "dc01.corp.local"
+  },
+  "metadata": {
+    "product": {
+      "name": "Windows",
+      "vendor_name": "Microsoft"
+    }
+  }
+}</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"Why is log normalization important? What problems does it solve?"</strong><br><br>
+                            Without normalization, analysts must know every vendor's field names and write separate queries for each source. Normalization enables: (1) Unified detections that work across vendors (one brute-force rule for all auth sources), (2) Easier investigation (consistent field names), (3) Vendor portability (switch firewalls without rewriting all rules), (4) Correlation across sources (join Windows and firewall logs on normalized IP field).
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="parsing-pipeline">Building a Parsing Pipeline</h2>
+                
+                <p>
+                    Production parsing follows a systematic pipeline:
+                </p>
+                
+                <pre><code class="language-text">Raw Log Input
+      │
+      ▼
+┌─────────────────┐
+│ 1. Source Type  │  Identify log format based on input
+│    Detection    │  (syslog header, JSON structure, etc.)
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│ 2. Timestamp    │  Extract and normalize to UTC
+│    Extraction   │  Handle timezone, missing year
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│ 3. Field        │  Extract key-value pairs
+│    Extraction   │  Apply appropriate technique for format
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│ 4. Field        │  Map to standard schema (CIM/ASIM)
+│    Normalization│  Rename vendor fields to common names
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│ 5. Enrichment   │  Add GeoIP, asset context, threat intel
+│                 │  Lookup additional context
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│ 6. Validation   │  Verify required fields present
+│                 │  Check data quality
+└────────┬────────┘
+         ▼
+    Indexed Event</code></pre>
+                
+                <h3>Example: Custom Log Parser</h3>
+                
+                <pre><code class="language-spl"># Splunk props.conf - Custom application log
+[custom_app_log]
+SHOULD_LINEMERGE = false
+LINE_BREAKER = ([\r\n]+)
+TIME_FORMAT = %Y-%m-%d %H:%M:%S
+TIME_PREFIX = ^
+MAX_TIMESTAMP_LOOKAHEAD = 20
+
+# transforms.conf - Field extraction
+[custom_app_fields]
+REGEX = ^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\s+\[(\w+)\]\s+user=(\S+)\s+action=(\S+)\s+resource=(\S+)
+FORMAT = timestamp::$1 level::$2 user::$3 action::$4 resource::$5
+
+# props.conf - Apply transform
+[custom_app_log]
+TRANSFORMS-extract = custom_app_fields
+
+# Field aliasing to CIM
+FIELDALIAS-user = user AS src_user
+FIELDALIAS-action = action AS signature</code></pre>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Common log formats include Syslog, CEF, LEEF, JSON, and W3C</li>
+                    <li>Field extraction techniques: delimiter-based, regex, key-value, and JSON parsing</li>
+                    <li>Timestamp normalization is critical—always convert to UTC</li>
+                    <li>Enrichment adds context: asset data, user info, threat intelligence, GeoIP</li>
+                    <li>Data models (CIM, ASIM, OCSF) enable vendor-agnostic detection and correlation</li>
+                    <li>A systematic parsing pipeline ensures consistent, high-quality data</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="1-3-log-sources-onboarding.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Log Sources & Data Onboarding</span>
+                        </div>
+                    </a>
+                    <a href="1-5-detection-engineering-fundamentals.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Detection Engineering Fundamentals</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Threat Hunting Fundamentals - Proactive security through hypothesis-driven investigation and adversary hunting.">
+    <title>Hunting Fundamentals | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item active">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="9-1-hunting-fundamentals.html">Threat Hunting</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Hunting Fundamentals</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Threat Hunting Fundamentals</h1>
+                <p class="page-subtitle">Proactive security through hypothesis-driven investigation</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Threat hunting is the proactive search for adversaries that have evaded existing security controls. Unlike reactive detection, hunting assumes compromise and actively searches for evidence of malicious activity. This chapter covers hunting concepts, skills, and the hunting lifecycle.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="hunting-defined">What is Threat Hunting?</h2>
+                
+                <pre><code class="language-text">REACTIVE VS PROACTIVE SECURITY:
+
+REACTIVE (Traditional):
+┌─────────────────────────────────────────────────────────┐
+│ Attack Occurs → Alert Triggers → SOC Responds          │
+│                                                        │
+│ Depends on: Known signatures, defined rules            │
+│ Weakness: Misses novel attacks, advanced threats       │
+└─────────────────────────────────────────────────────────┘
+
+PROACTIVE (Threat Hunting):
+┌─────────────────────────────────────────────────────────┐
+│ Hypothesis → Search for Evidence → Find Hidden Threats │
+│                                                        │
+│ Assumes: Adversary may already be present              │
+│ Strength: Finds unknown threats, improves detection    │
+└─────────────────────────────────────────────────────────┘
+
+THREAT HUNTING DEFINITION:
+"The practice of proactively and iteratively searching 
+through networks and datasets to detect advanced threats 
+that evade existing security solutions."</code></pre>
+                
+                <h2 id="hunting-vs-detection">Hunting vs Detection</h2>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>Detection (Reactive)</th>
+                                <th>Hunting (Proactive)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Trigger</strong></td>
+                                <td>Alert fires automatically</td>
+                                <td>Human-initiated investigation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Assumption</strong></td>
+                                <td>We know what to look for</td>
+                                <td>Adversary may be undetected</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Approach</strong></td>
+                                <td>Pattern matching, signatures</td>
+                                <td>Hypothesis testing, exploration</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Speed</strong></td>
+                                <td>Real-time/near real-time</td>
+                                <td>Hours to weeks</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Skill Level</strong></td>
+                                <td>Tier 1-2 analysts</td>
+                                <td>Senior analysts, specialists</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Output</strong></td>
+                                <td>Incidents to investigate</td>
+                                <td>Findings + new detections</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="hunting-benefits">Why Hunt?</h2>
+                
+                <pre><code class="language-text">BENEFITS OF THREAT HUNTING:
+
+1. FIND HIDDEN THREATS
+   • APTs with long dwell time
+   • Attacks that evade signatures
+   • Insider threats
+   • Supply chain compromises
+
+2. REDUCE DWELL TIME
+   • Industry average: 200+ days
+   • With hunting: Significantly reduced
+   • Earlier detection = less damage
+
+3. IMPROVE DETECTION CAPABILITY
+   • Hunts become detections
+   • Understand gaps in coverage
+   • Better visibility into environment
+
+4. KNOWLEDGE DEVELOPMENT
+   • Deep understanding of environment
+   • Threat actor techniques
+   • Normal vs abnormal baselines
+
+5. VALIDATE SECURITY CONTROLS
+   • Test detection effectiveness
+   • Identify blind spots
+   • Improve security posture</code></pre>
+                
+                <h2 id="hunting-maturity">Hunting Maturity Model</h2>
+                
+                <pre><code class="language-text">HUNTING MATURITY LEVELS:
+
+LEVEL 0: INITIAL
+─────────────────────────────────────────────────────────
+• Rely primarily on automated alerts
+• Limited or no hunting capability
+• Reactive security posture
+
+LEVEL 1: MINIMAL
+─────────────────────────────────────────────────────────
+• Some threat intel-driven searches
+• Basic IOC searches (hashes, IPs)
+• Limited tooling and processes
+
+LEVEL 2: PROCEDURAL
+─────────────────────────────────────────────────────────
+• Follow documented hunting procedures
+• Use community hunting playbooks
+• Structured but not original
+
+LEVEL 3: INNOVATIVE
+─────────────────────────────────────────────────────────
+• Create original hypotheses
+• Develop custom hunting queries
+• Data science techniques
+• Regular hunting cadence
+
+LEVEL 4: LEADING
+─────────────────────────────────────────────────────────
+• Automate hunting where possible
+• Continuous improvement cycle
+• Share findings with community
+• Influence detection engineering</code></pre>
+                
+                <h2 id="hunter-skills">Threat Hunter Skills</h2>
+                
+                <pre><code class="language-text">CORE COMPETENCIES:
+
+TECHNICAL SKILLS:
+┌─────────────────────────────────────────────────────────┐
+│ Query Languages        SPL, KQL, SQL, EQL              │
+│ Operating Systems      Windows internals, Linux/Unix   │
+│ Networking            Protocols, traffic analysis      │
+│ Malware Analysis      Static/dynamic analysis basics   │
+│ Scripting             Python, PowerShell, Bash         │
+│ SIEM Platforms        Splunk, Sentinel, Elastic        │
+└─────────────────────────────────────────────────────────┘
+
+KNOWLEDGE AREAS:
+┌─────────────────────────────────────────────────────────┐
+│ Attack Techniques     MITRE ATT&CK, kill chain         │
+│ Threat Intelligence   APT groups, campaigns, TTPs      │
+│ Normal Baselines      What's typical in environment    │
+│ Security Tools        EDR, NDR, identity systems       │
+└─────────────────────────────────────────────────────────┘
+
+SOFT SKILLS:
+┌─────────────────────────────────────────────────────────┐
+│ Analytical Thinking   Pattern recognition, logic       │
+│ Curiosity            Dig deeper, question assumptions  │
+│ Persistence          Follow threads, don't give up     │
+│ Communication        Document and present findings     │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h2 id="hunting-lifecycle">Hunting Lifecycle</h2>
+                
+                <pre><code class="language-text">THREAT HUNTING CYCLE:
+
+        ┌────────────────┐
+        │  1. HYPOTHESIS │
+        │   Formulate    │
+        └───────┬────────┘
+                │
+                ▼
+        ┌────────────────┐
+        │   2. COLLECT   │
+        │   Gather data  │
+        └───────┬────────┘
+                │
+                ▼
+        ┌────────────────┐
+        │  3. ANALYZE    │
+        │  Hunt queries  │
+        └───────┬────────┘
+                │
+                ▼
+        ┌────────────────┐
+        │ 4. INVESTIGATE │
+        │  Deep dive     │
+        └───────┬────────┘
+                │
+                ▼
+        ┌────────────────┐
+        │ 5. RESPOND/    │◄─────┐
+        │    IMPROVE     │      │
+        └───────┬────────┘      │
+                │               │
+                ▼               │
+        ┌────────────────┐      │
+        │ 6. DOCUMENT    │──────┘
+        │    & ITERATE   │
+        └────────────────┘</code></pre>
+                
+                <h3>Lifecycle Details</h3>
+                
+                <pre><code class="language-text">1. HYPOTHESIS
+   • What threat are you looking for?
+   • Based on: TI, incidents, gaps, intuition
+   • Example: "Attackers may be using encoded PowerShell"
+
+2. COLLECT
+   • Identify data sources needed
+   • Ensure logs are available and complete
+   • Define time window
+
+3. ANALYZE
+   • Write and run hunting queries
+   • Look for anomalies and patterns
+   • Filter noise, focus on interesting
+
+4. INVESTIGATE
+   • Deep dive into findings
+   • Correlate across data sources
+   • Determine if malicious or benign
+
+5. RESPOND/IMPROVE
+   • If malicious: Trigger incident response
+   • If benign: Document false positive
+   • Create detection rule from hunt
+
+6. DOCUMENT & ITERATE
+   • Record methodology and findings
+   • Share knowledge
+   • Refine for next hunt</code></pre>
+                
+                <h2 id="hypothesis-sources">Hypothesis Sources</h2>
+                
+                <pre><code class="language-text">WHERE HUNTING IDEAS COME FROM:
+
+THREAT INTELLIGENCE:
+• APT reports (Mandiant, CrowdStrike, Microsoft)
+• Malware analysis reports
+• Industry-specific threats
+• Current campaigns and CVEs
+
+INTERNAL SOURCES:
+• Past incidents (what did we miss?)
+• Red team findings
+• Vulnerability scan results
+• User-reported anomalies
+
+FRAMEWORKS:
+• MITRE ATT&CK gaps
+• Detection coverage assessment
+• Compliance requirements
+
+ENVIRONMENT KNOWLEDGE:
+• Crown jewels (what's most valuable?)
+• New systems or changes
+• Unusual activity observed
+• Gut feeling / intuition
+
+EXTERNAL EVENTS:
+• Major breaches in news
+• Zero-day disclosures
+• Industry alerts (CISA, FBI)</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Hunting Best Practices
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Preparation:</strong><br>
+                            □ Know your environment's normal baseline<br>
+                            □ Ensure log sources are complete<br>
+                            □ Have hunting queries ready to go<br>
+                            □ Allocate dedicated hunting time<br><br>
+                            
+                            <strong>Execution:</strong><br>
+                            □ Start with a clear hypothesis<br>
+                            □ Document as you go<br>
+                            □ Don't chase every anomaly—stay focused<br>
+                            □ Know when to escalate vs continue<br><br>
+                            
+                            <strong>Follow-up:</strong><br>
+                            □ Convert successful hunts to detections<br>
+                            □ Share findings with team<br>
+                            □ Track hunting metrics<br>
+                            □ Continuously improve playbooks
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"What is threat hunting and how does it differ from traditional SOC operations?"</strong><br><br>
+                            <strong>Threat hunting</strong> is the proactive, human-driven search for adversaries that have evaded existing security controls. Unlike traditional SOC operations that are reactive (responding to alerts), hunting assumes compromise and actively searches for evidence of malicious activity.<br><br>
+                            
+                            <strong>Key differences:</strong><br>
+                            • <strong>Trigger:</strong> Human hypothesis vs automated alert<br>
+                            • <strong>Approach:</strong> Exploratory investigation vs predefined response<br>
+                            • <strong>Goal:</strong> Find unknown threats vs confirm known threats<br>
+                            • <strong>Output:</strong> Findings and new detections vs incident closure<br>
+                            • <strong>Timeline:</strong> Scheduled activity vs real-time response
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Threat hunting is proactive search for hidden adversaries</li>
+                    <li>Assumes compromise—don't wait for alerts</li>
+                    <li>Hunting improves detection capability over time</li>
+                    <li>Requires strong technical and analytical skills</li>
+                    <li>Follow the hunting lifecycle: hypothesis → collect → analyze → investigate → respond → document</li>
+                    <li>Successful hunts become automated detections</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="8-4-detection-testing.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Testing & Validation</span>
+                        </div>
+                    </a>
+                    <a href="9-2-hunting-methodologies.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Hunting Methodologies</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

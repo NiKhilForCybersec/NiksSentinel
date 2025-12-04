@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="KQL Fundamentals - Kusto Query Language basics for Microsoft Sentinel security analysis.">
+    <title>KQL Fundamentals | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item active">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="5-1-sentinel-architecture.html">Sentinel Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">KQL Fundamentals</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">KQL Fundamentals</h1>
+                <p class="page-subtitle">Kusto Query Language basics for security analysis</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            KQL (Kusto Query Language) is the query language for Azure Data Explorer, Log Analytics, and Microsoft Sentinel. This chapter covers KQL fundamentals including syntax, operators, filtering, aggregation, and common security query patterns.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="kql-basics">KQL Basics</h2>
+                
+                <h3>Query Structure</h3>
+                
+                <pre><code class="language-kql">// KQL uses a pipe-based structure (like Unix)
+TableName
+| operator1
+| operator2
+| operator3
+
+// Example: Get failed sign-ins from last 24 hours
+SigninLogs
+| where TimeGenerated > ago(24h)
+| where ResultType != 0
+| project TimeGenerated, UserPrincipalName, IPAddress, ResultDescription</code></pre>
+                
+                <h3>KQL vs SPL Comparison</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Operation</th>
+                                <th>KQL (Sentinel)</th>
+                                <th>SPL (Splunk)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Start query</td>
+                                <td><code>TableName</code></td>
+                                <td><code>index=name</code></td>
+                            </tr>
+                            <tr>
+                                <td>Filter</td>
+                                <td><code>| where field == "value"</code></td>
+                                <td><code>field="value"</code></td>
+                            </tr>
+                            <tr>
+                                <td>Select columns</td>
+                                <td><code>| project field1, field2</code></td>
+                                <td><code>| table field1, field2</code></td>
+                            </tr>
+                            <tr>
+                                <td>Aggregate</td>
+                                <td><code>| summarize count() by field</code></td>
+                                <td><code>| stats count by field</code></td>
+                            </tr>
+                            <tr>
+                                <td>Sort</td>
+                                <td><code>| sort by field desc</code></td>
+                                <td><code>| sort -field</code></td>
+                            </tr>
+                            <tr>
+                                <td>Limit</td>
+                                <td><code>| take 10</code></td>
+                                <td><code>| head 10</code></td>
+                            </tr>
+                            <tr>
+                                <td>Time filter</td>
+                                <td><code>| where TimeGenerated > ago(24h)</code></td>
+                                <td><code>earliest=-24h</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="filtering">Filtering with where</h2>
+                
+                <pre><code class="language-kql">// Basic equality
+SigninLogs
+| where ResultType == 0
+
+// Not equal
+SigninLogs
+| where ResultType != 0
+
+// String contains (case-insensitive)
+SigninLogs
+| where UserPrincipalName contains "admin"
+
+// String contains (case-sensitive)
+SigninLogs
+| where UserPrincipalName contains_cs "Admin"
+
+// Starts with / ends with
+SigninLogs
+| where UserPrincipalName startswith "svc_"
+| where UserPrincipalName endswith "@company.com"
+
+// In list
+SigninLogs
+| where ResultType in (50053, 50126, 50074)
+
+// Not in list
+SigninLogs
+| where AppDisplayName !in ("Azure Portal", "Microsoft Teams")
+
+// Regex match
+SigninLogs
+| where UserPrincipalName matches regex @"admin\d+@"
+
+// Multiple conditions (AND)
+SigninLogs
+| where ResultType != 0
+| where TimeGenerated > ago(1h)
+// OR use: | where ResultType != 0 and TimeGenerated > ago(1h)
+
+// Multiple conditions (OR)
+SigninLogs
+| where ResultType == 50053 or ResultType == 50126
+
+// NULL checks
+SigninLogs
+| where isnotempty(IPAddress)
+| where isnotnull(DeviceDetail)</code></pre>
+                
+                <h2 id="time-operations">Time Operations</h2>
+                
+                <pre><code class="language-kql">// Relative time
+| where TimeGenerated > ago(24h)      // Last 24 hours
+| where TimeGenerated > ago(7d)       // Last 7 days
+| where TimeGenerated > ago(1h)       // Last 1 hour
+| where TimeGenerated > ago(30m)      // Last 30 minutes
+
+// Time range
+| where TimeGenerated between (ago(7d) .. ago(1d))
+
+// Absolute time
+| where TimeGenerated > datetime(2024-01-01)
+| where TimeGenerated between (datetime(2024-01-01) .. datetime(2024-01-31))
+
+// Time bucketing (bin)
+| summarize count() by bin(TimeGenerated, 1h)
+| summarize count() by bin(TimeGenerated, 1d)
+
+// Extract time components
+| extend Hour = datetime_part("hour", TimeGenerated)
+| extend DayOfWeek = dayofweek(TimeGenerated)
+| extend WeekOfYear = week_of_year(TimeGenerated)
+
+// Format time
+| extend FormattedTime = format_datetime(TimeGenerated, "yyyy-MM-dd HH:mm")</code></pre>
+                
+                <h2 id="projection">Selecting and Renaming Columns</h2>
+                
+                <pre><code class="language-kql">// Select specific columns
+SigninLogs
+| project TimeGenerated, UserPrincipalName, IPAddress, ResultType
+
+// Rename columns
+SigninLogs
+| project 
+    Time = TimeGenerated,
+    User = UserPrincipalName,
+    IP = IPAddress
+
+// Add columns (keep all existing)
+SigninLogs
+| extend 
+    IsSuccess = (ResultType == 0),
+    Hour = datetime_part("hour", TimeGenerated)
+
+// Remove columns
+SigninLogs
+| project-away OperationName, CorrelationId
+
+// Reorder columns
+SigninLogs
+| project-reorder TimeGenerated, UserPrincipalName, *</code></pre>
+                
+                <h2 id="aggregation">Aggregation with summarize</h2>
+                
+                <pre><code class="language-kql">// Count all
+SigninLogs
+| summarize count()
+
+// Count by field
+SigninLogs
+| summarize count() by UserPrincipalName
+
+// Multiple aggregations
+SigninLogs
+| summarize 
+    TotalAttempts = count(),
+    UniqueUsers = dcount(UserPrincipalName),
+    UniqueIPs = dcount(IPAddress)
+
+// Count by multiple fields
+SigninLogs
+| summarize count() by UserPrincipalName, ResultType
+
+// Common aggregation functions
+SigninLogs
+| summarize 
+    Count = count(),                    // Count rows
+    DistinctCount = dcount(IPAddress),  // Unique count
+    Sum = sum(BytesSent),               // Sum
+    Avg = avg(DurationMs),              // Average
+    Min = min(TimeGenerated),           // Minimum
+    Max = max(TimeGenerated),           // Maximum
+    FirstSeen = min(TimeGenerated),
+    LastSeen = max(TimeGenerated),
+    Values = make_set(IPAddress),       // Unique values as array
+    AllValues = make_list(IPAddress)    // All values as array
+    by UserPrincipalName
+
+// Count with condition (countif)
+SigninLogs
+| summarize 
+    TotalLogins = count(),
+    FailedLogins = countif(ResultType != 0),
+    SuccessLogins = countif(ResultType == 0)
+    by UserPrincipalName</code></pre>
+                
+                <h2 id="sorting-limiting">Sorting and Limiting</h2>
+                
+                <pre><code class="language-kql">// Sort descending
+SigninLogs
+| summarize count() by UserPrincipalName
+| sort by count_ desc
+
+// Sort ascending
+SigninLogs
+| sort by TimeGenerated asc
+
+// Sort by multiple columns
+SigninLogs
+| sort by UserPrincipalName asc, TimeGenerated desc
+
+// Limit results
+SigninLogs
+| take 100
+
+// Top N
+SigninLogs
+| summarize count() by UserPrincipalName
+| top 10 by count_ desc</code></pre>
+                
+                <h2 id="security-examples">Security Query Examples</h2>
+                
+                <pre><code class="language-kql">// Failed sign-ins summary
+SigninLogs
+| where TimeGenerated > ago(24h)
+| where ResultType != 0
+| summarize 
+    FailedAttempts = count(),
+    UniqueIPs = dcount(IPAddress),
+    IPs = make_set(IPAddress)
+    by UserPrincipalName
+| where FailedAttempts > 10
+| sort by FailedAttempts desc
+
+// Successful logins from new IPs
+let KnownIPs = SigninLogs
+| where TimeGenerated between (ago(30d) .. ago(1d))
+| where ResultType == 0
+| distinct IPAddress;
+SigninLogs
+| where TimeGenerated > ago(24h)
+| where ResultType == 0
+| where IPAddress !in (KnownIPs)
+| project TimeGenerated, UserPrincipalName, IPAddress, Location
+
+// Windows security events - failed logins
+SecurityEvent
+| where TimeGenerated > ago(24h)
+| where EventID == 4625
+| summarize 
+    FailedLogins = count(),
+    TargetAccounts = make_set(TargetUserName)
+    by IpAddress
+| where FailedLogins > 10
+
+// Azure Activity - resource deletions
+AzureActivity
+| where TimeGenerated > ago(7d)
+| where OperationNameValue endswith "delete"
+| project TimeGenerated, Caller, ResourceGroup, Resource, OperationNameValue
+
+// Anomalous sign-in times
+SigninLogs
+| where TimeGenerated > ago(7d)
+| where ResultType == 0
+| extend Hour = datetime_part("hour", TimeGenerated)
+| where Hour < 6 or Hour > 22
+| project TimeGenerated, UserPrincipalName, IPAddress, Hour</code></pre>
+                
+                <div class="info-box tip">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💡</span>
+                        KQL Tips
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Performance:</strong><br>
+                            • Filter early with <code>where</code> clauses<br>
+                            • Use <code>project</code> to limit columns<br>
+                            • Time filter first for best performance<br><br>
+                            
+                            <strong>Readability:</strong><br>
+                            • Use <code>let</code> statements for reusable variables<br>
+                            • Comment with <code>//</code><br>
+                            • Use meaningful column aliases
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"Write a KQL query to find users with more than 5 failed logins in the last hour."</strong><br><br>
+                            <code>SigninLogs<br>
+                            | where TimeGenerated > ago(1h)<br>
+                            | where ResultType != 0<br>
+                            | summarize FailedCount = count() by UserPrincipalName, IPAddress<br>
+                            | where FailedCount > 5<br>
+                            | sort by FailedCount desc</code>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box memory">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">🧠</span>
+                        Memory Aid
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>KQL = "Query as a Sentence"</strong><br><br>
+                            Read KQL like English:<br>
+                            <code>SigninLogs | where Status == "Failed" | summarize count() by User</code><br>
+                            = "From SigninLogs, where Status is Failed, summarize count by User"<br><br>
+                            
+                            <strong>Key Operators to Remember:</strong><br>
+                            • <strong>where</strong> = "filter rows WHERE this is true"<br>
+                            • <strong>project</strong> = "PROJECT only these columns onto screen"<br>
+                            • <strong>extend</strong> = "EXTEND the table with new columns"<br>
+                            • <strong>summarize</strong> = "SUMMARIZE into groups"<br><br>
+                            
+                            <strong>SPL → KQL Quick Map:</strong><br>
+                            stats count → summarize count() | table → project | eval → extend | search → where
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>KQL uses pipe-based syntax: <code>Table | operator | operator</code></li>
+                    <li><code>where</code> filters rows; <code>project</code> selects columns</li>
+                    <li><code>summarize</code> aggregates data with functions like count(), dcount(), sum()</li>
+                    <li>Time operations: <code>ago()</code>, <code>between</code>, <code>bin()</code></li>
+                    <li><code>extend</code> adds calculated columns</li>
+                    <li>Filter early and project only needed columns for performance</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="5-3-data-connectors.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Data Connectors</span>
+                        </div>
+                    </a>
+                    <a href="5-5-kql-advanced.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">KQL Advanced</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

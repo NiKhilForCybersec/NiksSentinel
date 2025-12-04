@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SPL Data Retrieval Commands - search, fields, table, rename, sort, dedup, head, tail for retrieving and organizing Splunk data.">
+    <title>SPL Data Retrieval | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+                <div class="sidebar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search docs... (Ctrl+K)" aria-label="Search documentation">
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item active">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="2-1-splunk-architecture.html">Splunk Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">SPL Data Retrieval</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">SPL Data Retrieval Commands</h1>
+                <p class="page-subtitle">Commands for searching, filtering, and organizing Splunk data: search, fields, table, sort, dedup</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Data retrieval commands are the foundation of SPL. This chapter covers commands for searching data, selecting fields, creating tables, sorting results, removing duplicates, and limiting output.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="search-command">search Command</h2>
+                
+                <p>
+                    The <code>search</code> command filters events based on keywords and field values. It's implicit at the beginning of every search but can also be used mid-pipeline.
+                </p>
+                
+                <pre><code class="language-spl"># Implicit search (at the beginning)
+index=security EventCode=4625
+
+# Explicit search (after pipe)
+index=security 
+| search EventCode=4625 user=admin
+
+# Filter after transformation
+index=security 
+| stats count by user, EventCode
+| search count > 10
+
+# Complex filter mid-pipeline
+index=security 
+| transaction user maxspan=5m
+| search eventcount > 5 AND duration < 300</code></pre>
+                
+                <h3>search vs where</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>search</th>
+                                <th>where</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Keyword searches work</td>
+                                <td>Only field comparisons</td>
+                            </tr>
+                            <tr>
+                                <td>Wildcards in values</td>
+                                <td>Regex and functions available</td>
+                            </tr>
+                            <tr>
+                                <td>Case-insensitive keywords</td>
+                                <td>Case-sensitive by default</td>
+                            </tr>
+                            <tr>
+                                <td>Field=value syntax</td>
+                                <td>field==value or field="value"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <pre><code class="language-spl"># search - wildcards and keywords
+| search user=admin* "authentication failed"
+
+# where - comparisons and functions
+| where user LIKE "admin%" AND count > 10
+| where match(user, "^admin\d+$")
+| where isnotnull(src_ip)</code></pre>
+                
+                <h2 id="fields-command">fields Command</h2>
+                
+                <p>
+                    Select or remove fields from results. Using <code>fields</code> early improves performance.
+                </p>
+                
+                <pre><code class="language-spl"># Include only specific fields
+index=security EventCode=4624
+| fields _time, user, src_ip, dest, LogonType
+
+# Exclude fields (use minus sign)
+index=security EventCode=4624
+| fields - _raw, _indextime, linecount
+
+# Combine include and exclude
+index=security 
+| fields _time, user, src_ip
+| fields - _raw
+
+# Performance tip: Use early in pipeline
+index=security EventCode=4624
+| fields _time, user, src_ip     # ← Early = faster
+| stats count by user</code></pre>
+                
+                <div class="info-box tip">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💡</span>
+                        Performance Tip
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Using <code>fields</code> early in your search reduces the amount of data passed through the pipeline. Splunk can skip extracting fields you don't need, especially useful when working with unstructured data.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="table-command">table Command</h2>
+                
+                <p>
+                    Creates a table with specified fields in specified order. Final output command.
+                </p>
+                
+                <pre><code class="language-spl"># Basic table
+index=security EventCode=4624
+| table _time, user, src_ip, dest, LogonType
+
+# Order matters - columns appear in specified order
+index=security 
+| table user, _time, action, src_ip
+
+# Wildcard field selection
+index=security 
+| table _time, user, *_ip, *_port
+
+# Table after transformation
+index=security EventCode=4625
+| stats count by user, src_ip
+| table user, src_ip, count</code></pre>
+                
+                <h2 id="rename-command">rename Command</h2>
+                
+                <p>
+                    Rename fields for clarity or to match expected formats.
+                </p>
+                
+                <pre><code class="language-spl"># Basic rename
+index=security 
+| rename src_ip AS "Source IP", dest AS "Destination"
+
+# Rename for calculations
+index=security 
+| rename user AS src_user
+| lookup user_info user AS src_user OUTPUT department
+
+# Rename with wildcards
+index=security 
+| rename *_ip AS *_address
+# src_ip → src_address, dest_ip → dest_address
+
+# Multiple renames
+index=security 
+| rename src_ip AS source_ip, dest_ip AS destination_ip, user AS username
+
+# Rename to remove prefix
+index=aws 
+| rename userIdentity.* AS *
+# userIdentity.userName → userName</code></pre>
+                
+                <h2 id="sort-command">sort Command</h2>
+                
+                <p>
+                    Order results by field values. Essential for finding top/bottom values.
+                </p>
+                
+                <pre><code class="language-spl"># Sort ascending (default)
+index=security | stats count by user | sort count
+
+# Sort descending (minus sign)
+index=security | stats count by user | sort -count
+
+# Sort by multiple fields
+index=security 
+| stats count by user, src_ip 
+| sort -count, user
+
+# Sort with limit
+index=security 
+| stats count by user 
+| sort -count limit=10
+
+# Sort mixed (ascending and descending)
+index=security 
+| stats count, avg(duration) AS avg_duration by user
+| sort user, -count
+
+# Auto sort (intelligent sorting based on data type)
+index=security | sort auto(src_ip)
+
+# IP address sorting
+index=firewall 
+| stats count by src_ip 
+| sort ip(src_ip)</code></pre>
+                
+                <h2 id="dedup-command">dedup Command</h2>
+                
+                <p>
+                    Remove duplicate events based on field values. Keeps the first occurrence.
+                </p>
+                
+                <pre><code class="language-spl"># Remove duplicates by single field
+index=security EventCode=4624
+| dedup user
+| table _time, user, src_ip
+
+# Remove duplicates by multiple fields
+index=security 
+| dedup user, src_ip
+| table _time, user, src_ip, action
+
+# Keep N duplicates
+index=security EventCode=4624
+| dedup 3 user          # Keep first 3 per user
+| table _time, user, src_ip
+
+# Consecutive dedup (only removes consecutive duplicates)
+index=security 
+| dedup consecutive=true user
+
+# Sort first, then dedup to keep most recent
+index=security EventCode=4624
+| sort -_time
+| dedup user
+| table _time, user, src_ip
+# Result: Most recent login per user
+
+# Dedup with keepevents (keeps events but removes field value)
+index=security 
+| dedup keepevents=true user</code></pre>
+                
+                <h2 id="head-tail">head and tail Commands</h2>
+                
+                <p>
+                    Limit results to first N (head) or last N (tail) events.
+                </p>
+                
+                <pre><code class="language-spl"># First 10 results
+index=security EventCode=4625
+| head 10
+
+# Last 10 results (tail)
+index=security EventCode=4625
+| tail 10
+
+# Combined with sort - Top 10 users by login failures
+index=security EventCode=4625
+| stats count by user
+| sort -count
+| head 10
+
+# Bottom 10 (least active)
+index=security EventCode=4624
+| stats count by user
+| sort count
+| head 10
+
+# head with keeplast option
+index=security | head 100 keeplast=true
+
+# Note: tail requires all events to be processed first
+# Less efficient than head for large datasets</code></pre>
+                
+                <h2 id="practical-examples">Practical Security Examples</h2>
+                
+                <pre><code class="language-spl"># Find unique users who logged in from multiple IPs
+index=security EventCode=4624 earliest=-24h
+| stats dc(src_ip) AS ip_count, values(src_ip) AS source_ips by user
+| where ip_count > 3
+| sort -ip_count
+| table user, ip_count, source_ips
+
+# Latest login per user (sorted by most recent)
+index=security EventCode=4624 earliest=-7d
+| sort -_time
+| dedup user
+| table _time, user, src_ip, dest
+| sort -_time
+| head 50
+
+# Failed logins - unique user/IP combinations
+index=security EventCode=4625 earliest=-24h
+| dedup user, src_ip
+| table _time, user, src_ip, TargetDomainName
+| sort -_time
+
+# Process execution investigation
+index=sysmon EventCode=1 Image="*powershell.exe" earliest=-1h
+| fields _time, Computer, User, Image, CommandLine, ParentImage
+| sort -_time
+| head 100
+
+# Top 10 firewall deny sources
+index=firewall action=deny earliest=-24h
+| stats count by src_ip
+| sort -count
+| head 10
+| rename src_ip AS "Source IP", count AS "Deny Count"</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"How would you find the most recent login for each user?"</strong><br><br>
+                            <code>index=security EventCode=4624 | sort -_time | dedup user | table _time, user, src_ip</code><br><br>
+                            Key insight: Sort by time descending first, then dedup keeps the most recent event per user. Without sorting first, dedup would keep the first result Splunk encounters (which depends on indexer order, not time).
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="command-reference">Quick Reference</h2>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Command</th>
+                                <th>Purpose</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>search</strong></td>
+                                <td>Filter events</td>
+                                <td><code>| search user=admin*</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>fields</strong></td>
+                                <td>Include/exclude fields</td>
+                                <td><code>| fields _time, user, src_ip</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>table</strong></td>
+                                <td>Display as table</td>
+                                <td><code>| table _time, user, action</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>rename</strong></td>
+                                <td>Rename fields</td>
+                                <td><code>| rename src_ip AS source</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>sort</strong></td>
+                                <td>Order results</td>
+                                <td><code>| sort -count</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>dedup</strong></td>
+                                <td>Remove duplicates</td>
+                                <td><code>| dedup user</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>head</strong></td>
+                                <td>First N results</td>
+                                <td><code>| head 10</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>tail</strong></td>
+                                <td>Last N results</td>
+                                <td><code>| tail 10</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li><strong>search</strong> - Filter events using field values and keywords (can be used mid-pipeline)</li>
+                    <li><strong>fields</strong> - Select or exclude fields; use early for performance</li>
+                    <li><strong>table</strong> - Create tabular output with specified columns</li>
+                    <li><strong>rename</strong> - Change field names for clarity or compatibility</li>
+                    <li><strong>sort</strong> - Order results; use minus (-) for descending</li>
+                    <li><strong>dedup</strong> - Remove duplicates; sort first to control which duplicate is kept</li>
+                    <li><strong>head/tail</strong> - Limit results to first/last N events</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="2-5-spl-fundamentals.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">SPL Fundamentals</span>
+                        </div>
+                    </a>
+                    <a href="2-7-spl-transforming.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">SPL Transforming</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

@@ -3,435 +3,449 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Microsoft Sentinel Ultimate Guide</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="SIEM Mastery Guide - Comprehensive documentation for Splunk and Microsoft Sentinel. Perfect for SOC Analysts, Security Engineers, and Detection Engineers.">
+    <meta name="keywords" content="SIEM, Splunk, Microsoft Sentinel, SOC, Security Operations, Detection Engineering, KQL, SPL">
+    <title>SIEM Mastery Guide | Splunk & Microsoft Sentinel Documentation</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <a href="index.html" class="navbar-brand">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-            </svg>
-            Sentinel Guide
-        </a>
-        <ul class="navbar-nav">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="architecture.html">Architecture</a></li>
-            <li><a href="data-connectors.html">Connectors</a></li>
-            <li><a href="analytics-rules.html">Analytics</a></li>
-            <li><a href="kql-library.html">KQL Library</a></li>
-            <li><a href="automation.html">Automation</a></li>
-        </ul>
-        <button class="mobile-toggle" aria-label="Toggle menu">
-            <svg viewBox="0 0 24 24" fill="none">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
         </button>
-    </nav>
-
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <div class="sidebar-section">
-            <div class="sidebar-title">Getting Started</div>
-            <ul class="sidebar-nav">
-                <li><a href="index.html" class="active">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-                    Home
-                </a></li>
-                <li><a href="architecture.html">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                    Architecture
-                </a></li>
-            </ul>
-        </div>
-        <div class="sidebar-section">
-            <div class="sidebar-title">Data Collection</div>
-            <ul class="sidebar-nav">
-                <li><a href="data-connectors.html">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-                    Data Connectors
-                </a></li>
-            </ul>
-        </div>
-        <div class="sidebar-section">
-            <div class="sidebar-title">Detection & Analytics</div>
-            <ul class="sidebar-nav">
-                <li><a href="analytics-rules.html">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                    Analytics Rules
-                </a></li>
-                <li><a href="connector-rules.html">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
-                    Connector Rules
-                </a></li>
-                <li><a href="correlation-rules.html">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-                    Correlation Rules
-                </a></li>
-                <li><a href="kql-library.html">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                    KQL Library
-                </a></li>
-            </ul>
-        </div>
-        <div class="sidebar-section">
-            <div class="sidebar-title">Investigation & Response</div>
-            <ul class="sidebar-nav">
-                <li><a href="incidents.html">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                    Incidents
-                </a></li>
-                <li><a href="automation.html">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                    Automation & SOAR
-                </a></li>
-            </ul>
-        </div>
-        <div class="sidebar-section">
-            <div class="sidebar-title">Intelligence & Analytics</div>
-            <ul class="sidebar-nav">
-                <li><a href="workbooks.html">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 3H3v18h18V3z"/><path d="M21 9H3M21 15H3M12 3v18"/></svg>
-                    Workbooks
-                </a></li>
-                <li><a href="threat-intelligence.html">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-                    Threat Intelligence
-                </a></li>
-                <li><a href="ueba.html">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    UEBA
-                </a></li>
-            </ul>
-        </div>
-        <div class="sidebar-section">
-            <div class="sidebar-title">Management</div>
-            <ul class="sidebar-nav">
-                <li><a href="content-hub.html">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
-                    Content Hub
-                </a></li>
-                <li><a href="costs.html">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-                    Pricing & Costs
-                </a></li>
-                <li><a href="best-practices.html">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    Best Practices
-                </a></li>
-            </ul>
-        </div>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="content-container">
-            <h1>Microsoft Sentinel Ultimate Guide</h1>
-            <p>Comprehensive documentation for Microsoft's cloud-native SIEM and SOAR platform. From architecture fundamentals to advanced threat detection and automated response.</p>
-
-            <!-- Quick Stats -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value">100+</div>
-                    <div class="stat-label">Data Connectors</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">200+</div>
-                    <div class="stat-label">Analytics Rules</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">50+</div>
-                    <div class="stat-label">Playbook Templates</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">∞</div>
-                    <div class="stat-label">Cloud Scale</div>
-                </div>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
             </div>
-
-            <!-- Overview -->
-            <h2>What is Microsoft Sentinel?</h2>
-            <p>Microsoft Sentinel is a scalable, cloud-native Security Information and Event Management (SIEM) and Security Orchestration, Automation, and Response (SOAR) solution. Built on Azure, it provides intelligent security analytics and threat intelligence across the enterprise.</p>
-
-            <div class="alert alert-info">
-                <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>
-                </svg>
-                <div class="alert-content">
-                    <div class="alert-title">Cloud-Native Architecture</div>
-                    <p class="alert-text">Sentinel runs entirely in Azure with no infrastructure to deploy. Scale automatically to petabytes of data with consumption-based pricing.</p>
-                </div>
-            </div>
-
-            <!-- Key Differentiators -->
-            <h2>Key Differentiators</h2>
             
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
                     </div>
-                    <h3 class="card-title">Unified XDR Integration</h3>
-                    <p class="card-description">Native integration with Microsoft 365 Defender, providing unified incident correlation across endpoints, identity, email, and cloud apps.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
                     </div>
-                    <h3 class="card-title">AI-Powered Detection</h3>
-                    <p class="card-description">Fusion ML technology automatically correlates alerts into high-fidelity incidents. UEBA detects anomalies in user and entity behavior.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
                     </div>
-                    <h3 class="card-title">Automated Response</h3>
-                    <p class="card-description">Logic Apps-based playbooks enable automated investigation and response. Orchestrate actions across hundreds of connectors.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
                     </div>
-                    <h3 class="card-title">Cost Efficiency</h3>
-                    <p class="card-description">Pay only for ingested data with commitment tier discounts. Free data ingestion for many Microsoft security products.</p>
                 </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
             </div>
-
-            <!-- Architecture Overview -->
-            <h2>Architecture Overview</h2>
-            <div class="ascii-diagram">
-<pre>
-┌─────────────────────────────────────────────────────────────────────────────────────┐
-│                              MICROSOFT SENTINEL ARCHITECTURE                          │
-├─────────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                       │
-│   ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐                │
-│   │   Azure AD  │  │    M365     │  │   Azure     │  │  Third-     │                │
-│   │   / Entra   │  │  Defender   │  │  Services   │  │   Party     │                │
-│   └──────┬──────┘  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘                │
-│          │                │                │                │                        │
-│          └────────────────┴────────────────┴────────────────┘                        │
-│                                    │                                                  │
-│                           ┌────────▼────────┐                                        │
-│                           │  DATA CONNECTORS │                                        │
-│                           │   (Native, CEF,  │                                        │
-│                           │  Syslog, API)    │                                        │
-│                           └────────┬─────────┘                                        │
-│                                    │                                                  │
-│                         ┌──────────▼──────────┐                                      │
-│                         │  LOG ANALYTICS      │                                       │
-│                         │    WORKSPACE        │                                       │
-│                         │  ┌───────────────┐  │                                       │
-│                         │  │ Security Tables│  │                                      │
-│                         │  │ Custom Tables  │  │                                       │
-│                         │  │ Watchlists     │  │                                       │
-│                         │  └───────────────┘  │                                       │
-│                         └──────────┬──────────┘                                      │
-│                                    │                                                  │
-│     ┌──────────────────────────────┼──────────────────────────────┐                  │
-│     │                              │                              │                  │
-│     ▼                              ▼                              ▼                  │
-│ ┌────────────┐            ┌────────────────┐            ┌────────────────┐          │
-│ │ ANALYTICS  │            │   INCIDENTS    │            │   AUTOMATION   │          │
-│ │  ENGINE    │───────────▶│    & ALERTS    │───────────▶│   PLAYBOOKS    │          │
-│ │            │            │                │            │   (SOAR)       │          │
-│ │ - Scheduled│            │ - Investigation│            │ - Logic Apps   │          │
-│ │ - NRT      │            │ - Entity Graph │            │ - Response     │          │
-│ │ - Fusion   │            │ - Timeline     │            │ - Enrichment   │          │
-│ │ - ML       │            │ - Bookmarks    │            │ - Notification │          │
-│ └────────────┘            └────────────────┘            └────────────────┘          │
-│                                                                                       │
-│  ┌─────────────────────┐  ┌─────────────────────┐  ┌─────────────────────┐          │
-│  │     WORKBOOKS      │  │  THREAT INTEL       │  │      UEBA           │          │
-│  │  (Visualization)   │  │  (IOC Matching)     │  │  (Behavior ML)      │          │
-│  └─────────────────────┘  └─────────────────────┘  └─────────────────────┘          │
-│                                                                                       │
-└─────────────────────────────────────────────────────────────────────────────────────┘
-</pre>
-            </div>
-
-            <!-- Navigation Cards -->
-            <h2>Explore the Guide</h2>
-            <div class="card-grid">
-                <a href="architecture.html" class="card-link">
-                    <div class="card">
-                        <div class="card-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </aside>
+        
+        <main class="main-content">
+            <div class="content-area">
+                <!-- Hero Section -->
+                <div class="hero-section">
+                    <h1 class="hero-title">SIEM Mastery Guide</h1>
+                    <p class="hero-subtitle">Your comprehensive guide to Security Information and Event Management</p>
+                    <p class="hero-description">
+                        Master Splunk and Microsoft Sentinel with in-depth documentation, practical examples, 
+                        and interview preparation materials for security professionals.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">55+</span>
+                            <span class="stat-label">Pages</span>
                         </div>
-                        <h3 class="card-title">Architecture & Components</h3>
-                        <p class="card-description">Deep dive into workspace design, data flow, multi-tenant scenarios, and retention policies.</p>
-                    </div>
-                </a>
-                <a href="data-connectors.html" class="card-link">
-                    <div class="card">
-                        <div class="card-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                        <div class="stat-item">
+                            <span class="stat-number">10</span>
+                            <span class="stat-label">Sections</span>
                         </div>
-                        <h3 class="card-title">Data Connectors</h3>
-                        <p class="card-description">Configure Microsoft, Azure, third-party, and custom connectors. DCR and AMA deployment.</p>
-                    </div>
-                </a>
-                <a href="analytics-rules.html" class="card-link">
-                    <div class="card">
-                        <div class="card-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                        <div class="stat-item">
+                            <span class="stat-number">150+</span>
+                            <span class="stat-label">Examples</span>
                         </div>
-                        <h3 class="card-title">Analytics Rules</h3>
-                        <p class="card-description">Create scheduled, NRT, Fusion, and ML rules. Entity mapping and MITRE ATT&CK alignment.</p>
                     </div>
-                </a>
-                <a href="connector-rules.html" class="card-link">
-                    <div class="card">
-                        <div class="card-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
-                        </div>
-                        <h3 class="card-title">Connector-Based Rules</h3>
-                        <p class="card-description">100+ ready-to-deploy detection rules organized by data connector with full KQL.</p>
-                    </div>
-                </a>
-                <a href="correlation-rules.html" class="card-link">
-                    <div class="card">
-                        <div class="card-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-                        </div>
-                        <h3 class="card-title">Correlation Rules</h3>
-                        <p class="card-description">Multi-connector correlation for attack chain detection. Full kill chain scenarios with KQL.</p>
-                    </div>
-                </a>
-                <a href="kql-library.html" class="card-link">
-                    <div class="card">
-                        <div class="card-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                        </div>
-                        <h3 class="card-title">KQL Query Library</h3>
-                        <p class="card-description">50+ hunting queries organized by MITRE ATT&CK. Performance optimization and best practices.</p>
-                    </div>
-                </a>
-                <a href="incidents.html" class="card-link">
-                    <div class="card">
-                        <div class="card-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
-                        </div>
-                        <h3 class="card-title">Incidents & Investigation</h3>
-                        <p class="card-description">Incident lifecycle management, investigation graph, entity mapping, and timeline analysis.</p>
-                    </div>
-                </a>
-                <a href="automation.html" class="card-link">
-                    <div class="card">
-                        <div class="card-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                        </div>
-                        <h3 class="card-title">Automation & SOAR</h3>
-                        <p class="card-description">Build playbooks with Logic Apps. Automated response, enrichment, and notification workflows.</p>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Getting Started Checklist -->
-            <h2>Getting Started Checklist</h2>
-            <ul class="checklist">
-                <li class="checklist-item">
-                    <svg class="checklist-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    <div class="checklist-content">
-                        <div class="checklist-title">Create Log Analytics Workspace</div>
-                        <p class="checklist-desc">Deploy a workspace in your preferred Azure region with appropriate retention settings.</p>
-                    </div>
-                </li>
-                <li class="checklist-item">
-                    <svg class="checklist-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    <div class="checklist-content">
-                        <div class="checklist-title">Enable Microsoft Sentinel</div>
-                        <p class="checklist-desc">Add Sentinel solution to your workspace from Azure Marketplace or portal.</p>
-                    </div>
-                </li>
-                <li class="checklist-item">
-                    <svg class="checklist-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    <div class="checklist-content">
-                        <div class="checklist-title">Connect Data Sources</div>
-                        <p class="checklist-desc">Enable connectors for Microsoft services, Azure resources, and third-party solutions.</p>
-                    </div>
-                </li>
-                <li class="checklist-item">
-                    <svg class="checklist-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    <div class="checklist-content">
-                        <div class="checklist-title">Enable Analytics Rules</div>
-                        <p class="checklist-desc">Activate built-in rules from Content Hub and create custom detections.</p>
-                    </div>
-                </li>
-                <li class="checklist-item">
-                    <svg class="checklist-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    <div class="checklist-content">
-                        <div class="checklist-title">Configure RBAC</div>
-                        <p class="checklist-desc">Assign Microsoft Sentinel roles (Reader, Responder, Contributor) to SOC team members.</p>
-                    </div>
-                </li>
-                <li class="checklist-item">
-                    <svg class="checklist-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    <div class="checklist-content">
-                        <div class="checklist-title">Build Automation Playbooks</div>
-                        <p class="checklist-desc">Create Logic Apps playbooks for automated enrichment and response actions.</p>
-                    </div>
-                </li>
-            </ul>
-
-            <!-- Prerequisites -->
-            <h2>Prerequisites</h2>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Requirement</th>
-                            <th>Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Azure Subscription</td>
-                            <td>Active subscription with sufficient quota for Log Analytics and Logic Apps</td>
-                        </tr>
-                        <tr>
-                            <td>Permissions</td>
-                            <td>Microsoft Sentinel Contributor role on the resource group containing the workspace</td>
-                        </tr>
-                        <tr>
-                            <td>Log Analytics Workspace</td>
-                            <td>Dedicated workspace (avoid shared with other solutions for cost clarity)</td>
-                        </tr>
-                        <tr>
-                            <td>Microsoft 365</td>
-                            <td>E5 license recommended for full Defender integration (E3 minimum)</td>
-                        </tr>
-                        <tr>
-                            <td>Network</td>
-                            <td>Firewall rules allowing outbound HTTPS to Azure endpoints</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="alert alert-success">
-                <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
-                </svg>
-                <div class="alert-content">
-                    <div class="alert-title">Free Trial Available</div>
-                    <p class="alert-text">Microsoft Sentinel offers a 31-day free trial with up to 10 GB/day of data ingestion included.</p>
                 </div>
-            </div>
-
-            <!-- Footer -->
-            <footer class="footer">
-                <div class="footer-content">
-                    <svg class="footer-icon" viewBox="0 0 24 24">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                    </svg>
-                    Microsoft Sentinel Ultimate Guide
+                
+                <!-- Quick Start Cards -->
+                <h2 class="section-title">Quick Start</h2>
+                <div class="card-grid">
+                    <a href="1-1-introduction-to-siem.html" class="card">
+                        <div class="card-icon">📚</div>
+                        <h3 class="card-title">SIEM Fundamentals</h3>
+                        <p class="card-description">Start here if you're new to SIEM. Learn core concepts, architecture, and SOC operations.</p>
+                        <span class="card-link">6 chapters →</span>
+                    </a>
+                    
+                    <a href="2-1-splunk-architecture.html" class="card">
+                        <div class="card-icon">🟢</div>
+                        <h3 class="card-title">Splunk Platform</h3>
+                        <p class="card-description">Master Splunk architecture, SPL queries, Enterprise Security, and SOAR automation.</p>
+                        <span class="card-link">22 chapters →</span>
+                    </a>
+                    
+                    <a href="5-1-sentinel-architecture.html" class="card">
+                        <div class="card-icon">🔷</div>
+                        <h3 class="card-title">Microsoft Sentinel</h3>
+                        <p class="card-description">Learn cloud-native SIEM with KQL, analytics rules, automation, and UEBA.</p>
+                        <span class="card-link">12 chapters →</span>
+                    </a>
+                    
+                    <a href="8-1-detection-development.html" class="card">
+                        <div class="card-icon">🎯</div>
+                        <h3 class="card-title">Detection Engineering</h3>
+                        <p class="card-description">Build effective detections with MITRE ATT&CK, SIGMA rules, and testing frameworks.</p>
+                        <span class="card-link">4 chapters →</span>
+                    </a>
+                    
+                    <a href="10-1-authentication-attacks.html" class="card">
+                        <div class="card-icon">📁</div>
+                        <h3 class="card-title">Use Case Library</h3>
+                        <p class="card-description">Production-ready detection rules for authentication, malware, exfiltration, and insider threats.</p>
+                        <span class="card-link">4 chapters →</span>
+                    </a>
                 </div>
-            </footer>
-        </div>
-    </main>
-
+                
+                <!-- Learning Paths -->
+                <h2 class="section-title">Learning Paths</h2>
+                <div class="learning-paths">
+                    <div class="learning-path">
+                        <h3 class="path-title">🎓 SOC Analyst Path</h3>
+                        <p class="path-description">For Tier 1-2 analysts focused on monitoring and incident response</p>
+                        <ol class="path-steps">
+                            <li><a href="1-1-introduction-to-siem.html">SIEM Fundamentals</a></li>
+                            <li><a href="2-5-spl-fundamentals.html">SPL Basics</a> or <a href="5-4-kql-fundamentals.html">KQL Basics</a></li>
+                            <li><a href="3-2-notable-events.html">Notable Events</a> or <a href="5-7-incidents-investigation.html">Incident Investigation</a></li>
+                            <li><a href="1-6-soc-operations-siem.html">SOC Operations</a></li>
+                        </ol>
+                    </div>
+                    
+                    <div class="learning-path">
+                        <h3 class="path-title">⚙️ Security Engineer Path</h3>
+                        <p class="path-description">For engineers building and maintaining SIEM infrastructure</p>
+                        <ol class="path-steps">
+                            <li><a href="2-1-splunk-architecture.html">Splunk Architecture</a> or <a href="5-1-sentinel-architecture.html">Sentinel Architecture</a></li>
+                            <li><a href="2-3-data-ingestion.html">Data Ingestion</a> or <a href="5-3-data-connectors.html">Data Connectors</a></li>
+                            <li><a href="3-8-es-administration.html">ES Administration</a> or <a href="6-4-sentinel-administration.html">Sentinel Admin</a></li>
+                            <li><a href="7-3-migration-considerations.html">Migration Planning</a></li>
+                        </ol>
+                    </div>
+                    
+                    <div class="learning-path">
+                        <h3 class="path-title">🎯 Detection Engineer Path</h3>
+                        <p class="path-description">For engineers building detection content and hunting threats</p>
+                        <ol class="path-steps">
+                            <li><a href="8-1-detection-development.html">Detection Development</a></li>
+                            <li><a href="8-2-mitre-attack.html">MITRE ATT&CK Framework</a></li>
+                            <li><a href="8-3-sigma-rules.html">SIGMA Rules</a></li>
+                            <li><a href="3-3-correlation-searches.html">Correlation Searches</a> or <a href="5-6-analytics-rules.html">Analytics Rules</a></li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <!-- Complete Table of Contents -->
+                <h2 class="section-title">Complete Table of Contents</h2>
+                
+                <div class="toc-section">
+                    <h3 class="toc-title">📚 Section 1: SIEM Fundamentals</h3>
+                    <div class="toc-grid">
+                        <a href="1-1-introduction-to-siem.html" class="toc-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="toc-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="toc-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="toc-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="toc-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="toc-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <div class="toc-section">
+                    <h3 class="toc-title">🟢 Section 2: Splunk Fundamentals</h3>
+                    <div class="toc-grid">
+                        <a href="2-1-splunk-architecture.html" class="toc-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="toc-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="toc-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="toc-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="toc-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="toc-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="toc-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="toc-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="toc-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="toc-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <div class="toc-section">
+                    <h3 class="toc-title">🔒 Section 3: Splunk Security Operations</h3>
+                    <div class="toc-grid">
+                        <a href="3-1-splunk-es-overview.html" class="toc-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="toc-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="toc-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="toc-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="toc-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="toc-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="toc-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="toc-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <div class="toc-section">
+                    <h3 class="toc-title">⚡ Section 4: Splunk SOAR</h3>
+                    <div class="toc-grid">
+                        <a href="4-1-soar-overview.html" class="toc-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="toc-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="toc-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="toc-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <div class="toc-section">
+                    <h3 class="toc-title">🔷 Section 5: Microsoft Sentinel Fundamentals</h3>
+                    <div class="toc-grid">
+                        <a href="5-1-sentinel-architecture.html" class="toc-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="toc-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="toc-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="toc-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="toc-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="toc-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="toc-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="toc-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <div class="toc-section">
+                    <h3 class="toc-title">🔶 Section 6: Sentinel Security Operations</h3>
+                    <div class="toc-grid">
+                        <a href="6-1-automation-playbooks.html" class="toc-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="toc-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="toc-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="toc-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <div class="toc-section">
+                    <h3 class="toc-title">🔀 Section 7: SIEM Comparison</h3>
+                    <div class="toc-grid">
+                        <a href="7-1-splunk-vs-sentinel.html" class="toc-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="toc-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="toc-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <div class="toc-section">
+                    <h3 class="toc-title">🎯 Section 8: Detection Engineering</h3>
+                    <div class="toc-grid">
+                        <a href="8-1-detection-development.html" class="toc-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="toc-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="toc-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="toc-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <div class="toc-section">
+                    <h3 class="toc-title">🔍 Section 9: Threat Hunting</h3>
+                    <div class="toc-grid">
+                        <a href="9-1-hunting-fundamentals.html" class="toc-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="toc-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="toc-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <div class="toc-section">
+                    <h3 class="toc-title">📁 Section 10: Use Case Library</h3>
+                    <div class="toc-grid">
+                        <a href="10-1-authentication-attacks.html" class="toc-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="toc-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="toc-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="toc-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+                
+                <!-- Footer -->
+                <footer class="home-footer">
+                    <p>SIEM Mastery Guide - Built for Security Engineers preparing for interviews and professional development</p>
+                    <p class="footer-note">Covers Splunk Enterprise Security, Microsoft Sentinel, Detection Engineering, and SOC Operations</p>
+                </footer>
+            </div>
+        </main>
+    </div>
+    
     <script src="main.js"></script>
 </body>
 </html>

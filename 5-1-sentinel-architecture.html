@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Microsoft Sentinel Architecture - Cloud-native SIEM architecture, components, workspaces, and Azure integration.">
+    <title>Sentinel Architecture | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item active">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="5-1-sentinel-architecture.html">Sentinel Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Sentinel Architecture</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Microsoft Sentinel Architecture</h1>
+                <p class="page-subtitle">Cloud-native SIEM/SOAR built on Azure</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Microsoft Sentinel is a cloud-native SIEM and SOAR solution built on Azure. This chapter covers Sentinel's architecture, key components, workspace design, pricing model, and how it integrates with the Microsoft security ecosystem.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="what-is-sentinel">What is Microsoft Sentinel?</h2>
+                
+                <p>
+                    Microsoft Sentinel is a scalable, cloud-native solution that provides:
+                </p>
+                
+                <ul>
+                    <li><strong>SIEM</strong> - Security Information and Event Management</li>
+                    <li><strong>SOAR</strong> - Security Orchestration, Automation, and Response</li>
+                    <li><strong>UEBA</strong> - User and Entity Behavior Analytics</li>
+                    <li><strong>Threat Intelligence</strong> - Built-in and custom threat feeds</li>
+                </ul>
+                
+                <pre><code class="language-text">MICROSOFT SENTINEL CAPABILITIES:
+
+┌─────────────────────────────────────────────────────────┐
+│                  MICROSOFT SENTINEL                     │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  COLLECT          DETECT           INVESTIGATE         │
+│  ┌─────────┐     ┌─────────┐      ┌─────────┐         │
+│  │ Data    │     │Analytics│      │ Incident│         │
+│  │Connectors│    │ Rules   │      │  Graph  │         │
+│  └─────────┘     └─────────┘      └─────────┘         │
+│                                                         │
+│  RESPOND          HUNT             VISUALIZE           │
+│  ┌─────────┐     ┌─────────┐      ┌─────────┐         │
+│  │Playbooks│     │ Hunting │      │Workbooks│         │
+│  │(Logic   │     │ Queries │      │         │         │
+│  │ Apps)   │     └─────────┘      └─────────┘         │
+│  └─────────┘                                           │
+│                                                         │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h2 id="architecture">Sentinel Architecture</h2>
+                
+                <pre><code class="language-text">SENTINEL ARCHITECTURE:
+
+                    ┌─────────────────────────────────┐
+                    │      MICROSOFT SENTINEL         │
+                    │   (Azure Portal / API)          │
+                    └───────────────┬─────────────────┘
+                                    │
+                    ┌───────────────▼─────────────────┐
+                    │    LOG ANALYTICS WORKSPACE      │
+                    │    (Data Storage & Query)       │
+                    │                                 │
+                    │  ┌───────────────────────────┐  │
+                    │  │      DATA TABLES          │  │
+                    │  │  SecurityEvent            │  │
+                    │  │  SigninLogs               │  │
+                    │  │  AzureActivity            │  │
+                    │  │  CommonSecurityLog        │  │
+                    │  │  Syslog                   │  │
+                    │  │  Custom_CL                │  │
+                    │  └───────────────────────────┘  │
+                    └───────────────┬─────────────────┘
+                                    │
+        ┌───────────────────────────┼───────────────────────────┐
+        │                           │                           │
+        ▼                           ▼                           ▼
+┌───────────────┐         ┌───────────────┐         ┌───────────────┐
+│   MICROSOFT   │         │    AZURE      │         │   THIRD       │
+│   SOURCES     │         │   SERVICES    │         │   PARTY       │
+│               │         │               │         │               │
+│ • M365        │         │ • Azure AD    │         │ • Firewalls   │
+│ • Defender    │         │ • Key Vault   │         │ • EDR         │
+│ • Entra ID    │         │ • Storage     │         │ • Cloud Apps  │
+│ • Intune      │         │ • VMs         │         │ • On-prem     │
+└───────────────┘         └───────────────┘         └───────────────┘</code></pre>
+                
+                <h3>Key Components</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Purpose</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Log Analytics Workspace</strong></td>
+                                <td>Data storage</td>
+                                <td>Stores all ingested data; query engine (KQL)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Data Connectors</strong></td>
+                                <td>Data ingestion</td>
+                                <td>Built-in connectors for Microsoft and third-party</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Analytics Rules</strong></td>
+                                <td>Detection</td>
+                                <td>Scheduled and real-time detection rules</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Incidents</strong></td>
+                                <td>Case management</td>
+                                <td>Correlated alerts with investigation tools</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Workbooks</strong></td>
+                                <td>Visualization</td>
+                                <td>Interactive dashboards and reports</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Playbooks</strong></td>
+                                <td>Automation</td>
+                                <td>Logic Apps for automated response</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hunting</strong></td>
+                                <td>Proactive search</td>
+                                <td>Built-in and custom hunting queries</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Notebooks</strong></td>
+                                <td>Advanced analysis</td>
+                                <td>Jupyter notebooks for data science</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="workspace-design">Workspace Design</h2>
+                
+                <h3>Single vs Multiple Workspaces</h3>
+                
+                <pre><code class="language-text">WORKSPACE DESIGN CONSIDERATIONS:
+
+SINGLE WORKSPACE (Recommended for most):
+┌─────────────────────────────────────────────────────────┐
+│              LOG ANALYTICS WORKSPACE                    │
+│                                                         │
+│  All data in one place:                                │
+│  • Simplified queries across all data                  │
+│  • Single pane of glass                                │
+│  • Easier correlation                                  │
+│  • Lower complexity                                    │
+└─────────────────────────────────────────────────────────┘
+
+MULTIPLE WORKSPACES (When required):
+┌─────────────────────┐  ┌─────────────────────┐
+│   Workspace: Prod   │  │   Workspace: Dev    │
+│   (Production data) │  │   (Dev/Test data)   │
+└─────────────────────┘  └─────────────────────┘
+
+┌─────────────────────┐  ┌─────────────────────┐
+│   Workspace: US     │  │   Workspace: EU     │
+│   (Data residency)  │  │   (GDPR compliance) │
+└─────────────────────┘  └─────────────────────┘
+
+REASONS FOR MULTIPLE WORKSPACES:
+• Data sovereignty / residency requirements
+• Billing separation (different departments)
+• Access control boundaries
+• Regulatory isolation</code></pre>
+                
+                <h3>Workspace Configuration</h3>
+                
+                <pre><code class="language-text">WORKSPACE SETTINGS:
+
+Retention:
+• Default: 90 days (included)
+• Extended: Up to 730 days (additional cost)
+• Archive: Up to 7 years (cheaper, slower access)
+
+Commitment Tiers:
+• Pay-as-you-go: Per GB ingested
+• Commitment: 100GB/day+ for discounts
+
+Access Control:
+• Workspace-level: Full workspace access
+• Resource-context: Access based on Azure resource
+• Table-level: Custom RBAC per table</code></pre>
+                
+                <h2 id="microsoft-ecosystem">Microsoft Security Ecosystem</h2>
+                
+                <pre><code class="language-text">MICROSOFT SECURITY INTEGRATION:
+
+┌─────────────────────────────────────────────────────────┐
+│                  MICROSOFT SENTINEL                     │
+│              (Central SIEM/SOAR Platform)               │
+└───────────────────────┬─────────────────────────────────┘
+                        │
+    ┌───────────────────┼───────────────────┐
+    │                   │                   │
+    ▼                   ▼                   ▼
+┌─────────────┐  ┌─────────────┐  ┌─────────────┐
+│ MICROSOFT   │  │ MICROSOFT   │  │ MICROSOFT   │
+│ DEFENDER    │  │ DEFENDER    │  │ DEFENDER    │
+│ FOR         │  │ FOR         │  │ FOR         │
+│ ENDPOINT    │  │ IDENTITY    │  │ CLOUD APPS  │
+│ (MDE)       │  │ (MDI)       │  │ (MDA)       │
+└─────────────┘  └─────────────┘  └─────────────┘
+    │                   │                   │
+    ▼                   ▼                   ▼
+┌─────────────┐  ┌─────────────┐  ┌─────────────┐
+│ MICROSOFT   │  │ MICROSOFT   │  │ MICROSOFT   │
+│ DEFENDER    │  │ ENTRA ID    │  │ PURVIEW     │
+│ FOR OFFICE  │  │ (Azure AD)  │  │ (DLP/       │
+│ 365 (MDO)   │  │             │  │  Compliance)│
+└─────────────┘  └─────────────┘  └─────────────┘
+
+UNIFIED SECURITY OPERATIONS:
+• Microsoft Defender XDR portal
+• Automatic incident correlation
+• Bi-directional sync with Sentinel</code></pre>
+                
+                <h2 id="pricing">Pricing Model</h2>
+                
+                <h3>Cost Components</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Cost Basis</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Data Ingestion</strong></td>
+                                <td>Per GB ingested</td>
+                                <td>Primary cost driver</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sentinel Analysis</strong></td>
+                                <td>Per GB analyzed</td>
+                                <td>Same as ingestion for most tables</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Data Retention</strong></td>
+                                <td>Per GB/month</td>
+                                <td>First 90 days free</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Playbooks</strong></td>
+                                <td>Logic Apps pricing</td>
+                                <td>Per action/trigger</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Free Data Sources</h3>
+                
+                <pre><code class="language-text">FREE INGESTION (No Sentinel charge):
+• Azure Activity Logs
+• Office 365 Audit Logs (basic)
+• Microsoft Defender XDR alerts
+• Microsoft Defender for Cloud alerts
+
+BASIC LOGS (Reduced cost):
+• Verbose logs at ~80% discount
+• Limited query capabilities
+• 8-day interactive retention</code></pre>
+                
+                <h3>Cost Optimization</h3>
+                
+                <pre><code class="language-kql">// Check ingestion volume by table
+Usage
+| where TimeGenerated > ago(30d)
+| summarize GB = sum(Quantity) / 1000 by DataType
+| sort by GB desc
+
+// Identify high-volume sources
+Usage
+| where TimeGenerated > ago(7d)
+| summarize GB = sum(Quantity) / 1000 by Solution, DataType
+| sort by GB desc
+| take 20</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Cost Optimization Tips
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Reduce Ingestion:</strong><br>
+                            □ Use Basic Logs for verbose, low-value data<br>
+                            □ Filter data at source (agent level)<br>
+                            □ Archive to cheaper storage tiers<br><br>
+                            
+                            <strong>Commitment Tiers:</strong><br>
+                            □ Use commitment tiers at 100GB+/day<br>
+                            □ Consider Defender XDR bundling<br>
+                            □ Review usage monthly for tier optimization
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="deployment">Deployment Options</h2>
+                
+                <pre><code class="language-text">DEPLOYMENT METHODS:
+
+1. AZURE PORTAL (GUI)
+   Azure Portal → Create Resource → Microsoft Sentinel
+   → Select/Create Log Analytics Workspace
+   → Add Sentinel
+
+2. AZURE CLI
+   # Create resource group
+   az group create --name rg-sentinel --location eastus
+   
+   # Create Log Analytics workspace
+   az monitor log-analytics workspace create \
+       --resource-group rg-sentinel \
+       --workspace-name law-sentinel
+   
+   # Enable Sentinel
+   az sentinel onboard \
+       --resource-group rg-sentinel \
+       --workspace-name law-sentinel
+
+3. ARM TEMPLATE / BICEP
+   # Infrastructure as Code deployment
+
+4. TERRAFORM
+   resource "azurerm_sentinel_log_analytics_workspace_onboarding" "sentinel" {
+     workspace_id = azurerm_log_analytics_workspace.law.id
+   }</code></pre>
+                
+                <h2 id="rbac">Role-Based Access Control</h2>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Role</th>
+                                <th>Permissions</th>
+                                <th>Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Microsoft Sentinel Reader</strong></td>
+                                <td>View data, incidents, workbooks</td>
+                                <td>SOC Analyst (view only)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Microsoft Sentinel Responder</strong></td>
+                                <td>+ Manage incidents</td>
+                                <td>SOC Analyst (Tier 1-2)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Microsoft Sentinel Contributor</strong></td>
+                                <td>+ Create/edit rules, workbooks</td>
+                                <td>SOC Engineer</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Microsoft Sentinel Automation Contributor</strong></td>
+                                <td>+ Manage playbooks</td>
+                                <td>Automation Engineer</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Logic App Contributor</strong></td>
+                                <td>Create/edit Logic Apps</td>
+                                <td>Playbook Developer</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"What are the advantages of Microsoft Sentinel over on-premises SIEM?"</strong><br><br>
+                            <strong>1. Cloud-Native:</strong> No infrastructure to manage, automatic scaling, always updated<br>
+                            <strong>2. Microsoft Integration:</strong> Native connectors for M365, Defender, Azure AD with free ingestion<br>
+                            <strong>3. Cost Model:</strong> Pay-per-use vs upfront hardware/licensing<br>
+                            <strong>4. Built-in AI/ML:</strong> UEBA, Fusion detection, anomaly detection included<br>
+                            <strong>5. SOAR Included:</strong> Logic Apps playbooks without additional licensing<br>
+                            <strong>6. Global Scale:</strong> Multi-region, multi-tenant capabilities<br>
+                            <strong>7. Rapid Deployment:</strong> Enable in minutes vs weeks for on-prem
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Sentinel is cloud-native SIEM + SOAR built on Azure</li>
+                    <li>Data stored in Log Analytics Workspace</li>
+                    <li>Uses KQL (Kusto Query Language) for queries</li>
+                    <li>Native integration with Microsoft security products</li>
+                    <li>Pricing based on data ingestion volume</li>
+                    <li>Free sources: Azure Activity, O365 Audit, Defender alerts</li>
+                    <li>Single workspace recommended unless compliance requires separation</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="4-4-case-management.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Case Management</span>
+                        </div>
+                    </a>
+                    <a href="5-2-log-analytics.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Log Analytics Workspace</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

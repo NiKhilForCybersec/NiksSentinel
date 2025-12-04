@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Microsoft Sentinel UEBA - User and Entity Behavior Analytics for anomaly detection and insider threat identification.">
+    <title>UEBA | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item active">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="6-1-automation-playbooks.html">Sentinel Security Ops</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">UEBA</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">User and Entity Behavior Analytics</h1>
+                <p class="page-subtitle">ML-powered anomaly detection for users and entities</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            UEBA uses machine learning to establish behavioral baselines and detect anomalies that may indicate compromised accounts or insider threats. This chapter covers UEBA configuration, entity pages, anomaly detection, and investigation techniques.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="ueba-overview">UEBA Overview</h2>
+                
+                <pre><code class="language-text">UEBA CONCEPT:
+
+Traditional Detection:          UEBA Detection:
+Known bad patterns              Deviation from normal
+
+Rule: "5 failed logins"         Baseline: User normally logs in
+Alert: ✓ Match                  from NYC at 9 AM
+                                
+                                Anomaly: Login from Tokyo at 3 AM
+                                Alert: ✓ Unusual behavior
+
+UEBA DETECTS:
+• Compromised accounts (unusual access patterns)
+• Insider threats (abnormal data access)
+• Lateral movement (unusual resource access)
+• Privilege escalation (abnormal admin activity)</code></pre>
+                
+                <h3>How UEBA Works</h3>
+                
+                <pre><code class="language-text">UEBA PROCESS:
+
+1. DATA COLLECTION
+   ┌─────────────────────────────────────────────────────┐
+   │ Azure AD Logs │ Endpoint │ Cloud Apps │ On-prem AD │
+   └───────────────────────────┬─────────────────────────┘
+                               │
+2. ENTITY CORRELATION          ▼
+   ┌─────────────────────────────────────────────────────┐
+   │ Link activities to users, hosts, IPs               │
+   │ Build entity profiles                              │
+   └───────────────────────────┬─────────────────────────┘
+                               │
+3. BASELINE LEARNING           ▼
+   ┌─────────────────────────────────────────────────────┐
+   │ Learn normal behavior patterns                      │
+   │ • Login times, locations                           │
+   │ • Resources accessed                               │
+   │ • Peer group behavior                              │
+   └───────────────────────────┬─────────────────────────┘
+                               │
+4. ANOMALY DETECTION           ▼
+   ┌─────────────────────────────────────────────────────┐
+   │ Score deviations from baseline                      │
+   │ Generate investigation priority                     │
+   └─────────────────────────────────────────────────────┘</code></pre>
+                
+                <h2 id="enabling-ueba">Enabling UEBA</h2>
+                
+                <pre><code class="language-text">ENABLING UEBA:
+
+Sentinel → Settings → Settings → UEBA
+
+DATA SOURCES TO ENABLE:
+☑ Azure Active Directory (Sign-in logs, Audit logs)
+☑ Azure Activity
+☑ Security Events (Windows)
+☑ Microsoft 365 Audit Logs
+
+ENTITY BEHAVIOR SETTINGS:
+☑ Enable entity behavior analytics
+☑ Sync AD users and groups
+
+TIMELINE:
+• Initial baseline: 14-21 days
+• Anomalies start appearing after baseline period</code></pre>
+                
+                <h2 id="entity-pages">Entity Pages</h2>
+                
+                <pre><code class="language-text">ENTITY PAGE COMPONENTS:
+
+┌─────────────────────────────────────────────────────────┐
+│ USER: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cba1a4a3a5e5b8a6a2bfa38ba8a4a6bbaaa5b2e5a8a4a6">[email&#160;protected]</a>                           │
+├─────────────────────────────────────────────────────────┤
+│ PROFILE                          │ RISK SCORE          │
+│ Department: Finance              │ ██████████ 75/100   │
+│ Title: Senior Accountant         │ Investigation       │
+│ Manager: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8ee4efe0eba0eae1ebceede1e3feefe0f7a0ede1e3">[email&#160;protected]</a>    │ Priority: High      │
+│ Groups: Finance, VPN-Users       │                     │
+├─────────────────────────────────────────────────────────┤
+│ INSIGHTS                                               │
+│ • First seen: 2023-01-15                              │
+│ • Usual locations: New York, NY (95%)                 │
+│ • Usual devices: DESKTOP-ABC123                       │
+│ • Peers: Finance department users                      │
+├─────────────────────────────────────────────────────────┤
+│ ANOMALIES (Last 30 days)                              │
+│ • Unusual login location (2 occurrences)              │
+│ • First time access to HR SharePoint                  │
+│ • Activity outside normal hours                       │
+├─────────────────────────────────────────────────────────┤
+│ TIMELINE                                               │
+│ [Interactive timeline of all user activities]          │
+├─────────────────────────────────────────────────────────┤
+│ RELATED INCIDENTS                                      │
+│ • Incident #456: Suspicious Sign-in (Active)          │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h2 id="anomaly-types">Anomaly Types</h2>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Anomaly</th>
+                                <th>Description</th>
+                                <th>Indicator Of</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Anomalous login</strong></td>
+                                <td>Unusual time, location, or device</td>
+                                <td>Compromised account</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Impossible travel</strong></td>
+                                <td>Logins from distant locations</td>
+                                <td>Credential theft</td>
+                            </tr>
+                            <tr>
+                                <td><strong>First access</strong></td>
+                                <td>New resource accessed</td>
+                                <td>Lateral movement</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Unusual activity</strong></td>
+                                <td>Atypical actions for user/role</td>
+                                <td>Insider threat</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Peer outlier</strong></td>
+                                <td>Different from peer group</td>
+                                <td>Compromised or rogue</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Activity spike</strong></td>
+                                <td>Unusual volume of activity</td>
+                                <td>Data exfiltration</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="querying-ueba">Querying UEBA Data</h2>
+                
+                <pre><code class="language-kql">// User anomalies
+BehaviorAnalytics
+| where TimeGenerated > ago(7d)
+| where ActivityType == "Anomaly"
+| project 
+    TimeGenerated,
+    UserPrincipalName,
+    ActivityType,
+    ActivityInsights,
+    InvestigationPriority
+| sort by InvestigationPriority desc
+
+// High priority users
+BehaviorAnalytics
+| where TimeGenerated > ago(24h)
+| where InvestigationPriority == "High"
+| summarize AnomalyCount = count() by UserPrincipalName
+| sort by AnomalyCount desc
+
+// Specific anomaly types
+BehaviorAnalytics
+| where TimeGenerated > ago(7d)
+| where ActivityInsights contains "FirstTimeUserConnectedFromCountry"
+| project TimeGenerated, UserPrincipalName, SourceIPAddress, SourceIPLocation
+
+// Entity timeline
+IdentityInfo
+| where AccountUPN == "<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="02686d6a6c2c716f6b766a42616d6f72636c7b2c616d6f">[email&#160;protected]</a>"
+| join kind=leftouter (
+    BehaviorAnalytics
+    | where UserPrincipalName == "<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="13797c7b7d3d607e7a677b53707c7e63727d6a3d707c7e">[email&#160;protected]</a>"
+) on $left.AccountUPN == $right.UserPrincipalName
+| project TimeGenerated, ActivityType, ActivityInsights, InvestigationPriority</code></pre>
+                
+                <h2 id="investigation">UEBA Investigation</h2>
+                
+                <pre><code class="language-text">INVESTIGATING HIGH-RISK USER:
+
+1. REVIEW ENTITY PAGE
+   • Check investigation priority score
+   • Review recent anomalies
+   • Check related incidents
+
+2. EXAMINE TIMELINE
+   • What activities triggered anomalies?
+   • Are there patterns?
+   • What's the sequence of events?
+
+3. COMPARE TO BASELINE
+   • What's normal for this user?
+   • What's normal for peer group?
+   • How significant is the deviation?
+
+4. CORRELATE ACROSS SOURCES
+   • Sign-in logs: Where did they authenticate?
+   • Audit logs: What did they change?
+   • Email: Did they receive phishing?
+   • Endpoint: Any malware detected?
+
+5. DETERMINE ACTION
+   • Benign: Document and close
+   • Suspicious: Escalate, contact user
+   • Confirmed: Contain (disable account, isolate)</code></pre>
+                
+                <h3>Investigation Queries</h3>
+                
+                <pre><code class="language-kql">// Full user activity investigation
+let TargetUser = "<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6d07020503431e000419052d0e02001d0c0314430e0200">[email&#160;protected]</a>";
+let TimeWindow = 7d;
+union
+    (SigninLogs | where TimeGenerated > ago(TimeWindow) | where UserPrincipalName == TargetUser 
+     | project TimeGenerated, Activity = "Sign-in", Details = strcat(ResultDescription, " from ", IPAddress))),
+    (AuditLogs | where TimeGenerated > ago(TimeWindow) | where InitiatedBy.user.userPrincipalName == TargetUser
+     | project TimeGenerated, Activity = OperationName, Details = tostring(TargetResources)),
+    (OfficeActivity | where TimeGenerated > ago(TimeWindow) | where UserId == TargetUser
+     | project TimeGenerated, Activity = Operation, Details = OfficeObjectId)
+| sort by TimeGenerated desc
+
+// Peer comparison
+let TargetUser = "<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="95fffafdfbbbe6f8fce1fdd5f6faf8e5f4fbecbbf6faf8">[email&#160;protected]</a>";
+let UserDept = toscalar(IdentityInfo | where AccountUPN == TargetUser | project Department);
+BehaviorAnalytics
+| where TimeGenerated > ago(7d)
+| join kind=inner (
+    IdentityInfo | where Department == UserDept | project UserPrincipalName = AccountUPN
+) on UserPrincipalName
+| summarize AvgPriority = avg(toint(InvestigationPriority)) by UserPrincipalName
+| sort by AvgPriority desc</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        UEBA Best Practices
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Configuration:</strong><br>
+                            □ Enable all relevant data sources<br>
+                            □ Allow 2-3 weeks for baseline learning<br>
+                            □ Sync AD for accurate identity info<br>
+                            □ Define peer groups properly<br><br>
+                            
+                            <strong>Investigation:</strong><br>
+                            □ Don't alert on every anomaly<br>
+                            □ Focus on high investigation priority<br>
+                            □ Correlate with other signals<br>
+                            □ Consider business context (travel, projects)<br>
+                            □ Update baselines after legitimate changes
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"What is UEBA and how does it complement traditional SIEM detection?"</strong><br><br>
+                            <strong>UEBA (User and Entity Behavior Analytics)</strong> uses machine learning to detect anomalies by:<br>
+                            • Learning normal behavior patterns (baseline)<br>
+                            • Identifying deviations from baseline<br>
+                            • Scoring risk based on anomaly severity<br><br>
+                            
+                            <strong>Complements traditional SIEM because:</strong><br>
+                            • Detects unknown threats (no signature needed)<br>
+                            • Identifies compromised accounts behaving abnormally<br>
+                            • Catches insider threats that don't trigger rules<br>
+                            • Reduces false positives with context-aware detection<br>
+                            • Provides investigation priority for SOC efficiency
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>UEBA detects anomalies by learning behavioral baselines</li>
+                    <li>Requires 2-3 weeks to establish baselines</li>
+                    <li>Entity pages show risk scores and anomalies</li>
+                    <li>Anomaly types: unusual login, impossible travel, first access</li>
+                    <li>Query BehaviorAnalytics table for UEBA data</li>
+                    <li>Focus on high investigation priority, not all anomalies</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="6-2-watchlists-ti.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+ 

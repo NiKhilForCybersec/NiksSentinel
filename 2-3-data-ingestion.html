@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Splunk Data Ingestion - Universal Forwarder deployment, Heavy Forwarder, HTTP Event Collector, syslog, and cloud data ingestion methods.">
+    <title>Data Ingestion | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+                <div class="sidebar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search docs... (Ctrl+K)" aria-label="Search documentation">
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item active">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="2-1-splunk-architecture.html">Splunk Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Data Ingestion</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Data Ingestion</h1>
+                <p class="page-subtitle">Methods for getting data into Splunk: forwarders, HEC, syslog, and cloud integrations</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Getting data into Splunk is the first step in any deployment. This chapter covers the primary ingestion methods: Universal Forwarders for endpoints, Heavy Forwarders for aggregation, HTTP Event Collector for applications, syslog for network devices, and cloud connectors for AWS, Azure, and GCP.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="universal-forwarder">Universal Forwarder Deployment</h2>
+                
+                <p>
+                    The Universal Forwarder (UF) is the primary method for collecting data from endpoints and servers:
+                </p>
+                
+                <h3>Linux Installation</h3>
+                
+                <pre><code class="language-bash"># Download Universal Forwarder
+wget -O splunkforwarder-9.1.0-linux-2.6-x86_64.rpm \
+  "https://download.splunk.com/products/universalforwarder/releases/9.1.0/linux/splunkforwarder-9.1.0-linux-2.6-x86_64.rpm"
+
+# Install
+sudo rpm -ivh splunkforwarder-9.1.0-linux-2.6-x86_64.rpm
+
+# Default location: /opt/splunkforwarder
+
+# Configure and start
+sudo /opt/splunkforwarder/bin/splunk start --accept-license \
+  --answer-yes --seed-passwd 'ForwarderPassword123!'
+
+# Enable boot start
+sudo /opt/splunkforwarder/bin/splunk enable boot-start -systemd-managed 1 -user splunk
+
+# Configure forwarding to indexers
+sudo /opt/splunkforwarder/bin/splunk add forward-server idx1.company.com:9997
+sudo /opt/splunkforwarder/bin/splunk add forward-server idx2.company.com:9997
+
+# Add a monitor input
+sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/secure \
+  -index linux_security -sourcetype linux_secure</code></pre>
+                
+                <h3>Windows Installation</h3>
+                
+                <pre><code class="language-powershell"># Silent installation
+msiexec.exe /i splunkforwarder-9.1.0-x64-release.msi AGREETOLICENSE=yes `
+  SPLUNKPASSWORD=ForwarderPassword123! `
+  RECEIVING_INDEXER="idx1.company.com:9997,idx2.company.com:9997" `
+  LAUNCHSPLUNK=1 SERVICESTARTTYPE=auto /quiet
+
+# Or use deployment server for configuration
+msiexec.exe /i splunkforwarder-9.1.0-x64-release.msi AGREETOLICENSE=yes `
+  SPLUNKPASSWORD=ForwarderPassword123! `
+  DEPLOYMENT_SERVER="deployment.company.com:8089" `
+  LAUNCHSPLUNK=1 SERVICESTARTTYPE=auto /quiet
+
+# Default location: C:\Program Files\SplunkUniversalForwarder
+
+# Add inputs via CLI
+& "C:\Program Files\SplunkUniversalForwarder\bin\splunk.exe" add monitor `
+  "C:\Windows\System32\winevt\Logs\Security.evtx" `
+  -index windows -sourcetype WinEventLog:Security</code></pre>
+                
+                <h3>Common UF inputs.conf</h3>
+                
+                <pre><code class="language-ini"># /opt/splunkforwarder/etc/system/local/inputs.conf
+
+# Linux Security Logs
+[monitor:///var/log/secure]
+disabled = false
+index = linux_security
+sourcetype = linux_secure
+
+[monitor:///var/log/messages]
+disabled = false
+index = linux_os
+sourcetype = syslog
+
+[monitor:///var/log/audit/audit.log]
+disabled = false
+index = linux_security
+sourcetype = linux_audit
+
+# Application logs
+[monitor:///var/log/nginx/access.log]
+disabled = false
+index = web
+sourcetype = nginx_access
+
+# Windows Security Events
+[WinEventLog://Security]
+disabled = false
+index = windows
+sourcetype = WinEventLog:Security
+# Collect specific events only
+whitelist = 4624,4625,4648,4672,4688,4720,4728,4732,4756
+
+[WinEventLog://System]
+disabled = false
+index = windows
+sourcetype = WinEventLog:System
+
+# PowerShell Logs
+[WinEventLog://Microsoft-Windows-PowerShell/Operational]
+disabled = false
+index = windows
+sourcetype = WinEventLog:PowerShell
+
+# Sysmon
+[WinEventLog://Microsoft-Windows-Sysmon/Operational]
+disabled = false
+index = windows
+sourcetype = XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
+renderXml = true</code></pre>
+                
+                <h3>outputs.conf for UF</h3>
+                
+                <pre><code class="language-ini"># /opt/splunkforwarder/etc/system/local/outputs.conf
+
+[tcpout]
+defaultGroup = indexers
+
+[tcpout:indexers]
+server = idx1.company.com:9997, idx2.company.com:9997, idx3.company.com:9997
+autoLBFrequency = 30
+forceTimebasedAutoLB = true
+useACK = true
+compressed = true
+
+# SSL configuration
+[tcpout-server://idx1.company.com:9997]
+sslCertPath = $SPLUNK_HOME/etc/auth/server.pem
+sslRootCAPath = $SPLUNK_HOME/etc/auth/cacert.pem
+sslPassword = password
+sslVerifyServerCert = true</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Best Practice
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Use a <strong>Deployment Server</strong> to manage UF configurations at scale. Create server classes to group forwarders (e.g., "linux_servers", "windows_dc", "web_servers") and deploy specific apps to each class. This avoids manually configuring each forwarder.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="heavy-forwarder">Heavy Forwarder Configuration</h2>
+                
+                <p>
+                    Use Heavy Forwarders when you need to parse, filter, or transform data before sending to indexers:
+                </p>
+                
+                <h3>Common HF Use Cases</h3>
+                
+                <ul>
+                    <li>Aggregate syslog from network devices</li>
+                    <li>Parse and route events to different indexes</li>
+                    <li>Mask sensitive data before forwarding</li>
+                    <li>Filter out unwanted events to reduce volume</li>
+                    <li>Collect from databases (DB Connect)</li>
+                </ul>
+                
+                <pre><code class="language-ini"># /opt/splunk/etc/system/local/inputs.conf (HF)
+
+# Accept syslog from network devices
+[udp://514]
+disabled = false
+connection_host = dns
+sourcetype = syslog
+index = network
+
+[tcp://514]
+disabled = false
+connection_host = dns
+sourcetype = syslog
+index = network
+
+# Accept from Universal Forwarders
+[splunktcp://9997]
+disabled = false
+connection_host = dns</code></pre>
+                
+                <pre><code class="language-ini"># /opt/splunk/etc/system/local/outputs.conf (HF)
+
+[tcpout]
+defaultGroup = indexers
+# HF does parsing, so disable on indexers
+forwardedindex.filter.disable = true
+
+[tcpout:indexers]
+server = idx1.company.com:9997, idx2.company.com:9997
+useACK = true</code></pre>
+                
+                <pre><code class="language-ini"># /opt/splunk/etc/system/local/props.conf (HF)
+# Parse and route events
+
+[syslog]
+TRANSFORMS-route = route_firewall_to_index, route_switch_to_index
+TRANSFORMS-extract = extract_cef_fields
+
+# /opt/splunk/etc/system/local/transforms.conf
+[route_firewall_to_index]
+REGEX = PAN-OS|ASA-
+DEST_KEY = _MetaData:Index
+FORMAT = firewall
+
+[route_switch_to_index]
+REGEX = %LINK-|%SYS-
+DEST_KEY = _MetaData:Index
+FORMAT = network_infrastructure
+
+[extract_cef_fields]
+REGEX = CEF:\d\|([^|]+)\|([^|]+)\|([^|]+)\|([^|]+)\|([^|]+)\|(\d+)\|(.*)
+FORMAT = cef_vendor::$1 cef_product::$2 cef_version::$3 cef_signature::$4 cef_name::$5 cef_severity::$6</code></pre>
+                
+                <h2 id="http-event-collector">HTTP Event Collector (HEC)</h2>
+                
+                <p>
+                    HEC enables applications to send data to Splunk over HTTP/HTTPS:
+                </p>
+                
+                <h3>Enable HEC</h3>
+                
+                <pre><code class="language-ini"># /opt/splunk/etc/system/local/inputs.conf
+
+[http]
+disabled = false
+port = 8088
+enableSSL = true
+dedicatedIoThreads = 2
+maxThreads = 0
+maxSockets = 0</code></pre>
+                
+                <h3>Create HEC Token</h3>
+                
+                <pre><code class="language-bash"># Via CLI
+/opt/splunk/bin/splunk http-event-collector create myapp_token \
+  -uri https://localhost:8089 \
+  -index main \
+  -sourcetype json_app \
+  -auth admin:password
+
+# Via REST API
+curl -k -u admin:password \
+  https://localhost:8089/servicesNS/admin/splunk_httpinput/data/inputs/http \
+  -d name=myapp_token \
+  -d index=main \
+  -d sourcetype=json_app</code></pre>
+                
+                <h3>Send Data to HEC</h3>
+                
+                <pre><code class="language-bash"># Simple event
+curl -k "https://splunk.company.com:8088/services/collector/event" \
+  -H "Authorization: Splunk YOUR-HEC-TOKEN-HERE" \
+  -d '{"event": "User logged in", "sourcetype": "myapp", "index": "main"}'
+
+# Event with timestamp and fields
+curl -k "https://splunk.company.com:8088/services/collector/event" \
+  -H "Authorization: Splunk YOUR-HEC-TOKEN-HERE" \
+  -d '{
+    "time": 1705329000,
+    "host": "webserver01",
+    "source": "myapp",
+    "sourcetype": "json_app",
+    "index": "main",
+    "event": {
+      "action": "login",
+      "user": "jsmith",
+      "status": "success",
+      "ip": "192.168.1.50"
+    }
+  }'
+
+# Raw endpoint (for raw log lines)
+curl -k "https://splunk.company.com:8088/services/collector/raw" \
+  -H "Authorization: Splunk YOUR-HEC-TOKEN-HERE" \
+  -H "X-Splunk-Request-Channel: $(uuidgen)" \
+  -d 'Jan 15 14:30:00 webserver01 myapp: User jsmith logged in'</code></pre>
+                
+                <pre><code class="language-python"># Python example
+import requests
+import json
+
+HEC_URL = "https://splunk.company.com:8088/services/collector/event"
+HEC_TOKEN = "YOUR-HEC-TOKEN-HERE"
+
+def send_to_splunk(event_data):
+    headers = {
+        "Authorization": f"Splunk {HEC_TOKEN}",
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "event": event_data,
+        "sourcetype": "myapp",
+        "index": "main"
+    }
+    response = requests.post(HEC_URL, headers=headers, 
+                            data=json.dumps(payload), verify=False)
+    return response.status_code
+
+# Send event
+send_to_splunk({"action": "login", "user": "jsmith", "status": "success"})</code></pre>
+                
+                <div class="info-box tip">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💡</span>
+                        HEC Best Practices
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>1.</strong> Create separate tokens for each application/use case<br>
+                            <strong>2.</strong> Restrict tokens to specific indexes and sourcetypes<br>
+                            <strong>3.</strong> Use indexer acknowledgment for guaranteed delivery<br>
+                            <strong>4.</strong> Batch multiple events in a single request for performance<br>
+                            <strong>5.</strong> Monitor HEC health in the Monitoring Console
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="syslog-ingestion">Syslog Ingestion</h2>
+                
+                <p>
+                    Network devices typically send logs via syslog. Set up dedicated syslog collection:
+                </p>
+                
+                <h3>Direct to Splunk</h3>
+                
+                <pre><code class="language-ini"># inputs.conf on Indexer or Heavy Forwarder
+
+# UDP Syslog (most common)
+[udp://514]
+disabled = false
+connection_host = dns
+sourcetype = syslog
+index = network
+no_appending_timestamp = true
+
+# TCP Syslog (reliable delivery)
+[tcp://514]
+disabled = false
+connection_host = dns
+sourcetype = syslog
+index = network
+
+# TLS Syslog
+[tcp-ssl://6514]
+disabled = false
+connection_host = dns
+sourcetype = syslog
+index = network</code></pre>
+                
+                <h3>Using syslog-ng or rsyslog</h3>
+                
+                <pre><code class="language-bash"># rsyslog - forward to Splunk HF
+# /etc/rsyslog.d/splunk.conf
+
+# Send all logs to Splunk HF
+*.* @@splunk-hf.company.com:514
+
+# Or filter specific facilities
+local0.* @@splunk-hf.company.com:514
+authpriv.* @@splunk-hf.company.com:514</code></pre>
+                
+                <pre><code class="language-text"># syslog-ng - forward to Splunk
+# /etc/syslog-ng/conf.d/splunk.conf
+
+destination d_splunk {
+    tcp("splunk-hf.company.com" port(514));
+};
+
+log {
+    source(s_src);
+    destination(d_splunk);
+};</code></pre>
+                
+                <h3>Syslog Parsing (props.conf)</h3>
+                
+                <pre><code class="language-ini"># props.conf - Parse different syslog formats
+
+# Cisco ASA
+[cisco:asa]
+TIME_FORMAT = %b %d %Y %H:%M:%S
+TIME_PREFIX = ^
+SHOULD_LINEMERGE = false
+TRANSFORMS-sourcetype = set_cisco_asa_sourcetype
+
+# Palo Alto
+[pan:traffic]
+TIME_FORMAT = %Y/%m/%d %H:%M:%S
+MAX_TIMESTAMP_LOOKAHEAD = 25
+SHOULD_LINEMERGE = false
+
+# Generic syslog with auto-detection
+[syslog]
+TRANSFORMS-sourcetype = detect_network_vendor</code></pre>
+                
+                <h2 id="cloud-ingestion">Cloud Data Ingestion</h2>
+                
+                <h3>AWS Add-on</h3>
+                
+                <pre><code class="language-ini"># Splunk Add-on for AWS
+# Configure via Splunk Web or inputs.conf
+
+# CloudTrail from S3
+[aws_cloudtrail://production]
+aws_account = production_account
+aws_region = us-east-1
+bucket_name = company-cloudtrail-logs
+sourcetype = aws:cloudtrail
+index = aws
+polling_interval = 300
+
+# CloudWatch Logs
+[aws_cloudwatch_logs://vpc_flow_logs]
+aws_account = production_account  
+aws_region = us-east-1
+log_group_name = /aws/vpc/flowlogs
+sourcetype = aws:cloudwatchlogs:vpcflow
+index = aws
+
+# SQS-based S3 input (recommended for large scale)
+[aws_sqs_based_s3://cloudtrail_sqs]
+aws_account = production_account
+sqs_queue = https://sqs.us-east-1.amazonaws.com/123456789/splunk-cloudtrail
+sourcetype = aws:cloudtrail
+index = aws</code></pre>
+                
+                <h3>Azure Add-on</h3>
+                
+                <pre><code class="language-ini"># Splunk Add-on for Microsoft Cloud Services
+
+# Azure Activity Logs via Event Hub
+[azure_event_hub://activity_logs]
+event_hub_namespace = company-eventhub
+event_hub_name = activity-logs
+consumer_group = splunk
+sourcetype = azure:activity
+index = azure
+
+# Azure AD Audit Logs
+[azure_activity_log://audit]
+tenant_id = your-tenant-id
+client_id = your-client-id
+client_secret = encrypted_secret
+sourcetype = azure:aad:audit
+index = azure</code></pre>
+                
+                <h3>GCP Add-on</h3>
+                
+                <pre><code class="language-ini"># Splunk Add-on for GCP
+
+# Pub/Sub subscription
+[google_cloud_pubsub://audit_logs]
+project_id = my-project
+subscription_name = splunk-audit-subscription
+credentials_file = /opt/splunk/etc/apps/Splunk_TA_google-cloudplatform/local/credentials.json
+sourcetype = google:gcp:pubsub:audit
+index = gcp</code></pre>
+                
+                <div class="info-box warning">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">⚠️</span>
+                        Warning
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Cloud data ingestion can be expensive both in Splunk licensing and cloud egress costs. CloudTrail alone can generate 10+ GB/day for active AWS accounts. Use filtering to collect only security-relevant events, and consider using cloud-native tools (GuardDuty, Sentinel) for initial filtering before forwarding to Splunk.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="db-connect">Database Inputs (DB Connect)</h2>
+                
+                <pre><code class="language-ini"># Splunk DB Connect - inputs.conf
+
+[mi_database_name]
+connection = my_database_connection
+disabled = false
+host = database_server
+index = database
+index_time_mode = current
+input_timestamp_column_number = 1
+interval = 300
+max_rows = 0
+mode = rising
+query = SELECT timestamp, user, action, resource FROM audit_log WHERE timestamp > ?
+sourcetype = database_audit
+tail_rising_column_init_ckpt_value = {"value":"1970-01-01 00:00:00","columnType":"TIMESTAMP"}
+tail_rising_column_name = timestamp
+tail_rising_column_number = 1</code></pre>
+                
+                <h2 id="verify-ingestion">Verifying Data Ingestion</h2>
+                
+                <pre><code class="language-spl"># Check data flow from specific host
+index=* host=webserver01 earliest=-15m
+| stats count by index, sourcetype
+
+# Check Universal Forwarder heartbeats
+index=_internal sourcetype=splunkd component=Metrics group=tcpin_connections
+| stats latest(connectionType) latest(hostname) by sourceIp
+
+# Check HEC health
+index=_internal sourcetype=splunkd HEC
+| stats count by log_level
+
+# Monitor license usage by source
+index=_internal source=*license_usage.log type=Usage
+| stats sum(b) as bytes by h, s, idx
+| eval MB = round(bytes/1024/1024, 2)
+| sort -MB
+
+# Find data gaps
+index=firewall earliest=-24h
+| timechart span=5m count
+| where count < 100</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"How would you troubleshoot data not appearing in Splunk from a Universal Forwarder?"</strong><br><br>
+                            <strong>1.</strong> Check UF status: <code>splunk status</code>, check splunkd.log for errors<br>
+                            <strong>2.</strong> Verify inputs.conf: Is the monitor path correct? Is it disabled?<br>
+                            <strong>3.</strong> Verify outputs.conf: Are indexers configured correctly?<br>
+                            <strong>4.</strong> Check network connectivity: Can UF reach indexers on port 9997?<br>
+                            <strong>5.</strong> Check receiving on indexer: Is inputs.conf configured to receive?<br>
+                            <strong>6.</strong> Search _internal for forwarding errors<br>
+                            <strong>7.</strong> Check permissions: Can splunk user read the log files?
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li><strong>Universal Forwarder</strong> - Lightweight agent for endpoints; configure inputs.conf and outputs.conf</li>
+                    <li><strong>Heavy Forwarder</strong> - Full Splunk for aggregation, parsing, and routing</li>
+                    <li><strong>HTTP Event Collector</strong> - REST API for applications to send data over HTTP/HTTPS</li>
+                    <li><strong>Syslog</strong> - UDP/TCP for network devices; use HF for aggregation</li>
+                    <li><strong>Cloud Add-ons</strong> - AWS, Azure, GCP integrations via Splunkbase</li>
+                    <li>Use Deployment Server to manage UF configurations at scale</li>
+                    <li>Always verify data ingestion and monitor for gaps</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="2-2-installation-configuration.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Installation & Configuration</span>
+                        </div>
+                    </a>
+                    <a href="2-4-index-management.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Index Management</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

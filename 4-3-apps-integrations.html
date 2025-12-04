@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Splunk SOAR Apps and Integrations - Connecting security tools, configuring assets, and common integration patterns.">
+    <title>Apps & Integrations | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item active">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="4-1-soar-overview.html">Splunk SOAR</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Apps & Integrations</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Apps & Integrations</h1>
+                <p class="page-subtitle">Connecting security tools to Splunk SOAR</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            SOAR Apps are connectors to external security tools. Each app provides actions that playbooks can execute. This chapter covers app installation, asset configuration, common integrations, and action patterns.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="apps-overview">Apps Overview</h2>
+                
+                <pre><code class="language-text">APP ARCHITECTURE:
+
+┌─────────────────────────────────────────────────────────┐
+│                      SOAR APP                           │
+├─────────────────────────────────────────────────────────┤
+│  ACTIONS                    │  ASSET CONFIG             │
+│  • ip reputation            │  • API Key                │
+│  • domain lookup            │  • Base URL               │
+│  • block ip                 │  • Username/Password      │
+│  • file reputation          │  • Certificate            │
+│  • get device info          │  • Timeout settings       │
+└─────────────────────────────────────────────────────────┘
+                          │
+                          ▼
+                ┌──────────────────┐
+                │  EXTERNAL TOOL   │
+                │  (API)           │
+                └──────────────────┘</code></pre>
+                
+                <h3>App Categories</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Example Apps</th>
+                                <th>Common Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Threat Intelligence</strong></td>
+                                <td>VirusTotal, AbuseIPDB, Recorded Future</td>
+                                <td>ip reputation, domain lookup, file reputation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>EDR/Endpoint</strong></td>
+                                <td>CrowdStrike, Carbon Black, Microsoft Defender</td>
+                                <td>get device info, isolate device, get processes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Network Security</strong></td>
+                                <td>Palo Alto, Cisco, Fortinet</td>
+                                <td>block ip, unblock ip, get rules</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SIEM</strong></td>
+                                <td>Splunk, Microsoft Sentinel</td>
+                                <td>run query, get events, update notable</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Identity</strong></td>
+                                <td>Active Directory, Okta, Azure AD</td>
+                                <td>disable user, reset password, get user info</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ticketing</strong></td>
+                                <td>ServiceNow, Jira, PagerDuty</td>
+                                <td>create ticket, update ticket, assign ticket</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Email</strong></td>
+                                <td>Exchange, O365, Proofpoint</td>
+                                <td>delete email, quarantine email, get emails</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sandbox</strong></td>
+                                <td>Joe Sandbox, Any.Run, VMRay</td>
+                                <td>detonate file, get report</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="installing-apps">Installing Apps</h2>
+                
+                <pre><code class="language-text">APP INSTALLATION:
+
+Method 1: Splunkbase (Recommended)
+Apps → Install app → Browse Splunkbase → Search → Install
+
+Method 2: Manual Upload
+Apps → Install app → Upload → Select .tgz file
+
+Method 3: Command Line (On-prem)
+$PHANTOM_HOME/bin/phenv python /opt/phantom/bin/app_deploy.py 
+    -i /path/to/app.tgz</code></pre>
+                
+                <h2 id="configuring-assets">Configuring Assets</h2>
+                
+                <p>
+                    Assets are configured instances of apps with credentials:
+                </p>
+                
+                <h3>Asset Configuration Example</h3>
+                
+                <pre><code class="language-text">VIRUSTOTAL ASSET CONFIG:
+
+Apps → VirusTotal → Configure New Asset
+
+Asset Information:
+• Asset Name: virustotal_prod
+• Product Vendor: VirusTotal
+• Product Name: VirusTotal
+
+Asset Configuration:
+• API Key: ****************************
+• Timeout: 30 seconds
+• Verify SSL: Yes
+
+Ingest Settings:
+• Enable polling: No (for enrichment only)
+
+Permissions:
+• Automation: Yes
+• Analysts: Read-only</code></pre>
+                
+                <h3>Common Asset Configurations</h3>
+                
+                <pre><code class="language-text">CROWDSTRIKE:
+• Base URL: https://api.crowdstrike.com
+• Client ID: ****
+• Client Secret: ****
+
+PALO ALTO FIREWALL:
+• Device IP: 10.0.0.1
+• Username: admin
+• Password: ****
+• Verify SSL: Yes
+
+SERVICENOW:
+• URL: https://company.service-now.com
+• Username: soar_integration
+• Password: ****
+• Client ID: **** (if OAuth)
+
+ACTIVE DIRECTORY:
+• Server: ldap://dc01.company.com
+• Username: DOMAIN\soar_svc
+• Password: ****
+• SSL: Yes
+
+SPLUNK:
+• Host: splunk.company.com
+• Port: 8089
+• Username: soar_user
+• Password: ****</code></pre>
+                
+                <h2 id="common-actions">Common Actions by Category</h2>
+                
+                <h3>Threat Intelligence Actions</h3>
+                
+                <pre><code class="language-text">VIRUSTOTAL:
+• ip reputation     - Check IP against VT database
+• domain reputation - Check domain reputation
+• file reputation   - Check hash reputation
+• url reputation    - Check URL reputation
+• detonate file     - Submit file for analysis
+• get file          - Download file from VT
+
+ABUSEIPDB:
+• check ip          - Get abuse reports for IP
+• report ip         - Report abusive IP
+
+RECORDED FUTURE:
+• ip intelligence   - Get risk score and context
+• domain intelligence
+• hash intelligence</code></pre>
+                
+                <h3>Endpoint Actions</h3>
+                
+                <pre><code class="language-text">CROWDSTRIKE:
+• get device info   - Get endpoint details
+• get processes     - List running processes
+• isolate device    - Network quarantine
+• unisolate device  - Remove quarantine
+• get detections    - Get alerts for device
+• run command       - Execute RTR command
+
+MICROSOFT DEFENDER:
+• get machine       - Get endpoint info
+• isolate machine   - Isolate from network
+• run av scan       - Trigger AV scan
+• collect investigation package
+• restrict app execution</code></pre>
+                
+                <h3>Identity Actions</h3>
+                
+                <pre><code class="language-text">ACTIVE DIRECTORY:
+• get user          - Get user attributes
+• disable user      - Disable account
+• enable user       - Enable account
+• reset password    - Reset to random password
+• get groups        - Get user's groups
+• add to group      - Add user to group
+• remove from group - Remove from group
+
+OKTA:
+• get user          - Get user info
+• suspend user      - Suspend account
+• unsuspend user    - Reactivate
+• clear sessions    - Log out all sessions
+• reset password    - Trigger password reset</code></pre>
+                
+                <h2 id="action-results">Working with Action Results</h2>
+                
+                <pre><code class="language-python"># Action result structure
+{
+    "action": "ip reputation",
+    "app": "VirusTotal",
+    "status": "success",
+    "data": [
+        {
+            "positives": 12,
+            "total": 70,
+            "scan_date": "2024-01-15",
+            "country": "RU",
+            "as_owner": "Some ISP"
+        }
+    ],
+    "summary": {
+        "malicious": 12,
+        "total_engines": 70
+    },
+    "parameter": {
+        "ip": "192.168.1.50"
+    }
+}
+
+# Accessing results in Python playbook
+def callback(action, success, container, results, handle):
+    for result in results:
+        # Get input parameter
+        ip = result['parameter']['ip']
+        
+        # Get summary data
+        malicious = result['summary'].get('malicious', 0)
+        
+        # Get detailed data
+        for data in result['data']:
+            country = data.get('country')
+            as_owner = data.get('as_owner')
+        
+        # Check status
+        if result['status'] == 'success':
+            process_success(result)
+        else:
+            handle_failure(result)</code></pre>
+                
+                <h2 id="integration-patterns">Integration Patterns</h2>
+                
+                <h3>Multi-Source Enrichment</h3>
+                
+                <pre><code class="language-text">PATTERN: Query multiple TI sources in parallel
+
+IMPLEMENTATION:
+1. Extract artifact (IP)
+2. Run parallel actions:
+   - VirusTotal: ip reputation
+   - AbuseIPDB: check ip
+   - Shodan: lookup ip
+   - MaxMind: geolocate ip
+3. Aggregate results in code block
+4. Calculate combined risk score
+5. Update artifact with enrichment</code></pre>
+                
+                <h3>Conditional Response</h3>
+                
+                <pre><code class="language-text">PATTERN: Take action based on tool response
+
+IMPLEMENTATION:
+1. Query EDR for endpoint status
+2. Decision: Is endpoint managed?
+   - YES: Use EDR to isolate
+   - NO: Use firewall to block traffic
+3. Decision: Isolation successful?
+   - YES: Collect forensics
+   - NO: Escalate to engineer</code></pre>
+                
+                <h3>Ticketing Integration</h3>
+                
+                <pre><code class="language-text">PATTERN: Create and update tickets automatically
+
+IMPLEMENTATION:
+1. On new high-severity container
+2. Create ServiceNow ticket with:
+   - Title from container name
+   - Description from enrichment
+   - Assignee from rotation
+   - Priority from severity
+3. Store ticket ID in container
+4. On container update, update ticket
+5. On container close, resolve ticket</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Integration Best Practices
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Credentials:</strong><br>
+                            □ Use service accounts, not personal credentials<br>
+                            □ Apply least privilege principle<br>
+                            □ Rotate credentials regularly<br>
+                            □ Use API keys over passwords when possible<br><br>
+                            
+                            <strong>Rate Limits:</strong><br>
+                            □ Understand API rate limits<br>
+                            □ Implement delays for bulk operations<br>
+                            □ Use caching for repeated lookups<br><br>
+                            
+                            <strong>Error Handling:</strong><br>
+                            □ Check action success before proceeding<br>
+                            □ Have fallback actions for failures<br>
+                            □ Alert on repeated integration failures
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"What integrations would you prioritize for a new SOAR deployment?"</strong><br><br>
+                            <strong>Tier 1 (Essential):</strong><br>
+                            • SIEM (Splunk) - Ingest alerts, query events<br>
+                            • Threat Intel (VirusTotal) - IOC enrichment<br>
+                            • EDR (CrowdStrike/Defender) - Endpoint visibility and containment<br>
+                            • Ticketing (ServiceNow) - Case tracking<br><br>
+                            
+                            <strong>Tier 2 (High Value):</strong><br>
+                            • Identity (AD/Okta) - User containment<br>
+                            • Firewall (Palo Alto) - Network blocking<br>
+                            • Email (O365/Exchange) - Phishing response<br><br>
+                            
+                            <strong>Selection Criteria:</strong><br>
+                            • What actions do we need most frequently?<br>
+                            • What takes analysts the most time today?<br>
+                            • What's the API quality and documentation?
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Apps are connectors to external security tools</li>
+                    <li>Each app provides actions (ip reputation, block ip, etc.)</li>
+                    <li>Assets are configured instances with credentials</li>
+                    <li>Categories: TI, EDR, Network, Identity, Ticketing, Email</li>
+                    <li>Use parallel actions for multi-source enrichment</li>
+                    <li>Implement error handling for integration failures</li>
+                    <li>Apply least privilege for service accounts</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="4-2-playbooks.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Playbooks</span>
+                        </div>
+                    </a>
+                    <a href="4-4-case-management.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Case Management</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

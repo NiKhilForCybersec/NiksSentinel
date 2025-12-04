@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Threat Hunting Methodologies - Structured approaches including hypothesis-driven, IOC-based, and behavioral hunting.">
+    <title>Hunting Methodologies | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item active">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="9-1-hunting-fundamentals.html">Threat Hunting</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Hunting Methodologies</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Hunting Methodologies</h1>
+                <p class="page-subtitle">Structured approaches to proactive threat detection</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Effective threat hunting requires structured methodologies. This chapter covers the main hunting approaches: hypothesis-driven, IOC-based, behavioral, and anomaly-based hunting, along with frameworks like MITRE ATT&CK for organizing hunts.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="methodologies-overview">Hunting Methodologies Overview</h2>
+                
+                <pre><code class="language-text">HUNTING METHODOLOGY TYPES:
+
+┌─────────────────────────────────────────────────────────┐
+│ 1. HYPOTHESIS-DRIVEN                                   │
+│    Start with a theory about attacker behavior         │
+│    Most mature approach                                │
+└─────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────┐
+│ 2. IOC/INTEL-DRIVEN                                    │
+│    Search for known indicators                         │
+│    Quick wins, limited scope                           │
+└─────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────┐
+│ 3. BEHAVIOR-DRIVEN (TTP)                               │
+│    Hunt for attack techniques, not indicators          │
+│    More resilient to attacker changes                  │
+└─────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────┐
+│ 4. ANOMALY-DRIVEN                                      │
+│    Find statistical outliers                           │
+│    Data science techniques                             │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h2 id="hypothesis-driven">Hypothesis-Driven Hunting</h2>
+                
+                <pre><code class="language-text">HYPOTHESIS-DRIVEN APPROACH:
+
+Start with a testable statement about adversary activity.
+
+HYPOTHESIS STRUCTURE:
+"If [threat actor/technique], then [observable evidence]"
+
+EXAMPLES:
+─────────────────────────────────────────────────────────
+Hypothesis: "If attackers are using encoded PowerShell for 
+execution, then we will see base64-encoded command lines 
+in process creation logs."
+
+Observable: PowerShell with -enc or -EncodedCommand flags
+Data source: Process creation logs (4688, Sysmon 1)
+─────────────────────────────────────────────────────────
+Hypothesis: "If credentials are being harvested via 
+Mimikatz, then we will see LSASS memory access patterns."
+
+Observable: Non-system processes accessing lsass.exe
+Data source: Sysmon Event 10, EDR telemetry
+─────────────────────────────────────────────────────────
+Hypothesis: "If attackers established persistence via 
+scheduled tasks, then we will see task creation from 
+unusual paths or with suspicious commands."
+
+Observable: Scheduled task creation (4698) with unusual properties
+Data source: Security Event Log, Task Scheduler logs</code></pre>
+                
+                <h3>Hypothesis Development Process</h3>
+                
+                <pre><code class="language-text">DEVELOPING A HYPOTHESIS:
+
+1. INPUT SOURCES
+   ┌─────────────────────────────────────────────────────┐
+   │ • Threat intelligence reports                      │
+   │ • MITRE ATT&CK techniques                          │
+   │ • Past incidents                                   │
+   │ • Detection gaps                                   │
+   └─────────────────────────────────────────────────────┘
+                    │
+                    ▼
+2. FORMULATE HYPOTHESIS
+   ┌─────────────────────────────────────────────────────┐
+   │ "Attackers targeting our industry may use          │
+   │ [technique] which would appear as [evidence]"      │
+   └─────────────────────────────────────────────────────┘
+                    │
+                    ▼
+3. IDENTIFY OBSERVABLES
+   ┌─────────────────────────────────────────────────────┐
+   │ • What logs would show this activity?              │
+   │ • What fields are relevant?                        │
+   │ • What's the expected pattern?                     │
+   └─────────────────────────────────────────────────────┘
+                    │
+                    ▼
+4. BUILD QUERY & HUNT
+   ┌─────────────────────────────────────────────────────┐
+   │ • Write detection query                            │
+   │ • Execute against data                             │
+   │ • Analyze results                                  │
+   └─────────────────────────────────────────────────────┘</code></pre>
+                
+                <h2 id="ioc-driven">IOC/Intel-Driven Hunting</h2>
+                
+                <pre><code class="language-text">IOC-DRIVEN APPROACH:
+
+Search for specific known-bad indicators.
+
+IOC TYPES:
+• IP addresses (C2 servers)
+• Domain names (malicious infrastructure)
+• File hashes (malware samples)
+• URLs (phishing, download sites)
+• Email addresses (sender addresses)
+• Registry keys (persistence mechanisms)
+• File paths (malware locations)
+
+PROCESS:
+1. Receive threat intelligence
+2. Extract IOCs from reports
+3. Search across relevant data sources
+4. Investigate any matches
+
+LIMITATIONS:
+• Attackers change IOCs frequently
+• Zero coverage for new campaigns
+• High volume of IOCs to manage
+• May only find historical compromise</code></pre>
+                
+                <h3>IOC Hunt Example</h3>
+                
+                <pre><code class="language-kql">// KQL: Hunt for malicious IPs from threat intel
+let MaliciousIPs = dynamic([
+    "192.168.100.50",
+    "10.20.30.40",
+    "203.0.113.99"
+]);
+union
+    (SigninLogs | where IPAddress in (MaliciousIPs)),
+    (CommonSecurityLog | where SourceIP in (MaliciousIPs) or DestinationIP in (MaliciousIPs)),
+    (AzureActivity | where CallerIpAddress in (MaliciousIPs))
+| project TimeGenerated, SourceTable = Type, IP = coalesce(IPAddress, SourceIP, CallerIpAddress)
+
+// Hunt for malicious file hashes
+let MaliciousHashes = dynamic([
+    "abc123...",
+    "def456..."
+]);
+DeviceFileEvents
+| where SHA256 in (MaliciousHashes) or SHA1 in (MaliciousHashes)
+| project TimeGenerated, DeviceName, FileName, FolderPath, SHA256
+
+// Hunt for malicious domains in DNS
+let MaliciousDomains = dynamic([
+    "evil.com",
+    "malware.net"
+]);
+DnsEvents
+| where Name has_any (MaliciousDomains)
+| project TimeGenerated, Computer, ClientIP, Name</code></pre>
+                
+                <h2 id="behavior-driven">Behavior/TTP-Driven Hunting</h2>
+                
+                <pre><code class="language-text">TTP-DRIVEN APPROACH:
+
+Hunt for attack techniques, not specific indicators.
+More resilient because TTPs change less frequently than IOCs.
+
+USING MITRE ATT&CK:
+
+1. Select technique to hunt
+   Example: T1059.001 - PowerShell
+
+2. Understand technique variations
+   • Encoded commands
+   • Download cradles
+   • Fileless execution
+   • Script block logging bypass
+
+3. Identify data sources
+   • Process creation (4688, Sysmon 1)
+   • Script block logging (4104)
+   • Module load events
+
+4. Build behavioral detection
+   Focus on behavior, not specific strings
+
+EXAMPLE TECHNIQUES TO HUNT:
+─────────────────────────────────────────────────────────
+T1003 - Credential Dumping
+T1059 - Command and Scripting
+T1021 - Remote Services
+T1053 - Scheduled Tasks
+T1547 - Boot/Logon Autostart
+T1055 - Process Injection
+T1070 - Indicator Removal</code></pre>
+                
+                <h3>TTP Hunt Example</h3>
+                
+                <pre><code class="language-kql">// Hunt T1055: Process Injection
+// Look for processes creating threads in other processes
+DeviceEvents
+| where ActionType == "CreateRemoteThreadApiCall"
+| where InitiatingProcessFileName !in ("MsMpEng.exe", "csrss.exe")
+| project TimeGenerated, DeviceName, 
+    Injector = InitiatingProcessFileName,
+    Target = FileName
+
+// Hunt T1003.001: LSASS Memory Access
+DeviceEvents
+| where ActionType == "OpenProcess"
+| where FileName == "lsass.exe"
+| where InitiatingProcessFileName !in ("csrss.exe", "lsm.exe", "services.exe")
+| project TimeGenerated, DeviceName, 
+    ProcessAccessing = InitiatingProcessFileName,
+    ProcessAccessingPath = InitiatingProcessFolderPath
+
+// Hunt T1053.005: Suspicious Scheduled Tasks
+DeviceEvents
+| where ActionType == "ScheduledTaskCreated"
+| where InitiatingProcessFileName !in ("svchost.exe", "mmc.exe")
+| project TimeGenerated, DeviceName, 
+    TaskName = FileName,
+    CreatedBy = InitiatingProcessFileName</code></pre>
+                
+                <h2 id="anomaly-driven">Anomaly-Driven Hunting</h2>
+                
+                <pre><code class="language-text">ANOMALY-DRIVEN APPROACH:
+
+Find statistical outliers that may indicate compromise.
+
+ANOMALY TYPES:
+• Volume anomalies (unusual amount of activity)
+• Behavioral anomalies (deviation from baseline)
+• Temporal anomalies (unusual timing)
+• Relationship anomalies (unusual connections)
+
+TECHNIQUES:
+• Statistical analysis (standard deviation)
+• Time series analysis
+• Peer group comparison
+• Rare event analysis
+• First occurrence detection</code></pre>
+                
+                <h3>Anomaly Hunt Examples</h3>
+                
+                <pre><code class="language-kql">// Find users with unusual login counts
+let baseline = SigninLogs
+| where TimeGenerated between (ago(30d) .. ago(1d))
+| summarize AvgLogins = avg(LoginCount), StdDev = stdev(LoginCount) by UserPrincipalName;
+SigninLogs
+| where TimeGenerated > ago(1d)
+| summarize TodayLogins = count() by UserPrincipalName
+| join kind=inner baseline on UserPrincipalName
+| where TodayLogins > AvgLogins + (3 * StdDev)
+
+// Find first-time occurrences
+let Historical = DeviceProcessEvents
+| where TimeGenerated between (ago(30d) .. ago(1d))
+| distinct FileName, FolderPath;
+DeviceProcessEvents
+| where TimeGenerated > ago(1d)
+| join kind=leftanti Historical on FileName, FolderPath
+| summarize FirstSeen = min(TimeGenerated), Count = count() by FileName, FolderPath
+
+// Find rare parent-child process relationships
+DeviceProcessEvents
+| where TimeGenerated > ago(7d)
+| summarize Count = count() by 
+    ParentProcess = InitiatingProcessFileName, 
+    ChildProcess = FileName
+| where Count < 5
+| sort by Count asc</code></pre>
+                
+                <h2 id="hunting-playbooks">Hunting Playbooks</h2>
+                
+                <pre><code class="language-text">HUNTING PLAYBOOK STRUCTURE:
+
+┌─────────────────────────────────────────────────────────┐
+│ PLAYBOOK: Credential Access Hunt                       │
+├─────────────────────────────────────────────────────────┤
+│ OBJECTIVE:                                              │
+│ Find evidence of credential theft techniques           │
+│                                                        │
+│ MITRE TECHNIQUES:                                      │
+│ T1003.001 - LSASS Memory                              │
+│ T1003.003 - NTDS                                      │
+│ T1110 - Brute Force                                   │
+│                                                        │
+│ DATA SOURCES REQUIRED:                                 │
+│ □ Process creation (4688/Sysmon 1)                    │
+│ □ Process access (Sysmon 10)                          │
+│ □ Authentication logs                                  │
+│                                                        │
+│ HUNT STEPS:                                            │
+│ 1. Search for LSASS access by non-system processes    │
+│ 2. Look for credential dumping tool patterns          │
+│ 3. Check for DCSync activity                          │
+│ 4. Review failed authentication patterns               │
+│                                                        │
+│ QUERIES: [Link to query library]                       │
+│                                                        │
+│ EXPECTED OUTCOMES:                                     │
+│ • True positive: Escalate to IR                       │
+│ • False positive: Document and tune                   │
+│ • Clean: Document hunt completion                     │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Methodology Selection Guide
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Use Hypothesis-Driven when:</strong><br>
+                            □ You have specific threat intelligence to validate<br>
+                            □ You want to test detection coverage<br>
+                            □ You're developing new detection capabilities<br><br>
+                            
+                            <strong>Use IOC-Driven when:</strong><br>
+                            □ Responding to specific threat reports<br>
+                            □ Checking for known campaigns<br>
+                            □ Quick validation needed<br><br>
+                            
+                            <strong>Use TTP-Driven when:</strong><br>
+                            □ Building resilient detection coverage<br>
+                            □ Hunting sophisticated adversaries<br>
+                            □ Following MITRE ATT&CK framework<br><br>
+                            
+                            <strong>Use Anomaly-Driven when:</strong><br>
+                            □ Baseline data is available<br>
+                            □ Looking for insider threats<br>
+                            □ Unknown threats suspected
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"Describe a threat hunting methodology you would use."</strong><br><br>
+                            I prefer <strong>hypothesis-driven hunting</strong> combined with MITRE ATT&CK:<br><br>
+                            
+                            <strong>1. Hypothesis Formation:</strong> Based on threat intelligence or coverage gaps, I form a testable hypothesis. Example: "Attackers may be using encoded PowerShell for initial execution."<br>
+                            <strong>2. Data Identification:</strong> Determine what data sources would show this activity—process creation logs with command line capture.<br>
+                            <strong>3. Query Development:</strong> Build queries to find encoded commands, download cradles, or unusual PowerShell usage.<br>
+                            <strong>4. Analysis:</strong> Review results, filter false positives, investigate suspicious findings.<br>
+                            <strong>5. Documentation:</strong> Record findings, create detection rule if successful, document false positive patterns.<br><br>
+                            
+                            This approach is structured, repeatable, and produces both findings and improved detection capability.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Four main methodologies: hypothesis, IOC, TTP, anomaly-driven</li>
+                    <li>Hypothesis-driven is the most mature approach</li>
+                    <li>TTP hunting is more resilient than IOC hunting</li>
+                    <li>Anomaly hunting requires good baseline data</li>
+                    <li>Combine methodologies for comprehensive coverage</li>
+                    <li>Document hunts in playbooks for repeatability</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="9-1-hunting-fundamentals.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Hunting Fundamentals</span>
+                        </div>
+                    </a>
+                    <a href="9-3-hunting-queries.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Hunting Queries</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

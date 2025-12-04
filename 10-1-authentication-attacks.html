@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Authentication Attack Use Cases - Brute force, password spray, credential stuffing, and account takeover detection.">
+    <title>Authentication Attacks | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item active">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="10-1-authentication-attacks.html">Use Case Library</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Authentication Attacks</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Authentication Attack Use Cases</h1>
+                <p class="page-subtitle">Detection rules for brute force, password spray, and account compromise</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Authentication attacks are among the most common threats. This chapter provides complete, production-ready detection rules with both Splunk SPL and Sentinel KQL, including tuning guidance and response procedures.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="brute-force">Use Case: Brute Force Attack</h2>
+                
+                <pre><code class="language-text">USE CASE: BRUTE FORCE DETECTION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DESCRIPTION:
+Detect when a single IP attempts multiple failed logins 
+to a single account, indicating password guessing.
+
+MITRE ATT&CK: T1110.001 - Brute Force: Password Guessing
+
+DATA SOURCES:
+• Windows: Security Event 4625
+• Azure AD: SigninLogs (ResultType != 0)
+• Linux: /var/log/auth.log, /var/log/secure
+
+DETECTION LOGIC:
+Alert when: Same IP → Same User → 10+ failures in 10 min</code></pre>
+                
+                <h3>Sentinel KQL</h3>
+                
+                <pre><code class="language-kql">// Brute Force Detection - Single User
+let FailureThreshold = 10;
+let TimeWindow = 10m;
+SecurityEvent
+| where TimeGenerated > ago(1h)
+| where EventID == 4625
+| where AccountType == "User"
+| summarize 
+    FailedAttempts = count(),
+    FirstAttempt = min(TimeGenerated),
+    LastAttempt = max(TimeGenerated),
+    FailureCodes = make_set(SubStatus)
+    by TargetAccount, IpAddress, Computer, bin(TimeGenerated, TimeWindow)
+| where FailedAttempts >= FailureThreshold
+| extend AlertDescription = strcat(
+    "Brute force detected: ", FailedAttempts, 
+    " failed logins to ", TargetAccount, 
+    " from ", IpAddress)
+| project TimeGenerated, Computer, TargetAccount, IpAddress, 
+    FailedAttempts, FirstAttempt, LastAttempt, AlertDescription</code></pre>
+                
+                <h3>Splunk SPL</h3>
+                
+                <pre><code class="language-text">// Brute Force Detection - Splunk
+index=windows sourcetype=WinEventLog:Security EventCode=4625
+| bin _time span=10m
+| stats count as FailedAttempts, 
+    earliest(_time) as FirstAttempt, 
+    latest(_time) as LastAttempt,
+    values(Sub_Status) as FailureCodes
+    by Account_Name, Source_Network_Address, ComputerName, _time
+| where FailedAttempts >= 10
+| convert ctime(FirstAttempt) ctime(LastAttempt)
+| table _time, ComputerName, Account_Name, Source_Network_Address, 
+    FailedAttempts, FirstAttempt, LastAttempt</code></pre>
+                
+                <div class="info-box tip">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💡</span>
+                        Tuning Guidance
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Reduce False Positives:</strong><br>
+                            □ Exclude service accounts with known retry behavior<br>
+                            □ Whitelist monitoring systems that test authentication<br>
+                            □ Adjust threshold based on environment baseline<br>
+                            □ Consider SubStatus codes (0xC000006A = bad password)<br><br>
+                            
+                            <strong>Common False Positive Sources:</strong><br>
+                            □ Users who forgot passwords<br>
+                            □ Mobile devices with cached credentials<br>
+                            □ Service accounts after password rotation
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="password-spray">Use Case: Password Spray Attack</h2>
+                
+                <pre><code class="language-text">USE CASE: PASSWORD SPRAY DETECTION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DESCRIPTION:
+Detect when a single IP attempts the same password 
+against multiple accounts to avoid lockout.
+
+MITRE ATT&CK: T1110.003 - Brute Force: Password Spraying
+
+DETECTION LOGIC:
+Alert when: Same IP → 5+ unique users → 10+ failures in 10 min
+
+WHY IT'S DIFFERENT FROM BRUTE FORCE:
+• Brute force: Many passwords → One account
+• Password spray: One password → Many accounts</code></pre>
+                
+                <h3>Sentinel KQL</h3>
+                
+                <pre><code class="language-kql">// Password Spray Detection - Azure AD
+let UserThreshold = 5;
+let FailureThreshold = 10;
+let TimeWindow = 10m;
+SigninLogs
+| where TimeGenerated > ago(1h)
+| where ResultType == "50126"  // Invalid username or password
+| summarize 
+    TargetedUsers = dcount(UserPrincipalName),
+    UserList = make_set(UserPrincipalName, 20),
+    TotalAttempts = count(),
+    FirstAttempt = min(TimeGenerated),
+    LastAttempt = max(TimeGenerated)
+    by IPAddress, bin(TimeGenerated, TimeWindow)
+| where TargetedUsers >= UserThreshold
+| where TotalAttempts >= FailureThreshold
+| extend AlertDescription = strcat(
+    "Password spray detected from ", IPAddress,
+    " targeting ", TargetedUsers, " users with ",
+    TotalAttempts, " total attempts")
+
+// Windows Event Log version
+SecurityEvent
+| where TimeGenerated > ago(1h)
+| where EventID == 4625
+| where SubStatus == "0xC000006A"  // Bad password
+| summarize 
+    TargetedUsers = dcount(TargetAccount),
+    UserList = make_set(TargetAccount, 20),
+    TotalAttempts = count()
+    by IpAddress, bin(TimeGenerated, 10m)
+| where TargetedUsers >= 5 and TotalAttempts >= 10</code></pre>
+                
+                <h3>Splunk SPL</h3>
+                
+                <pre><code class="language-text">// Password Spray Detection - Splunk
+index=windows sourcetype=WinEventLog:Security EventCode=4625 
+    Sub_Status=0xC000006A
+| bin _time span=10m
+| stats dc(Account_Name) as TargetedUsers,
+    values(Account_Name) as UserList,
+    count as TotalAttempts
+    by Source_Network_Address, _time
+| where TargetedUsers >= 5 AND TotalAttempts >= 10
+| eval AlertDescription = "Password spray from " . Source_Network_Address . 
+    " targeting " . TargetedUsers . " users"
+| table _time, Source_Network_Address, TargetedUsers, TotalAttempts, UserList</code></pre>
+                
+                <h2 id="impossible-travel">Use Case: Impossible Travel</h2>
+                
+                <pre><code class="language-text">USE CASE: IMPOSSIBLE TRAVEL DETECTION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DESCRIPTION:
+Detect when a user logs in from geographically distant 
+locations in an impossibly short time frame.
+
+EXAMPLE:
+Login from New York at 10:00 AM
+Login from London at 10:30 AM
+→ Impossible without supersonic travel!
+
+DETECTION LOGIC:
+Alert when: Same user → Different countries → < 2 hours apart</code></pre>
+                
+                <h3>Sentinel KQL</h3>
+                
+                <pre><code class="language-kql">// Impossible Travel Detection
+let TimeTolerance = 2h;  // Max time for legitimate travel
+SigninLogs
+| where TimeGenerated > ago(24h)
+| where ResultType == 0  // Successful logins only
+| where isnotempty(Location)
+| project TimeGenerated, UserPrincipalName, IPAddress, 
+    Location, City = tostring(LocationDetails.city),
+    Country = tostring(LocationDetails.countryOrRegion)
+| order by UserPrincipalName, TimeGenerated
+| serialize
+| extend PrevTime = prev(TimeGenerated),
+    PrevLocation = prev(Location),
+    PrevCountry = prev(Country),
+    PrevUser = prev(UserPrincipalName)
+| where UserPrincipalName == PrevUser
+| where Country != PrevCountry
+| extend TimeDiff = datetime_diff('minute', TimeGenerated, PrevTime)
+| where TimeDiff < 120  // Less than 2 hours
+| project TimeGenerated, UserPrincipalName,
+    CurrentLocation = strcat(City, ", ", Country),
+    PreviousLocation = PrevLocation,
+    TimeBetweenLogins = strcat(TimeDiff, " minutes"),
+    CurrentIP = IPAddress</code></pre>
+                
+                <h3>Splunk SPL</h3>
+                
+                <pre><code class="language-text">// Impossible Travel - Splunk with Azure AD data
+index=azure sourcetype=azure:aad:signin status.errorCode=0
+| sort 0 user, _time
+| streamstats current=f last(Country) as prev_country, 
+    last(_time) as prev_time by user
+| eval time_diff = _time - prev_time
+| where time_diff < 7200 AND Country != prev_country
+| eval time_diff_min = round(time_diff/60, 0)
+| table _time, user, Country, prev_country, time_diff_min, src_ip</code></pre>
+                
+                <h2 id="account-takeover">Use Case: Account Takeover Indicators</h2>
+                
+                <pre><code class="language-text">USE CASE: ACCOUNT TAKEOVER DETECTION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DESCRIPTION:
+Detect indicators that an account has been compromised:
+• Login from new device/location after failed attempts
+• Password change followed by suspicious activity
+• MFA bypass or new MFA registration
+
+DETECTION LOGIC:
+Multiple failed logins → Successful login → New IP/device</code></pre>
+                
+                <h3>Sentinel KQL</h3>
+                
+                <pre><code class="language-kql">// Account Takeover - Failed then Success from New Location
+let FailureWindow = 1h;
+let SuccessWindow = 30m;
+// Get users with failed logins
+let FailedLogins = SigninLogs
+| where TimeGenerated > ago(2h)
+| where ResultType != 0
+| summarize FailedCount = count(), FailedIPs = make_set(IPAddress) 
+    by UserPrincipalName;
+// Get successful logins
+let SuccessfulLogins = SigninLogs
+| where TimeGenerated > ago(SuccessWindow)
+| where ResultType == 0
+| project TimeGenerated, UserPrincipalName, IPAddress, 
+    DeviceDetail, Location, AppDisplayName;
+// Join - users with failures who then succeeded
+FailedLogins
+| join kind=inner SuccessfulLogins on UserPrincipalName
+| where IPAddress !in (FailedIPs)  // Success from NEW IP
+| project TimeGenerated, UserPrincipalName, 
+    SuccessIP = IPAddress, Location, 
+    FailedCount, FailedFromIPs = FailedIPs,
+    Device = DeviceDetail, App = AppDisplayName
+
+// MFA Registration After Password Change (ATO indicator)
+AuditLogs
+| where TimeGenerated > ago(24h)
+| where OperationName == "Reset user password" 
+    or OperationName == "Change user password"
+| project PasswordChangeTime = TimeGenerated, 
+    TargetUser = tostring(TargetResources[0].userPrincipalName)
+| join kind=inner (
+    AuditLogs
+    | where TimeGenerated > ago(24h)
+    | where OperationName has "MFA" or OperationName has "authentication method"
+    | project MFATime = TimeGenerated, 
+        TargetUser = tostring(TargetResources[0].userPrincipalName),
+        MFAOperation = OperationName
+) on TargetUser
+| where MFATime > PasswordChangeTime
+| where datetime_diff('hour', MFATime, PasswordChangeTime) < 1</code></pre>
+                
+                <h2 id="credential-stuffing">Use Case: Credential Stuffing</h2>
+                
+                <pre><code class="language-text">USE CASE: CREDENTIAL STUFFING DETECTION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DESCRIPTION:
+Detect automated login attempts using breached credentials.
+Different from spray: uses valid username/password pairs.
+
+INDICATORS:
+• High volume of login attempts
+• Mix of successes and failures (some creds work)
+• Often from proxies/VPNs/Tor
+• User agents indicate automation
+
+DETECTION LOGIC:
+Alert when: Same IP → High volume → Mixed success/failure</code></pre>
+                
+                <h3>Sentinel KQL</h3>
+                
+                <pre><code class="language-kql">// Credential Stuffing Detection
+SigninLogs
+| where TimeGenerated > ago(1h)
+| summarize 
+    TotalAttempts = count(),
+    SuccessCount = countif(ResultType == 0),
+    FailureCount = countif(ResultType != 0),
+    UniqueUsers = dcount(UserPrincipalName),
+    UserAgents = make_set(UserAgent, 5)
+    by IPAddress, bin(TimeGenerated, 15m)
+| where TotalAttempts > 50
+| where UniqueUsers > 10
+| extend SuccessRate = round(SuccessCount * 100.0 / TotalAttempts, 1)
+| where SuccessRate between (5 .. 50)  // Some success, not all
+| project TimeGenerated, IPAddress, TotalAttempts, 
+    SuccessCount, FailureCount, SuccessRate, UniqueUsers, UserAgents</code></pre>
+                
+                <h2 id="response">Response Procedures</h2>
+                
+                <pre><code class="language-text">AUTHENTICATION ATTACK RESPONSE PLAYBOOK:
+
+1. INITIAL TRIAGE (5 min)
+   □ Verify alert is not false positive
+   □ Check if source IP is known/internal
+   □ Identify affected accounts
+   □ Determine attack type (brute/spray/stuffing)
+
+2. CONTAINMENT (15 min)
+   □ Block source IP at firewall/proxy
+   □ Lock affected accounts (if compromised suspected)
+   □ Disable suspicious sessions
+   □ Enable additional MFA requirements
+
+3. INVESTIGATION (30 min)
+   □ Check for successful logins from attacker IP
+   □ Review post-compromise activity
+   □ Check for lateral movement
+   □ Identify scope (how many accounts targeted?)
+
+4. REMEDIATION
+   □ Reset passwords for compromised accounts
+   □ Revoke active sessions/tokens
+   □ Review MFA settings
+   □ Update allow/block lists
+
+5. POST-INCIDENT
+   □ Document timeline and findings
+   □ Update detection rules if needed
+   □ Share IOCs with team
+   □ Consider password policy changes</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"How would you detect a password spray attack?"</strong><br><br>
+                            Password spray attacks target multiple accounts with common passwords to avoid lockout. I would detect this by:<br><br>
+                            
+                            <strong>Detection Logic:</strong><br>
+                            Look for a single source IP with failed authentication to 5+ unique users within a short time window (10-15 minutes).<br><br>
+                            
+                            <strong>Data Sources:</strong><br>
+                            • Windows Event 4625 with SubStatus 0xC000006A (bad password)<br>
+                            • Azure AD SigninLogs with ResultType 50126<br><br>
+                            
+                            <strong>Query Pattern:</strong><br>
+                            <code>summarize dcount(user), count() by source_ip, bin(time, 10m) | where dcount > 5</code><br><br>
+                            
+                            <strong>Tuning Considerations:</strong><br>
+                            • Exclude shared NAT/proxy IPs (add to watchlist)<br>
+                            • Consider time of day (attacks often occur off-hours)<br>
+                            • Track success after failures (indicates compromise)
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box memory">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">🧠</span>
+                        Memory Aid
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Auth Attack Types = "Lock Picking Styles"</strong><br><br>
+                            • <strong>Brute Force</strong> = Trying 1000 keys on ONE lock (many passwords → one account)<br>
+                            • <strong>Password Spray</strong> = Trying 1 master key on 1000 locks (one password → many accounts)<br>
+                            • <strong>Credential Stuffing</strong> = Using stolen keys from another building (breached creds)<br>
+                            • <strong>Impossible Travel</strong> = Being in NYC and London within an hour (teleportation!)<br><br>
+                            
+                            <strong>Detection Thresholds to Remember:</strong><br>
+                            • Brute Force: 10+ failures to SAME account in 10 min<br>
+                            • Password Spray: 5+ UNIQUE accounts from same IP in 10 min<br>
+                            • Impossible Travel: Same user, different countries, &lt;2 hours apart
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Brute force: Many passwords against one account</li>
+                    <li>Password spray: One password against many accounts</li>
+                    <li>Credential stuffing: Breached credentials at scale</li>
+                    <li>Impossible travel: Geographically impossible logins</li>
+                    <li>Account takeover: Post-compromise indicators</li>
+                    <li>Always combine detection with response playbooks</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="9-3-hunting-queries.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Hunting Queries</span>
+                        </div>
+                    </a>
+                    <a href="10-2-malware-execution.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Malware & Execution</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

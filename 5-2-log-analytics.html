@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Log Analytics Workspace - Data storage, tables, retention, and workspace management for Microsoft Sentinel.">
+    <title>Log Analytics Workspace | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item active">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="5-1-sentinel-architecture.html">Sentinel Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Log Analytics Workspace</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Log Analytics Workspace</h1>
+                <p class="page-subtitle">Data storage, tables, and workspace management</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            The Log Analytics Workspace is the foundation of Microsoft Sentinel—it stores all your security data and provides the KQL query engine. This chapter covers workspace configuration, data tables, retention management, and common administrative tasks.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="workspace-overview">Workspace Overview</h2>
+                
+                <pre><code class="language-text">LOG ANALYTICS WORKSPACE COMPONENTS:
+
+┌─────────────────────────────────────────────────────────┐
+│             LOG ANALYTICS WORKSPACE                     │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  DATA TABLES                    QUERY ENGINE            │
+│  ┌───────────────────┐         ┌───────────────────┐   │
+│  │ SecurityEvent     │         │                   │   │
+│  │ SigninLogs        │ ◄─────► │    KQL Engine     │   │
+│  │ AzureActivity     │         │                   │   │
+│  │ CommonSecurityLog │         └───────────────────┘   │
+│  │ Syslog            │                                 │
+│  │ Custom_CL         │         CONFIGURATION           │
+│  └───────────────────┘         ┌───────────────────┐   │
+│                                │ • Retention        │   │
+│  DATA COLLECTION              │ • Access Control   │   │
+│  ┌───────────────────┐         │ • Pricing Tier     │   │
+│  │ • Data Connectors │         │ • Network Settings │   │
+│  │ • Agents (AMA)    │         └───────────────────┘   │
+│  │ • REST API        │                                 │
+│  └───────────────────┘                                 │
+│                                                         │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h2 id="common-tables">Common Security Tables</h2>
+                
+                <h3>Microsoft Tables</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Table</th>
+                                <th>Source</th>
+                                <th>Content</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>SecurityEvent</strong></td>
+                                <td>Windows Security logs</td>
+                                <td>Login events, process creation, etc.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SigninLogs</strong></td>
+                                <td>Azure AD / Entra ID</td>
+                                <td>Interactive sign-ins</td>
+                            </tr>
+                            <tr>
+                                <td><strong>AADNonInteractiveUserSignInLogs</strong></td>
+                                <td>Azure AD / Entra ID</td>
+                                <td>Service principal, app sign-ins</td>
+                            </tr>
+                            <tr>
+                                <td><strong>AuditLogs</strong></td>
+                                <td>Azure AD / Entra ID</td>
+                                <td>Directory changes, role changes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>AzureActivity</strong></td>
+                                <td>Azure subscription</td>
+                                <td>Azure management plane activity</td>
+                            </tr>
+                            <tr>
+                                <td><strong>OfficeActivity</strong></td>
+                                <td>Microsoft 365</td>
+                                <td>SharePoint, Exchange, Teams activity</td>
+                            </tr>
+                            <tr>
+                                <td><strong>DeviceEvents</strong></td>
+                                <td>Microsoft Defender for Endpoint</td>
+                                <td>Endpoint security events</td>
+                            </tr>
+                            <tr>
+                                <td><strong>EmailEvents</strong></td>
+                                <td>Microsoft Defender for Office 365</td>
+                                <td>Email security events</td>
+                            </tr>
+                            <tr>
+                                <td><strong>IdentityInfo</strong></td>
+                                <td>Microsoft Defender for Identity</td>
+                                <td>AD identity information</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Third-Party Tables</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Table</th>
+                                <th>Source</th>
+                                <th>Content</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>CommonSecurityLog</strong></td>
+                                <td>CEF-formatted logs</td>
+                                <td>Firewalls, IDS, proxy (Palo Alto, Cisco, etc.)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Syslog</strong></td>
+                                <td>Linux/Unix systems</td>
+                                <td>System and application logs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>WindowsEvent</strong></td>
+                                <td>Windows (AMA agent)</td>
+                                <td>Windows events via new agent</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Custom_CL</strong></td>
+                                <td>Custom logs</td>
+                                <td>Any custom log source</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Exploring Tables</h3>
+                
+                <pre><code class="language-kql">// List all tables in workspace
+search *
+| summarize count() by $table
+| sort by count_ desc
+
+// Get table schema
+SecurityEvent
+| getschema
+
+// Sample data from table
+SigninLogs
+| take 10
+
+// Check table size and record count
+Usage
+| where TimeGenerated > ago(30d)
+| summarize 
+    Records = sum(Quantity),
+    SizeGB = sum(Quantity) / 1000
+    by DataType
+| sort by SizeGB desc</code></pre>
+                
+                <h2 id="retention">Data Retention</h2>
+                
+                <pre><code class="language-text">RETENTION TIERS:
+
+┌─────────────────────────────────────────────────────────┐
+│                  INTERACTIVE RETENTION                  │
+│                     (Hot Storage)                       │
+│                                                         │
+│  • Default: 30 days (can extend to 730 days)           │
+│  • Fast queries                                        │
+│  • Full KQL capabilities                               │
+│  • First 31 days: Log Analytics cost                   │
+│  • 31-90 days: Free for Sentinel tables                │
+│  • 90+ days: Additional retention cost                 │
+└─────────────────────────────────────────────────────────┘
+                         │
+                         ▼
+┌─────────────────────────────────────────────────────────┐
+│                   ARCHIVE TIER                          │
+│                   (Cold Storage)                        │
+│                                                         │
+│  • Up to 7 years total retention                       │
+│  • Lower storage cost                                  │
+│  • Must "restore" or use "search jobs"                 │
+│  • Limited query capabilities                          │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h3>Configuring Retention</h3>
+                
+                <pre><code class="language-text">PORTAL:
+Log Analytics Workspace → Settings → Tables → Select Table → Manage Table
+
+PER-TABLE SETTINGS:
+• Interactive retention: 30-730 days
+• Total retention: Up to 2,555 days (7 years)
+• Archive period: Total - Interactive
+
+EXAMPLE:
+SecurityEvent table:
+• Interactive: 90 days (queryable normally)
+• Total: 365 days
+• Archive: 275 days (365 - 90)</code></pre>
+                
+                <h3>Archive and Restore</h3>
+                
+                <pre><code class="language-kql">// Search archived data with search job
+.create async search job MySearc over SecurityEvent
+| where TimeGenerated between (datetime(2023-01-01) .. datetime(2023-01-31))
+| where EventID == 4625
+
+// Restore archived data to table
+.execute database script &lt;|
+    .restore async table SecurityEvent_Restored 
+    from SecurityEvent 
+    where TimeGenerated between (datetime(2023-01-01) .. datetime(2023-01-31))</code></pre>
+                
+                <h2 id="basic-logs">Basic Logs</h2>
+                
+                <p>
+                    Basic Logs offer reduced cost for high-volume, low-value data:
+                </p>
+                
+                <pre><code class="language-text">BASIC LOGS vs ANALYTICS LOGS:
+
+                    Analytics Logs    Basic Logs
+                    ─────────────────────────────────
+Ingestion Cost      Full price        ~67% discount
+Query Cost          Free              Per query charge
+Retention           Configurable      8 days interactive
+Query Capabilities  Full KQL          Limited KQL
+Alert Rules         Yes               Limited
+Workbooks           Yes               Limited
+API Access          Yes               Limited
+
+BASIC LOGS LIMITATIONS:
+• No joins with other tables
+• No aggregations across time
+• No machine learning functions
+• Charged per GB scanned in queries
+
+GOOD CANDIDATES FOR BASIC LOGS:
+• Verbose application logs
+• Debug/trace logs
+• Network flow logs (high volume)
+• Container logs (high volume)</code></pre>
+                
+                <h3>Converting to Basic Logs</h3>
+                
+                <pre><code class="language-text">PORTAL:
+Log Analytics Workspace → Tables → Select Table → Configure → Basic
+
+AZURE CLI:
+az monitor log-analytics workspace table update \
+    --resource-group rg-sentinel \
+    --workspace-name law-sentinel \
+    --name ContainerLog \
+    --plan Basic</code></pre>
+                
+                <h2 id="data-collection">Data Collection Rules</h2>
+                
+                <pre><code class="language-text">DATA COLLECTION RULE (DCR) ARCHITECTURE:
+
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│   DATA SOURCE   │────►│      DCR        │────►│   WORKSPACE     │
+│   (VM, App)     │     │                 │     │                 │
+└─────────────────┘     │ • Transform     │     └─────────────────┘
+                        │ • Filter        │
+                        │ • Route         │
+                        └─────────────────┘
+
+DCR CAPABILITIES:
+• Filter events at ingestion (reduce cost)
+• Transform data (parse, enrich)
+• Route to multiple destinations
+• Apply to multiple data sources</code></pre>
+                
+                <h3>Example DCR: Filter Windows Events</h3>
+                
+                <pre><code class="language-json">{
+  "properties": {
+    "dataSources": {
+      "windowsEventLogs": [
+        {
+          "streams": ["Microsoft-SecurityEvent"],
+          "xPathQueries": [
+            "Security!*[System[(EventID=4624 or EventID=4625 or EventID=4688)]]"
+          ],
+          "name": "SecurityEvents"
+        }
+      ]
+    },
+    "destinations": {
+      "logAnalytics": [
+        {
+          "workspaceResourceId": "/subscriptions/.../workspaces/law-sentinel",
+          "name": "sentinel"
+        }
+      ]
+    },
+    "dataFlows": [
+      {
+        "streams": ["Microsoft-SecurityEvent"],
+        "destinations": ["sentinel"]
+      }
+    ]
+  }
+}</code></pre>
+                
+                <h2 id="workspace-queries">Common Workspace Queries</h2>
+                
+                <pre><code class="language-kql">// Workspace health - ingestion volume over time
+Usage
+| where TimeGenerated > ago(30d)
+| summarize DailyGB = sum(Quantity) / 1000 by bin(TimeGenerated, 1d)
+| render timechart
+
+// Top data sources by volume
+Usage
+| where TimeGenerated > ago(7d)
+| summarize TotalGB = sum(Quantity) / 1000 by DataType
+| top 10 by TotalGB desc
+
+// Billable vs non-billable data
+Usage
+| where TimeGenerated > ago(30d)
+| summarize 
+    BillableGB = sumif(Quantity, IsBillable == true) / 1000,
+    FreeGB = sumif(Quantity, IsBillable == false) / 1000
+| extend TotalGB = BillableGB + FreeGB
+
+// Check for ingestion delays
+Heartbeat
+| where TimeGenerated > ago(1h)
+| summarize LastHeartbeat = max(TimeGenerated) by Computer
+| where LastHeartbeat < ago(15m)
+| project Computer, MinutesSinceHeartbeat = datetime_diff('minute', now(), LastHeartbeat)
+
+// Agent health check
+Heartbeat
+| where TimeGenerated > ago(24h)
+| summarize 
+    LastSeen = max(TimeGenerated),
+    HeartbeatCount = count()
+    by Computer, OSType, Version
+| where LastSeen < ago(1h)
+| sort by LastSeen asc</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Workspace Best Practices
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Cost Management:</strong><br>
+                            □ Monitor ingestion volume weekly<br>
+                            □ Use Basic Logs for high-volume, low-value data<br>
+                            □ Filter events at DCR level when possible<br>
+                            □ Use commitment tiers at 100GB+/day<br><br>
+                            
+                            <strong>Operations:</strong><br>
+                            □ Set appropriate retention per table<br>
+                            □ Monitor agent health with Heartbeat<br>
+                            □ Use resource-context RBAC for least privilege<br>
+                            □ Enable diagnostic settings for workspace audit
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"How do you optimize Log Analytics costs for Sentinel?"</strong><br><br>
+                            <strong>1. Filter at ingestion:</strong> Use Data Collection Rules to filter events before ingestion (only collect EventIDs you need)<br>
+                            <strong>2. Basic Logs:</strong> Use Basic Logs tier for verbose, rarely-queried data at ~67% discount<br>
+                            <strong>3. Commitment tiers:</strong> If ingesting 100GB+/day, use commitment tiers for significant savings<br>
+                            <strong>4. Free sources:</strong> Leverage free ingestion for Azure Activity, M365 Audit, Defender alerts<br>
+                            <strong>5. Retention:</strong> Use archive tier for long-term retention instead of interactive<br>
+                            <strong>6. Monitor usage:</strong> Regularly review Usage table to identify unexpected volume
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Log Analytics Workspace stores all Sentinel data in tables</li>
+                    <li>Common tables: SecurityEvent, SigninLogs, CommonSecurityLog, Syslog</li>
+                    <li>Interactive retention: 30-730 days; Archive: up to 7 years</li>
+                    <li>Basic Logs: 67% cheaper but limited query capabilities</li>
+                    <li>Data Collection Rules filter and transform data at ingestion</li>
+                    <li>Monitor Usage table to track ingestion and costs</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="5-1-sentinel-architecture.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Sentinel Architecture</span>
+                        </div>
+                    </a>
+                    <a href="5-3-data-connectors.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Data Connectors</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

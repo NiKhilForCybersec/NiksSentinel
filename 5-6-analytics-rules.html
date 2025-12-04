@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Microsoft Sentinel Analytics Rules - Creating detection rules, rule types, entity mapping, and alert configuration.">
+    <title>Analytics Rules | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item active">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="5-1-sentinel-architecture.html">Sentinel Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Analytics Rules</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Analytics Rules</h1>
+                <p class="page-subtitle">Creating detection rules and automated alerting</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Analytics rules are the detection engine of Microsoft Sentinel. They run KQL queries to detect threats and create incidents. This chapter covers rule types, configuration, entity mapping, and best practices.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="rule-types">Analytics Rule Types</h2>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rule Type</th>
+                                <th>Description</th>
+                                <th>Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Scheduled</strong></td>
+                                <td>KQL query runs on schedule</td>
+                                <td>Custom detections, most rules</td>
+                            </tr>
+                            <tr>
+                                <td><strong>NRT (Near-Real-Time)</strong></td>
+                                <td>Runs every minute</td>
+                                <td>Critical, time-sensitive detections</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Microsoft Security</strong></td>
+                                <td>Imports Defender alerts</td>
+                                <td>M365 Defender, Defender for Cloud</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fusion</strong></td>
+                                <td>ML-based correlation</td>
+                                <td>Multi-stage attack detection</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Anomaly</strong></td>
+                                <td>ML behavioral analytics</td>
+                                <td>UEBA, unusual patterns</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Threat Intelligence</strong></td>
+                                <td>Matches TI indicators</td>
+                                <td>IOC matching</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="scheduled-rules">Creating Scheduled Rules</h2>
+                
+                <pre><code class="language-text">SCHEDULED RULE CONFIGURATION:
+
+1. GENERAL
+   • Name: Brute Force Attack Detection
+   • Description: Detects multiple failed logins from single IP
+   • Severity: High
+   • MITRE ATT&CK: Credential Access - T1110
+   • Status: Enabled
+
+2. RULE LOGIC
+   • Query:
+     SigninLogs
+     | where TimeGenerated > ago(1h)
+     | where ResultType != 0
+     | summarize FailedCount = count(), Users = make_set(UserPrincipalName)
+         by IPAddress
+     | where FailedCount > 10
+   
+   • Run query every: 5 minutes
+   • Lookup data from: Last 1 hour
+   • Start running: Automatically
+   
+   • Alert threshold: Generate alert when query results > 0
+   • Event grouping: Group all events into single alert
+
+3. ENTITY MAPPING
+   • IP: IPAddress
+   • Account: Users (array)
+
+4. INCIDENT SETTINGS
+   • Create incidents: Yes
+   • Alert grouping: Group alerts triggered by this rule
+   • Grouping time: 5 hours
+   • Group by: IP Address
+
+5. AUTOMATED RESPONSE
+   • Playbook: Block-IP-Playbook</code></pre>
+                
+                <h3>Example Rule KQL</h3>
+                
+                <pre><code class="language-kql">// Brute Force Detection Rule
+let FailureThreshold = 10;
+let TimeWindow = 1h;
+SigninLogs
+| where TimeGenerated > ago(TimeWindow)
+| where ResultType != 0
+| summarize 
+    FailedAttempts = count(),
+    DistinctUsers = dcount(UserPrincipalName),
+    TargetUsers = make_set(UserPrincipalName, 10),
+    FirstAttempt = min(TimeGenerated),
+    LastAttempt = max(TimeGenerated)
+    by IPAddress, Location
+| where FailedAttempts > FailureThreshold
+| extend 
+    Description = strcat("IP ", IPAddress, " had ", FailedAttempts, 
+                         " failed login attempts against ", DistinctUsers, " users"),
+    Severity = case(FailedAttempts > 50, "High",
+                    FailedAttempts > 20, "Medium", "Low")</code></pre>
+                
+                <h2 id="entity-mapping">Entity Mapping</h2>
+                
+                <pre><code class="language-text">ENTITY TYPES:
+
+Account:       Username, UPN, SID, AAD User ID
+Host:          Hostname, FQDN, NetBIOS, Azure Resource ID  
+IP:            IP Address
+URL:           URL
+File:          File name, File hash, Directory
+Process:       Process ID, Command line
+Mailbox:       Email address, Display name
+Mail Message:  Recipient, Sender, Subject
+Cloud App:     App ID, App name
+Azure Resource: Resource ID, Subscription ID
+
+ENTITY MAPPING EXAMPLE:
+┌─────────────────────────────────────────────────────────┐
+│ Query returns: UserPrincipalName, IPAddress, Computer  │
+├─────────────────────────────────────────────────────────┤
+│ Entity Mapping:                                         │
+│ • Account → FullName → UserPrincipalName               │
+│ • IP → Address → IPAddress                             │
+│ • Host → HostName → Computer                           │
+└─────────────────────────────────────────────────────────┘
+
+BENEFITS:
+• Enables investigation graph
+• Links related incidents
+• Enriches entity pages
+• Powers UEBA</code></pre>
+                
+                <h2 id="incident-grouping">Incident Creation & Grouping</h2>
+                
+                <pre><code class="language-text">ALERT GROUPING OPTIONS:
+
+1. NO GROUPING
+   • Each alert = new incident
+   • Use for: Critical, unique events
+
+2. GROUP BY TIME
+   • Alerts within X hours = single incident
+   • Use for: Related but distinct events
+
+3. GROUP BY ENTITIES
+   • Alerts with same entity = single incident
+   • Options: IP, Account, Host
+   • Use for: Activity from same source
+
+4. GROUP BY RULE
+   • All alerts from rule = single incident
+   • Use for: Noisy rules
+
+EXAMPLE CONFIGURATION:
+• Group alerts into single incident: Yes
+• Limit group to alerts within: 24 hours
+• Group by: 
+  ☑ Alert details
+  ☑ Entities (Account, IP)
+• Reopen closed incidents: Yes</code></pre>
+                
+                <h2 id="content-hub">Content Hub Rules</h2>
+                
+                <pre><code class="language-text">CONTENT HUB:
+
+Sentinel Content Hub provides:
+• Pre-built analytics rules
+• Workbooks
+• Playbooks
+• Hunting queries
+• Data connectors
+
+INSTALLING CONTENT:
+1. Sentinel → Content Hub
+2. Search for solution (e.g., "Azure AD")
+3. Click solution → Install
+4. Configure installed rules
+
+POPULAR SOLUTIONS:
+• Microsoft Entra ID (Azure AD)
+• Microsoft Defender XDR
+• Windows Security Events
+• Azure Activity
+• Threat Intelligence
+• UEBA Essentials</code></pre>
+                
+                <h2 id="rule-examples">Detection Rule Examples</h2>
+                
+                <pre><code class="language-kql">// Impossible Travel
+let MaxTimeDiff = 120; // minutes
+let MinDistance = 500; // km
+SigninLogs
+| where TimeGenerated > ago(24h)
+| where ResultType == 0
+| extend geo = parse_json(LocationDetails)
+| extend Lat = toreal(geo.geoCoordinates.latitude)
+| extend Long = toreal(geo.geoCoordinates.longitude)
+| order by UserPrincipalName, TimeGenerated
+| serialize
+| extend PrevLat = prev(Lat), PrevLong = prev(Long), 
+        PrevTime = prev(TimeGenerated), PrevUser = prev(UserPrincipalName)
+| where UserPrincipalName == PrevUser
+| extend TimeDiffMin = datetime_diff('minute', TimeGenerated, PrevTime)
+| extend DistanceKm = geo_distance_2points(Long, Lat, PrevLong, PrevLat) / 1000
+| where TimeDiffMin < MaxTimeDiff and DistanceKm > MinDistance
+
+// New User Added to Admin Group
+AuditLogs
+| where TimeGenerated > ago(1h)
+| where OperationName == "Add member to role"
+| where TargetResources[0].modifiedProperties[1].newValue contains "Admin"
+| extend AddedUser = TargetResources[0].userPrincipalName
+| extend AddedBy = InitiatedBy.user.userPrincipalName
+| project TimeGenerated, AddedUser, AddedBy, RoleName = TargetResources[0].modifiedProperties[1].newValue
+
+// Mass File Download from SharePoint
+OfficeActivity
+| where TimeGenerated > ago(1h)
+| where OfficeWorkload == "SharePoint"
+| where Operation == "FileDownloaded"
+| summarize DownloadCount = count(), Files = make_set(SourceFileName, 100)
+    by UserId, ClientIP, bin(TimeGenerated, 10m)
+| where DownloadCount > 50</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Analytics Rule Best Practices
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Design:</strong><br>
+                            □ Always map entities for investigation graph<br>
+                            □ Include MITRE ATT&CK mapping<br>
+                            □ Set appropriate severity based on impact<br>
+                            □ Add clear description and remediation steps<br><br>
+                            
+                            <strong>Tuning:</strong><br>
+                            □ Start with higher thresholds, tune down<br>
+                            □ Use incident grouping to reduce noise<br>
+                            □ Exclude known-good via watchlists<br>
+                            □ Monitor false positive rate weekly
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"How would you tune a noisy analytics rule?"</strong><br><br>
+                            <strong>1. Analyze false positives:</strong> Query incidents for the rule, identify common FP patterns<br>
+                            <strong>2. Add exclusions:</strong> Use watchlists for known-good IPs, users, or services<br>
+                            <strong>3. Adjust thresholds:</strong> Increase count thresholds or time windows<br>
+                            <strong>4. Refine query logic:</strong> Add filters for specific conditions<br>
+                            <strong>5. Use incident grouping:</strong> Reduce volume by grouping related alerts<br>
+                            <strong>6. Consider severity:</strong> Lower severity if events are informational
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Rule types: Scheduled, NRT, Microsoft Security, Fusion, Anomaly</li>
+                    <li>Scheduled rules run KQL on a schedule and create incidents</li>
+                    <li>Entity mapping enables investigation graph and UEBA</li>
+                    <li>Incident grouping reduces alert volume</li>
+                    <li>Content Hub provides pre-built rules</li>
+                    <li>Always include MITRE mapping and clear descriptions</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="5-5-kql-advanced.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">KQL Advanced</span>
+                        </div>
+                    </a>
+                    <a href="5-7-incidents-investigation.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Incidents & Investigation</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

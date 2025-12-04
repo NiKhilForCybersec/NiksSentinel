@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Splunk ES Security Dashboards - Built-in dashboards, custom dashboard development, and SOC metrics visualization.">
+    <title>Security Dashboards | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item active">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="3-1-splunk-es-overview.html">Splunk Security Ops</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Security Dashboards</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Security Dashboards</h1>
+                <p class="page-subtitle">Built-in ES dashboards and creating custom security visualizations</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Splunk ES includes comprehensive security dashboards organized by domain. This chapter covers the built-in dashboards, key metrics for SOC operations, and techniques for building effective custom security dashboards.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="builtin-dashboards">Built-in ES Dashboards</h2>
+                
+                <h3>Dashboard Categories</h3>
+                
+                <pre><code class="language-text">ES DASHBOARD STRUCTURE:
+
+┌─────────────────────────────────────────────────────────┐
+│ SECURITY DOMAINS                                        │
+├─────────────────────────────────────────────────────────┤
+│ Security Intelligence                                   │
+│ ├── Security Posture (main landing page)               │
+│ ├── Incident Review                                    │
+│ ├── Risk Analysis                                      │
+│ └── Threat Intelligence                                │
+├─────────────────────────────────────────────────────────┤
+│ Access                                                  │
+│ ├── Access Center                                      │
+│ ├── Access Tracker                                     │
+│ ├── Access Anomalies                                   │
+│ └── Account Management                                 │
+├─────────────────────────────────────────────────────────┤
+│ Endpoint                                                │
+│ ├── Endpoint Center                                    │
+│ ├── Malware Center                                     │
+│ ├── System Center                                      │
+│ └── Update Center                                      │
+├─────────────────────────────────────────────────────────┤
+│ Network                                                 │
+│ ├── Network Center                                     │
+│ ├── Intrusion Center                                   │
+│ ├── Traffic Center                                     │
+│ └── Vulnerability Center                               │
+├─────────────────────────────────────────────────────────┤
+│ Audit                                                   │
+│ ├── Audit                                              │
+│ └── User Activity                                      │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h3>Key Dashboard Descriptions</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Dashboard</th>
+                                <th>Purpose</th>
+                                <th>Key Metrics</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Security Posture</strong></td>
+                                <td>Executive overview</td>
+                                <td>Notable count, risk score, trends</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Incident Review</strong></td>
+                                <td>Analyst workbench</td>
+                                <td>Notable queue, status, assignments</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Risk Analysis</strong></td>
+                                <td>Entity risk view</td>
+                                <td>Risk by user/host, contributors</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Access Center</strong></td>
+                                <td>Authentication monitoring</td>
+                                <td>Logins, failures, anomalies</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Malware Center</strong></td>
+                                <td>Malware activity</td>
+                                <td>Detections, infected hosts, trends</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Network Center</strong></td>
+                                <td>Network traffic</td>
+                                <td>Top talkers, protocols, anomalies</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="soc-metrics">SOC Metrics Dashboard</h2>
+                
+                <h3>Key SOC KPIs</h3>
+                
+                <pre><code class="language-spl"># Mean Time to Detect (MTTD)
+# Requires tracking when threat started vs when detected
+index=notable earliest=-30d
+| eval detect_delay = _time - event_time
+| stats avg(detect_delay) AS mttd_seconds
+| eval mttd_hours = round(mttd_seconds/3600, 2)
+
+# Mean Time to Acknowledge (MTTA)
+index=notable status!="New" earliest=-30d
+| eval tta = status_time - _time
+| stats avg(tta) AS mtta_seconds
+| eval mtta_minutes = round(mtta_seconds/60, 2)
+
+# Mean Time to Resolve (MTTR)
+index=notable status IN ("Resolved", "Closed") earliest=-30d
+| eval ttr = status_time - _time
+| stats avg(ttr) AS mttr_seconds
+| eval mttr_hours = round(mttr_seconds/3600, 2)
+
+# Mean Time to Contain (MTTC)
+# Requires custom field tracking containment time
+index=notable containment_time=* earliest=-30d
+| eval ttc = containment_time - _time
+| stats avg(ttc) AS mttc_seconds
+| eval mttc_hours = round(mttc_seconds/3600, 2)</code></pre>
+                
+                <h3>Alert Volume Metrics</h3>
+                
+                <pre><code class="language-spl"># Daily Notable Event Volume
+index=notable earliest=-30d
+| timechart span=1d count AS notables
+| trendline sma7(notables) AS weekly_trend
+
+# Notable Events by Urgency
+index=notable earliest=-7d
+| stats count by urgency
+| eval order = case(urgency=="critical",1, urgency=="high",2, 
+                    urgency=="medium",3, urgency=="low",4, 1==1,5)
+| sort order
+| fields - order
+
+# True/False Positive Rate
+index=notable disposition=* earliest=-30d
+| stats count(eval(disposition="True Positive")) AS tp,
+        count(eval(disposition="False Positive")) AS fp,
+        count(eval(disposition="Benign True Positive")) AS btp,
+        count AS total
+| eval tp_rate = round((tp/total)*100, 1)
+| eval fp_rate = round((fp/total)*100, 1)
+
+# Alert Volume by Source
+index=notable earliest=-30d
+| stats count by rule_name
+| sort -count
+| head 20</code></pre>
+                
+                <h3>Analyst Performance</h3>
+                
+                <pre><code class="language-spl"># Cases per Analyst
+index=notable owner!=unassigned earliest=-30d
+| stats count AS cases_handled,
+        avg(eval(status_time - _time)) AS avg_handle_time
+  by owner
+| eval avg_handle_hours = round(avg_handle_time/3600, 2)
+| sort -cases_handled
+
+# Resolution Quality
+index=notable disposition=* earliest=-30d
+| stats count(eval(disposition="True Positive")) AS tp,
+        count(eval(disposition="False Positive")) AS fp
+  by owner
+| eval accuracy = round((tp/(tp+fp))*100, 1)
+| sort -accuracy
+
+# Backlog by Analyst
+index=notable status="New" OR status="In Progress"
+| stats count by owner
+| sort -count</code></pre>
+                
+                <h2 id="custom-dashboards">Building Custom Dashboards</h2>
+                
+                <h3>Dashboard Design Principles</h3>
+                
+                <pre><code class="language-text">EFFECTIVE SECURITY DASHBOARD DESIGN:
+
+1. PURPOSE
+   • Who is the audience? (Analyst, Manager, Executive)
+   • What decisions will it inform?
+   • What actions can be taken?
+
+2. LAYOUT
+   • Key metrics at top (single values)
+   • Trends in middle (timecharts)
+   • Details at bottom (tables)
+   • Use consistent color coding
+
+3. PERFORMANCE
+   • Use base searches with post-process
+   • Leverage tstats and data models
+   • Enable acceleration for reports
+   • Limit time ranges appropriately
+
+4. INTERACTIVITY
+   • Add drilldowns to investigate
+   • Include time picker
+   • Add filters for common use cases</code></pre>
+                
+                <h3>Executive Security Dashboard</h3>
+                
+                <pre><code class="language-spl"># Single Values Row
+# Open Notable Events
+index=notable status="New" earliest=-24h | stats count
+
+# Critical/High Urgency
+index=notable urgency IN ("critical", "high") status="New" earliest=-24h | stats count
+
+# Total Risk Score
+index=risk risk_object_type=* earliest=-24h | stats sum(risk_score) AS total_risk
+
+# Active Investigations
+index=notable status="In Progress" | stats count
+
+# Trend Chart
+index=notable earliest=-7d
+| timechart span=4h count by urgency
+
+# Top Threats Table
+index=notable earliest=-24h
+| stats count by rule_title
+| sort -count
+| head 10
+
+# Geographic Activity Map
+index=security action=success earliest=-24h
+| iplocation src_ip
+| geostats count by Country</code></pre>
+                
+                <h3>Investigation Dashboard</h3>
+                
+                <pre><code class="language-spl"># Entity Investigation Dashboard with Token Inputs
+# Set tokens: $entity$ (user or host to investigate)
+
+# Entity Timeline
+index=* (user=$entity$ OR host=$entity$ OR src_ip=$entity$ OR dest=$entity$) earliest=-7d
+| timechart span=1h count by index
+
+# Authentication Activity
+index=security EventCode IN (4624, 4625) user=$entity$ earliest=-7d
+| timechart span=1d count(eval(EventCode=4624)) AS success, 
+                    count(eval(EventCode=4625)) AS failure
+
+# Process Execution
+index=sysmon EventCode=1 (User=$entity$ OR Computer=$entity$) earliest=-7d
+| table _time, Computer, User, Image, CommandLine
+
+# Network Connections
+index=firewall (src_ip=$entity$ OR dest_ip=$entity$) earliest=-7d
+| stats sum(bytes) AS total_bytes, count AS connections by dest_ip, dest_port
+| sort -total_bytes
+
+# Risk Events
+index=risk risk_object=$entity$ earliest=-30d
+| table _time, source, risk_score, risk_message
+
+# Associated Notable Events
+index=notable (user=$entity$ OR src=$entity$ OR dest=$entity$) earliest=-30d
+| table _time, rule_title, urgency, status_label</code></pre>
+                
+                <h2 id="dashboard-optimization">Dashboard Performance</h2>
+                
+                <h3>Base Search Pattern</h3>
+                
+                <pre><code class="language-xml">&lt;!-- Use base search with post-process for efficiency --&gt;
+&lt;search id="base_notable_search"&gt;
+  &lt;query&gt;
+    index=notable earliest=-24h
+    | stats count by rule_name, urgency, status_label
+  &lt;/query&gt;
+  &lt;earliest&gt;-24h&lt;/earliest&gt;
+  &lt;latest&gt;now&lt;/latest&gt;
+&lt;/search&gt;
+
+&lt;!-- Panel 1: Total count --&gt;
+&lt;search base="base_notable_search"&gt;
+  &lt;query&gt;| stats sum(count) AS total&lt;/query&gt;
+&lt;/search&gt;
+
+&lt;!-- Panel 2: By urgency --&gt;
+&lt;search base="base_notable_search"&gt;
+  &lt;query&gt;| stats sum(count) by urgency&lt;/query&gt;
+&lt;/search&gt;
+
+&lt;!-- Panel 3: By rule --&gt;
+&lt;search base="base_notable_search"&gt;
+  &lt;query&gt;| stats sum(count) by rule_name | sort -sum(count) | head 10&lt;/query&gt;
+&lt;/search&gt;</code></pre>
+                
+                <h3>tstats for Performance</h3>
+                
+                <pre><code class="language-spl"># Use tstats for high-performance dashboards
+# Authentication Overview
+| tstats summariesonly=true count FROM datamodel=Authentication 
+  WHERE * BY Authentication.action, _time span=1h
+| timechart span=1h sum(count) by Authentication.action
+
+# Network Traffic Summary
+| tstats summariesonly=true sum(All_Traffic.bytes) AS bytes 
+  FROM datamodel=Network_Traffic 
+  WHERE * BY All_Traffic.dest_port, _time span=1h
+| timechart span=1h sum(bytes) by All_Traffic.dest_port limit=10</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Dashboard Best Practices
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Performance:</strong><br>
+                            □ Use tstats with accelerated data models<br>
+                            □ Implement base searches for similar panels<br>
+                            □ Enable report acceleration for dashboards<br>
+                            □ Avoid All time ranges<br><br>
+                            
+                            <strong>Usability:</strong><br>
+                            □ Provide meaningful drilldowns<br>
+                            □ Use consistent color schemes<br>
+                            □ Include context (thresholds, baselines)<br>
+                            □ Add inline documentation
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"What SOC metrics would you track and why?"</strong><br><br>
+                            <strong>Detection Metrics:</strong> MTTD (how fast we detect threats)<br>
+                            <strong>Response Metrics:</strong> MTTA (acknowledgment speed), MTTR (resolution time), MTTC (containment time)<br>
+                            <strong>Quality Metrics:</strong> True positive rate, false positive rate<br>
+                            <strong>Volume Metrics:</strong> Alert volume trends, backlog<br>
+                            <strong>Coverage Metrics:</strong> Data source coverage, detection coverage (MITRE)<br><br>
+                            These metrics help identify process inefficiencies, staffing needs, detection quality issues, and demonstrate SOC value to leadership.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>ES includes dashboards for each security domain</li>
+                    <li>Security Posture is the main landing page</li>
+                    <li>Key SOC metrics: MTTD, MTTA, MTTR, TP/FP rates</li>
+                    <li>Use base searches with post-process for efficiency</li>
+                    <li>Leverage tstats and data models for performance</li>
+                    <li>Design for audience: analyst vs manager vs executive</li>
+                    <li>Include actionable drilldowns</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="3-6-asset-identity.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Asset & Identity</span>
+                        </div>
+                    </a>
+                    <a href="3-8-es-administration.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">ES Administration</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

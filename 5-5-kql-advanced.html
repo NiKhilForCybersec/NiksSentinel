@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="KQL Advanced - Joins, unions, let statements, functions, and advanced security detection patterns.">
+    <title>KQL Advanced | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item active">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="5-1-sentinel-architecture.html">Sentinel Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">KQL Advanced</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">KQL Advanced</h1>
+                <p class="page-subtitle">Joins, unions, let statements, and advanced detection patterns</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Advanced KQL techniques enable complex security detection and correlation across multiple data sources. This chapter covers let statements, joins, unions, parsing, anomaly detection, and real-world threat hunting patterns.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="let-statements">let Statements</h2>
+                
+                <pre><code class="language-kql">// Define variables
+let TimeRange = 24h;
+let Threshold = 10;
+SigninLogs
+| where TimeGenerated > ago(TimeRange)
+| summarize count() by UserPrincipalName
+| where count_ > Threshold
+
+// Define lists
+let SuspiciousIPs = dynamic(["1.2.3.4", "5.6.7.8", "9.10.11.12"]);
+SigninLogs
+| where IPAddress in (SuspiciousIPs)
+
+// Define subqueries
+let FailedUsers = SigninLogs
+| where TimeGenerated > ago(1h)
+| where ResultType != 0
+| distinct UserPrincipalName;
+SigninLogs
+| where TimeGenerated > ago(1h)
+| where ResultType == 0
+| where UserPrincipalName in (FailedUsers)
+| project TimeGenerated, UserPrincipalName, IPAddress
+
+// Watchlist lookup
+let ThreatIPs = _GetWatchlist('ThreatIntelligenceIPs');
+SigninLogs
+| where IPAddress in (ThreatIPs)</code></pre>
+                
+                <h2 id="joins">Joins</h2>
+                
+                <pre><code class="language-kql">// Inner join - only matching rows
+SigninLogs
+| where TimeGenerated > ago(24h)
+| where ResultType == 0
+| join kind=inner (
+    IdentityInfo
+    | project UserPrincipalName = AccountUPN, Department, JobTitle
+) on UserPrincipalName
+
+// Left outer join - all from left, matching from right
+SigninLogs
+| where TimeGenerated > ago(24h)
+| join kind=leftouter (
+    AuditLogs
+    | where OperationName == "Add member to role"
+    | project UserPrincipalName = TargetResources[0].userPrincipalName
+) on UserPrincipalName
+
+// Anti join - rows in left NOT in right
+let AdminUsers = IdentityInfo
+| where JobTitle contains "Admin"
+| distinct AccountUPN;
+SigninLogs
+| where TimeGenerated > ago(24h)
+| join kind=leftanti (
+    AdminUsers
+    | project UserPrincipalName = AccountUPN
+) on UserPrincipalName
+// Returns non-admin sign-ins
+
+// Semi join - rows in left that HAVE match in right
+SigninLogs
+| where TimeGenerated > ago(24h)
+| join kind=leftsemi (
+    SecurityAlert
+    | where TimeGenerated > ago(24h)
+    | extend IPAddress = tostring(Entities[0].Address)
+) on IPAddress
+// Returns sign-ins from IPs that have alerts</code></pre>
+                
+                <h3>Join Types Summary</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Join Type</th>
+                                <th>Result</th>
+                                <th>Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>inner</strong></td>
+                                <td>Only matching rows</td>
+                                <td>Enrich with required data</td>
+                            </tr>
+                            <tr>
+                                <td><strong>leftouter</strong></td>
+                                <td>All left + matching right</td>
+                                <td>Enrich with optional data</td>
+                            </tr>
+                            <tr>
+                                <td><strong>leftanti</strong></td>
+                                <td>Left rows NOT in right</td>
+                                <td>Find events not in whitelist</td>
+                            </tr>
+                            <tr>
+                                <td><strong>leftsemi</strong></td>
+                                <td>Left rows WITH match</td>
+                                <td>Find events matching criteria</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="union">Union</h2>
+                
+                <pre><code class="language-kql">// Combine multiple tables
+union SigninLogs, AADNonInteractiveUserSignInLogs
+| where TimeGenerated > ago(24h)
+| where ResultType != 0
+
+// Union with schema handling
+union withsource=TableName SigninLogs, SecurityEvent
+| where TimeGenerated > ago(1h)
+| project TimeGenerated, TableName, User = coalesce(UserPrincipalName, TargetUserName)
+
+// Search across all tables
+search in (SigninLogs, SecurityEvent, AzureActivity) "admin"
+| where TimeGenerated > ago(24h)</code></pre>
+                
+                <h2 id="parsing">Parsing and Extracting</h2>
+                
+                <pre><code class="language-kql">// Parse JSON
+SigninLogs
+| extend DeviceInfo = parse_json(DeviceDetail)
+| extend Browser = DeviceInfo.browser
+| extend OS = DeviceInfo.operatingSystem
+
+// Parse delimited data
+CommonSecurityLog
+| parse AdditionalExtensions with * "reason=" Reason ";" *
+| where isnotempty(Reason)
+
+// Extract with regex
+CommonSecurityLog
+| extend SourceUser = extract(@"user=([^\s]+)", 1, AdditionalExtensions)
+
+// Parse key-value pairs
+CommonSecurityLog
+| extend parsed = parse_json(AdditionalExtensions)
+| mv-expand parsed
+| extend key = tostring(bag_keys(parsed)[0])
+| extend value = tostring(parsed[key])
+
+// Split strings
+SigninLogs
+| extend Domain = tostring(split(UserPrincipalName, "@")[1])</code></pre>
+                
+                <h2 id="time-series">Time Series Analysis</h2>
+                
+                <pre><code class="language-kql">// Make time series
+SigninLogs
+| where TimeGenerated > ago(7d)
+| make-series LoginCount = count() default=0 
+    on TimeGenerated 
+    step 1h 
+    by UserPrincipalName
+| render timechart
+
+// Anomaly detection with series_decompose_anomalies
+SigninLogs
+| where TimeGenerated > ago(30d)
+| make-series LoginCount = count() default=0 on TimeGenerated step 1h
+| extend (anomalies, score, baseline) = series_decompose_anomalies(LoginCount)
+| mv-expand TimeGenerated, LoginCount, anomalies, score, baseline
+| where anomalies == 1
+| project TimeGenerated, LoginCount, score
+
+// Detect spikes
+SigninLogs
+| where TimeGenerated > ago(7d)
+| summarize count() by bin(TimeGenerated, 1h)
+| extend spike = iff(count_ > avg(count_) * 3, 1, 0)
+| where spike == 1</code></pre>
+                
+                <h2 id="security-detections">Advanced Security Detections</h2>
+                
+                <pre><code class="language-kql">// Impossible travel detection
+let TimeDelta = 2h;
+let DistanceThreshold = 500; // km
+SigninLogs
+| where TimeGenerated > ago(24h)
+| where ResultType == 0
+| extend Latitude = toreal(LocationDetails.geoCoordinates.latitude)
+| extend Longitude = toreal(LocationDetails.geoCoordinates.longitude)
+| order by UserPrincipalName, TimeGenerated
+| serialize
+| extend PrevLat = prev(Latitude), PrevLong = prev(Longitude), 
+        PrevTime = prev(TimeGenerated), PrevUser = prev(UserPrincipalName)
+| where UserPrincipalName == PrevUser
+| extend TimeDiff = datetime_diff('minute', TimeGenerated, PrevTime)
+| extend Distance = geo_distance_2points(Longitude, Latitude, PrevLong, PrevLat) / 1000
+| where TimeDiff < 120 and Distance > DistanceThreshold
+| project TimeGenerated, UserPrincipalName, Distance, TimeDiff, IPAddress
+
+// Password spray detection
+let FailureThreshold = 5;
+let TimeWindow = 10m;
+SigninLogs
+| where TimeGenerated > ago(1h)
+| where ResultType == 50126 // Invalid username or password
+| summarize 
+    FailedUsers = dcount(UserPrincipalName),
+    AttemptedUsers = make_set(UserPrincipalName),
+    TotalAttempts = count()
+    by IPAddress, bin(TimeGenerated, TimeWindow)
+| where FailedUsers > FailureThreshold
+| project TimeGenerated, IPAddress, FailedUsers, TotalAttempts, AttemptedUsers
+
+// Lateral movement - RDP from unusual source
+let KnownRDPSources = SecurityEvent
+| where TimeGenerated between (ago(30d) .. ago(1d))
+| where EventID == 4624 and LogonType == 10
+| distinct IpAddress;
+SecurityEvent
+| where TimeGenerated > ago(24h)
+| where EventID == 4624 and LogonType == 10
+| where IpAddress !in (KnownRDPSources)
+| project TimeGenerated, Computer, TargetUserName, IpAddress
+
+// Successful login after many failures
+SigninLogs
+| where TimeGenerated > ago(1h)
+| summarize 
+    FailedCount = countif(ResultType != 0),
+    SuccessCount = countif(ResultType == 0),
+    LastSuccess = maxif(TimeGenerated, ResultType == 0)
+    by UserPrincipalName, IPAddress
+| where FailedCount > 5 and SuccessCount > 0
+| project UserPrincipalName, IPAddress, FailedCount, SuccessCount, LastSuccess</code></pre>
+                
+                <h2 id="functions">Functions and Reusability</h2>
+                
+                <pre><code class="language-kql">// User-defined function (stored in workspace)
+// Create in Log Analytics > Logs > Save as function
+
+// Function: GetFailedLogins
+// Parameters: TimeRange:timespan
+SigninLogs
+| where TimeGenerated > ago(TimeRange)
+| where ResultType != 0
+| summarize FailedCount = count() by UserPrincipalName, IPAddress
+
+// Call the function
+GetFailedLogins(24h)
+| where FailedCount > 10
+
+// Inline function with let
+let GetUserActivity = (user:string) {
+    union SigninLogs, AuditLogs
+    | where UserPrincipalName == user or TargetResources[0].userPrincipalName == user
+    | project TimeGenerated, Type = $table, Operation = coalesce(OperationName, ResultType)
+};
+GetUserActivity("<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2746434a4e496744484a5746495e0944484a">[email&#160;protected]</a>")
+| where TimeGenerated > ago(24h)</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        KQL Best Practices
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Performance:</strong><br>
+                            □ Filter with <code>where</code> before <code>join</code><br>
+                            □ Use <code>project</code> to reduce columns before join<br>
+                            □ Smaller table on right side of join<br>
+                            □ Use <code>let</code> for repeated subqueries<br><br>
+                            
+                            <strong>Maintenance:</strong><br>
+                            □ Save complex queries as functions<br>
+                            □ Use watchlists for dynamic lists<br>
+                            □ Comment complex logic<br>
+                            □ Use meaningful aliases
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"Write a KQL query to detect potential password spray attacks."</strong><br><br>
+                            <pre><code class="language-kql">SigninLogs
+| where TimeGenerated > ago(1h)
+| where ResultType == 50126
+| summarize 
+    TargetUsers = dcount(UserPrincipalName),
+    UserList = make_set(UserPrincipalName),
+    Attempts = count()
+    by IPAddress, bin(TimeGenerated, 10m)
+| where TargetUsers > 5
+| project TimeGenerated, IPAddress, TargetUsers, Attempts</code></pre>
+                            <br>This detects single IPs attempting to authenticate against many accounts in a short window—classic password spray behavior.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li><code>let</code> statements define reusable variables and subqueries</li>
+                    <li>Join types: inner, leftouter, leftanti, leftsemi</li>
+                    <li><code>union</code> combines multiple tables</li>
+                    <li>Parse JSON with <code>parse_json()</code>, extract with regex</li>
+                    <li><code>make-series</code> creates time series for anomaly detection</li>
+                    <li>Create saved functions for reusable queries</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="5-4-kql-fundamentals.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">KQL Fundamentals</span>
+                        </div>
+                    </a>
+                    <a href="5-6-analytics-rules.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Analytics Rules</span>
+                        </div>
+                    </a>
+      

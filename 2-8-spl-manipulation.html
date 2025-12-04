@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SPL Manipulation Commands - eval, rex, where, lookup, join, and transaction for manipulating and enriching Splunk data.">
+    <title>SPL Manipulation Commands | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+                <div class="sidebar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search docs... (Ctrl+K)" aria-label="Search documentation">
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item active">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="2-1-splunk-architecture.html">Splunk Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">SPL Manipulation</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">SPL Manipulation Commands</h1>
+                <p class="page-subtitle">Data manipulation with eval, rex, where, lookup, join, and transaction</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Manipulation commands transform, extract, and enrich data. This chapter covers eval for calculations and transformations, rex for regex extraction, where for filtering, lookup for enrichment, join for combining datasets, and transaction for grouping related events.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="eval-command">eval Command</h2>
+                
+                <p>
+                    The <code>eval</code> command creates or modifies fields using expressions. It's extremely versatile.
+                </p>
+                
+                <h3>Basic eval Operations</h3>
+                
+                <pre><code class="language-spl"># Create new field
+| eval status = "active"
+
+# Mathematical operations
+| eval total_bytes = bytes_in + bytes_out
+| eval GB = bytes / 1024 / 1024 / 1024
+| eval percentage = (count / total) * 100
+
+# String concatenation
+| eval full_name = first_name . " " . last_name
+| eval message = "User " . user . " logged in from " . src_ip
+
+# Conditional logic (if/else)
+| eval severity = if(count > 100, "high", "low")
+| eval status = if(action=="allowed", "Success", "Blocked")
+
+# Multiple conditions (case)
+| eval priority = case(
+    severity=="critical", 1,
+    severity=="high", 2,
+    severity=="medium", 3,
+    severity=="low", 4,
+    1==1, 5
+  )
+
+# Nested case for complex logic
+| eval risk_level = case(
+    failed_logins > 20 AND src_ip_count > 5, "Critical",
+    failed_logins > 10 OR src_ip_count > 3, "High",
+    failed_logins > 5, "Medium",
+    1==1, "Low"
+  )</code></pre>
+                
+                <h3>String Functions</h3>
+                
+                <pre><code class="language-spl"># Case conversion
+| eval user_lower = lower(user)
+| eval user_upper = upper(user)
+
+# Substring
+| eval domain = substr(email, indexOf(email, "@") + 1)
+
+# Length
+| eval cmd_length = len(CommandLine)
+
+# Replace
+| eval clean_path = replace(file_path, "\\\\", "/")
+
+# Split and index
+| eval parts = split(url, "/")
+| eval domain = mvindex(parts, 2)
+
+# Trim whitespace
+| eval clean = trim(field)
+| eval clean = ltrim(field)
+| eval clean = rtrim(field)
+
+# Coalesce (first non-null)
+| eval ip = coalesce(src_ip, client_ip, remote_ip)
+
+# null and empty handling
+| eval status = if(isnull(user), "unknown", user)
+| eval clean_field = if(field="", null(), field)</code></pre>
+                
+                <h3>Time Functions</h3>
+                
+                <pre><code class="language-spl"># Current time
+| eval current_time = now()
+
+# Format timestamp
+| eval human_time = strftime(_time, "%Y-%m-%d %H:%M:%S")
+| eval date_only = strftime(_time, "%Y-%m-%d")
+| eval hour = strftime(_time, "%H")
+| eval day_of_week = strftime(_time, "%A")
+
+# Parse time string to epoch
+| eval epoch_time = strptime(time_string, "%Y-%m-%d %H:%M:%S")
+
+# Time calculations
+| eval age_hours = (now() - _time) / 3600
+| eval age_days = round((now() - _time) / 86400, 1)
+
+# Time differences between events
+| eval duration = end_time - start_time
+| eval duration_minutes = round(duration / 60, 2)
+
+# Business hours check
+| eval hour = tonumber(strftime(_time, "%H"))
+| eval business_hours = if(hour >= 9 AND hour < 17, "yes", "no")</code></pre>
+                
+                <h3>Type Conversion</h3>
+                
+                <pre><code class="language-spl"># String to number
+| eval port_num = tonumber(dest_port)
+
+# Number to string
+| eval port_str = tostring(port)
+
+# Format numbers
+| eval formatted = tostring(bytes, "commas")      # 1,234,567
+| eval hex_value = tostring(number, "hex")        # 0x1A2B
+| eval duration_str = tostring(seconds, "duration") # 01:30:45</code></pre>
+                
+                <h2 id="rex-command">rex Command</h2>
+                
+                <p>
+                    The <code>rex</code> command extracts fields using regular expressions.
+                </p>
+                
+                <h3>Named Capture Groups</h3>
+                
+                <pre><code class="language-spl"># Basic extraction with named groups
+| rex field=_raw "user=(?P&lt;extracted_user&gt;\w+)"
+
+# Extract IP address
+| rex field=_raw "(?P&lt;ip_address&gt;\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})"
+
+# Extract multiple fields
+| rex field=_raw "src=(?P&lt;src_ip&gt;[\d\.]+)\s+dst=(?P&lt;dst_ip&gt;[\d\.]+)\s+action=(?P&lt;action&gt;\w+)"
+
+# Extract from specific field
+| rex field=email "(?P&lt;username&gt;[^@]+)@(?P&lt;domain&gt;.+)"
+
+# Extract file path components
+| rex field=file_path "(?P&lt;directory&gt;.*[\\\/])(?P&lt;filename&gt;[^\\\/]+)$"</code></pre>
+                
+                <h3>rex Mode Options</h3>
+                
+                <pre><code class="language-spl"># sed mode - replacement
+| rex mode=sed field=message "s/password=\w+/password=REDACTED/g"
+| rex mode=sed field=url "s/\?.*//g"  # Remove query string
+
+# Extract multiple matches (max_match)
+| rex field=_raw "IP=(?P&lt;ip&gt;[\d\.]+)" max_match=0
+# max_match=0 extracts ALL matches into multivalue field
+
+# Case-insensitive extraction
+| rex field=_raw "(?i)user[=:\s]+(?P&lt;user&gt;\w+)"</code></pre>
+                
+                <h3>Common Regex Patterns</h3>
+                
+                <pre><code class="language-spl"># IPv4 Address
+(?P&lt;ip&gt;\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})
+
+# IPv6 Address (simplified)
+(?P&lt;ipv6&gt;[a-fA-F0-9:]+)
+
+# Email
+(?P&lt;email&gt;[\w\.\-]+@[\w\.\-]+\.\w+)
+
+# URL
+(?P&lt;url&gt;https?://[^\s]+)
+
+# Windows file path
+(?P&lt;path&gt;[A-Za-z]:\\[^\s]+)
+
+# Domain name
+(?P&lt;domain&gt;[\w\-]+\.[\w\.\-]+)
+
+# MAC address
+(?P&lt;mac&gt;[0-9A-Fa-f]{2}[:-][0-9A-Fa-f]{2}[:-][0-9A-Fa-f]{2}[:-][0-9A-Fa-f]{2}[:-][0-9A-Fa-f]{2}[:-][0-9A-Fa-f]{2})
+
+# Credit card (for detection, not extraction!)
+(?P&lt;cc&gt;\d{4}[\s\-]?\d{4}[\s\-]?\d{4}[\s\-]?\d{4})</code></pre>
+                
+                <h2 id="where-command">where Command</h2>
+                
+                <p>
+                    The <code>where</code> command filters using eval expressions. More powerful than search for complex conditions.
+                </p>
+                
+                <pre><code class="language-spl"># Numeric comparisons
+| where count > 10
+| where bytes >= 1000000
+| where duration < 60
+
+# String comparisons (case-sensitive!)
+| where user == "admin"
+| where user != "SYSTEM"
+
+# Case-insensitive comparison
+| where lower(user) == "admin"
+
+# Like operator (SQL wildcards)
+| where like(user, "admin%")
+| where like(file_path, "%\\System32\\%")
+
+# Match with regex
+| where match(user, "^svc_")
+| where match(CommandLine, "(?i)powershell.*-enc")
+
+# Null checks
+| where isnotnull(src_ip)
+| where isnull(user)
+
+# Combining conditions
+| where count > 10 AND user != "SYSTEM"
+| where (src_ip LIKE "10.%" OR src_ip LIKE "192.168.%")
+
+# cidrmatch for IP ranges
+| where cidrmatch("10.0.0.0/8", src_ip)
+| where NOT cidrmatch("192.168.0.0/16", src_ip)
+
+# IN operator
+| where user IN ("admin", "root", "administrator")
+| where dest_port IN (22, 23, 3389, 5900)</code></pre>
+                
+                <h2 id="lookup-command">lookup Command</h2>
+                
+                <p>
+                    Enrich events with data from lookup tables (CSV files or KV stores).
+                </p>
+                
+                <h3>Basic Lookup</h3>
+                
+                <pre><code class="language-spl"># Automatic lookup (if configured)
+index=security 
+| table user, department, manager
+
+# Explicit lookup
+index=security 
+| lookup user_info user OUTPUT department, manager, title
+
+# Lookup with field rename
+index=security 
+| lookup asset_inventory ip AS src_ip OUTPUT hostname, asset_type, criticality
+
+# Lookup with default value
+index=security 
+| lookup threat_intel ip AS src_ip OUTPUT threat_score
+| fillnull value=0 threat_score</code></pre>
+                
+                <h3>Creating Lookup Tables</h3>
+                
+                <pre><code class="language-text"># Upload CSV via Settings → Lookups → Lookup table files
+# Or create from search results:
+
+# Create lookup from search
+index=security EventCode=4624 earliest=-30d
+| stats values(dest) AS systems_accessed by user
+| outputlookup user_systems.csv
+
+# Update existing lookup (append)
+| inputlookup append=true existing_lookup.csv
+| outputlookup existing_lookup.csv</code></pre>
+                
+                <h3>Lookup Configuration</h3>
+                
+                <pre><code class="language-ini"># transforms.conf
+[user_info]
+filename = user_info.csv
+case_sensitive_match = false
+
+# props.conf (automatic lookup)
+[WinEventLog:Security]
+LOOKUP-user_enrichment = user_info user OUTPUT department manager</code></pre>
+                
+                <h2 id="join-command">join Command</h2>
+                
+                <p>
+                    Combine results from a subsearch with the main search. Use sparingly—lookups are often better.
+                </p>
+                
+                <pre><code class="language-spl"># Basic join
+index=security EventCode=4624
+| join user 
+    [search index=hr_data 
+     | table user, department, manager]
+
+# Left join (keep all main results)
+index=security EventCode=4625
+| join type=left user 
+    [search index=security EventCode=4624 
+     | stats latest(_time) AS last_success by user]
+
+# Join on multiple fields
+index=firewall
+| join src_ip, dest_ip 
+    [search index=threat_intel 
+     | table src_ip, dest_ip, threat_level]
+
+# Inner join (default - only matching)
+index=web_logs
+| join type=inner session_id 
+    [search index=auth_logs action=login]</code></pre>
+                
+                <div class="info-box warning">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">⚠️</span>
+                        Warning
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Avoid join when possible.</strong> The join command has limitations: subsearch results capped at 50,000 rows by default, and it's memory-intensive. Use <code>lookup</code> for enrichment, <code>stats</code> with subsearches, or <code>append</code> + <code>stats</code> instead.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="transaction-command">transaction Command</h2>
+                
+                <p>
+                    Group related events into transactions based on common fields or time proximity.
+                </p>
+                
+                <pre><code class="language-spl"># Transaction by field
+index=web_logs
+| transaction session_id
+
+# Transaction with time constraints
+index=security EventCode IN (4624, 4634)
+| transaction user maxspan=8h maxpause=1h
+
+# Transaction options
+| transaction user
+    startswith="EventCode=4624"     # Transaction starts with login
+    endswith="EventCode=4634"       # Ends with logoff
+    maxspan=8h                      # Max 8 hours
+    maxpause=30m                    # Max 30 min between events
+    maxevents=1000                  # Max events per transaction
+
+# Useful transaction fields (auto-created)
+# duration    - time from first to last event
+# eventcount  - number of events in transaction
+# closed_txn  - 1 if properly closed, 0 if open
+
+# Find long sessions
+index=security EventCode IN (4624, 4634) earliest=-7d
+| transaction user startswith="EventCode=4624" endswith="EventCode=4634" maxspan=24h
+| where duration > 28800
+| table user, duration, eventcount, src_ip
+
+# Web session analysis
+index=web_logs earliest=-24h
+| transaction clientip maxpause=30m
+| stats avg(duration) AS avg_session, avg(eventcount) AS avg_pageviews</code></pre>
+                
+                <div class="info-box tip">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💡</span>
+                        transaction vs stats
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Use <code>stats</code> when you only need aggregated values (count, sum, etc.). Use <code>transaction</code> when you need to preserve the original events and calculate duration or see the sequence. <code>stats</code> is much faster—use transaction only when necessary.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="practical-examples">Practical Security Examples</h2>
+                
+                <pre><code class="language-spl"># Extract and enrich PowerShell commands
+index=windows sourcetype=WinEventLog:PowerShell EventCode=4104
+| rex field=ScriptBlockText "(?i)(?P&lt;suspicious_cmd&gt;Invoke-Expression|IEX|DownloadString|Net\.WebClient)"
+| where isnotnull(suspicious_cmd)
+| lookup threat_intel_scripts command AS suspicious_cmd OUTPUT threat_level, description
+| table _time, Computer, User, suspicious_cmd, threat_level, ScriptBlockText
+
+# User session duration analysis
+index=security EventCode IN (4624, 4634) earliest=-7d
+| transaction user startswith="EventCode=4624" endswith="EventCode=4634" maxspan=24h
+| eval duration_hours = round(duration / 3600, 2)
+| stats avg(duration_hours) AS avg_session, 
+        max(duration_hours) AS max_session,
+        count AS session_count 
+  by user
+| where max_session > 12
+
+# Detect lateral movement - RDP hopping
+index=security EventCode=4624 LogonType=10 earliest=-24h
+| transaction src_ip maxspan=1h maxpause=15m
+| where eventcount > 3
+| eval systems = mvjoin(dest, " -> ")
+| table _time, src_ip, eventcount, duration, systems
+
+# Parse and analyze firewall logs
+index=firewall
+| rex field=_raw "src=(?P&lt;src_ip&gt;[\d\.]+):(?P&lt;src_port&gt;\d+)\s+dst=(?P&lt;dst_ip&gt;[\d\.]+):(?P&lt;dst_port&gt;\d+)"
+| eval traffic_type = case(
+    dst_port IN (80, 443), "Web",
+    dst_port IN (22, 23, 3389), "Remote Access",
+    dst_port IN (25, 465, 587), "Email",
+    dst_port == 53, "DNS",
+    1==1, "Other"
+  )
+| stats count, sum(bytes) AS total_bytes by src_ip, traffic_type
+| eval MB = round(total_bytes / 1024 / 1024, 2)
+
+# Enrich alerts with asset criticality
+index=notable_events earliest=-24h
+| lookup asset_inventory ip AS dest OUTPUT criticality, owner, business_unit
+| eval priority = case(
+    criticality=="critical" AND severity=="high", "P1",
+    criticality=="critical" OR severity=="high", "P2",
+    1==1, "P3"
+  )
+| table _time, rule_name, dest, criticality, severity, priority, owner</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"How would you enrich security events with asset information?"</strong><br><br>
+                            Use a <code>lookup</code> table containing asset inventory (IP, hostname, criticality, owner, department). Create the lookup CSV with fields like ip, hostname, criticality, owner, business_unit. Then enrich events: <code>| lookup asset_inventory ip AS dest OUTPUT criticality, owner</code>. Configure automatic lookups in props.conf for consistent enrichment. This enables risk-based alerting and faster triage by immediately showing asset context.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li><strong>eval</strong> - Create/modify fields with expressions, conditions, string/time functions</li>
+                    <li><strong>rex</strong> - Extract fields using regex; use named capture groups</li>
+                    <li><strong>where</strong> - Filter with eval expressions; supports regex, cidrmatch, null checks</li>
+                    <li><strong>lookup</strong> - Enrich events from CSV or KV store tables</li>
+                    <li><strong>join</strong> - Combine search results; use sparingly due to limitations</li>
+                    <li><strong>transaction</strong> - Group related events; calculates duration and eventcount</li>
+                    <li>Prefer lookup over join for enrichment</li>
+                    <li>Prefer stats over transaction when you don't need individual events</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="2-7-spl-transforming.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">SPL Transforming</span>
+                        </div>
+                    </a>
+                    <a href="2-9-spl-advanced.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">SPL Advanced</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

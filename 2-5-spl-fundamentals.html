@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SPL Fundamentals - Search Processing Language basics, syntax, time modifiers, boolean operators, wildcards, and search optimization fundamentals.">
+    <title>SPL Fundamentals | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+                <div class="sidebar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search docs... (Ctrl+K)" aria-label="Search documentation">
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item active">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="2-1-splunk-architecture.html">Splunk Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">SPL Fundamentals</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">SPL Fundamentals</h1>
+                <p class="page-subtitle">Introduction to Search Processing Language - the power behind Splunk searches</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            SPL (Search Processing Language) is Splunk's query language. Mastering SPL is essential for effective security analysis. This chapter covers the fundamentals: search syntax, time modifiers, boolean operators, field searching, and the basics of search optimization.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="search-anatomy">Anatomy of a Splunk Search</h2>
+                
+                <p>
+                    Every Splunk search follows a pipeline structure:
+                </p>
+                
+                <pre><code class="language-spl"># Basic search structure
+search_terms | command1 | command2 | command3
+
+# Example
+index=security sourcetype=WinEventLog:Security EventCode=4625 
+| stats count by user 
+| sort -count 
+| head 10</code></pre>
+                
+                <h3>Search Pipeline Concept</h3>
+                
+                <pre><code class="language-text">Data flows through the pipeline:
+
+[Raw Events] → [Filter] → [Transform] → [Visualize]
+     │            │            │            │
+   index=     where/search   stats        table
+   source                    chart        head
+   sourcetype               timechart     sort</code></pre>
+                
+                <h3>Search Components</h3>
+                
+                <pre><code class="language-spl"># Search components breakdown:
+
+index=security           # WHERE to search (most important!)
+sourcetype=WinEventLog   # What type of data
+EventCode=4625           # Field=value filter
+"failed login"           # Keyword search in _raw
+| stats count by user    # Transformation command
+| where count > 10       # Filter results
+| sort -count            # Order results
+| head 5                 # Limit results</code></pre>
+                
+                <h2 id="time-modifiers">Time Range Modifiers</h2>
+                
+                <p>
+                    Time is critical for efficient searches. Always specify time ranges:
+                </p>
+                
+                <h3>Relative Time Modifiers</h3>
+                
+                <pre><code class="language-spl"># Relative time syntax: earliest/latest
+earliest=-24h          # Last 24 hours
+earliest=-7d           # Last 7 days
+earliest=-1mon         # Last 1 month
+earliest=-1y           # Last 1 year
+
+# Combined modifiers
+earliest=-24h latest=now      # Last 24 hours
+earliest=-7d@d latest=@d      # Last 7 days, snapped to day
+earliest=-1h@h latest=now     # Last hour, snapped to hour
+
+# Snap-to modifiers (@)
+earliest=-1d@d         # Yesterday at midnight
+earliest=@d            # Today at midnight
+earliest=-1w@w         # Start of last week (Sunday)
+earliest=-1mon@mon     # Start of last month</code></pre>
+                
+                <h3>Time Unit Reference</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Unit</th>
+                                <th>Meaning</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>s</td><td>seconds</td><td>-30s</td></tr>
+                            <tr><td>m</td><td>minutes</td><td>-15m</td></tr>
+                            <tr><td>h</td><td>hours</td><td>-24h</td></tr>
+                            <tr><td>d</td><td>days</td><td>-7d</td></tr>
+                            <tr><td>w</td><td>weeks</td><td>-1w</td></tr>
+                            <tr><td>mon</td><td>months</td><td>-3mon</td></tr>
+                            <tr><td>y</td><td>years</td><td>-1y</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Absolute Time</h3>
+                
+                <pre><code class="language-spl"># Absolute time format: MM/DD/YYYY:HH:MM:SS
+earliest="01/15/2024:00:00:00" latest="01/15/2024:23:59:59"
+
+# ISO format
+earliest="2024-01-15T00:00:00" latest="2024-01-15T23:59:59"
+
+# Epoch time
+earliest=1705276800 latest=1705363199</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Best Practice
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Always specify time ranges.</strong> Without time limits, Splunk searches all data, which is slow and expensive. For security investigations, start with narrow time ranges and expand if needed. Use the time picker in the UI or inline time modifiers in your search.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="boolean-operators">Boolean Operators</h2>
+                
+                <h3>AND, OR, NOT</h3>
+                
+                <pre><code class="language-spl"># AND - implicit (space between terms)
+index=security user=admin action=failed
+# Equivalent to:
+index=security user=admin AND action=failed
+
+# AND - explicit
+index=security user=admin AND src_ip=10.0.0.50
+
+# OR
+index=security (EventCode=4624 OR EventCode=4625)
+index=security user=admin OR user=root
+
+# NOT
+index=security NOT action=success
+index=security user!=admin
+index=security NOT (user=svc_* OR user=admin)
+
+# Combined
+index=security (EventCode=4624 OR EventCode=4625) 
+  AND NOT user=SYSTEM 
+  AND src_ip=10.*</code></pre>
+                
+                <h3>Operator Precedence</h3>
+                
+                <pre><code class="language-spl"># Precedence (highest to lowest): NOT, OR, AND
+# Use parentheses to be explicit!
+
+# Ambiguous:
+index=security user=admin OR user=root AND action=failed
+# Interpreted as: user=admin OR (user=root AND action=failed)
+
+# Clear:
+index=security (user=admin OR user=root) AND action=failed</code></pre>
+                
+                <h2 id="field-searching">Field Searching</h2>
+                
+                <h3>Basic Field Searches</h3>
+                
+                <pre><code class="language-spl"># Exact match
+user=admin
+EventCode=4624
+src_ip=192.168.1.50
+
+# Not equal
+user!=admin
+action!=success
+
+# Field exists
+user=*
+# Field does not exist
+NOT user=*
+
+# Case sensitivity
+# By default, field VALUES are case-sensitive
+user=Admin       # Won't match "admin"
+user=admin       # Exact match
+
+# Case-insensitive search
+| where lower(user)="admin"
+# Or use CASE() function for case-sensitive
+| where CASE(user)="Admin"</code></pre>
+                
+                <h3>Wildcards</h3>
+                
+                <pre><code class="language-spl"># Wildcard: * matches any characters
+user=admin*           # Starts with admin
+user=*admin           # Ends with admin  
+user=*admin*          # Contains admin
+src_ip=192.168.1.*    # IP range
+src_ip=192.168.*.*    # Broader range
+
+# Single character wildcard: NOT supported in basic search
+# Use regex for single character matching
+
+# Examples
+index=security user=svc_*           # Service accounts
+index=security host=web*            # Web servers
+index=security src_ip=10.0.0.*      # Internal subnet</code></pre>
+                
+                <h3>IN Operator</h3>
+                
+                <pre><code class="language-spl"># Match multiple values
+EventCode IN (4624, 4625, 4648)
+user IN ("admin", "root", "administrator")
+src_ip IN ("10.0.0.1", "10.0.0.2", "10.0.0.3")
+
+# NOT IN
+EventCode NOT IN (4624, 4634)
+user NOT IN ("SYSTEM", "LOCAL SERVICE")</code></pre>
+                
+                <h2 id="comparison-operators">Comparison Operators</h2>
+                
+                <pre><code class="language-spl"># Used with 'where' command (after pipe)
+| where count > 10
+| where bytes >= 1000000
+| where duration < 60
+| where user != "admin"
+
+# String comparisons
+| where like(user, "admin%")     # SQL-like wildcard
+| where match(user, "^admin")    # Regex match
+
+# Operators reference:
+# =, ==, !=  - Equality
+# >, >=      - Greater than
+# <, <=      - Less than
+# AND, OR    - Logical
+# NOT, !     - Negation</code></pre>
+                
+                <h2 id="keyword-search">Keyword and Raw Search</h2>
+                
+                <pre><code class="language-spl"># Keyword search (searches _raw field)
+index=security "failed login"
+index=security error
+index=security "password"
+
+# Phrase search (exact phrase)
+index=security "authentication failed"
+
+# Keyword search is CASE-INSENSITIVE
+index=security "ERROR"      # Matches "error", "Error", "ERROR"
+
+# Combine keywords and fields
+index=security "failed password" user=admin
+
+# Escape special characters
+index=security "user\=admin"     # Literal = sign
+index=security "C:\\Windows"     # Backslash path</code></pre>
+                
+                <h2 id="subsearches">Subsearches</h2>
+                
+                <pre><code class="language-spl"># Subsearch: Use results of one search in another
+# Enclosed in square brackets []
+
+# Find all events from users who failed login
+index=security action=success 
+  [search index=security action=failed 
+   | stats count by user 
+   | where count > 5 
+   | fields user]
+
+# Find events from IPs flagged in threat intel
+index=firewall action=allowed
+  [search index=threat_intel threat_score>80
+   | fields src_ip 
+   | rename src_ip as dest_ip]
+
+# Subsearch returns field values to outer search
+# Limit: 10,000 results, 60 second timeout by default</code></pre>
+                
+                <div class="info-box warning">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">⚠️</span>
+                        Warning
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Subsearches have limits.</strong> By default, subsearches return max 10,000 results and timeout after 60 seconds. For large datasets, use <code>join</code> or <code>lookup</code> instead. Also, subsearches run first and their results are substituted into the main search, which can create very large searches.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="search-modes">Search Modes</h2>
+                
+                <p>
+                    Splunk offers three search modes that affect speed and results:
+                </p>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mode</th>
+                                <th>Behavior</th>
+                                <th>Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Fast</strong></td>
+                                <td>Field discovery disabled, only returns fields needed by search</td>
+                                <td>Dashboards, reports, known searches</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Smart</strong></td>
+                                <td>Auto-selects based on search type</td>
+                                <td>Default mode, general use</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Verbose</strong></td>
+                                <td>All field discovery enabled, shows all events and fields</td>
+                                <td>Investigation, exploring data</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="search-examples">Common Security Search Patterns</h2>
+                
+                <pre><code class="language-spl"># Failed logins in last 24 hours
+index=security sourcetype=WinEventLog:Security EventCode=4625 earliest=-24h
+| stats count by user, src_ip
+| sort -count
+
+# Successful logins from external IPs
+index=security EventCode=4624 LogonType=10 NOT src_ip=10.* NOT src_ip=192.168.*
+| table _time, user, src_ip, dest
+
+# Process execution with command line
+index=sysmon EventCode=1 earliest=-1h
+| table _time, Computer, User, Image, CommandLine
+| sort -_time
+
+# Firewall denies by source
+index=firewall action=deny earliest=-24h
+| stats count by src_ip, dest_port
+| sort -count
+| head 20
+
+# User activity timeline
+index=* user=jsmith earliest=-7d
+| table _time, index, sourcetype, action, src_ip, dest
+| sort _time</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"How do you optimize a slow Splunk search?"</strong><br><br>
+                            <strong>1.</strong> Specify index and sourcetype (most impactful)<br>
+                            <strong>2.</strong> Narrow time range<br>
+                            <strong>3.</strong> Move filters left (filter early, transform late)<br>
+                            <strong>4.</strong> Use indexed fields in search terms<br>
+                            <strong>5.</strong> Avoid wildcards at the start of terms<br>
+                            <strong>6.</strong> Use stats instead of transaction when possible<br>
+                            <strong>7.</strong> Consider summary indexing or data models for repeated searches
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="search-best-practices">Search Best Practices</h2>
+                
+                <pre><code class="language-text">SEARCH OPTIMIZATION RULES:
+
+1. ALWAYS specify index
+   Bad:  sourcetype=WinEventLog:Security
+   Good: index=security sourcetype=WinEventLog:Security
+
+2. Specify time range
+   Bad:  index=security user=admin
+   Good: index=security user=admin earliest=-24h
+
+3. Filter early, transform late
+   Bad:  index=security | stats count by user | where user="admin"
+   Good: index=security user=admin | stats count
+
+4. Use specific terms before wildcards
+   Bad:  index=security *admin*
+   Good: index=security user=*admin*
+
+5. Avoid leading wildcards
+   Bad:  index=security user=*smith
+   Good: index=security user=jsmith OR user=asmith
+
+6. Use indexed fields when possible
+   Indexed: index, source, sourcetype, host
+   Also indexed: Any field extracted at index-time</code></pre>
+                
+                <div class="info-box memory">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">🧠</span>
+                        Memory Aid
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>SPL = Unix Pipes for Security Data</strong><br><br>
+                            Think of SPL like a water treatment plant:<br>
+                            • <strong>index=</strong> is the water source (where data comes from)<br>
+                            • <strong>| (pipe)</strong> sends water to the next treatment stage<br>
+                            • <strong>search/where</strong> = filters removing unwanted particles<br>
+                            • <strong>stats/table</strong> = final packaging for delivery<br><br>
+                            
+                            <strong>Remember the Optimization Order:</strong><br>
+                            <em>"I-T-F-T"</em> = <strong>Index → Time → Filter → Transform</strong><br>
+                            (Like making coffee: pick beans, set timer, filter grounds, pour into cup)
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>SPL searches flow through a pipeline: search terms → commands → commands</li>
+                    <li>Always specify index and time range for efficient searches</li>
+                    <li>Time modifiers: relative (-24h, -7d@d) or absolute (epoch, date strings)</li>
+                    <li>Boolean operators: AND (implicit), OR, NOT with proper precedence</li>
+                    <li>Field searches: exact match, wildcards (*), IN operator</li>
+                    <li>Subsearches run first and substitute results into main search</li>
+                    <li>Search modes: Fast (dashboards), Smart (default), Verbose (investigation)</li>
+                    <li>Optimization: index first, time second, filter early, transform late</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="2-4-index-management.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Index Management</span>
+                        </div>
+                    </a>
+                    <a href="2-6-spl-data-retrieval.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">SPL Data Retrieval</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

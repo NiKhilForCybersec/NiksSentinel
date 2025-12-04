@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SIGMA Rules - Platform-agnostic detection rules that can be converted to Splunk SPL and Sentinel KQL.">
+    <title>SIGMA Rules | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item active">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="8-1-detection-development.html">Detection Engineering</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">SIGMA Rules</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">SIGMA Rules</h1>
+                <p class="page-subtitle">Platform-agnostic detection format for portable security rules</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            SIGMA is an open-source, generic signature format that allows you to describe detection rules in a platform-agnostic way. Rules can be converted to Splunk SPL, Sentinel KQL, and many other SIEM formats. This chapter covers SIGMA syntax, writing rules, and conversion workflows.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="sigma-overview">SIGMA Overview</h2>
+                
+                <pre><code class="language-text">SIGMA ECOSYSTEM:
+
+┌─────────────────────────────────────────────────────────┐
+│                    SIGMA RULE                           │
+│                 (YAML Format)                           │
+└─────────────────────────┬───────────────────────────────┘
+                          │
+                          ▼
+┌─────────────────────────────────────────────────────────┐
+│                   SIGMA CLI                             │
+│              (sigmac / pySigma)                         │
+└─────────────────────────┬───────────────────────────────┘
+                          │
+        ┌─────────────────┼─────────────────┐
+        ▼                 ▼                 ▼
+┌─────────────┐  ┌─────────────┐  ┌─────────────┐
+│   Splunk    │  │  Sentinel   │  │   Elastic   │
+│    SPL      │  │    KQL      │  │    EQL      │
+└─────────────┘  └─────────────┘  └─────────────┘
+
+BENEFITS:
+• Write once, deploy anywhere
+• Community-maintained rule repository
+• 3000+ detection rules available
+• MITRE ATT&CK mapped</code></pre>
+                
+                <h2 id="rule-structure">SIGMA Rule Structure</h2>
+                
+                <pre><code class="language-yaml">title: Mimikatz Command Line Detection
+id: a642964e-bead-4bed-8910-1bb4d63e3b4a
+status: test
+description: Detects Mimikatz execution based on command line arguments
+references:
+    - https://github.com/gentilkiwi/mimikatz
+author: Security Team
+date: 2024/01/15
+modified: 2024/03/01
+tags:
+    - attack.credential_access
+    - attack.t1003.001
+    - attack.s0002
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        CommandLine|contains:
+            - 'sekurlsa::'
+            - 'kerberos::'
+            - 'crypto::'
+            - 'lsadump::'
+            - 'privilege::debug'
+    condition: selection
+falsepositives:
+    - Legitimate security testing
+level: high</code></pre>
+                
+                <h3>Rule Components</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Required</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>title</strong></td>
+                                <td>Yes</td>
+                                <td>Short descriptive name</td>
+                            </tr>
+                            <tr>
+                                <td><strong>id</strong></td>
+                                <td>Yes</td>
+                                <td>Unique UUID</td>
+                            </tr>
+                            <tr>
+                                <td><strong>status</strong></td>
+                                <td>Yes</td>
+                                <td>test, experimental, stable, deprecated</td>
+                            </tr>
+                            <tr>
+                                <td><strong>description</strong></td>
+                                <td>Yes</td>
+                                <td>What the rule detects</td>
+                            </tr>
+                            <tr>
+                                <td><strong>logsource</strong></td>
+                                <td>Yes</td>
+                                <td>Category, product, service</td>
+                            </tr>
+                            <tr>
+                                <td><strong>detection</strong></td>
+                                <td>Yes</td>
+                                <td>Selection criteria and condition</td>
+                            </tr>
+                            <tr>
+                                <td><strong>level</strong></td>
+                                <td>Yes</td>
+                                <td>informational, low, medium, high, critical</td>
+                            </tr>
+                            <tr>
+                                <td><strong>tags</strong></td>
+                                <td>No</td>
+                                <td>MITRE ATT&CK and other tags</td>
+                            </tr>
+                            <tr>
+                                <td><strong>falsepositives</strong></td>
+                                <td>No</td>
+                                <td>Known false positive sources</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="detection-syntax">Detection Syntax</h2>
+                
+                <pre><code class="language-yaml"># BASIC MATCHING
+detection:
+    selection:
+        EventID: 4625
+    condition: selection
+
+# MULTIPLE VALUES (OR)
+detection:
+    selection:
+        EventID:
+            - 4624
+            - 4625
+            - 4648
+    condition: selection
+
+# MULTIPLE FIELDS (AND)
+detection:
+    selection:
+        EventID: 4688
+        NewProcessName|endswith: '\powershell.exe'
+    condition: selection
+
+# MODIFIERS
+detection:
+    selection:
+        CommandLine|contains: 'mimikatz'      # substring
+        CommandLine|startswith: 'cmd /c'      # starts with
+        CommandLine|endswith: '.ps1'          # ends with
+        CommandLine|re: '.*encoded.*'         # regex
+        CommandLine|contains|all:             # must contain all
+            - '-enc'
+            - '-nop'
+
+# COMPLEX CONDITIONS
+detection:
+    selection1:
+        EventID: 4688
+    selection2:
+        NewProcessName|endswith: '\powershell.exe'
+    filter:
+        User: 'SYSTEM'
+    condition: selection1 and selection2 and not filter</code></pre>
+                
+                <h2 id="logsource-categories">Log Source Categories</h2>
+                
+                <pre><code class="language-text">COMMON LOGSOURCES:
+
+WINDOWS:
+─────────────────────────────
+logsource:
+    product: windows
+    category: process_creation    # Sysmon 1, 4688
+    
+logsource:
+    product: windows
+    category: network_connection  # Sysmon 3
+    
+logsource:
+    product: windows
+    service: security            # Windows Security Log
+    
+logsource:
+    product: windows
+    service: sysmon              # Sysmon
+
+LINUX:
+─────────────────────────────
+logsource:
+    product: linux
+    category: process_creation
+    
+logsource:
+    product: linux
+    service: sshd
+
+CLOUD:
+─────────────────────────────
+logsource:
+    product: azure
+    service: signinlogs
+    
+logsource:
+    product: aws
+    service: cloudtrail</code></pre>
+                
+                <h2 id="conversion">Converting SIGMA Rules</h2>
+                
+                <pre><code class="language-bash"># Install pySigma
+pip install pysigma pysigma-backend-splunk pysigma-backend-microsoft365defender
+
+# Convert to Splunk
+sigma convert -t splunk rule.yml
+
+# Convert to Sentinel/KQL  
+sigma convert -t microsoft365defender rule.yml
+
+# Convert with pipeline (field mappings)
+sigma convert -t splunk -p sysmon rule.yml
+
+# Batch convert entire directory
+sigma convert -t splunk rules/ -o output/</code></pre>
+                
+                <h3>Conversion Example</h3>
+                
+                <pre><code class="language-text">SIGMA RULE:
+─────────────────────────────────────────────────
+title: PowerShell Encoded Command
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        CommandLine|contains:
+            - ' -enc '
+            - ' -EncodedCommand '
+    condition: selection
+
+CONVERTED TO SPLUNK:
+─────────────────────────────────────────────────
+index=windows sourcetype=WinEventLog:Security EventCode=4688
+| where match(CommandLine, "(?i)( -enc | -EncodedCommand )")
+
+CONVERTED TO SENTINEL KQL:
+─────────────────────────────────────────────────
+SecurityEvent
+| where EventID == 4688
+| where CommandLine contains " -enc " 
+    or CommandLine contains " -EncodedCommand "</code></pre>
+                
+                <h2 id="writing-rules">Writing Custom SIGMA Rules</h2>
+                
+                <pre><code class="language-yaml"># Example: Detect suspicious scheduled task creation
+title: Suspicious Scheduled Task Creation
+id: 8e58fda8-c1dc-47e0-8c30-94f87b19c367
+status: test
+description: |
+    Detects scheduled task creation with suspicious 
+    characteristics indicating potential persistence
+references:
+    - https://attack.mitre.org/techniques/T1053/005/
+author: Your Name
+date: 2024/01/15
+tags:
+    - attack.persistence
+    - attack.t1053.005
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4698  # Scheduled task created
+    suspicious_paths:
+        TaskContent|contains:
+            - '\AppData\Local\Temp\'
+            - '\Users\Public\'
+            - 'powershell'
+            - 'cmd.exe /c'
+    filter_legitimate:
+        TaskContent|contains:
+            - '\Microsoft\Windows\'
+            - '\Google\Update\'
+    condition: selection and suspicious_paths and not filter_legitimate
+falsepositives:
+    - Legitimate software installation
+    - IT management tools
+level: medium</code></pre>
+                
+                <h2 id="sigma-repository">SIGMA Rule Repository</h2>
+                
+                <pre><code class="language-text">SIGMA RULES REPOSITORY:
+https://github.com/SigmaHQ/sigma
+
+STRUCTURE:
+sigma/
+├── rules/
+│   ├── windows/
+│   │   ├── process_creation/
+│   │   ├── registry_event/
+│   │   ├── file_event/
+│   │   └── ...
+│   ├── linux/
+│   ├── cloud/
+│   │   ├── azure/
+│   │   ├── aws/
+│   │   └── gcp/
+│   └── network/
+
+POPULAR RULE CATEGORIES:
+• windows/process_creation - Process execution detection
+• windows/powershell - PowerShell activity
+• windows/registry_event - Registry modifications
+• cloud/azure/azure_ad_signin - Azure AD sign-in anomalies
+• linux/process_creation - Linux process detection</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        SIGMA Best Practices
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Writing Rules:</strong><br>
+                            □ Use specific logsource categories<br>
+                            □ Include falsepositives documentation<br>
+                            □ Add MITRE ATT&CK tags<br>
+                            □ Test conversion to your SIEM before deploying<br><br>
+                            
+                            <strong>Using Community Rules:</strong><br>
+                            □ Review rules before deploying (don't blindly import)<br>
+                            □ Check status field (prefer stable over experimental)<br>
+                            □ Adjust for your environment (exclusions, field names)<br>
+                            □ Validate converted queries work correctly<br><br>
+                            
+                            <strong>Maintenance:</strong><br>
+                            □ Subscribe to SIGMA repository updates<br>
+                            □ Periodically refresh rule conversions<br>
+                            □ Contribute back improvements
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"What is SIGMA and why would you use it?"</strong><br><br>
+                            <strong>What:</strong> SIGMA is an open-source, platform-agnostic detection rule format written in YAML. It allows you to write detection rules once and convert them to multiple SIEM platforms.<br><br>
+                            
+                            <strong>Why use it:</strong><br>
+                            • <strong>Portability:</strong> Same rule works in Splunk, Sentinel, Elastic, etc.<br>
+                            • <strong>Community:</strong> Access to 3000+ community-maintained rules<br>
+                            • <strong>Standardization:</strong> Consistent format with MITRE ATT&CK mapping<br>
+                            • <strong>Migration:</strong> Easier to migrate between SIEM platforms<br>
+                            • <strong>Collaboration:</strong> Share detections across teams and organizations
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>SIGMA provides platform-agnostic detection rules in YAML</li>
+                    <li>Rules can be converted to SPL, KQL, and other formats</li>
+                    <li>Key components: title, logsource, detection, condition</li>
+                    <li>3000+ community rules available at SigmaHQ</li>
+                    <li>Use pySigma for conversion workflows</li>
+                    <li>Always test converted rules before production deployment</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="8-2-mitre-attack.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">MITRE ATT&CK</span>
+                        </div>
+                    </a>
+                    <a href="8-4-detection-testing.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Testing & Validation</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

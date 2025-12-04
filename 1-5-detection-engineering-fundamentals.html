@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detection Engineering Fundamentals - Detection types, MITRE ATT&CK integration, development lifecycle, testing, tuning, and detection-as-code principles.">
+    <title>Detection Engineering Fundamentals | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+                <div class="sidebar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search docs... (Ctrl+K)" aria-label="Search documentation">
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item active">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="1-1-introduction-to-siem.html">SIEM Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Detection Engineering Fundamentals</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Detection Engineering Fundamentals</h1>
+                <p class="page-subtitle">Building effective security detections: types, methodologies, frameworks, and engineering practices</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Detection engineering is the discipline of developing, testing, and maintaining the rules and analytics that identify threats. This chapter introduces detection types, the MITRE ATT&CK framework, the detection development lifecycle, and modern practices like detection-as-code.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="detection-types">Detection Types</h2>
+                
+                <p>
+                    Not all detections work the same way. Understanding detection types helps you choose the right approach for each threat:
+                </p>
+                
+                <h3>Signature-Based Detection</h3>
+                
+                <p>
+                    Matches specific, known patterns or indicators:
+                </p>
+                
+                <ul>
+                    <li><strong>Examples:</strong> Known malware hash, specific command string, IOC IP address</li>
+                    <li><strong>Strengths:</strong> Low false positives, fast, explainable</li>
+                    <li><strong>Weaknesses:</strong> Easily evaded, requires constant updates, misses new variants</li>
+                </ul>
+                
+                <pre><code class="language-spl"># Signature-based: Known malicious PowerShell pattern
+index=windows sourcetype=WinEventLog:PowerShell
+| search "Invoke-Mimikatz" OR "Invoke-ReflectivePEInjection"
+
+# Hash-based detection
+index=endpoint file_hash IN (
+    "e99a18c428cb38d5f260853678922e03",
+    "098f6bcd4621d373cade4e832627b4f6"
+)</code></pre>
+                
+                <h3>Behavioral Detection</h3>
+                
+                <p>
+                    Identifies suspicious patterns regardless of specific indicators:
+                </p>
+                
+                <ul>
+                    <li><strong>Examples:</strong> Process injection pattern, unusual parent-child relationship, lateral movement sequence</li>
+                    <li><strong>Strengths:</strong> Catches new variants, harder to evade</li>
+                    <li><strong>Weaknesses:</strong> More false positives, requires tuning, complex logic</li>
+                </ul>
+                
+                <pre><code class="language-spl"># Behavioral: LSASS access by non-system process
+index=sysmon EventCode=10 TargetImage="*\\lsass.exe"
+| search NOT SourceImage IN (
+    "C:\\Windows\\System32\\svchost.exe",
+    "C:\\Windows\\System32\\wininit.exe",
+    "C:\\Program Files\\*\\MsMpEng.exe"
+)
+| stats count by SourceImage, Computer</code></pre>
+                
+                <pre><code class="language-kql">// Behavioral: Suspicious parent-child process relationship
+DeviceProcessEvents
+| where InitiatingProcessFileName =~ "outlook.exe" 
+    and FileName in~ ("cmd.exe", "powershell.exe", "wscript.exe")
+| project Timestamp, DeviceName, InitiatingProcessFileName, FileName, ProcessCommandLine</code></pre>
+                
+                <h3>Anomaly Detection</h3>
+                
+                <p>
+                    Identifies deviations from established baselines:
+                </p>
+                
+                <ul>
+                    <li><strong>Examples:</strong> Unusual login time, abnormal data volume, new destination</li>
+                    <li><strong>Strengths:</strong> Finds unknown threats, no prior knowledge needed</li>
+                    <li><strong>Weaknesses:</strong> Requires baseline period, high false positives, context-dependent</li>
+                </ul>
+                
+                <pre><code class="language-spl"># Anomaly: User login outside normal hours
+index=authentication action=success
+| eval hour=strftime(_time, "%H")
+| stats earliest(hour) as first_login, latest(hour) as last_login by user
+| join user [
+    | inputlookup user_normal_hours.csv
+]
+| where first_login < normal_start OR last_login > normal_end</code></pre>
+                
+                <h3>Machine Learning Detection</h3>
+                
+                <p>
+                    Uses statistical models to identify threats:
+                </p>
+                
+                <ul>
+                    <li><strong>Examples:</strong> User behavior analytics (UEBA), DGA detection, anomalous process trees</li>
+                    <li><strong>Strengths:</strong> Scales to complex patterns, adapts over time</li>
+                    <li><strong>Weaknesses:</strong> Black box, requires training data, expensive</li>
+                </ul>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Detection Type</th>
+                                <th>Best For</th>
+                                <th>False Positive Rate</th>
+                                <th>Evasion Difficulty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Signature</td>
+                                <td>Known threats, IOCs</td>
+                                <td>Very Low</td>
+                                <td>Easy</td>
+                            </tr>
+                            <tr>
+                                <td>Behavioral</td>
+                                <td>Technique patterns</td>
+                                <td>Medium</td>
+                                <td>Moderate</td>
+                            </tr>
+                            <tr>
+                                <td>Anomaly</td>
+                                <td>Unknown unknowns</td>
+                                <td>High</td>
+                                <td>Moderate</td>
+                            </tr>
+                            <tr>
+                                <td>ML-Based</td>
+                                <td>Complex patterns</td>
+                                <td>Variable</td>
+                                <td>Hard</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Best Practice
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Layer detection types for defense in depth. Use signature detection for known IOCs (fast, precise), behavioral detection for technique patterns (catches variants), and anomaly/ML detection for unknown threats (catches novel attacks). Don't rely on any single type.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="mitre-attack">MITRE ATT&CK Framework</h2>
+                
+                <p>
+                    MITRE ATT&CK is the industry standard framework for understanding adversary behavior. It organizes attack techniques into tactics (the "why") and techniques (the "how"):
+                </p>
+                
+                <h3>ATT&CK Structure</h3>
+                
+                <pre><code class="language-text">TACTICS (Columns) - Adversary Goals
+├── Reconnaissance
+├── Resource Development
+├── Initial Access
+├── Execution
+├── Persistence
+├── Privilege Escalation
+├── Defense Evasion
+├── Credential Access
+├── Discovery
+├── Lateral Movement
+├── Collection
+├── Command and Control
+├── Exfiltration
+└── Impact
+
+TECHNIQUES (Rows) - How Goals Are Achieved
+Example: Initial Access → Phishing (T1566)
+    ├── Spearphishing Attachment (T1566.001)
+    ├── Spearphishing Link (T1566.002)
+    └── Spearphishing via Service (T1566.003)</code></pre>
+                
+                <h3>Using ATT&CK for Detection</h3>
+                
+                <p>
+                    ATT&CK helps prioritize and measure detection coverage:
+                </p>
+                
+                <ol>
+                    <li><strong>Map current detections</strong> - What techniques can you detect today?</li>
+                    <li><strong>Identify gaps</strong> - What tactics have no coverage?</li>
+                    <li><strong>Prioritize development</strong> - Focus on commonly-used techniques</li>
+                    <li><strong>Document coverage</strong> - Track detection maturity per technique</li>
+                </ol>
+                
+                <pre><code class="language-text"># Detection Coverage Documentation
+Technique: T1003.001 - LSASS Memory
+Data Sources: Process Access (Sysmon 10), Process Creation (4688/Sysmon 1)
+Detection Rules:
+  - LSASS_Access_Non_System (Splunk ES)
+  - Credential Dumping via LSASS (Sentinel)
+Coverage Level: Medium
+Gaps: Need to detect procdump, comsvcs.dll methods
+Last Validated: 2024-01-15
+MITRE Score: 3/5</code></pre>
+                
+                <h3>ATT&CK Navigator</h3>
+                
+                <p>
+                    Use ATT&CK Navigator to visualize coverage:
+                </p>
+                
+                <ul>
+                    <li>Create layers showing detection coverage</li>
+                    <li>Compare against threat actor profiles</li>
+                    <li>Identify tactical blind spots</li>
+                    <li>Track improvement over time</li>
+                </ul>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"How do you use MITRE ATT&CK in your detection engineering work?"</strong><br><br>
+                            Use ATT&CK to: (1) Prioritize detections based on threat intel—focus on techniques used by actors targeting your industry, (2) Measure coverage gaps—visualize which tactics lack detections, (3) Structure detection documentation—each rule maps to specific techniques, (4) Validate with testing—use tools like Atomic Red Team to test specific techniques, (5) Communicate with stakeholders—ATT&CK provides common language for discussing coverage.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="detection-lifecycle">Detection Development Lifecycle</h2>
+                
+                <p>
+                    Professional detection engineering follows a structured lifecycle:
+                </p>
+                
+                <pre><code class="language-text">┌─────────────────┐
+│   1. RESEARCH   │  Understand the threat/technique
+│   & IDEATION    │  Review threat intel, ATT&CK, CVEs
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│   2. DESIGN     │  Determine detection approach
+│                 │  Identify data sources, write logic
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│   3. DEVELOP    │  Write the detection query/rule
+│                 │  Create in development environment
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│   4. TEST       │  Validate detection fires correctly
+│                 │  Test with simulated attacks
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│   5. TUNE       │  Reduce false positives
+│                 │  Add exclusions, refine logic
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│   6. DEPLOY     │  Move to production
+│                 │  Enable alerting, set severity
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│   7. MONITOR    │  Track performance metrics
+│   & MAINTAIN    │  Review FP rate, update as needed
+└─────────────────┘</code></pre>
+                
+                <h3>Phase 1: Research & Ideation</h3>
+                
+                <p>
+                    Before writing any query, understand what you're detecting:
+                </p>
+                
+                <ul>
+                    <li>What technique/behavior are we detecting?</li>
+                    <li>What does the attack look like in logs?</li>
+                    <li>What are legitimate uses that look similar?</li>
+                    <li>What log sources are required?</li>
+                </ul>
+                
+                <h3>Phase 2: Design</h3>
+                
+                <pre><code class="language-text"># Detection Design Document
+Name: LSASS Memory Access by Suspicious Process
+MITRE: T1003.001 - OS Credential Dumping: LSASS Memory
+Description: Detects non-system processes accessing LSASS memory
+
+Data Sources Required:
+  - Sysmon Event ID 10 (ProcessAccess)
+  - OR Windows Security Event 4663 (with object access auditing)
+
+Detection Logic:
+  1. Process access event targeting lsass.exe
+  2. Source process is NOT in approved list
+  3. Grant mask includes memory read (0x10)
+
+Expected False Positives:
+  - AV/EDR scanning LSASS
+  - Legitimate security tools
+  - Windows Defender
+
+Tuning Strategy:
+  - Whitelist by source process path
+  - Whitelist by signed publisher</code></pre>
+                
+                <h3>Phase 3-4: Develop & Test</h3>
+                
+                <pre><code class="language-spl"># Initial detection query
+index=sysmon EventCode=10 TargetImage="*\\lsass.exe"
+| search GrantedAccess IN ("0x1010", "0x1410", "0x1438", "0x143a")
+| search NOT SourceImage IN (
+    "C:\\Windows\\System32\\*",
+    "C:\\Program Files\\Windows Defender\\*",
+    "C:\\ProgramData\\Microsoft\\Windows Defender\\*"
+)
+| table _time, Computer, SourceImage, GrantedAccess, CallTrace</code></pre>
+                
+                <p>
+                    Test using attack simulation tools:
+                </p>
+                
+                <pre><code class="language-powershell"># Atomic Red Team test for T1003.001
+Invoke-AtomicTest T1003.001 -TestNumbers 1
+
+# Or manual test with procdump
+procdump.exe -ma lsass.exe lsass.dmp
+
+# Verify detection fires in SIEM</code></pre>
+                
+                <h3>Phase 5: Tune</h3>
+                
+                <p>
+                    Reduce false positives without breaking detection:
+                </p>
+                
+                <pre><code class="language-spl"># After tuning - added legitimate security tools
+index=sysmon EventCode=10 TargetImage="*\\lsass.exe"
+| search GrantedAccess IN ("0x1010", "0x1410", "0x1438", "0x143a")
+| search NOT SourceImage IN (
+    "C:\\Windows\\System32\\*",
+    "C:\\Windows\\SysWOW64\\*",
+    "C:\\Program Files\\Windows Defender\\*",
+    "C:\\Program Files\\CrowdStrike\\*",
+    "C:\\Program Files\\SentinelOne\\*",
+    "C:\\Program Files (x86)\\Symantec\\*"
+)
+| search NOT (SourceImage="*\\MsMpEng.exe" AND GrantedAccess="0x1410")
+| table _time, Computer, SourceImage, GrantedAccess, CallTrace</code></pre>
+                
+                <h3>Phase 6-7: Deploy & Monitor</h3>
+                
+                <p>
+                    Track detection performance metrics:
+                </p>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Description</th>
+                                <th>Target</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>True Positive Rate</strong></td>
+                                <td>Alerts that are real threats</td>
+                                <td>> 80%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>False Positive Rate</strong></td>
+                                <td>Alerts that are benign</td>
+                                <td>< 20%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Alert Volume</strong></td>
+                                <td>Daily/weekly alert count</td>
+                                <td>Manageable by team</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Time to Triage</strong></td>
+                                <td>How long to investigate</td>
+                                <td>< 15 minutes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Detection Latency</strong></td>
+                                <td>Time from event to alert</td>
+                                <td>< 5 minutes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="testing-validation">Detection Testing & Validation</h2>
+                
+                <p>
+                    Detections must be validated to ensure they work:
+                </p>
+                
+                <h3>Testing Methods</h3>
+                
+                <ul>
+                    <li><strong>Atomic Red Team</strong> - Scripted tests mapped to ATT&CK techniques</li>
+                    <li><strong>Purple team exercises</strong> - Red team attacks while blue team validates detection</li>
+                    <li><strong>Log replay</strong> - Replay known-bad logs through SIEM</li>
+                    <li><strong>Manual simulation</strong> - Execute techniques in lab environment</li>
+                </ul>
+                
+                <pre><code class="language-powershell"># Atomic Red Team - Test multiple credential access techniques
+# Install
+IEX (IWR 'https://raw.githubusercontent.com/redcanaryco/invoke-atomicredteam/master/install-atomicredteam.ps1' -UseBasicParsing)
+Install-AtomicRedTeam
+
+# Run credential dumping tests
+Invoke-AtomicTest T1003 -GetPrereqs  # Get prerequisites
+Invoke-AtomicTest T1003 -ShowDetails  # Show what will run
+Invoke-AtomicTest T1003              # Execute tests
+
+# Specific sub-technique
+Invoke-AtomicTest T1003.001 -TestNumbers 1,2,3</code></pre>
+                
+                <h3>Validation Checklist</h3>
+                
+                <pre><code class="language-text">Detection Validation Checklist:
+□ Detection fires on known-bad activity
+□ Alert contains sufficient context for investigation
+□ No obvious false positive patterns
+□ Detection works across relevant systems (DC, workstation, server)
+□ Detection latency is acceptable
+□ Runbook/response procedure exists
+□ MITRE ATT&CK mapping is accurate
+□ Tested with current adversary TTPs</code></pre>
+                
+                <h2 id="false-positive-tuning">False Positive Tuning</h2>
+                
+                <p>
+                    Every detection will generate false positives. Effective tuning maintains detection value while reducing noise:
+                </p>
+                
+                <h3>Tuning Strategies</h3>
+                
+                <ul>
+                    <li><strong>Whitelist by path</strong> - Exclude known-good applications by full path</li>
+                    <li><strong>Whitelist by signer</strong> - Trust signed Microsoft/vendor binaries</li>
+                    <li><strong>Whitelist by user/system</strong> - Exclude service accounts, admin systems</li>
+                    <li><strong>Adjust thresholds</strong> - Increase count requirements</li>
+                    <li><strong>Add context</strong> - Require additional suspicious indicators</li>
+                </ul>
+                
+                <pre><code class="language-text"># Tuning Decision Framework
+New False Positive Identified
+         │
+         ▼
+    Is this a common
+    legitimate activity?
+    ┌─────┴─────┐
+   YES          NO
+    │            │
+    ▼            ▼
+Add to        Is this a
+whitelist     one-time
+              occurrence?
+              ┌─────┴─────┐
+             YES          NO
+              │            │
+              ▼            ▼
+          Document     Refine
+          and close    detection
+                       logic</code></pre>
+                
+                <div class="info-box warning">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">⚠️</span>
+                        Warning
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Don't over-tune!</strong> Every whitelist entry is a potential blind spot. Document why each exclusion exists. Require approval for broad exclusions. Periodically review whitelists for stale entries. An attacker who knows your whitelist can evade detection.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="detection-as-code">Detection-as-Code Principles</h2>
+                
+                <p>
+                    Modern detection engineering applies software engineering practices:
+                </p>
+                
+                <h3>Core Principles</h3>
+                
+                <ul>
+                    <li><strong>Version control</strong> - All detections in Git</li>
+                    <li><strong>Code review</strong> - Peer review before deployment</li>
+                    <li><strong>Automated testing</strong> - CI/CD validates detection logic</li>
+                    <li><strong>Documentation as code</strong> - Detection metadata in structured format</li>
+                    <li><strong>Infrastructure as code</strong> - SIEM configuration managed via code</li>
+                </ul>
+                
+                <h3>Detection Rule Format</h3>
+                
+                <pre><code class="language-yaml"># Example detection rule in YAML (Sigma-like format)
+title: LSASS Memory Access by Suspicious Process
+id: 0d894093-71bc-43c3-8c4d-ecfc28dcf5d9
+status: production
+description: |
+  Detects non-system processes accessing LSASS memory,
+  indicating potential credential dumping.
+author: Security Team
+date: 2024/01/15
+modified: 2024/01/20
+
+references:
+  - https://attack.mitre.org/techniques/T1003/001/
+  - https://docs.microsoft.com/en-us/windows/security/threat-protection/
+
+tags:
+  - attack.credential_access
+  - attack.t1003.001
+
+logsource:
+  product: windows
+  service: sysmon
+  category: process_access
+
+detection:
+  selection:
+    EventID: 10
+    TargetImage|endswith: '\lsass.exe'
+    GrantedAccess:
+      - '0x1010'
+      - '0x1410'
+      - '0x1438'
+  filter_system:
+    SourceImage|startswith:
+      - 'C:\Windows\System32\'
+      - 'C:\Windows\SysWOW64\'
+  filter_av:
+    SourceImage|contains:
+      - '\Windows Defender\'
+      - '\CrowdStrike\'
+  condition: selection and not filter_system and not filter_av
+
+falsepositives:
+  - Legitimate security tools
+  - System administration tools
+
+level: high
+
+response:
+  - Isolate affected endpoint
+  - Check for credential usage
+  - Review process tree</code></pre>
+                
+                <h3>CI/CD Pipeline</h3>
+                
+                <pre><code class="language-yaml"># Example GitHub Actions workflow
+name: Detection CI/CD
+
+on:
+  push:
+    paths:
+      - 'detections/**'
+  pull_request:
+    paths:
+      - 'detections/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Validate YAML syntax
+        run: |
+          pip install yamllint
+          yamllint detections/
+      
+      - name: Validate Sigma rules
+        run: |
+          pip install sigma-cli
+          sigma check detections/
+      
+      - name: Convert to SIEM format
+        run: |
+          sigma convert -t splunk detections/*.yml > splunk_rules.txt
+          sigma convert -t sentinel detections/*.yml > sentinel_rules.txt
+      
+      - name: Run detection tests
+        run: |
+          python tests/test_detections.py
+
+  deploy:
+    needs: validate
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to SIEM
+        run: |
+          # Deploy validated rules to production SIEM
+          ./scripts/deploy_rules.sh</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"Describe your detection development process."</strong><br><br>
+                            Follow a structured lifecycle: (1) Research the threat/technique using ATT&CK and threat intel, (2) Design the detection logic and identify data requirements, (3) Develop the query in a test environment, (4) Validate using attack simulation (Atomic Red Team), (5) Tune to reduce false positives while maintaining coverage, (6) Deploy with proper alerting and severity, (7) Monitor performance and iterate. Use detection-as-code practices: Git for version control, peer review, and CI/CD for automated testing.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Detection types: Signature (specific), Behavioral (patterns), Anomaly (deviations), ML (models)</li>
+                    <li>MITRE ATT&CK provides a framework for mapping and measuring detection coverage</li>
+                    <li>Follow a structured lifecycle: Research → Design → Develop → Test → Tune → Deploy → Monitor</li>
+                    <li>Validate detections with tools like Atomic Red Team</li>
+                    <li>Tune false positives carefully—every exclusion is a potential blind spot</li>
+                    <li>Apply detection-as-code: version control, code review, automated testing, CI/CD</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="1-4-log-parsing-normalization.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Log Parsing & Normalization</span>
+                        </div>
+                    </a>
+                    <a href="1-6-soc-operations-siem.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">SOC Operations & SIEM</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

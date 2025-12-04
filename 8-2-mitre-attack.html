@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MITRE ATT&CK Framework - Understanding tactics, techniques, and using ATT&CK for detection coverage assessment.">
+    <title>MITRE ATT&CK | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item active">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="8-1-detection-development.html">Detection Engineering</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">MITRE ATT&CK</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">MITRE ATT&CK Framework</h1>
+                <p class="page-subtitle">Understanding and applying the adversary behavior framework</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            MITRE ATT&CK is a globally-accessible knowledge base of adversary tactics and techniques based on real-world observations. This chapter covers the framework structure, key techniques, and how to use ATT&CK for detection coverage assessment.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="framework-overview">Framework Overview</h2>
+                
+                <pre><code class="language-text">MITRE ATT&CK STRUCTURE:
+
+TACTICS (The "Why" - Adversary Goals):
+═══════════════════════════════════════════════════════════
+│ Recon │ Resource │ Initial │ Exec │ Persist │ Priv Esc │
+│       │   Dev    │ Access  │      │         │          │
+═══════════════════════════════════════════════════════════
+│ Def   │ Cred     │ Discov  │ Lat  │ Collect │ C2       │
+│ Evas  │ Access   │   ery   │ Move │         │          │
+═══════════════════════════════════════════════════════════
+│ Exfil │ Impact   │
+═══════════════════
+
+TECHNIQUES (The "How" - Methods Used):
+• Each tactic contains multiple techniques
+• Techniques have sub-techniques for specificity
+• Example: Credential Access > Brute Force > Password Spraying
+
+PROCEDURES (The "What" - Specific Implementations):
+• Real-world examples of technique usage
+• APT group behaviors
+• Specific malware capabilities</code></pre>
+                
+                <h2 id="tactics">Enterprise Tactics</h2>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tactic</th>
+                                <th>ID</th>
+                                <th>Goal</th>
+                                <th>Example Techniques</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Reconnaissance</strong></td>
+                                <td>TA0043</td>
+                                <td>Gather information</td>
+                                <td>Active Scanning, Search Open Websites</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Resource Development</strong></td>
+                                <td>TA0042</td>
+                                <td>Establish resources</td>
+                                <td>Acquire Infrastructure, Develop Capabilities</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Initial Access</strong></td>
+                                <td>TA0001</td>
+                                <td>Get into network</td>
+                                <td>Phishing, Valid Accounts, Exploit Public App</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Execution</strong></td>
+                                <td>TA0002</td>
+                                <td>Run malicious code</td>
+                                <td>PowerShell, Command Line, Scripting</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Persistence</strong></td>
+                                <td>TA0003</td>
+                                <td>Maintain access</td>
+                                <td>Registry Run Keys, Scheduled Tasks, Services</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Privilege Escalation</strong></td>
+                                <td>TA0004</td>
+                                <td>Gain higher permissions</td>
+                                <td>Exploitation, Access Token Manipulation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Defense Evasion</strong></td>
+                                <td>TA0005</td>
+                                <td>Avoid detection</td>
+                                <td>Obfuscation, Disable Security Tools, Masquerading</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Credential Access</strong></td>
+                                <td>TA0006</td>
+                                <td>Steal credentials</td>
+                                <td>Brute Force, OS Credential Dumping, Keylogging</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Discovery</strong></td>
+                                <td>TA0007</td>
+                                <td>Explore environment</td>
+                                <td>Account Discovery, Network Scanning</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Lateral Movement</strong></td>
+                                <td>TA0008</td>
+                                <td>Move through network</td>
+                                <td>RDP, SMB, Pass the Hash</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Collection</strong></td>
+                                <td>TA0009</td>
+                                <td>Gather target data</td>
+                                <td>Data from Local System, Email Collection</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Command & Control</strong></td>
+                                <td>TA0011</td>
+                                <td>Communicate with systems</td>
+                                <td>Web Protocols, Encrypted Channel, Proxy</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Exfiltration</strong></td>
+                                <td>TA0010</td>
+                                <td>Steal data</td>
+                                <td>Exfil Over C2, Exfil Over Web Service</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Impact</strong></td>
+                                <td>TA0040</td>
+                                <td>Disrupt operations</td>
+                                <td>Data Encryption (Ransomware), Defacement</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="key-techniques">Key Techniques for Detection</h2>
+                
+                <pre><code class="language-text">HIGH-PRIORITY TECHNIQUES:
+
+INITIAL ACCESS:
+─────────────────────────────────────────────────────────
+T1566 - Phishing
+├── T1566.001 - Spearphishing Attachment
+├── T1566.002 - Spearphishing Link
+└── Detection: Email security logs, URL clicks, attachment execution
+
+T1078 - Valid Accounts
+├── T1078.001 - Default Accounts
+├── T1078.002 - Domain Accounts
+├── T1078.004 - Cloud Accounts
+└── Detection: Impossible travel, unusual login times, failed logins
+
+
+EXECUTION:
+─────────────────────────────────────────────────────────
+T1059 - Command and Scripting Interpreter
+├── T1059.001 - PowerShell
+├── T1059.003 - Windows Command Shell
+└── Detection: Command line logging, encoded commands, download cradles
+
+T1204 - User Execution
+├── T1204.001 - Malicious Link
+├── T1204.002 - Malicious File
+└── Detection: Process creation from Office, browser child processes
+
+
+CREDENTIAL ACCESS:
+─────────────────────────────────────────────────────────
+T1110 - Brute Force
+├── T1110.001 - Password Guessing
+├── T1110.003 - Password Spraying
+└── Detection: Failed login volume, multiple users from single IP
+
+T1003 - OS Credential Dumping
+├── T1003.001 - LSASS Memory
+├── T1003.003 - NTDS
+└── Detection: LSASS access, DCSync events, Mimikatz patterns
+
+
+LATERAL MOVEMENT:
+─────────────────────────────────────────────────────────
+T1021 - Remote Services
+├── T1021.001 - Remote Desktop Protocol
+├── T1021.002 - SMB/Windows Admin Shares
+└── Detection: Unusual RDP, admin share access, service account activity
+
+T1550 - Use Alternate Authentication Material
+├── T1550.002 - Pass the Hash
+├── T1550.003 - Pass the Ticket
+└── Detection: NTLM relay, Kerberos anomalies</code></pre>
+                
+                <h2 id="coverage-assessment">Detection Coverage Assessment</h2>
+                
+                <pre><code class="language-text">COVERAGE MAPPING PROCESS:
+
+1. INVENTORY DETECTIONS
+   List all analytics rules with MITRE mapping
+
+2. MAP TO ATT&CK
+   For each detection, identify:
+   • Tactic(s) covered
+   • Technique(s) covered
+   • Sub-technique specificity
+
+3. VISUALIZE COVERAGE
+   ┌─────────────────────────────────────────┐
+   │ Initial │ Exec  │ Pers  │ Priv  │ Def  │
+   │ Access  │       │       │  Esc  │ Evas │
+   ├─────────────────────────────────────────┤
+   │  ████   │ ████  │ ██░░  │ ██░░  │ ░░░░ │
+   │  80%    │ 75%   │ 50%   │ 40%   │ 10%  │
+   └─────────────────────────────────────────┘
+   
+4. IDENTIFY GAPS
+   • Which tactics have low coverage?
+   • Which high-priority techniques are undetected?
+   • What data sources are missing?
+
+5. PRIORITIZE IMPROVEMENTS
+   • Focus on high-impact techniques
+   • Consider threat landscape relevance
+   • Balance coverage vs depth</code></pre>
+                
+                <h3>Coverage Query Examples</h3>
+                
+                <pre><code class="language-kql">// Sentinel: List rules by MITRE tactic
+resources
+| where type == "microsoft.securityinsights/alertrules"
+| extend Tactics = properties.tactics
+| mv-expand Tactic = Tactics
+| summarize RuleCount = count() by tostring(Tactic)
+| sort by RuleCount desc
+
+// Incidents by MITRE technique
+SecurityIncident
+| where TimeGenerated > ago(30d)
+| mv-expand AdditionalData
+| extend Techniques = AdditionalData.techniques
+| mv-expand Technique = Techniques
+| summarize IncidentCount = count() by tostring(Technique)
+| sort by IncidentCount desc</code></pre>
+                
+                <h2 id="detection-mapping">Detection to ATT&CK Mapping</h2>
+                
+                <pre><code class="language-text">MAPPING EXAMPLES:
+
+DETECTION: Multiple Failed Logins
+├── Tactic: Credential Access (TA0006)
+├── Technique: Brute Force (T1110)
+├── Sub-technique: Password Guessing (T1110.001)
+└── Data Source: Authentication logs
+
+DETECTION: PowerShell Encoded Command
+├── Tactic: Execution (TA0002)
+├── Technique: Command and Scripting Interpreter (T1059)
+├── Sub-technique: PowerShell (T1059.001)
+├── Tactic: Defense Evasion (TA0005)
+├── Technique: Obfuscated Files or Information (T1027)
+└── Data Source: Process command line
+
+DETECTION: New Scheduled Task Created
+├── Tactic: Persistence (TA0003)
+├── Technique: Scheduled Task/Job (T1053)
+├── Sub-technique: Scheduled Task (T1053.005)
+├── Tactic: Privilege Escalation (TA0004)
+└── Data Source: Windows Event 4698</code></pre>
+                
+                <h2 id="attck-navigator">ATT&CK Navigator</h2>
+                
+                <pre><code class="language-text">ATT&CK NAVIGATOR:
+
+Tool: https://mitre-attack.github.io/attack-navigator/
+
+USES:
+• Visualize detection coverage
+• Compare threat group techniques
+• Plan detection improvements
+• Track progress over time
+
+CREATING A COVERAGE LAYER:
+1. Open ATT&CK Navigator
+2. Create new layer
+3. For each detection:
+   - Select technique
+   - Set score (0-100 for coverage level)
+   - Add comment with detection name
+4. Export layer as JSON
+5. Track changes over time
+
+SCORE MEANINGS:
+0 = No detection
+1 = Partial detection (signature only)
+2 = Good detection (behavior-based)
+3 = Excellent detection (multiple methods)</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        ATT&CK Best Practices
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Mapping:</strong><br>
+                            □ Map at sub-technique level when possible<br>
+                            □ One detection can map to multiple techniques<br>
+                            □ Consider both detection and prevention<br>
+                            □ Update mappings as detections evolve<br><br>
+                            
+                            <strong>Prioritization:</strong><br>
+                            □ Focus on techniques used by relevant threat actors<br>
+                            □ Consider your industry and threat landscape<br>
+                            □ Balance breadth (tactics covered) and depth (detection quality)<br>
+                            □ Prioritize based on data source availability<br><br>
+                            
+                            <strong>Maintenance:</strong><br>
+                            □ Review coverage quarterly<br>
+                            □ Update as ATT&CK framework evolves<br>
+                            □ Track improvement over time<br>
+                            □ Share with stakeholders
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"How do you use MITRE ATT&CK in your detection engineering process?"</strong><br><br>
+                            <strong>1. Threat Research:</strong> Use ATT&CK to understand attack techniques, data sources needed, and real-world procedures.<br>
+                            <strong>2. Detection Development:</strong> Map each detection to specific tactics and techniques, ensuring the detection addresses the documented behavior.<br>
+                            <strong>3. Coverage Assessment:</strong> Use ATT&CK Navigator to visualize what techniques we can detect, identify gaps, and prioritize improvements.<br>
+                            <strong>4. Threat Intelligence:</strong> Map threat actor TTPs to our coverage to understand exposure to specific threats.<br>
+                            <strong>5. Communication:</strong> Use ATT&CK as a common language with stakeholders, red team, and management to discuss security posture.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box memory">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">🧠</span>
+                        Memory Aid
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>MITRE ATT&CK = "The Criminal Playbook"</strong><br><br>
+                            Think of ATT&CK like a detective's reference book of criminal methods:<br>
+                            • <strong>Tactics (14)</strong> = WHY (the criminal's goal: break in, steal, escape)<br>
+                            • <strong>Techniques</strong> = HOW (pick lock, climb window, use disguise)<br>
+                            • <strong>Procedures</strong> = WHAT exactly (this specific burglar uses this specific tool)<br><br>
+                            
+                            <strong>Remember the Tactics Order (Kill Chain Flow):</strong><br>
+                            <em>"Recon → Get In → Execute → Stay → Elevate → Hide → Steal Creds → Look Around → Move → Collect → Phone Home → Steal → Destroy"</em><br><br>
+                            
+                            <strong>T-Numbers:</strong> T1059 = Scripting, T1003 = Cred Dump, T1078 = Valid Accounts, T1110 = Brute Force
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>ATT&CK organizes adversary behavior into tactics, techniques, and procedures</li>
+                    <li>14 enterprise tactics represent adversary goals</li>
+                    <li>Techniques describe how goals are achieved</li>
+                    <li>Map detections to techniques for coverage assessment</li>
+                    <li>Use ATT&CK Navigator to visualize and track coverage</li>
+                    <li>Prioritize based on threat relevance and data availability</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="8-1-detection-development.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Detection Development</span>
+                        </div>
+                    </a>
+                    <a href="8-3-sigma-rules.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">SIGMA Rules</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

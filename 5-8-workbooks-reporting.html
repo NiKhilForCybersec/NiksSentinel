@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Microsoft Sentinel Workbooks and Reporting - Creating dashboards, visualizations, and SOC metrics reports.">
+    <title>Workbooks & Reporting | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item active">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="5-1-sentinel-architecture.html">Sentinel Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Workbooks & Reporting</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Workbooks & Reporting</h1>
+                <p class="page-subtitle">Creating dashboards, visualizations, and SOC metrics</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Workbooks are interactive dashboards in Microsoft Sentinel for visualizing security data, tracking SOC metrics, and creating operational reports. This chapter covers workbook creation, visualization types, built-in templates, and custom reporting.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="workbooks-overview">Workbooks Overview</h2>
+                
+                <pre><code class="language-text">WORKBOOK CAPABILITIES:
+
+┌─────────────────────────────────────────────────────────┐
+│                    WORKBOOK                             │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  VISUALIZATIONS         INTERACTIVITY                  │
+│  ┌───────────────┐     ┌───────────────┐              │
+│  │ • Charts      │     │ • Parameters  │              │
+│  │ • Tables      │     │ • Time picker │              │
+│  │ • Maps        │     │ • Dropdowns   │              │
+│  │ • Tiles       │     │ • Drill-down  │              │
+│  │ • Grids       │     │ • Linking     │              │
+│  └───────────────┘     └───────────────┘              │
+│                                                         │
+│  DATA SOURCES           SHARING                        │
+│  ┌───────────────┐     ┌───────────────┐              │
+│  │ • KQL queries │     │ • Templates   │              │
+│  │ • Metrics     │     │ • Export      │              │
+│  │ • Azure       │     │ • Gallery     │              │
+│  │   Resource    │     │ • RBAC        │              │
+│  │   Graph       │     │               │              │
+│  └───────────────┘     └───────────────┘              │
+│                                                         │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h2 id="built-in-workbooks">Built-in Workbooks</h2>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Workbook</th>
+                                <th>Purpose</th>
+                                <th>Key Metrics</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Security Operations Efficiency</strong></td>
+                                <td>SOC performance</td>
+                                <td>MTTR, incident volume, closure rate</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Azure AD Sign-in Logs</strong></td>
+                                <td>Authentication monitoring</td>
+                                <td>Sign-ins by location, failures, apps</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Azure Activity</strong></td>
+                                <td>Azure operations</td>
+                                <td>Changes, deletions, admin actions</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Office 365</strong></td>
+                                <td>M365 security</td>
+                                <td>SharePoint, Exchange, Teams activity</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Threat Intelligence</strong></td>
+                                <td>TI indicators</td>
+                                <td>IOC matches, feed health</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Data Collection Health</strong></td>
+                                <td>Ingestion monitoring</td>
+                                <td>Volume, latency, connector status</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Accessing Workbooks</h3>
+                
+                <pre><code class="language-text">WORKBOOK LOCATIONS:
+
+Sentinel → Workbooks → Templates
+• View built-in workbooks
+• Save as custom workbook
+
+Sentinel → Workbooks → My workbooks
+• Custom and saved workbooks
+• Edit and modify
+
+Content Hub → Solutions
+• Install solution workbooks
+• E.g., Azure AD, Microsoft 365</code></pre>
+                
+                <h2 id="creating-workbooks">Creating Custom Workbooks</h2>
+                
+                <pre><code class="language-text">WORKBOOK CREATION STEPS:
+
+1. Navigate to Sentinel → Workbooks → Add workbook
+
+2. Add elements:
+   • Add → Add query (KQL)
+   • Add → Add parameter
+   • Add → Add text (Markdown)
+   • Add → Add metric
+
+3. Configure visualization:
+   • Select chart type
+   • Configure axes
+   • Set colors/thresholds
+
+4. Add interactivity:
+   • Link parameters to queries
+   • Configure drill-downs
+
+5. Save workbook:
+   • Save to resource group
+   • Set permissions</code></pre>
+                
+                <h3>Visualization Types</h3>
+                
+                <pre><code class="language-text">VISUALIZATION OPTIONS:
+
+• Table/Grid       - Detailed data view
+• Bar chart        - Comparisons
+• Line chart       - Trends over time  
+• Pie/Donut chart  - Proportions
+• Area chart       - Cumulative trends
+• Scatter plot     - Correlations
+• Map              - Geographic data
+• Tiles            - KPI summaries
+• Time brush       - Time selection
+• Honeycomb        - Hierarchical data</code></pre>
+                
+                <h2 id="soc-metrics">SOC Metrics Workbook</h2>
+                
+                <pre><code class="language-kql">// INCIDENT METRICS
+
+// Total incidents by severity
+SecurityIncident
+| where TimeGenerated > ago(30d)
+| summarize Count = count() by Severity
+| render piechart
+
+// Incidents over time
+SecurityIncident
+| where TimeGenerated > ago(30d)
+| summarize Count = count() by bin(TimeGenerated, 1d), Severity
+| render timechart
+
+// Mean Time to Respond (MTTR)
+SecurityIncident
+| where TimeGenerated > ago(30d)
+| where Status == "Closed"
+| extend ResponseTime = datetime_diff('minute', FirstModifiedTime, CreatedTime)
+| summarize 
+    AvgMTTR = avg(ResponseTime),
+    P50_MTTR = percentile(ResponseTime, 50),
+    P90_MTTR = percentile(ResponseTime, 90)
+
+// Mean Time to Close
+SecurityIncident
+| where TimeGenerated > ago(30d)
+| where Status == "Closed"
+| extend CloseTime = datetime_diff('hour', ClosedTime, CreatedTime)
+| summarize 
+    AvgMTTC = avg(CloseTime),
+    P50_MTTC = percentile(CloseTime, 50)
+    by Severity
+
+// True Positive Rate
+SecurityIncident
+| where TimeGenerated > ago(30d)
+| where Status == "Closed"
+| summarize 
+    TruePositives = countif(Classification == "TruePositive"),
+    FalsePositives = countif(Classification == "FalsePositive"),
+    BenignPositives = countif(Classification == "BenignPositive"),
+    Total = count()
+| extend TPRate = round(100.0 * TruePositives / Total, 2)
+| extend FPRate = round(100.0 * FalsePositives / Total, 2)</code></pre>
+                
+                <h3>Analyst Performance</h3>
+                
+                <pre><code class="language-kql">// Incidents per analyst
+SecurityIncident
+| where TimeGenerated > ago(30d)
+| where isnotempty(Owner.assignedTo)
+| summarize 
+    Assigned = count(),
+    Closed = countif(Status == "Closed")
+    by Analyst = tostring(Owner.assignedTo)
+| extend CloseRate = round(100.0 * Closed / Assigned, 2)
+| sort by Closed desc
+
+// Analyst response time
+SecurityIncident
+| where TimeGenerated > ago(30d)
+| where isnotempty(Owner.assignedTo)
+| extend ResponseTime = datetime_diff('minute', FirstModifiedTime, CreatedTime)
+| summarize AvgResponseMin = avg(ResponseTime) by tostring(Owner.assignedTo)
+| sort by AvgResponseMin asc
+
+// Workload distribution
+SecurityIncident
+| where TimeGenerated > ago(7d)
+| where Status == "Active"
+| summarize OpenIncidents = count() by tostring(Owner.assignedTo)
+| render barchart</code></pre>
+                
+                <h2 id="data-health">Data Health Workbook</h2>
+                
+                <pre><code class="language-kql">// Ingestion volume by table
+Usage
+| where TimeGenerated > ago(7d)
+| summarize DailyGB = sum(Quantity) / 1000 by DataType, bin(TimeGenerated, 1d)
+| render timechart
+
+// Top data sources
+Usage
+| where TimeGenerated > ago(24h)
+| summarize TotalGB = sum(Quantity) / 1000 by DataType
+| top 10 by TotalGB
+| render barchart
+
+// Ingestion latency
+Heartbeat
+| where TimeGenerated > ago(1h)
+| extend Latency = ingestion_time() - TimeGenerated
+| summarize AvgLatencySeconds = avg(Latency) / 1s by Computer
+| where AvgLatencySeconds > 60
+
+// Connector health
+SentinelHealth
+| where TimeGenerated > ago(24h)
+| where SentinelResourceType == "Data connector"
+| summarize LastStatus = arg_max(TimeGenerated, Status) by SentinelResourceName
+| project SentinelResourceName, Status, LastStatus
+
+// Agent health
+Heartbeat
+| where TimeGenerated > ago(24h)
+| summarize LastHeartbeat = max(TimeGenerated) by Computer, OSType
+| extend Status = iff(LastHeartbeat < ago(15m), "Unhealthy", "Healthy")
+| summarize count() by Status</code></pre>
+                
+                <h2 id="parameters">Parameters and Interactivity</h2>
+                
+                <pre><code class="language-text">PARAMETER TYPES:
+
+• Time range picker    - Dynamic time selection
+• Dropdown            - Select from list
+• Multi-select        - Multiple values
+• Text                - Free text input
+• Resource picker     - Azure resources
+
+PARAMETER EXAMPLE:
+
+// Define parameter: TimeRange
+Type: Time range picker
+Default: Last 24 hours
+
+// Use in query
+SigninLogs
+| where TimeGenerated {TimeRange}
+| summarize count() by bin(TimeGenerated, 1h)
+
+// Dropdown parameter: UserFilter
+Type: Dropdown
+Query: 
+  SigninLogs 
+  | distinct UserPrincipalName 
+  | take 100
+
+// Use in query
+SigninLogs
+| where TimeGenerated > ago(24h)
+| where "{UserFilter}" == "All" or UserPrincipalName == "{UserFilter}"</code></pre>
+                
+                <h2 id="workbook-examples">Workbook Examples</h2>
+                
+                <h3>Executive Security Dashboard</h3>
+                
+                <pre><code class="language-text">EXECUTIVE DASHBOARD LAYOUT:
+
+┌─────────────────────────────────────────────────────────┐
+│  [Time Range Picker: Last 30 days]                     │
+├─────────────────────────────────────────────────────────┤
+│  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐       │
+│  │ Total   │ │ Open    │ │ MTTR    │ │ TP Rate │       │
+│  │ Incidents│ │ Incidents│ │ 2.5 hrs │ │ 78%     │       │
+│  │ 1,247   │ │ 23      │ │         │ │         │       │
+│  └─────────┘ └─────────┘ └─────────┘ └─────────┘       │
+├─────────────────────────────────────────────────────────┤
+│  [Line Chart: Incidents Over Time by Severity]         │
+│                                                         │
+├────────────────────────┬────────────────────────────────┤
+│  [Pie Chart: Incidents │  [Bar Chart: Top 10 Rules     │
+│   by Classification]   │   by Incident Count]          │
+├────────────────────────┴────────────────────────────────┤
+│  [Table: Recent High Severity Incidents]               │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h3>Sign-in Analytics Dashboard</h3>
+                
+                <pre><code class="language-kql">// Failed sign-ins by country (map)
+SigninLogs
+| where TimeGenerated > ago(24h)
+| where ResultType != 0
+| extend Country = tostring(LocationDetails.countryOrRegion)
+| summarize FailedAttempts = count() by Country
+| render map
+
+// Sign-in trends
+SigninLogs
+| where TimeGenerated > ago(7d)
+| summarize 
+    Success = countif(ResultType == 0),
+    Failed = countif(ResultType != 0)
+    by bin(TimeGenerated, 1h)
+| render timechart
+
+// Top failed users
+SigninLogs
+| where TimeGenerated > ago(24h)
+| where ResultType != 0
+| summarize Failures = count() by UserPrincipalName
+| top 10 by Failures
+| render barchart
+
+// Risky sign-ins
+SigninLogs
+| where TimeGenerated > ago(24h)
+| where RiskState != "none"
+| project TimeGenerated, UserPrincipalName, IPAddress, RiskState, RiskDetail</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Workbook Best Practices
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Design:</strong><br>
+                            □ Start with key metrics at top (tiles)<br>
+                            □ Use consistent color schemes<br>
+                            □ Include time range parameter<br>
+                            □ Group related visualizations<br><br>
+                            
+                            <strong>Performance:</strong><br>
+                            □ Limit query time ranges<br>
+                            □ Use summarize early in queries<br>
+                            □ Cache static lookups<br>
+                            □ Test with production data volumes<br><br>
+                            
+                            <strong>Usability:</strong><br>
+                            □ Add descriptions/help text<br>
+                            □ Enable drill-down where useful<br>
+                            □ Export capabilities for reporting
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"What SOC metrics would you track in a Sentinel workbook?"</strong><br><br>
+                            <strong>Volume Metrics:</strong><br>
+                            • Total incidents by severity<br>
+                            • Incidents over time (trend)<br>
+                            • Open incident backlog<br><br>
+                            
+                            <strong>Performance Metrics:</strong><br>
+                            • MTTR (Mean Time to Respond)<br>
+                            • MTTC (Mean Time to Close)<br>
+                            • SLA compliance rate<br><br>
+                            
+                            <strong>Quality Metrics:</strong><br>
+                            • True positive rate<br>
+                            • False positive rate by rule<br>
+                            • Incidents reopened<br><br>
+                            
+                            <strong>Coverage Metrics:</strong><br>
+                            • Data source health<br>
+                            • MITRE ATT&CK coverage<br>
+                            • Detection rule effectiveness
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Workbooks are interactive dashboards for visualization</li>
+                    <li>Built-in templates for common scenarios (Azure AD, SOC metrics)</li>
+                    <li>Visualization types: charts, tables, maps, tiles</li>
+                    <li>Parameters enable interactivity (time range, dropdowns)</li>
+                    <li>Key SOC metrics: MTTR, MTTC, TP rate, incident volume</li>
+                    <li>Monitor data health with ingestion and connector status</li>
+                </ul>
+                
+                <div class="info-box tip">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">🎉</span>
+                        Section Complete
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Congratulations! You've completed <strong>Section 5: Microsoft Sentinel Fundamentals</strong>. You now understand Sentinel architecture, Log Analytics, data connectors, KQL, analytics rules, incidents, and workbooks. Continue to <a href="6-1-automation-playbooks.html">Section 6: Sentinel Security Operations</a> for automation and advanced topics.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="page-navigation">
+                    <a href="5-7-incidents-investigation.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Incidents & Investigation</span>
+                        </div>
+                    </a>
+                    <a href="6-1-automation-playbooks.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Automation & Playbooks</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detection Testing and Validation - Atomic Red Team, attack simulation, and measuring detection effectiveness.">
+    <title>Testing & Validation | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item active">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="8-1-detection-development.html">Detection Engineering</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Testing & Validation</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Detection Testing & Validation</h1>
+                <p class="page-subtitle">Validating detections with attack simulation and measuring effectiveness</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Testing is critical to ensure detections work as expected. This chapter covers attack simulation tools, testing methodologies, and how to measure detection effectiveness over time.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="testing-framework">Testing Framework</h2>
+                
+                <pre><code class="language-text">DETECTION TESTING APPROACH:
+
+┌─────────────────────────────────────────────────────────┐
+│ 1. UNIT TESTING                                        │
+│    Test detection logic against sample data            │
+│    • Does the query syntax work?                       │
+│    • Does it match expected events?                    │
+│    • Does it exclude expected false positives?         │
+└─────────────────────────────────────────────────────────┘
+                    │
+                    ▼
+┌─────────────────────────────────────────────────────────┐
+│ 2. INTEGRATION TESTING                                 │
+│    Test against real attack simulation                 │
+│    • Execute attack technique in test environment      │
+│    • Verify detection triggers                         │
+│    • Check entity mapping and enrichment               │
+└─────────────────────────────────────────────────────────┘
+                    │
+                    ▼
+┌─────────────────────────────────────────────────────────┐
+│ 3. FALSE POSITIVE TESTING                              │
+│    Run against production-like data                    │
+│    • Check alert volume is acceptable                  │
+│    • Verify exclusions work                            │
+│    • Identify additional tuning needed                 │
+└─────────────────────────────────────────────────────────┘
+                    │
+                    ▼
+┌─────────────────────────────────────────────────────────┐
+│ 4. PERFORMANCE TESTING                                 │
+│    Verify query efficiency                             │
+│    • Measure query execution time                      │
+│    • Check resource consumption                        │
+│    • Optimize if needed                                │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h2 id="atomic-red-team">Atomic Red Team</h2>
+                
+                <pre><code class="language-text">ATOMIC RED TEAM:
+https://github.com/redcanaryco/atomic-red-team
+
+Small, portable tests mapped to MITRE ATT&CK techniques.
+
+INSTALLATION:
+─────────────────────────────────────────────────
+# PowerShell
+IEX (IWR 'https://raw.githubusercontent.com/redcanaryco/invoke-atomicredteam/master/install-atomicredteam.ps1' -UseBasicParsing)
+Install-AtomicRedTeam -getAtomics
+
+RUNNING TESTS:
+─────────────────────────────────────────────────
+# List tests for a technique
+Invoke-AtomicTest T1003 -ShowDetailsBrief
+
+# Run specific test
+Invoke-AtomicTest T1003.001 -TestNumbers 1
+
+# Run and generate logs
+Invoke-AtomicTest T1059.001 -TestNumbers 1 -GetPrereqs
+
+# Cleanup after test
+Invoke-AtomicTest T1003.001 -TestNumbers 1 -Cleanup</code></pre>
+                
+                <h3>Common Tests for Detection Validation</h3>
+                
+                <pre><code class="language-text">HIGH-VALUE ATOMIC TESTS:
+
+CREDENTIAL ACCESS:
+─────────────────────────────────────────────────
+T1003.001 - LSASS Memory Dump
+Invoke-AtomicTest T1003.001 -TestNumbers 1
+→ Validates: Mimikatz detection, LSASS access alerts
+
+T1110.003 - Password Spraying
+Invoke-AtomicTest T1110.003 -TestNumbers 1
+→ Validates: Failed login detection, spray pattern alerts
+
+EXECUTION:
+─────────────────────────────────────────────────
+T1059.001 - PowerShell Execution
+Invoke-AtomicTest T1059.001 -TestNumbers 1
+→ Validates: Encoded command detection, download cradles
+
+T1059.003 - Windows Command Shell
+Invoke-AtomicTest T1059.003 -TestNumbers 1
+→ Validates: Suspicious command line detection
+
+PERSISTENCE:
+─────────────────────────────────────────────────
+T1053.005 - Scheduled Task
+Invoke-AtomicTest T1053.005 -TestNumbers 1
+→ Validates: Scheduled task creation alerts
+
+T1547.001 - Registry Run Keys
+Invoke-AtomicTest T1547.001 -TestNumbers 1
+→ Validates: Registry persistence detection
+
+DEFENSE EVASION:
+─────────────────────────────────────────────────
+T1070.001 - Clear Windows Event Logs
+Invoke-AtomicTest T1070.001 -TestNumbers 1
+→ Validates: Log clearing detection (Event 1102)</code></pre>
+                
+                <h2 id="testing-workflow">Testing Workflow</h2>
+                
+                <pre><code class="language-text">DETECTION TESTING WORKFLOW:
+
+1. PREPARE TEST ENVIRONMENT
+   ┌─────────────────────────────────────────────────┐
+   │ □ Isolated test VM with logging enabled        │
+   │ □ SIEM connected to test environment           │
+   │ □ Atomic Red Team installed                    │
+   │ □ Detection rule deployed (disabled alerting)  │
+   └─────────────────────────────────────────────────┘
+
+2. EXECUTE TEST
+   ┌─────────────────────────────────────────────────┐
+   │ □ Run atomic test for target technique         │
+   │ □ Note timestamp of execution                  │
+   │ □ Document test parameters                     │
+   └─────────────────────────────────────────────────┘
+
+3. VALIDATE DETECTION
+   ┌─────────────────────────────────────────────────┐
+   │ □ Query SIEM for time window                   │
+   │ □ Verify events were generated                 │
+   │ □ Confirm detection rule triggered             │
+   │ □ Check entity mapping populated               │
+   └─────────────────────────────────────────────────┘
+
+4. DOCUMENT RESULTS
+   ┌─────────────────────────────────────────────────┐
+   │ □ Test passed/failed                           │
+   │ □ Time to detect                               │
+   │ □ False negative reasons (if any)              │
+   │ □ Tuning recommendations                       │
+   └─────────────────────────────────────────────────┘
+
+5. CLEANUP
+   ┌─────────────────────────────────────────────────┐
+   │ □ Run cleanup commands                         │
+   │ □ Restore test environment                     │
+   │ □ Archive test results                         │
+   └─────────────────────────────────────────────────┘</code></pre>
+                
+                <h2 id="validation-queries">Validation Queries</h2>
+                
+                <pre><code class="language-kql">// Sentinel: Verify events were logged
+SecurityEvent
+| where TimeGenerated > ago(30m)
+| where Computer == "TEST-VM"
+| where EventID == 4688
+| project TimeGenerated, EventID, Process, CommandLine
+
+// Verify detection triggered
+SecurityIncident
+| where TimeGenerated > ago(1h)
+| where Title contains "Test Detection Name"
+| project TimeGenerated, Title, Severity, Status
+
+// Check alert details
+SecurityAlert
+| where TimeGenerated > ago(1h)
+| where AlertName contains "Test"
+| extend Entities = parse_json(Entities)
+| project TimeGenerated, AlertName, Entities</code></pre>
+                
+                <pre><code class="language-text">// Splunk: Verify events were logged
+index=windows host="TEST-VM" earliest=-30m
+| table _time, EventCode, CommandLine
+
+// Verify notable event created
+index=notable earliest=-1h
+| search search_name="Test Detection Name"
+| table _time, search_name, urgency, status</code></pre>
+                
+                <h2 id="metrics">Detection Metrics</h2>
+                
+                <pre><code class="language-text">KEY DETECTION METRICS:
+
+EFFECTIVENESS METRICS:
+─────────────────────────────────────────────────
+True Positive Rate = TP / (TP + FN)
+• How often do we detect real attacks?
+• Target: >90% for critical detections
+
+False Positive Rate = FP / (FP + TN)
+• How often do we alert on benign activity?
+• Target: <10% for production rules
+
+OPERATIONAL METRICS:
+─────────────────────────────────────────────────
+Mean Time to Detect (MTTD):
+• Time from attack to alert
+• Target: <15 minutes for critical techniques
+
+Alert Volume:
+• Alerts per day per rule
+• Target: Manageable by SOC capacity
+
+COVERAGE METRICS:
+─────────────────────────────────────────────────
+MITRE Coverage:
+• Techniques with active detections
+• Target: Prioritized techniques covered
+
+Data Source Coverage:
+• Required logs are being collected
+• Target: All detection dependencies met</code></pre>
+                
+                <h3>Measuring Detection Effectiveness</h3>
+                
+                <pre><code class="language-kql">// True Positive Rate by Rule
+SecurityIncident
+| where TimeGenerated > ago(30d)
+| where Status == "Closed"
+| summarize 
+    TP = countif(Classification == "TruePositive"),
+    FP = countif(Classification == "FalsePositive"),
+    Total = count()
+    by Title
+| extend TPRate = round(TP * 100.0 / Total, 1)
+| sort by Total desc
+
+// Alert Volume Trend
+SecurityAlert
+| where TimeGenerated > ago(30d)
+| summarize AlertCount = count() by AlertName, bin(TimeGenerated, 1d)
+| render timechart
+
+// Mean Time to Detect (from event to alert)
+SecurityAlert
+| where TimeGenerated > ago(7d)
+| extend MTTD = datetime_diff('minute', TimeGenerated, StartTime)
+| summarize AvgMTTD = avg(MTTD), MedianMTTD = percentile(MTTD, 50) by AlertName</code></pre>
+                
+                <h2 id="continuous-testing">Continuous Testing</h2>
+                
+                <pre><code class="language-text">AUTOMATED TESTING APPROACHES:
+
+1. SCHEDULED ATOMIC TESTS
+   • Run tests on schedule (weekly/monthly)
+   • Automated execution via scheduled tasks
+   • Validate detections still work
+   
+2. PURPLE TEAM EXERCISES
+   • Coordinated attack simulations
+   • Red team executes, blue team detects
+   • Document gaps and improvements
+   
+3. BREACH AND ATTACK SIMULATION (BAS)
+   • Tools: Safebreach, AttackIQ, Cymulate
+   • Continuous automated testing
+   • Coverage dashboards
+
+4. DETECTION-AS-CODE PIPELINE
+   ┌─────────────────────────────────────────────────┐
+   │ Git Commit → Test → Deploy → Monitor           │
+   │                                                │
+   │ • Detection rule in version control            │
+   │ • Automated syntax validation                  │
+   │ • Test against sample data                     │
+   │ • Deploy to production                         │
+   │ • Monitor effectiveness                        │
+   └─────────────────────────────────────────────────┘</code></pre>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Testing Best Practices
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Testing:</strong><br>
+                            □ Always test in isolated environment first<br>
+                            □ Document test procedures for repeatability<br>
+                            □ Test both positive (should alert) and negative (should not alert)<br>
+                            □ Include cleanup in test procedures<br><br>
+                            
+                            <strong>Validation:</strong><br>
+                            □ Verify end-to-end: event → alert → incident<br>
+                            □ Check entity mapping populates correctly<br>
+                            □ Confirm automation/playbooks trigger<br>
+                            □ Validate against multiple variations of technique<br><br>
+                            
+                            <strong>Continuous:</strong><br>
+                            □ Schedule regular detection validation<br>
+                            □ Track metrics over time<br>
+                            □ Re-test after infrastructure changes<br>
+                            □ Update tests as threats evolve
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"How do you validate that your detections are working?"</strong><br><br>
+                            <strong>1. Attack Simulation:</strong> Use Atomic Red Team to execute controlled tests mapped to MITRE ATT&CK techniques. Run tests in isolated environment and verify alerts trigger.<br>
+                            <strong>2. Historical Validation:</strong> Run detection queries against historical data to check for expected matches and unexpected false positives.<br>
+                            <strong>3. Continuous Monitoring:</strong> Track detection metrics (true positive rate, false positive rate, alert volume) over time.<br>
+                            <strong>4. Purple Team Exercises:</strong> Coordinate with red team to test detection coverage during exercises.<br>
+                            <strong>5. Regular Review:</strong> Quarterly review of detection effectiveness, update rules based on findings.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Test detections through unit, integration, FP, and performance testing</li>
+                    <li>Atomic Red Team provides portable attack simulations</li>
+                    <li>Always test in isolated environments first</li>
+                    <li>Track metrics: TP rate, FP rate, MTTD, alert volume</li>
+                    <li>Implement continuous testing for ongoing validation</li>
+                    <li>Document all test procedures and results</li>
+                </ul>
+                
+                <div class="info-box tip">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">🎉</span>
+                        Section Complete
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Congratulations! You've completed <strong>Section 8: Detection Engineering</strong>. You now understand detection development, MITRE ATT&CK mapping, SIGMA rules, and testing methodologies. These skills are essential for building effective security monitoring capabilities.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="page-navigation">
+                    <a href="8-3-sigma-rules.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">SIGMA Rules</span>
+                        </div>
+                    </a>
+                    <a href="index.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Back to</span>
+                            <span class="nav-button-title">Home</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

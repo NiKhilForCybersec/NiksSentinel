@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SPL vs KQL - Complete query language comparison with side-by-side examples for Splunk and Microsoft Sentinel.">
+    <title>SPL vs KQL | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item active">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="7-1-splunk-vs-sentinel.html">SIEM Comparison</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">SPL vs KQL</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">SPL vs KQL</h1>
+                <p class="page-subtitle">Query language comparison with side-by-side examples</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            SPL (Search Processing Language) and KQL (Kusto Query Language) are the query languages for Splunk and Sentinel respectively. This chapter provides side-by-side comparisons to help you translate between platforms and prepare for interviews requiring both skills.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="syntax-basics">Syntax Basics</h2>
+                
+                <pre><code class="language-text">QUERY STRUCTURE COMPARISON:
+
+SPL (Splunk):
+index=security sourcetype=WinEventLog EventCode=4625
+| stats count by src_ip
+| sort -count
+| head 10
+
+KQL (Sentinel):
+SecurityEvent
+| where EventID == 4625
+| summarize count() by IpAddress
+| sort by count_ desc
+| take 10
+
+KEY DIFFERENCES:
+─────────────────────────────────────────────────
+SPL                         KQL
+─────────────────────────────────────────────────
+index=name                  TableName
+sourcetype=type             (implicit in table)
+field=value                 | where field == value
+| stats count by field      | summarize count() by field
+| sort -field               | sort by field desc
+| head N                    | take N
+| table field1, field2      | project field1, field2
+| rename old AS new         | project new = old</code></pre>
+                
+                <h2 id="filtering">Filtering Data</h2>
+                
+                <pre><code class="language-text">BASIC FILTERING:
+
+SPL:
+index=security EventCode=4625
+index=security EventCode!=0
+index=security user="admin"
+index=security user="admin" OR user="root"
+index=security user="admin" src_ip="10.0.0.1"
+
+KQL:
+SecurityEvent | where EventID == 4625
+SecurityEvent | where EventID != 0
+SecurityEvent | where TargetUserName == "admin"
+SecurityEvent | where TargetUserName == "admin" or TargetUserName == "root"
+SecurityEvent | where TargetUserName == "admin" and IpAddress == "10.0.0.1"
+
+
+STRING MATCHING:
+
+SPL:
+index=security user="*admin*"           // wildcard
+index=security user IN ("admin","root") // list
+index=security | regex user="^admin"    // regex
+
+KQL:
+SecurityEvent | where TargetUserName contains "admin"
+SecurityEvent | where TargetUserName in ("admin", "root")
+SecurityEvent | where TargetUserName matches regex "^admin"
+
+
+TIME FILTERING:
+
+SPL:
+index=security earliest=-24h
+index=security earliest=-7d@d latest=@d
+index=security earliest="01/01/2024:00:00:00"
+
+KQL:
+SecurityEvent | where TimeGenerated > ago(24h)
+SecurityEvent | where TimeGenerated > ago(7d) and TimeGenerated < startofday(now())
+SecurityEvent | where TimeGenerated > datetime(2024-01-01)</code></pre>
+                
+                <h2 id="aggregation">Aggregation</h2>
+                
+                <pre><code class="language-text">COUNTING:
+
+SPL:
+| stats count
+| stats count by user
+| stats count by user, src_ip
+| stats dc(user) as unique_users
+
+KQL:
+| summarize count()
+| summarize count() by TargetUserName
+| summarize count() by TargetUserName, IpAddress
+| summarize unique_users = dcount(TargetUserName)
+
+
+MULTIPLE AGGREGATIONS:
+
+SPL:
+| stats count, dc(src_ip) as unique_ips, 
+        values(src_ip) as ips by user
+
+KQL:
+| summarize count(), 
+        unique_ips = dcount(IpAddress),
+        ips = make_set(IpAddress) by TargetUserName
+
+
+TIME-BASED AGGREGATION:
+
+SPL:
+| timechart span=1h count by user
+| timechart span=1d count
+
+KQL:
+| summarize count() by TargetUserName, bin(TimeGenerated, 1h) | render timechart
+| summarize count() by bin(TimeGenerated, 1d) | render timechart
+
+
+CONDITIONAL COUNTING:
+
+SPL:
+| stats count(eval(status="success")) as success,
+        count(eval(status="failure")) as failure
+
+KQL:
+| summarize success = countif(ResultType == 0),
+        failure = countif(ResultType != 0)</code></pre>
+                
+                <h2 id="transformations">Data Transformations</h2>
+                
+                <pre><code class="language-text">FIELD SELECTION:
+
+SPL:
+| table _time, user, src_ip, action
+| fields _time, user, src_ip
+| fields - _raw, _time
+
+KQL:
+| project TimeGenerated, TargetUserName, IpAddress, Activity
+| project TimeGenerated, TargetUserName, IpAddress
+| project-away TimeGenerated, Type
+
+
+FIELD RENAMING:
+
+SPL:
+| rename src_ip AS SourceIP, user AS Username
+| eval NewField = OldField | fields - OldField
+
+KQL:
+| project SourceIP = IpAddress, Username = TargetUserName
+| extend NewField = OldField | project-away OldField
+
+
+CREATING FIELDS:
+
+SPL:
+| eval status = if(EventCode=4624, "success", "failure")
+| eval hour = strftime(_time, "%H")
+| eval upper_user = upper(user)
+
+KQL:
+| extend status = iff(EventID == 4624, "success", "failure")
+| extend hour = datetime_part("hour", TimeGenerated)
+| extend upper_user = toupper(TargetUserName)
+
+
+STRING OPERATIONS:
+
+SPL:
+| eval domain = mvindex(split(user, "@"), 1)
+| eval lower_user = lower(user)
+| eval user_len = len(user)
+
+KQL:
+| extend domain = tostring(split(TargetUserName, "@")[1])
+| extend lower_user = tolower(TargetUserName)
+| extend user_len = strlen(TargetUserName)</code></pre>
+                
+                <h2 id="joins">Joins and Lookups</h2>
+                
+                <pre><code class="language-text">JOINS:
+
+SPL:
+index=auth 
+| join type=inner src_ip [search index=threat | table src_ip, threat_score]
+
+KQL:
+SigninLogs
+| join kind=inner (
+    ThreatIntelligenceIndicator 
+    | project IPAddress = NetworkIP, ThreatScore = ConfidenceScore
+) on $left.IPAddress == $right.IPAddress
+
+
+LOOKUPS:
+
+SPL:
+| lookup user_info.csv user OUTPUT department, title
+
+KQL:
+| join kind=leftouter (
+    _GetWatchlist('user_info') | project UserPrincipalName, department, title
+) on UserPrincipalName
+
+
+SUBSEARCH / SUBQUERY:
+
+SPL:
+index=auth [search index=threat | table ip | rename ip as src_ip]
+
+KQL:
+let ThreatIPs = ThreatIntelligenceIndicator | distinct NetworkIP;
+SigninLogs | where IPAddress in (ThreatIPs)</code></pre>
+                
+                <h2 id="security-queries">Security Query Examples</h2>
+                
+                <pre><code class="language-text">FAILED LOGINS BY USER:
+
+SPL:
+index=windows EventCode=4625
+| stats count by user, src_ip
+| where count > 10
+| sort -count
+
+KQL:
+SecurityEvent
+| where EventID == 4625
+| summarize count() by TargetUserName, IpAddress
+| where count_ > 10
+| sort by count_ desc
+
+
+BRUTE FORCE DETECTION:
+
+SPL:
+index=windows EventCode=4625
+| bin _time span=10m
+| stats count, dc(user) as targeted_users by src_ip, _time
+| where count > 20 AND targeted_users > 5
+
+KQL:
+SecurityEvent
+| where EventID == 4625
+| summarize count(), targeted_users = dcount(TargetUserName) 
+    by IpAddress, bin(TimeGenerated, 10m)
+| where count_ > 20 and targeted_users > 5
+
+
+PROCESS CREATION MONITORING:
+
+SPL:
+index=windows EventCode=4688
+| where (process_name="powershell.exe" OR process_name="cmd.exe")
+| where match(command_line, "(?i)(encoded|bypass|hidden)")
+| table _time, host, user, process_name, command_line
+
+KQL:
+SecurityEvent
+| where EventID == 4688
+| where Process has_any ("powershell.exe", "cmd.exe")
+| where CommandLine matches regex "(?i)(encoded|bypass|hidden)"
+| project TimeGenerated, Computer, TargetUserName, Process, CommandLine
+
+
+IMPOSSIBLE TRAVEL:
+
+SPL:
+index=azure sourcetype=azure:aad:signin
+| sort 0 user, _time
+| streamstats current=f last(location) as prev_location, 
+              last(_time) as prev_time by user
+| eval time_diff = _time - prev_time
+| where time_diff < 7200 AND location != prev_location
+
+KQL:
+SigninLogs
+| order by UserPrincipalName, TimeGenerated
+| serialize
+| extend prev_location = prev(Location), prev_time = prev(TimeGenerated),
+         prev_user = prev(UserPrincipalName)
+| where UserPrincipalName == prev_user
+| extend time_diff = datetime_diff('minute', TimeGenerated, prev_time)
+| where time_diff < 120 and Location != prev_location</code></pre>
+                
+                <h2 id="reference">Quick Reference Table</h2>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Operation</th>
+                                <th>SPL</th>
+                                <th>KQL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Start query</td>
+                                <td><code>index=name</code></td>
+                                <td><code>TableName</code></td>
+                            </tr>
+                            <tr>
+                                <td>Filter</td>
+                                <td><code>field=value</code></td>
+                                <td><code>| where field == value</code></td>
+                            </tr>
+                            <tr>
+                                <td>Time filter</td>
+                                <td><code>earliest=-24h</code></td>
+                                <td><code>| where TimeGenerated > ago(24h)</code></td>
+                            </tr>
+                            <tr>
+                                <td>Count</td>
+                                <td><code>| stats count</code></td>
+                                <td><code>| summarize count()</code></td>
+                            </tr>
+                            <tr>
+                                <td>Count by</td>
+                                <td><code>| stats count by field</code></td>
+                                <td><code>| summarize count() by field</code></td>
+                            </tr>
+                            <tr>
+                                <td>Distinct count</td>
+                                <td><code>| stats dc(field)</code></td>
+                                <td><code>| summarize dcount(field)</code></td>
+                            </tr>
+                            <tr>
+                                <td>Select columns</td>
+                                <td><code>| table a, b, c</code></td>
+                                <td><code>| project a, b, c</code></td>
+                            </tr>
+                            <tr>
+                                <td>Rename</td>
+                                <td><code>| rename old AS new</code></td>
+                                <td><code>| project new = old</code></td>
+                            </tr>
+                            <tr>
+                                <td>Create field</td>
+                                <td><code>| eval new = expr</code></td>
+                                <td><code>| extend new = expr</code></td>
+                            </tr>
+                            <tr>
+                                <td>Sort desc</td>
+                                <td><code>| sort -field</code></td>
+                                <td><code>| sort by field desc</code></td>
+                            </tr>
+                            <tr>
+                                <td>Limit</td>
+                                <td><code>| head 10</code></td>
+                                <td><code>| take 10</code></td>
+                            </tr>
+                            <tr>
+                                <td>Contains</td>
+                                <td><code>field="*value*"</code></td>
+                                <td><code>field contains "value"</code></td>
+                            </tr>
+                            <tr>
+                                <td>In list</td>
+                                <td><code>field IN (a, b)</code></td>
+                                <td><code>field in ("a", "b")</code></td>
+                            </tr>
+                            <tr>
+                                <td>Regex</td>
+                                <td><code>| regex field="pattern"</code></td>
+                                <td><code>| where field matches regex "pattern"</code></td>
+                            </tr>
+                            <tr>
+                                <td>Time bucket</td>
+                                <td><code>| bin span=1h _time</code></td>
+                                <td><code>bin(TimeGenerated, 1h)</code></td>
+                            </tr>
+                            <tr>
+                                <td>Conditional</td>
+                                <td><code>if(cond, true, false)</code></td>
+                                <td><code>iff(cond, true, false)</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"Convert this SPL query to KQL: Find top 10 users with failed logins in the last 24 hours"</strong><br><br>
+                            <strong>SPL:</strong><br>
+                            <code>index=windows EventCode=4625 earliest=-24h | stats count by user | sort -count | head 10</code><br><br>
+                            
+                            <strong>KQL:</strong><br>
+                            <code>SecurityEvent | where TimeGenerated > ago(24h) | where EventID == 4625 | summarize count() by TargetUserName | sort by count_ desc | take 10</code><br><br>
+                            
+                            <strong>Key translations:</strong> index→table, earliest→where TimeGenerated, stats count by→summarize count() by, sort -→sort by desc, head→take
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>SPL uses index=name; KQL starts with TableName</li>
+                    <li>SPL filters inline; KQL uses | where</li>
+                    <li>stats → summarize, eval → extend, table → project</li>
+                    <li>sort -field → sort by field desc</li>
+                    <li>head N → take N</li>
+                    <li>Both support joins, regex, and time bucketing</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="7-1-splunk-vs-sentinel.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Splunk vs Sentinel</span>
+                        </div>
+                    </a>
+                    <a href="7-3-migration-considerations.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Migration Guide</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

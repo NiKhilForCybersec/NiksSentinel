@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Microsoft Sentinel Automation - Logic Apps playbooks, automation rules, and automated incident response.">
+    <title>Automation & Playbooks | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item active">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="6-1-automation-playbooks.html">Sentinel Security Ops</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Automation & Playbooks</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Automation & Playbooks</h1>
+                <p class="page-subtitle">Automating incident response with Logic Apps</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Microsoft Sentinel uses Azure Logic Apps for SOAR capabilities. Automation rules trigger playbooks automatically, while playbooks define the response workflows. This chapter covers automation rules, playbook creation, and common automation patterns.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="automation-overview">Automation Overview</h2>
+                
+                <pre><code class="language-text">SENTINEL AUTOMATION:
+
+┌─────────────────────────────────────────────────────────┐
+│                  AUTOMATION RULES                       │
+│         (Trigger conditions and routing)                │
+│                                                         │
+│  When incident is created:                             │
+│  • Run playbook                                        │
+│  • Change status                                       │
+│  • Assign owner                                        │
+│  • Add tags                                            │
+│  • Change severity                                     │
+└───────────────────────┬─────────────────────────────────┘
+                        │
+                        ▼
+┌─────────────────────────────────────────────────────────┐
+│                    PLAYBOOKS                            │
+│              (Logic Apps workflows)                     │
+│                                                         │
+│  Actions:                                              │
+│  • Enrich with threat intel                            │
+│  • Send notifications                                  │
+│  • Block IPs in firewall                               │
+│  • Disable user accounts                               │
+│  • Create tickets                                      │
+│  • Isolate endpoints                                   │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h2 id="automation-rules">Automation Rules</h2>
+                
+                <pre><code class="language-text">AUTOMATION RULE CONFIGURATION:
+
+1. TRIGGER
+   • When incident is created
+   • When incident is updated
+   • When alert is created
+
+2. CONDITIONS
+   • Analytics rule name
+   • Incident provider
+   • Severity (High, Medium, Low)
+   • Status
+   • Tactics
+   • Entity types
+   • Custom conditions
+
+3. ACTIONS
+   • Run playbook
+   • Change status
+   • Assign owner
+   • Add tags
+   • Change severity
+
+4. ORDER
+   • Rules execute in order (1-100)
+   • Lower numbers execute first</code></pre>
+                
+                <h3>Automation Rule Examples</h3>
+                
+                <pre><code class="language-text">EXAMPLE 1: Auto-assign high severity
+Name: Assign High Severity to Tier 2
+Trigger: Incident created
+Conditions:
+  - Severity equals High
+Actions:
+  - Assign owner: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3e4a575b4c0c135f505f52474d4a4d7e5d51534e5f5047105d5153">[email&#160;protected]</a>
+  - Add tags: high-priority
+
+EXAMPLE 2: Run enrichment playbook
+Name: Enrich All Incidents
+Trigger: Incident created
+Conditions:
+  - Severity: High, Medium
+Actions:
+  - Run playbook: Enrich-Incident-Playbook
+
+EXAMPLE 3: Auto-close informational
+Name: Close Info Alerts
+Trigger: Incident created
+Conditions:
+  - Severity equals Informational
+  - Rule name contains "Audit"
+Actions:
+  - Change status: Closed
+  - Classification: Benign Positive</code></pre>
+                
+                <h2 id="playbooks">Playbooks (Logic Apps)</h2>
+                
+                <pre><code class="language-text">PLAYBOOK STRUCTURE:
+
+┌─────────────────────────────────────────────────────────┐
+│                     TRIGGER                             │
+│  Microsoft Sentinel incident / alert                   │
+└───────────────────────┬─────────────────────────────────┘
+                        │
+                        ▼
+┌─────────────────────────────────────────────────────────┐
+│                    GET DATA                             │
+│  • Get incident details                                │
+│  • Get entities (IPs, users, hosts)                    │
+│  • Get alerts                                          │
+└───────────────────────┬─────────────────────────────────┘
+                        │
+                        ▼
+┌─────────────────────────────────────────────────────────┐
+│                    PROCESS                              │
+│  • For each entity                                     │
+│  • Conditions                                          │
+│  • Variables                                           │
+└───────────────────────┬─────────────────────────────────┘
+                        │
+                        ▼
+┌─────────────────────────────────────────────────────────┐
+│                   ACTIONS                               │
+│  • Call external APIs                                  │
+│  • Send email/Teams                                    │
+│  • Update incident                                     │
+│  • HTTP requests                                       │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                
+                <h3>Common Sentinel Connectors</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Connector</th>
+                                <th>Use Case</th>
+                                <th>Key Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Microsoft Sentinel</strong></td>
+                                <td>Incident management</td>
+                                <td>Get incident, Update incident, Add comment</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Azure AD</strong></td>
+                                <td>Identity actions</td>
+                                <td>Get user, Disable user, Revoke sessions</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Microsoft Defender</strong></td>
+                                <td>Endpoint actions</td>
+                                <td>Isolate machine, Run AV scan</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Teams</strong></td>
+                                <td>Notifications</td>
+                                <td>Post message, Adaptive card</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Outlook</strong></td>
+                                <td>Email</td>
+                                <td>Send email</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ServiceNow</strong></td>
+                                <td>Ticketing</td>
+                                <td>Create incident, Update record</td>
+                            </tr>
+                            <tr>
+                                <td><strong>HTTP</strong></td>
+                                <td>Custom APIs</td>
+                                <td>Any REST API call</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="playbook-examples">Playbook Examples</h2>
+                
+                <h3>IP Enrichment Playbook</h3>
+                
+                <pre><code class="language-text">PLAYBOOK: Enrich-IP-VirusTotal
+
+TRIGGER: Microsoft Sentinel Incident
+
+STEPS:
+1. Get incident → Entities - Get IPs
+2. For each IP:
+   a. HTTP Request to VirusTotal API
+      GET https://www.virustotal.com/api/v3/ip_addresses/{IP}
+      Headers: x-apikey: {API_KEY}
+   b. Parse JSON response
+   c. Condition: If malicious > 5
+      - Add tag "Malicious-IP"
+      - Increase severity
+3. Add comment with enrichment results
+4. Update incident</code></pre>
+                
+                <h3>Teams Notification Playbook</h3>
+                
+                <pre><code class="language-json">{
+  "trigger": "Microsoft Sentinel incident",
+  "actions": [
+    {
+      "type": "Get incident"
+    },
+    {
+      "type": "Post adaptive card to Teams",
+      "channel": "SOC-Alerts",
+      "card": {
+        "type": "AdaptiveCard",
+        "body": [
+          {
+            "type": "TextBlock",
+            "text": "🚨 New Incident: @{triggerBody()?['object']?['properties']?['title']}",
+            "weight": "Bolder",
+            "size": "Medium"
+          },
+          {
+            "type": "FactSet",
+            "facts": [
+              {"title": "Severity", "value": "@{triggerBody()?['object']?['properties']?['severity']}"},
+              {"title": "Status", "value": "@{triggerBody()?['object']?['properties']?['status']}"},
+              {"title": "Incident #", "value": "@{triggerBody()?['object']?['properties']?['incidentNumber']}"}
+            ]
+          }
+        ],
+        "actions": [
+          {
+            "type": "Action.OpenUrl",
+            "title": "View in Sentinel",
+            "url": "@{triggerBody()?['object']?['properties']?['incidentUrl']}"
+          }
+        ]
+      }
+    }
+  ]
+}</code></pre>
+                
+                <h3>User Containment Playbook</h3>
+                
+                <pre><code class="language-text">PLAYBOOK: Contain-Compromised-User
+
+TRIGGER: Microsoft Sentinel Incident
+CONDITIONS: Tactic contains "Initial Access" or "Credential Access"
+
+STEPS:
+1. Get incident
+2. Entities - Get Accounts
+3. For each account:
+   a. Get user from Azure AD
+   b. Condition: Is user enabled?
+      - YES: Disable user account
+      - YES: Revoke all sign-in sessions
+   c. Send email to user's manager
+4. Add comment: "User {UPN} has been disabled"
+5. Update incident:
+   - Add tag: "User-Contained"
+   - Add comment with actions taken
+6. Post to Teams: Containment complete</code></pre>
+                
+                <h2 id="permissions">Playbook Permissions</h2>
+                
+                <pre><code class="language-text">MANAGED IDENTITY PERMISSIONS:
+
+For incident management:
+• Microsoft Sentinel Responder
+  (on resource group with Sentinel)
+
+For Azure AD actions:
+• User Administrator
+  (to disable users)
+• Directory Readers
+  (to get user info)
+
+For Defender actions:
+• Security Administrator
+  (on Defender)
+
+SETUP:
+1. Enable System Managed Identity on Logic App
+2. Assign roles to Managed Identity
+3. Use Managed Identity in connectors</code></pre>
+                
+                <h2 id="best-practices">Automation Best Practices</h2>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Automation Best Practices
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Design:</strong><br>
+                            □ Start with enrichment, then notifications, then containment<br>
+                            □ Use automation rules for simple actions (assign, tag)<br>
+                            □ Use playbooks for complex workflows<br>
+                            □ Include error handling in playbooks<br><br>
+                            
+                            <strong>Security:</strong><br>
+                            □ Use Managed Identity, not stored credentials<br>
+                            □ Apply least privilege permissions<br>
+                            □ Log all automated actions<br>
+                            □ Require approval for destructive actions<br><br>
+                            
+                            <strong>Operations:</strong><br>
+                            □ Test playbooks in non-production first<br>
+                            □ Monitor playbook run history<br>
+                            □ Alert on playbook failures<br>
+                            □ Version control playbook definitions
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"How would you automate incident response in Microsoft Sentinel?"</strong><br><br>
+                            <strong>1. Automation Rules:</strong> Create rules to auto-assign incidents by severity, add tags, and trigger playbooks<br>
+                            <strong>2. Enrichment Playbooks:</strong> Automatically lookup IPs in VirusTotal, check users in Azure AD, query threat intel<br>
+                            <strong>3. Notification Playbooks:</strong> Send Teams/email alerts for high severity incidents<br>
+                            <strong>4. Containment Playbooks:</strong> Disable users, isolate endpoints, block IPs (with approval workflow for destructive actions)<br>
+                            <strong>5. Ticketing Integration:</strong> Auto-create ServiceNow/Jira tickets from incidents<br>
+                            <strong>Key:</strong> Use Managed Identity for authentication and always include audit trail
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Automation rules trigger on incident/alert creation or update</li>
+                    <li>Playbooks are Logic Apps workflows for complex automation</li>
+                    <li>Common actions: enrich, notify, contain, ticket</li>
+                    <li>Use Managed Identity for secure authentication</li>
+                    <li>Apply least privilege to playbook permissions</li>
+                    <li>Include error handling and audit logging</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="5-8-workbooks-reporting.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Workbooks & Reporting</span>
+                        </div>
+                    </a>
+                    <a href="6-2-watchlists-ti.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Watchlists</span>
+                        </div>
+                    </

@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Splunk Architecture - Components, deployment topologies, clustering, data flow, and licensing models for Splunk Enterprise and Cloud.">
+    <title>Splunk Architecture | SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Documentation</div>
+                    </div>
+                </a>
+                <div class="sidebar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search docs... (Ctrl+K)" aria-label="Search documentation">
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: SIEM Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📚</span>
+                            <span>SIEM Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Splunk Fundamentals -->
+                <div class="nav-section expanded">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🟢</span>
+                            <span>Splunk Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item active">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Configuration</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Splunk Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔒</span>
+                            <span>Splunk Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 Enterprise Security Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Splunk SOAR -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">⚡</span>
+                            <span>Splunk SOAR</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Microsoft Sentinel Fundamentals -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔷</span>
+                            <span>Sentinel Fundamentals</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics Workspace</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Sentinel Security Operations -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔶</span>
+                            <span>Sentinel Security Ops</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & Threat Intel</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Sentinel Administration</a>
+                    </div>
+                </div>
+                
+                <!-- Section 7: SIEM Comparison -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔀</span>
+                            <span>SIEM Comparison</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Guide</a>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Detection Engineering -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🎯</span>
+                            <span>Detection Engineering</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 SIGMA Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Testing & Validation</a>
+                    </div>
+                </div>
+                
+                <!-- Section 9: Threat Hunting -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">🔍</span>
+                            <span>Threat Hunting</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Hunting Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                
+                <!-- Section 10: Use Case Library -->
+                <div class="nav-section">
+                    <div class="nav-section-header">
+                        <span class="nav-section-title">
+                            <span class="nav-section-icon">📁</span>
+                            <span>Use Case Library</span>
+                        </span>
+                        <span class="nav-section-arrow">▶</span>
+                    </div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware & Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>Built for Security Engineers</p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="2-1-splunk-architecture.html">Splunk Fundamentals</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Splunk Architecture</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Splunk Architecture</h1>
+                <p class="page-subtitle">Understanding Splunk components, deployment topologies, clustering, and data flow</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Splunk's architecture determines how data flows from source to search. This chapter covers the core components (Search Head, Indexer, Forwarder), deployment topologies from single-instance to distributed clusters, and the differences between Splunk Enterprise and Splunk Cloud.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="core-components">Core Splunk Components</h2>
+                
+                <p>
+                    Splunk consists of several components that can be deployed on a single server or distributed across many:
+                </p>
+                
+                <h3>Search Head</h3>
+                
+                <p>
+                    The Search Head handles user interaction and search processing:
+                </p>
+                
+                <ul>
+                    <li>Serves the Splunk Web interface</li>
+                    <li>Parses and distributes searches to indexers</li>
+                    <li>Merges and presents results to users</li>
+                    <li>Hosts dashboards, reports, and alerts</li>
+                    <li>Manages knowledge objects (saved searches, lookups, field extractions)</li>
+                </ul>
+                
+                <pre><code class="language-text">Search Head Responsibilities:
+┌─────────────────────────────────────────────┐
+│              SEARCH HEAD                     │
+├─────────────────────────────────────────────┤
+│  • Web UI (port 8000)                       │
+│  • REST API (port 8089)                     │
+│  • Search job management                     │
+│  • Dashboard rendering                       │
+│  • Alert scheduling and triggering          │
+│  • Knowledge bundle distribution            │
+│  • Report generation                        │
+└─────────────────────────────────────────────┘</code></pre>
+                
+                <h3>Indexer</h3>
+                
+                <p>
+                    The Indexer is the workhorse that processes and stores data:
+                </p>
+                
+                <ul>
+                    <li>Receives data from forwarders</li>
+                    <li>Parses and indexes incoming data</li>
+                    <li>Stores data in indexes (buckets)</li>
+                    <li>Responds to search requests from Search Heads</li>
+                    <li>Manages data retention and lifecycle</li>
+                </ul>
+                
+                <pre><code class="language-text">Indexer Data Pipeline:
+                         
+Raw Data → Parsing → Line Breaking → Timestamp Extraction
+                           ↓
+              Typing → Segmentation → Indexing → Storage
+                           
+┌─────────────────────────────────────────────┐
+│               INDEXER                        │
+├─────────────────────────────────────────────┤
+│  • Receiving (port 9997 from forwarders)    │
+│  • Parsing/transformation pipeline          │
+│  • Index storage (hot/warm/cold buckets)    │
+│  • Search execution on local data           │
+│  • Bucket management and replication        │
+└─────────────────────────────────────────────┘</code></pre>
+                
+                <h3>Forwarder</h3>
+                
+                <p>
+                    Forwarders collect and send data to indexers:
+                </p>
+                
+                <h4>Universal Forwarder (UF)</h4>
+                
+                <ul>
+                    <li>Lightweight agent (~50MB footprint)</li>
+                    <li>Collects and forwards data with minimal processing</li>
+                    <li>No parsing or indexing capability</li>
+                    <li>Ideal for endpoints and remote servers</li>
+                </ul>
+                
+                <h4>Heavy Forwarder (HF)</h4>
+                
+                <ul>
+                    <li>Full Splunk instance configured for forwarding</li>
+                    <li>Can parse, filter, route, and transform data</li>
+                    <li>Used for aggregation points and complex processing</li>
+                    <li>Can index locally while forwarding</li>
+                </ul>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Universal Forwarder</th>
+                                <th>Heavy Forwarder</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Footprint</td>
+                                <td>~50MB</td>
+                                <td>~1GB+</td>
+                            </tr>
+                            <tr>
+                                <td>Parsing</td>
+                                <td>Minimal</td>
+                                <td>Full</td>
+                            </tr>
+                            <tr>
+                                <td>Filtering</td>
+                                <td>Basic</td>
+                                <td>Advanced (regex, routing)</td>
+                            </tr>
+                            <tr>
+                                <td>Local indexing</td>
+                                <td>No</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>Web UI</td>
+                                <td>No</td>
+                                <td>Yes (optional)</td>
+                            </tr>
+                            <tr>
+                                <td>Use case</td>
+                                <td>Endpoint collection</td>
+                                <td>Aggregation, transformation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Deployment Server</h3>
+                
+                <p>
+                    Centrally manages forwarder configurations:
+                </p>
+                
+                <ul>
+                    <li>Distributes apps and configurations to forwarders</li>
+                    <li>Groups forwarders into server classes</li>
+                    <li>Pushes updates automatically</li>
+                    <li>Does NOT manage Search Heads or Indexers (use Cluster Master/Deployer)</li>
+                </ul>
+                
+                <h3>License Master</h3>
+                
+                <p>
+                    Manages and enforces Splunk licensing:
+                </p>
+                
+                <ul>
+                    <li>Tracks daily indexed volume across all indexers</li>
+                    <li>Enforces license limits</li>
+                    <li>Can be standalone or co-located with other roles</li>
+                </ul>
+                
+                <div class="info-box tip">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💡</span>
+                        Component Summary
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Think of it this way: <strong>Forwarders</strong> collect data, <strong>Indexers</strong> store and search data, <strong>Search Heads</strong> present data to users. The <strong>Deployment Server</strong> manages forwarder configs, while the <strong>License Master</strong> tracks usage.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="deployment-topologies">Deployment Topologies</h2>
+                
+                <h3>Single Instance</h3>
+                
+                <p>
+                    All components on one server. Suitable for small deployments or labs:
+                </p>
+                
+                <pre><code class="language-text">┌─────────────────────────────────────────────┐
+│           SINGLE INSTANCE                    │
+│  ┌─────────┐ ┌─────────┐ ┌─────────┐        │
+│  │ Search  │ │ Indexer │ │ License │        │
+│  │ Head    │ │         │ │ Master  │        │
+│  └─────────┘ └─────────┘ └─────────┘        │
+└─────────────────────────────────────────────┘
+         ▲
+         │ Data
+┌────────┴────────┐
+│   Forwarders    │
+└─────────────────┘
+
+Use case: Lab, POC, small deployment (&lt;10GB/day)</code></pre>
+                
+                <h3>Distributed (Non-Clustered)</h3>
+                
+                <p>
+                    Separate Search Head and Indexer tiers without clustering:
+                </p>
+                
+                <pre><code class="language-text">┌─────────────┐
+│ Search Head │ ────────────┐
+└─────────────┘             │
+                            ▼
+              ┌─────────────────────────┐
+              │        INDEXERS          │
+              │  ┌─────┐ ┌─────┐ ┌─────┐│
+              │  │ IDX │ │ IDX │ │ IDX ││
+              │  │  1  │ │  2  │ │  3  ││
+              │  └─────┘ └─────┘ └─────┘│
+              └─────────────────────────┘
+                            ▲
+                            │
+              ┌─────────────────────────┐
+              │       FORWARDERS        │
+              └─────────────────────────┘
+
+Use case: Medium deployment, no HA requirement</code></pre>
+                
+                <h3>Clustered (Production)</h3>
+                
+                <p>
+                    Full clustering for high availability and scale:
+                </p>
+                
+                <pre><code class="language-text">                    ┌──────────────┐
+                    │   Deployer   │ (SHC config management)
+                    └──────────────┘
+                            │
+              ┌─────────────┼─────────────┐
+              ▼             ▼             ▼
+        ┌─────────┐   ┌─────────┐   ┌─────────┐
+        │   SH1   │   │   SH2   │   │   SH3   │  Search Head Cluster
+        └─────────┘   └─────────┘   └─────────┘
+              │             │             │
+              └─────────────┼─────────────┘
+                            │
+                    ┌───────┴───────┐
+                    │ Load Balancer │
+                    └───────┬───────┘
+                            │
+              ┌─────────────┼─────────────┐
+              ▼             ▼             ▼
+        ┌─────────┐   ┌─────────┐   ┌─────────┐
+        │  IDX1   │   │  IDX2   │   │  IDX3   │  Indexer Cluster
+        └─────────┘   └─────────┘   └─────────┘
+                            ▲
+                    ┌───────┴───────┐
+                    │ Cluster Master│ (IDX cluster management)
+                    │   (Manager)   │
+                    └───────────────┘
+                            ▲
+              ┌─────────────┼─────────────┐
+              │             │             │
+        ┌─────────┐   ┌─────────┐   ┌─────────┐
+        │   HF1   │   │   HF2   │   │   HF3   │  Heavy Forwarders
+        └─────────┘   └─────────┘   └─────────┘  (aggregation tier)
+                            ▲
+              ┌─────────────┼─────────────┐
+              │             │             │
+        Universal Forwarders (thousands)</code></pre>
+                
+                <h2 id="clustering">Splunk Clustering</h2>
+                
+                <h3>Indexer Cluster</h3>
+                
+                <p>
+                    Provides data replication and search availability:
+                </p>
+                
+                <ul>
+                    <li><strong>Cluster Manager (Master)</strong> - Coordinates cluster operations</li>
+                    <li><strong>Peer Nodes</strong> - Indexers that store replicated data</li>
+                    <li><strong>Replication Factor (RF)</strong> - Number of copies of raw data</li>
+                    <li><strong>Search Factor (SF)</strong> - Number of searchable copies</li>
+                </ul>
+                
+                <pre><code class="language-bash"># Typical cluster configuration
+Replication Factor: 3  (3 copies of raw data)
+Search Factor: 2       (2 searchable copies)
+Minimum peers: 3       (to satisfy RF=3)
+
+# server.conf on Cluster Manager
+[clustering]
+mode = manager
+replication_factor = 3
+search_factor = 2
+
+# server.conf on Peer (Indexer)
+[clustering]
+mode = peer
+manager_uri = https://cluster-manager:8089
+replication_port = 9887</code></pre>
+                
+                <h3>Search Head Cluster</h3>
+                
+                <p>
+                    Provides high availability for search and UI:
+                </p>
+                
+                <ul>
+                    <li><strong>Deployer</strong> - Distributes apps to cluster members</li>
+                    <li><strong>Captain</strong> - Elected leader for job scheduling</li>
+                    <li><strong>Members</strong> - SH instances sharing configuration</li>
+                </ul>
+                
+                <pre><code class="language-bash"># Initialize SHC member
+splunk init shcluster-config -auth admin:password \
+  -mgmt_uri https://sh1:8089 \
+  -replication_port 9200 \
+  -replication_factor 3 \
+  -conf_deploy_fetch_url https://deployer:8089 \
+  -secret your_shared_secret \
+  -shcluster_label production_shc
+
+# Bootstrap captain (run once on one member)
+splunk bootstrap shcluster-captain -servers_list \
+  "https://sh1:8089,https://sh2:8089,https://sh3:8089"</code></pre>
+                
+                <div class="info-box warning">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">⚠️</span>
+                        Warning
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>Clustering requires careful planning.</strong> Indexer clusters need matching replication and search factors across all peers. Search Head clusters require odd numbers of members (3, 5, 7) for quorum. Always test failover scenarios before production deployment.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="data-flow">Data Flow Architecture</h2>
+                
+                <p>
+                    Understanding how data flows through Splunk is essential for troubleshooting:
+                </p>
+                
+                <pre><code class="language-text">DATA FLOW: Source to Search
+
+1. COLLECTION (Forwarder)
+   ┌─────────────────────────────────────────────┐
+   │ inputs.conf defines what to collect         │
+   │ • Monitor files/directories                 │
+   │ • Listen on network ports                   │
+   │ • Run scripts                               │
+   └─────────────────────────────────────────────┘
+                    ↓
+2. FORWARDING (Forwarder → Indexer)
+   ┌─────────────────────────────────────────────┐
+   │ outputs.conf defines where to send          │
+   │ • TCP to indexers (port 9997)               │
+   │ • Load balancing across indexers            │
+   │ • SSL/TLS encryption                        │
+   └─────────────────────────────────────────────┘
+                    ↓
+3. RECEIVING (Indexer)
+   ┌─────────────────────────────────────────────┐
+   │ inputs.conf on indexer accepts data         │
+   │ • Splunk-to-Splunk protocol (S2S)           │
+   │ • HTTP Event Collector (HEC)                │
+   └─────────────────────────────────────────────┘
+                    ↓
+4. PARSING (Indexer)
+   ┌─────────────────────────────────────────────┐
+   │ props.conf / transforms.conf                │
+   │ • Line breaking                             │
+   │ • Timestamp extraction                      │
+   │ • Source type assignment                    │
+   │ • Field extraction (index-time)             │
+   └─────────────────────────────────────────────┘
+                    ↓
+5. INDEXING (Indexer)
+   ┌─────────────────────────────────────────────┐
+   │ indexes.conf defines storage                │
+   │ • Tokenization and segmentation             │
+   │ • Write to hot bucket                       │
+   │ • Bloom filter creation                     │
+   └─────────────────────────────────────────────┘
+                    ↓
+6. SEARCHING (Search Head → Indexer)
+   ┌─────────────────────────────────────────────┐
+   │ User submits search                         │
+   │ • SH distributes to indexers                │
+   │ • Indexers search local data                │
+   │ • Results returned and merged               │
+   └─────────────────────────────────────────────┘</code></pre>
+                
+                <h2 id="splunk-cloud">Splunk Cloud vs Enterprise</h2>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>Splunk Enterprise</th>
+                                <th>Splunk Cloud</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Deployment</strong></td>
+                                <td>Self-managed (on-prem/IaaS)</td>
+                                <td>Splunk-managed SaaS</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Infrastructure</strong></td>
+                                <td>Customer responsibility</td>
+                                <td>Splunk manages</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Scaling</strong></td>
+                                <td>Manual (add indexers)</td>
+                                <td>Request capacity increase</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Updates</strong></td>
+                                <td>Customer schedules</td>
+                                <td>Splunk manages (maintenance windows)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Customization</strong></td>
+                                <td>Full control</td>
+                                <td>Limited (vetted apps only)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Data location</strong></td>
+                                <td>Your infrastructure</td>
+                                <td>Splunk infrastructure (region choice)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Forwarders</strong></td>
+                                <td>Connect to your indexers</td>
+                                <td>Connect to Splunk Cloud endpoints</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Splunk Cloud Architecture</h3>
+                
+                <pre><code class="language-text">┌────────────────────────────────────────────────────────┐
+│                   SPLUNK CLOUD                          │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │              Customer Stack                      │   │
+│  │  ┌─────────┐  ┌─────────┐  ┌─────────┐         │   │
+│  │  │   SH    │  │  IDX    │  │  IDX    │  ...    │   │
+│  │  │ Cluster │  │ Cluster │  │ Cluster │         │   │
+│  │  └─────────┘  └─────────┘  └─────────┘         │   │
+│  └─────────────────────────────────────────────────┘   │
+│                         ▲                               │
+│           Cloud Inputs: │                               │
+│  • HTTP Event Collector (HEC)                          │
+│  • Splunk-to-Splunk (Universal Forwarder)              │
+│  • Cloud-to-Cloud (AWS, Azure, GCP connectors)         │
+└────────────────────────────────────────────────────────┘
+                          ▲
+            ┌─────────────┼─────────────┐
+            │             │             │
+      ┌─────────┐   ┌─────────┐   ┌─────────┐
+      │ On-prem │   │  Cloud  │   │  SaaS   │
+      │   UF    │   │   UF    │   │  Apps   │
+      └─────────┘   └─────────┘   └─────────┘</code></pre>
+                
+                <h2 id="licensing">License Types and Considerations</h2>
+                
+                <p>
+                    Splunk licensing is based on daily indexed volume:
+                </p>
+                
+                <h3>License Types</h3>
+                
+                <ul>
+                    <li><strong>Enterprise License</strong> - GB/day limit, full features</li>
+                    <li><strong>Free License</strong> - 500MB/day, single user, limited features</li>
+                    <li><strong>Dev/Test License</strong> - For non-production use</li>
+                    <li><strong>Splunk Cloud</strong> - Consumption-based or commitment tiers</li>
+                </ul>
+                
+                <h3>License Monitoring</h3>
+                
+                <pre><code class="language-spl"># Check daily license usage
+index=_internal source=*license_usage.log type=Usage
+| timechart span=1d sum(b) AS bytes
+| eval GB = round(bytes/1024/1024/1024, 2)
+| table _time, GB
+
+# Usage by index
+index=_internal source=*license_usage.log type=Usage
+| stats sum(b) AS bytes by idx
+| eval GB = round(bytes/1024/1024/1024, 2)
+| sort -GB
+
+# Usage by sourcetype
+index=_internal source=*license_usage.log type=Usage
+| stats sum(b) AS bytes by st
+| eval GB = round(bytes/1024/1024/1024, 2)
+| sort -GB
+| head 20</code></pre>
+                
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            <strong>"Explain the difference between a Universal Forwarder and Heavy Forwarder. When would you use each?"</strong><br><br>
+                            The Universal Forwarder is lightweight (~50MB), does minimal processing, and is ideal for deploying to thousands of endpoints. The Heavy Forwarder is a full Splunk instance that can parse, filter, transform, and route data before forwarding. Use HF when you need to: (1) aggregate data from many sources before sending to indexers, (2) mask sensitive data, (3) route data to different indexes based on content, or (4) reduce data volume through filtering.
+                        </p>
+                    </div>
+                </div>
+                
+                <h2 id="ports">Default Ports Reference</h2>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Port</th>
+                                <th>Purpose</th>
+                                <th>Direction</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>8000</strong></td>
+                                <td>Splunk Web (HTTP/HTTPS)</td>
+                                <td>Users → Search Head</td>
+                            </tr>
+                            <tr>
+                                <td><strong>8089</strong></td>
+                                <td>Splunk Management (REST API)</td>
+                                <td>Between Splunk instances</td>
+                            </tr>
+                            <tr>
+                                <td><strong>9997</strong></td>
+                                <td>Data receiving (Splunk-to-Splunk)</td>
+                                <td>Forwarders → Indexers</td>
+                            </tr>
+                            <tr>
+                                <td><strong>8088</strong></td>
+                                <td>HTTP Event Collector</td>
+                                <td>Apps → Indexer/HEC</td>
+                            </tr>
+                            <tr>
+                                <td><strong>9887</strong></td>
+                                <td>Indexer cluster replication</td>
+                                <td>Indexer ↔ Indexer</td>
+                            </tr>
+                            <tr>
+                                <td><strong>8191</strong></td>
+                                <td>KV Store</td>
+                                <td>Between cluster members</td>
+                            </tr>
+                            <tr>
+                                <td><strong>514</strong></td>
+                                <td>Syslog (UDP/TCP)</td>
+                                <td>Devices → Syslog collector</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li><strong>Search Head</strong> - Handles UI, search distribution, and knowledge management</li>
+                    <li><strong>Indexer</strong> - Receives, parses, indexes, and stores data</li>
+                    <li><strong>Universal Forwarder</strong> - Lightweight collection agent</li>
+                    <li><strong>Heavy Forwarder</strong> - Full instance for aggregation and transformation</li>
+                    <li>Deployment topologies range from single-instance to fully clustered</li>
+                    <li>Indexer clusters provide replication (RF) and search availability (SF)</li>
+                    <li>Search Head clusters provide UI high availability</li>
+                    <li>Splunk Cloud is managed SaaS; Enterprise is self-managed</li>
+                    <li>Licensing based on daily indexed volume (GB/day)</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="1-6-soc-operations-siem.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">SOC Operations & SIEM</span>
+                        </div>
+                    </a>
+                    <a href="2-2-installation-configuration.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Installation & Configuration</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>
