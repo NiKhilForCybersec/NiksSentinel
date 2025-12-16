@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Fundamentals for SIEM - SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Complete Guide</div>
+                    </div>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">📚</span>SIEM Fundamentals</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items"><a href="1-1-introduction-to-siem.html" class="nav-item">Introduction to SIEM</a><a href="1-2-architecture-components.html" class="nav-item">Architecture & Components</a><a href="1-3-log-sources-onboarding.html" class="nav-item">Log Sources & Onboarding</a></div>
+                </div>
+                <div class="nav-section expanded">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">📖</span>Appendices</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items"><a href="a-1-windows-security-fundamentals.html" class="nav-item">Windows Security</a><a href="a-2-network-fundamentals.html" class="nav-item active">Network Fundamentals</a><a href="a-3-use-case-development.html" class="nav-item">Use Case Development</a></div>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Network Fundamentals for SIEM</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Network Fundamentals for SIEM</h1>
+                <p class="page-subtitle">TCP/IP, protocols, network architecture, and security infrastructure placement</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Network understanding is essential for SIEM operations - from parsing firewall logs to detecting lateral movement. This appendix covers the OSI/TCP-IP models, critical protocols, common ports, and enterprise network architecture from a security monitoring perspective.
+                        </p>
+                    </div>
+                </div>
+
+                <h2 id="osi-model">OSI Model & TCP/IP Stack</h2>
+                
+                <!-- Workflow Diagram: OSI Model -->
+                <div class="workflow-diagram">
+                    <div class="workflow-title">OSI Model vs TCP/IP Model - Security Perspective</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│     OSI MODEL          TCP/IP MODEL       PROTOCOLS           SECURITY TOOLS    │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│  ┌─────────────┐      ┌─────────────┐                                           │
+│  │ 7. Applicat.│      │             │     HTTP, HTTPS,      WAF, Proxy,         │
+│  ├─────────────┤      │             │     FTP, SMTP,        Application         │
+│  │ 6. Present. │      │ Application │     DNS, SSH,         Firewall,           │
+│  ├─────────────┤      │             │     RDP, SMB          DLP                 │
+│  │ 5. Session  │      │             │                                           │
+│  └──────┬──────┘      └──────┬──────┘                                           │
+│         │                    │                                                   │
+│         ▼                    ▼                                                   │
+│  ┌─────────────┐      ┌─────────────┐                                           │
+│  │ 4. Transport│      │  Transport  │     TCP, UDP          Firewall (Stateful),│
+│  │             │      │             │     (Ports)           IDS/IPS             │
+│  └──────┬──────┘      └──────┬──────┘                                           │
+│         │                    │                                                   │
+│         ▼                    ▼                                                   │
+│  ┌─────────────┐      ┌─────────────┐                                           │
+│  │ 3. Network  │      │  Internet   │     IP, ICMP,         Router ACLs,        │
+│  │             │      │             │     IPSec             Network Firewall    │
+│  └──────┬──────┘      └──────┬──────┘                                           │
+│         │                    │                                                   │
+│         ▼                    ▼                                                   │
+│  ┌─────────────┐      ┌─────────────┐                                           │
+│  │ 2. Data Link│      │             │     Ethernet,         Switch Port Sec,    │
+│  ├─────────────┤      │   Network   │     ARP, MAC          802.1X, VLAN        │
+│  │ 1. Physical │      │   Access    │     addresses         NAC                 │
+│  └─────────────┘      └─────────────┘                                           │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+ DATA ENCAPSULATION FLOW:
+ ========================
+ 
+ Application Data → [TCP Header + Data] → [IP Header + TCP + Data] → [Eth + IP + TCP + Data]
+                        Segment               Packet                      Frame
+                    (Port numbers)         (IP addresses)           (MAC addresses)
+                        </pre>
+                    </div>
+                </div>
+
+                <h3>Why This Matters for SIEM</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Layer</th>
+                            <th>Log Sources</th>
+                            <th>What You See in Logs</th>
+                            <th>Detection Examples</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Application (7)</strong></td>
+                            <td>Proxy, WAF, DNS, Web Server</td>
+                            <td>URLs, User-Agent, HTTP methods, DNS queries</td>
+                            <td>SQL injection, XSS, malicious domains, C2 beaconing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Transport (4)</strong></td>
+                            <td>Firewall, IDS/IPS, NetFlow</td>
+                            <td>Source/Dest ports, TCP flags, connection state</td>
+                            <td>Port scanning, unusual services, lateral movement</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Network (3)</strong></td>
+                            <td>Router, Firewall, VPN</td>
+                            <td>Source/Dest IPs, routing, GeoIP</td>
+                            <td>External C2, data exfiltration, impossible travel</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Link (2)</strong></td>
+                            <td>Switches, 802.1X, NAC</td>
+                            <td>MAC addresses, VLAN tags</td>
+                            <td>MAC spoofing, rogue devices, VLAN hopping</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 id="tcp-ip-fundamentals">TCP/IP Fundamentals</h2>
+                
+                <h3>IP Addressing</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Range</th>
+                            <th>Purpose</th>
+                            <th>Security Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Private (RFC 1918)</strong></td>
+                            <td>10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16</td>
+                            <td>Internal networks</td>
+                            <td>Should not appear on external interfaces</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Loopback</strong></td>
+                            <td>127.0.0.0/8</td>
+                            <td>Local host only</td>
+                            <td>Traffic here indicates local process communication</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Link-Local</strong></td>
+                            <td>169.254.0.0/16</td>
+                            <td>APIPA (no DHCP)</td>
+                            <td>Indicates network configuration issues</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Multicast</strong></td>
+                            <td>224.0.0.0/4</td>
+                            <td>One-to-many communication</td>
+                            <td>Used by protocols like OSPF, VRRP</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>TCP Three-Way Handshake</h3>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">TCP Connection Establishment</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+    CLIENT                                                SERVER
+       │                                                     │
+       │  ─────────── SYN (seq=100) ──────────────────────▶ │
+       │              "I want to connect"                    │
+       │                                                     │
+       │  ◀────────── SYN-ACK (seq=300, ack=101) ────────── │
+       │              "OK, I acknowledge"                    │
+       │                                                     │
+       │  ─────────── ACK (seq=101, ack=301) ─────────────▶ │
+       │              "Connection established"               │
+       │                                                     │
+       │  ◀════════════ DATA TRANSFER ═══════════════════▶  │
+       │                                                     │
+       │  ─────────── FIN ───────────────────────────────▶  │
+       │  ◀────────── FIN-ACK ────────────────────────────  │
+       │  ─────────── ACK ───────────────────────────────▶  │
+       │              "Connection closed"                    │
+       │                                                     │
+
+ SECURITY RELEVANCE:
+ ═══════════════════
+ • SYN Flood Attack: Many SYN packets, no ACK (exhausts server resources)
+ • Half-Open Scan: SYN sent, RST on SYN-ACK (stealth port scan)
+ • Completed handshakes from unusual IPs = potential lateral movement
+                        </pre>
+                    </div>
+                </div>
+
+                <h3>TCP Flags and Security Meaning</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Flag</th>
+                            <th>Purpose</th>
+                            <th>Security Relevance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>SYN</strong></td>
+                            <td>Synchronize - initiate connection</td>
+                            <td>High SYN count without ACK = SYN flood or port scan</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ACK</strong></td>
+                            <td>Acknowledge - confirm receipt</td>
+                            <td>ACK without prior SYN = reconnaissance or evasion</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FIN</strong></td>
+                            <td>Finish - close connection</td>
+                            <td>FIN scan to bypass stateful firewalls</td>
+                        </tr>
+                        <tr>
+                            <td><strong>RST</strong></td>
+                            <td>Reset - abort connection</td>
+                            <td>Port closed (RST response), connection hijacking</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PSH</strong></td>
+                            <td>Push - send data immediately</td>
+                            <td>Normal in interactive sessions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>URG</strong></td>
+                            <td>Urgent - prioritize data</td>
+                            <td>Rarely used, may indicate crafted packets</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 id="critical-ports">Critical Ports for Security Monitoring</h2>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Essential Ports to Know
+                    </div>
+                    <div class="info-box-content">
+                        <p>These ports frequently appear in security incidents. Know them by heart for log analysis and interview questions.</p>
+                    </div>
+                </div>
+
+                <h3>Standard Services</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Port</th>
+                            <th>Protocol</th>
+                            <th>Service</th>
+                            <th>Security Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>20/21</strong></td>
+                            <td>TCP</td>
+                            <td>FTP</td>
+                            <td>Cleartext credentials, data exfiltration vector</td>
+                        </tr>
+                        <tr>
+                            <td><strong>22</strong></td>
+                            <td>TCP</td>
+                            <td>SSH</td>
+                            <td>Secure remote access, brute force target</td>
+                        </tr>
+                        <tr>
+                            <td><strong>23</strong></td>
+                            <td>TCP</td>
+                            <td>Telnet</td>
+                            <td>Cleartext - should never be used</td>
+                        </tr>
+                        <tr>
+                            <td><strong>25</strong></td>
+                            <td>TCP</td>
+                            <td>SMTP</td>
+                            <td>Email delivery, spam relay if misconfigured</td>
+                        </tr>
+                        <tr>
+                            <td><strong>53</strong></td>
+                            <td>TCP/UDP</td>
+                            <td>DNS</td>
+                            <td>DNS tunneling for C2/exfiltration, DGA detection</td>
+                        </tr>
+                        <tr>
+                            <td><strong>80</strong></td>
+                            <td>TCP</td>
+                            <td>HTTP</td>
+                            <td>Web traffic, C2 over HTTP, cleartext</td>
+                        </tr>
+                        <tr>
+                            <td><strong>443</strong></td>
+                            <td>TCP</td>
+                            <td>HTTPS</td>
+                            <td>Encrypted web, C2 hiding in TLS traffic</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3389</strong></td>
+                            <td>TCP</td>
+                            <td>RDP</td>
+                            <td>Remote desktop, prime target for lateral movement</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Windows/Active Directory Ports</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Port</th>
+                            <th>Service</th>
+                            <th>Security Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>88</strong></td>
+                            <td>Kerberos</td>
+                            <td>Authentication, Kerberoasting attacks</td>
+                        </tr>
+                        <tr>
+                            <td><strong>135</strong></td>
+                            <td>RPC Endpoint Mapper</td>
+                            <td>Used for WMI, DCOM - lateral movement</td>
+                        </tr>
+                        <tr>
+                            <td><strong>139</strong></td>
+                            <td>NetBIOS Session</td>
+                            <td>Legacy file sharing, should be blocked externally</td>
+                        </tr>
+                        <tr>
+                            <td><strong>389/636</strong></td>
+                            <td>LDAP/LDAPS</td>
+                            <td>Directory queries, enumeration target</td>
+                        </tr>
+                        <tr>
+                            <td><strong>445</strong></td>
+                            <td>SMB</td>
+                            <td>File shares, PsExec, lateral movement - CRITICAL</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5985/5986</strong></td>
+                            <td>WinRM HTTP/HTTPS</td>
+                            <td>PowerShell remoting, lateral movement</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Database & Application Ports</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Port</th>
+                            <th>Service</th>
+                            <th>Security Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1433</strong></td>
+                            <td>MS SQL Server</td>
+                            <td>Database access, SQL injection target</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3306</strong></td>
+                            <td>MySQL</td>
+                            <td>Database access, should not be internet-exposed</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5432</strong></td>
+                            <td>PostgreSQL</td>
+                            <td>Database access</td>
+                        </tr>
+                        <tr>
+                            <td><strong>1521</strong></td>
+                            <td>Oracle DB</td>
+                            <td>Database access</td>
+                        </tr>
+                        <tr>
+                            <td><strong>27017</strong></td>
+                            <td>MongoDB</td>
+                            <td>NoSQL, often misconfigured (no auth)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>6379</strong></td>
+                            <td>Redis</td>
+                            <td>In-memory database, often unauthenticated</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box memory">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">🧠</span>
+                        Memory Aid: Critical Ports
+                    </div>
+                    <div class="info-box-content">
+                        <p><strong>"22-53-80-443-445-3389"</strong> - The Security Six:</p>
+                        <ul>
+                            <li><strong>22</strong> = SSH (Secure SHell has 2 letters repeated)</li>
+                            <li><strong>53</strong> = DNS (5 letters + 3 letters = Domain Name System)</li>
+                            <li><strong>80</strong> = HTTP (the "default" web port)</li>
+                            <li><strong>443</strong> = HTTPS (4+4+3=11, but it's the secure 80)</li>
+                            <li><strong>445</strong> = SMB (4+4+5=13 unlucky for attackers you catch)</li>
+                            <li><strong>3389</strong> = RDP (Remote Desktop Protocol - 3+3+8+9=23 like Telnet replaced)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2 id="network-architecture">Enterprise Network Architecture</h2>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Enterprise Security Architecture & Log Sources</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+                                    ┌─────────────┐
+                                    │  INTERNET   │
+                                    └──────┬──────┘
+                                           │
+                              ┌────────────┴────────────┐
+                              │                         │
+                              ▼                         ▼
+                    ┌─────────────────┐       ┌─────────────────┐
+                    │  Edge Firewall  │       │  DDoS Protect   │
+                    │  (Palo Alto/    │       │  (Cloudflare/   │
+                    │   Fortinet)     │       │   Akamai)       │
+                    │                 │       │                 │
+                    │ LOGS: Traffic,  │       │ LOGS: Attacks,  │
+                    │ Threat, URL     │       │ Mitigations     │
+                    └────────┬────────┘       └────────┬────────┘
+                             │                         │
+                             └───────────┬─────────────┘
+                                         │
+                    ┌────────────────────┼────────────────────┐
+                    │                    ▼                    │
+                    │            ┌──────────────┐             │
+                    │            │     DMZ      │             │
+                    │            │ ┌──────────┐ │             │
+                    │            │ │Web Proxy │ │  LOGS: HTTP requests,│
+                    │            │ │(Zscaler) │ │  URLs, User-Agent    │
+                    │            │ └──────────┘ │             │
+                    │            │ ┌──────────┐ │             │
+                    │            │ │WAF       │ │  LOGS: Attacks,      │
+                    │            │ │(F5/AWS)  │ │  blocked requests    │
+                    │            │ └──────────┘ │             │
+                    │            │ ┌──────────┐ │             │
+                    │            │ │Mail GW   │ │  LOGS: Email,        │
+                    │            │ │(Proofpt) │ │  attachments, URLs   │
+                    │            │ └──────────┘ │             │
+                    │            └──────┬───────┘             │
+                    │                   │                     │
+                    │     ┌─────────────┴─────────────┐       │
+                    │     │    Internal Firewall      │       │
+                    │     │    (Segmentation)         │       │
+                    │     │                           │       │
+                    │     │ LOGS: Internal traffic    │       │
+                    │     └─────────────┬─────────────┘       │
+                    │                   │                     │
+         ┌──────────┼───────────────────┼───────────────────┬─┼──────────┐
+         │          │                   │                   │ │          │
+         ▼          ▼                   ▼                   ▼ │          ▼
+┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐│ ┌─────────────┐
+│ User VLAN   │ │ Server VLAN │ │   DC VLAN   │ │ Database    ││ │   Cloud     │
+│             │ │             │ │             │ │ VLAN        ││ │ (Azure/AWS) │
+│ Endpoints   │ │ App Servers │ │ Domain      │ │             ││ │             │
+│ (EDR)       │ │ Web Servers │ │ Controllers │ │ SQL, Oracle ││ │ VMs, K8s,   │
+│             │ │             │ │ DNS, DHCP   │ │             ││ │ Serverless  │
+│ LOGS:       │ │ LOGS:       │ │ LOGS:       │ │ LOGS:       ││ │ LOGS:       │
+│ Process,    │ │ App logs,   │ │ Security    │ │ Query logs, ││ │ CloudTrail, │
+│ Network,    │ │ Access logs │ │ Events,     │ │ Login       ││ │ Azure AD,   │
+│ File        │ │             │ │ AD Audit    │ │ attempts    ││ │ Flow logs   │
+└─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘│ └─────────────┘
+                                                               │
+                    │                                          │
+                    │      ┌───────────────────────────────────┘
+                    │      │
+                    ▼      ▼
+           ┌────────────────────────────────────────────────────┐
+           │                    SIEM                             │
+           │   ┌─────────────────────────────────────────────┐  │
+           │   │        Log Aggregation & Correlation        │  │
+           │   │     (Splunk / Microsoft Sentinel)           │  │
+           │   └─────────────────────────────────────────────┘  │
+           │                         │                          │
+           │   ┌─────────────────────┼─────────────────────┐   │
+           │   │                     │                     │   │
+           │   ▼                     ▼                     ▼   │
+           │ ┌──────────┐      ┌──────────┐      ┌──────────┐  │
+           │ │ Alerts   │      │Dashboards│      │ Hunting  │  │
+           │ │ (SOAR)   │      │ Reports  │      │ Queries  │  │
+           │ └──────────┘      └──────────┘      └──────────┘  │
+           └────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <h3>Network Segmentation Zones</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Zone</th>
+                            <th>Purpose</th>
+                            <th>Security Controls</th>
+                            <th>Log Sources</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>DMZ</strong></td>
+                            <td>Public-facing services</td>
+                            <td>WAF, IDS, strict firewall rules</td>
+                            <td>WAF, Web Server, Proxy logs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>User Zone</strong></td>
+                            <td>End-user workstations</td>
+                            <td>EDR, NAC, User Firewall</td>
+                            <td>EDR, Windows Events, DHCP</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Server Zone</strong></td>
+                            <td>Internal applications</td>
+                            <td>Host firewall, segmentation</td>
+                            <td>App logs, OS logs, IIS/Apache</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Database Zone</strong></td>
+                            <td>Data storage</td>
+                            <td>Encrypted connections, limited access</td>
+                            <td>DB audit logs, query logs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Management Zone</strong></td>
+                            <td>Admin access, jump hosts</td>
+                            <td>PAM, MFA, session recording</td>
+                            <td>PAM logs, bastion logs</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 id="security-devices">Security Device Log Analysis</h2>
+                
+                <h3>Firewall Log Analysis</h3>
+                
+                <p><strong>Splunk - Firewall Traffic Analysis:</strong></p>
+                <pre><code>index=firewall action=allowed OR action=blocked
+| stats count by src_ip, dest_ip, dest_port, action
+| where count > 100
+| sort - count
+
+# Detect port scanning
+index=firewall action=blocked src_ip=* dest_port=*
+| stats dc(dest_port) as unique_ports, count by src_ip
+| where unique_ports > 20
+| sort - unique_ports
+
+# Unusual outbound connections
+index=firewall action=allowed direction=outbound
+| where NOT cidrmatch("10.0.0.0/8", dest_ip) AND dest_port NOT IN (80, 443, 53)
+| stats count by src_ip, dest_ip, dest_port
+| sort - count
+</code></pre>
+
+                <p><strong>Sentinel KQL - Firewall Analysis:</strong></p>
+                <pre><code>// Port scanning detection
+CommonSecurityLog
+| where DeviceAction == "Deny"
+| summarize UniquePortsScanned = dcount(DestinationPort), AttemptCount = count() 
+    by SourceIP, bin(TimeGenerated, 5m)
+| where UniquePortsScanned > 20
+| sort by UniquePortsScanned desc
+
+// Unusual outbound traffic
+CommonSecurityLog
+| where DeviceAction == "Allow" and CommunicationDirection == "Outbound"
+| where not(ipv4_is_private(DestinationIP))
+| where DestinationPort !in (80, 443, 53)
+| summarize ConnectionCount = count() by SourceIP, DestinationIP, DestinationPort
+| sort by ConnectionCount desc
+</code></pre>
+
+                <h3>DNS Log Analysis</h3>
+                
+                <pre><code>// Sentinel - DNS Tunneling Detection (long queries)
+DnsEvents
+| extend SubdomainLength = strlen(tostring(split(Name, ".")[0]))
+| where SubdomainLength > 50
+| summarize LongQueries = count(), AvgLength = avg(SubdomainLength) by ClientIP, bin(TimeGenerated, 1h)
+| where LongQueries > 50
+
+// Splunk - High entropy domain detection (DGA)
+index=dns query_type=A
+| eval domain=mvindex(split(query, "."), -2) + "." + mvindex(split(query, "."), -1)
+| eval entropy=0 
+| stats count by domain, src_ip
+| where count > 100 AND len(domain) > 15
+</code></pre>
+
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p><strong>"You see a spike in outbound traffic on port 443 to an IP address you don't recognize. How do you investigate?"</strong></p>
+                        <ol>
+                            <li><strong>Identify the source:</strong> Which internal host is making these connections? Check firewall/proxy logs for source IP.</li>
+                            <li><strong>Investigate the destination:</strong> Run IP through threat intel (VirusTotal, AbuseIPDB), check GeoIP, verify if legitimate CDN/cloud provider.</li>
+                            <li><strong>Check the process:</strong> If you have EDR/Sysmon, identify which process is making the connection (Sysmon Event 3).</li>
+                            <li><strong>Analyze traffic pattern:</strong> Is it beaconing (regular intervals)? What's the data volume? Upload vs download ratio?</li>
+                            <li><strong>Correlate with other events:</strong> Any preceding suspicious activity on the host (process creation, file download)?</li>
+                            <li><strong>If TLS:</strong> Check certificate info if available (SNI, certificate issuer, validity).</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <h2 id="traffic-patterns">Malicious Traffic Patterns</h2>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">C2 Beaconing Pattern Detection</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+ Normal User Traffic:                    C2 Beaconing:
+ ════════════════════                    ═══════════════
+ 
+    Requests                                Requests
+       ▲                                       ▲
+   100 │  █                                100 │ █ █ █ █ █ █ █ █ █ █ █ █
+       │  █ █                                  │ │ │ │ │ │ │ │ │ │ │ │ │
+    50 │  █ █ █                             50 │ │ │ │ │ │ │ │ │ │ │ │ │
+       │  █ █ █ █ █                            │ │ │ │ │ │ │ │ │ │ │ │ │
+     0 │──█─█─█─█─█────────────              0 │─┴─┴─┴─┴─┴─┴─┴─┴─┴─┴─┴─┴─
+       └────────────────────▶                  └────────────────────────▶
+        9am    12pm    5pm   Time              Every 60 seconds        Time
+       
+       (Variable, business hours)            (Regular intervals, 24/7)
+
+ Detection Query (Sentinel):
+ ═══════════════════════════
+ CommonSecurityLog
+ | where DeviceAction == "Allow"
+ | summarize 
+     RequestCount = count(),
+     TimeDiffs = make_list(datetime_diff('second', TimeGenerated, prev(TimeGenerated)))
+     by SourceIP, DestinationIP, bin(TimeGenerated, 1h)
+ | mv-expand TimeDiffs
+ | summarize 
+     AvgInterval = avg(toreal(TimeDiffs)),
+     StdDevInterval = stdev(toreal(TimeDiffs)),
+     RequestCount = sum(RequestCount)
+     by SourceIP, DestinationIP
+ | where StdDevInterval < 5 and RequestCount > 50  // Regular intervals
+                        </pre>
+                    </div>
+                </div>
+
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li><strong>OSI Model:</strong> Know which layer different security tools operate at - firewall (3-4), proxy (7), IDS (3-7)</li>
+                    <li><strong>TCP Flags:</strong> SYN/ACK for connections, RST for closed ports, high SYN without ACK = scan/flood</li>
+                    <li><strong>Critical Ports:</strong> 22 (SSH), 53 (DNS), 80/443 (HTTP/S), 445 (SMB), 3389 (RDP), 88 (Kerberos)</li>
+                    <li><strong>Network Zones:</strong> DMZ (public), User (endpoints), Server (apps), Database (data), Management (admin)</li>
+                    <li><strong>Log Sources:</strong> Each zone generates different logs - firewall, proxy, DNS, EDR, app logs</li>
+                    <li><strong>Malicious Patterns:</strong> Beaconing (regular intervals), port scanning (many ports), data exfil (large outbound)</li>
+                    <li><strong>Investigation:</strong> Source → Destination → Process → Traffic pattern → Threat intel → Correlation</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="a-1-windows-security-fundamentals.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Windows Security</span>
+                        </div>
+                    </a>
+                    <a href="a-3-use-case-development.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Use Case Development</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

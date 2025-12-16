@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows Security Fundamentals - SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Complete Guide</div>
+                    </div>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">📚</span>SIEM Fundamentals</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items"><a href="1-1-introduction-to-siem.html" class="nav-item">Introduction to SIEM</a><a href="1-2-architecture-components.html" class="nav-item">Architecture & Components</a><a href="1-3-log-sources-onboarding.html" class="nav-item">Log Sources & Onboarding</a><a href="1-4-log-parsing-normalization.html" class="nav-item">Parsing & Normalization</a><a href="1-5-detection-engineering-fundamentals.html" class="nav-item">Detection Engineering</a><a href="1-6-soc-operations-siem.html" class="nav-item">SOC Operations</a></div>
+                </div>
+                <div class="nav-section expanded">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">📖</span>Appendices</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items"><a href="a-1-windows-security-fundamentals.html" class="nav-item active">Windows Security</a><a href="a-2-network-fundamentals.html" class="nav-item">Network Fundamentals</a><a href="a-3-use-case-development.html" class="nav-item">Use Case Development</a></div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="a-1-windows-security-fundamentals.html">Appendices</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Windows Security Fundamentals</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Windows Security Fundamentals</h1>
+                <p class="page-subtitle">Essential Windows internals, security events, and command-line tools for SIEM professionals</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Understanding Windows internals is crucial for effective SIEM operations. This appendix covers Windows architecture, critical security events, registry keys for persistence detection, services, and essential PowerShell/CMD commands for security investigations.
+                        </p>
+                    </div>
+                </div>
+
+                <h2 id="windows-architecture">Windows Architecture Overview</h2>
+                
+                <!-- Workflow Diagram: Windows Architecture -->
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Windows Security Architecture Layers</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────┐
+│                        USER MODE (Ring 3)                                │
+├─────────────────────────────────────────────────────────────────────────┤
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌─────────────┐ │
+│  │ Applications │  │   Services   │  │  PowerShell  │  │     CMD     │ │
+│  │  (User Apps) │  │ (svchost.exe)│  │(powershell.exe)│ │  (cmd.exe)  │ │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘  └──────┬──────┘ │
+│         │                 │                 │                 │        │
+│         ▼                 ▼                 ▼                 ▼        │
+│  ┌─────────────────────────────────────────────────────────────────┐   │
+│  │                    Windows API (Win32/Win64)                     │   │
+│  │              CreateProcess, RegSetValue, WriteFile               │   │
+│  └──────────────────────────────┬──────────────────────────────────┘   │
+│                                 │                                       │
+├─────────────────────────────────┼───────────────────────────────────────┤
+│                        KERNEL MODE (Ring 0)                             │
+├─────────────────────────────────┼───────────────────────────────────────┤
+│                                 ▼                                       │
+│  ┌─────────────────────────────────────────────────────────────────┐   │
+│  │                      NTDLL.DLL (NT Layer)                        │   │
+│  │                 System Call Interface (Syscalls)                 │   │
+│  └──────────────────────────────┬──────────────────────────────────┘   │
+│                                 ▼                                       │
+│  ┌─────────────────────────────────────────────────────────────────┐   │
+│  │                    Windows Kernel (ntoskrnl.exe)                 │   │
+│  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────────┐  │   │
+│  │  │   Security  │  │   Process   │  │    I/O Manager          │  │   │
+│  │  │  Reference  │  │   Manager   │  │  (File/Registry/Network)│  │   │
+│  │  │   Monitor   │  │             │  │                         │  │   │
+│  │  └─────────────┘  └─────────────┘  └─────────────────────────┘  │   │
+│  └─────────────────────────────────────────────────────────────────┘   │
+│                                 │                                       │
+│                                 ▼                                       │
+│  ┌─────────────────────────────────────────────────────────────────┐   │
+│  │                    Security Audit Subsystem                      │   │
+│  │              (Generates Security Event Logs)                     │   │
+│  └─────────────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <h3>Key Security Components</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Function</th>
+                            <th>Security Relevance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>LSASS (lsass.exe)</strong></td>
+                            <td>Local Security Authority Subsystem</td>
+                            <td>Handles authentication, stores credentials in memory - prime target for credential dumping (Mimikatz)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SAM Database</strong></td>
+                            <td>Security Account Manager</td>
+                            <td>Stores local user account hashes - target for offline password attacks</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Security Event Log</strong></td>
+                            <td>Audit trail for security events</td>
+                            <td>Primary source for authentication, privilege use, and policy change events</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Windows Registry</strong></td>
+                            <td>Hierarchical configuration database</td>
+                            <td>Persistence mechanism, stores system/user configuration, malware often modifies Run keys</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Services (services.exe)</strong></td>
+                            <td>Service Control Manager</td>
+                            <td>Manages Windows services - attackers create malicious services for persistence</td>
+                        </tr>
+                        <tr>
+                            <td><strong>WMI (wmiprvse.exe)</strong></td>
+                            <td>Windows Management Instrumentation</td>
+                            <td>Used for lateral movement, persistence (WMI subscriptions), and reconnaissance</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 id="critical-event-ids">Critical Windows Security Event IDs</h2>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Must-Know Event IDs
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            These are the essential Windows Security Event IDs that every SIEM professional must know. They form the foundation of Windows-based threat detection.
+                        </p>
+                    </div>
+                </div>
+
+                <h3>Authentication Events (Logon/Logoff)</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Event ID</th>
+                            <th>Description</th>
+                            <th>Key Fields</th>
+                            <th>Detection Use Cases</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>4624</strong></td>
+                            <td>Successful logon</td>
+                            <td>LogonType, TargetUserName, IpAddress, WorkstationName</td>
+                            <td>Lateral movement, unusual logon times, service account abuse</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4625</strong></td>
+                            <td>Failed logon</td>
+                            <td>LogonType, TargetUserName, IpAddress, SubStatus</td>
+                            <td>Brute force, password spray, account lockout</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4634/4647</strong></td>
+                            <td>Logoff</td>
+                            <td>TargetUserName, LogonId</td>
+                            <td>Session duration analysis, correlate with 4624</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4648</strong></td>
+                            <td>Explicit credential logon (RunAs)</td>
+                            <td>SubjectUserName, TargetUserName, TargetServerName</td>
+                            <td>Credential abuse, privilege escalation attempts</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4672</strong></td>
+                            <td>Special privileges assigned (admin logon)</td>
+                            <td>SubjectUserName, PrivilegeList</td>
+                            <td>Admin activity tracking, privilege escalation</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Logon Types Explained</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Security Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>2</strong></td>
+                            <td>Interactive</td>
+                            <td>Console logon (keyboard at machine)</td>
+                            <td>Normal user logon at physical machine</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3</strong></td>
+                            <td>Network</td>
+                            <td>Network logon (SMB, mapped drives)</td>
+                            <td>Most common for lateral movement - investigate remote IPs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4</strong></td>
+                            <td>Batch</td>
+                            <td>Scheduled task execution</td>
+                            <td>Check if task is legitimate or persistence mechanism</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5</strong></td>
+                            <td>Service</td>
+                            <td>Service started with service account</td>
+                            <td>Normal for services, suspicious if new service account</td>
+                        </tr>
+                        <tr>
+                            <td><strong>7</strong></td>
+                            <td>Unlock</td>
+                            <td>Workstation unlocked</td>
+                            <td>User returning to workstation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>8</strong></td>
+                            <td>NetworkCleartext</td>
+                            <td>Network logon with cleartext credentials</td>
+                            <td>Security concern - credentials exposed on network</td>
+                        </tr>
+                        <tr>
+                            <td><strong>9</strong></td>
+                            <td>NewCredentials</td>
+                            <td>RunAs with /netonly</td>
+                            <td>Different credentials for network resources</td>
+                        </tr>
+                        <tr>
+                            <td><strong>10</strong></td>
+                            <td>RemoteInteractive</td>
+                            <td>RDP/Terminal Services</td>
+                            <td>Remote access - verify authorized RDP usage</td>
+                        </tr>
+                        <tr>
+                            <td><strong>11</strong></td>
+                            <td>CachedInteractive</td>
+                            <td>Cached credentials (offline DC)</td>
+                            <td>Domain controller not available</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Account Management Events</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Event ID</th>
+                            <th>Description</th>
+                            <th>Detection Use Cases</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>4720</strong></td>
+                            <td>User account created</td>
+                            <td>Unauthorized account creation, persistence</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4722</strong></td>
+                            <td>User account enabled</td>
+                            <td>Dormant account reactivation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4724</strong></td>
+                            <td>Password reset attempt</td>
+                            <td>Unauthorized password resets</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4725</strong></td>
+                            <td>User account disabled</td>
+                            <td>Account lockout, termination process</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4726</strong></td>
+                            <td>User account deleted</td>
+                            <td>Evidence destruction, access removal</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4728</strong></td>
+                            <td>Member added to security-enabled global group</td>
+                            <td>Privilege escalation via group membership</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4732</strong></td>
+                            <td>Member added to security-enabled local group</td>
+                            <td>Local admin additions (Administrators group)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4756</strong></td>
+                            <td>Member added to universal group</td>
+                            <td>Enterprise Admin/Domain Admin additions</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Process and Object Events</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Event ID</th>
+                            <th>Description</th>
+                            <th>Requirements</th>
+                            <th>Detection Use Cases</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>4688</strong></td>
+                            <td>Process creation</td>
+                            <td>Audit Process Creation policy + command line logging</td>
+                            <td>Malware execution, LOLBins, suspicious processes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4689</strong></td>
+                            <td>Process termination</td>
+                            <td>Audit Process Termination</td>
+                            <td>Process lifetime analysis</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4663</strong></td>
+                            <td>Object access attempt</td>
+                            <td>SACL on object + Audit Object Access</td>
+                            <td>Sensitive file access, data exfiltration</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4698</strong></td>
+                            <td>Scheduled task created</td>
+                            <td>Audit Other Object Access Events</td>
+                            <td>Persistence via scheduled tasks</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4699</strong></td>
+                            <td>Scheduled task deleted</td>
+                            <td>Audit Other Object Access Events</td>
+                            <td>Evidence destruction</td>
+                        </tr>
+                        <tr>
+                            <td><strong>7045</strong></td>
+                            <td>Service installed (System log)</td>
+                            <td>Default enabled</td>
+                            <td>Malicious service installation, persistence</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Security Log Events</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Event ID</th>
+                            <th>Description</th>
+                            <th>Severity</th>
+                            <th>Detection Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1102</strong></td>
+                            <td>Security log cleared</td>
+                            <td>🔴 HIGH</td>
+                            <td>Evidence destruction - investigate immediately</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4616</strong></td>
+                            <td>System time changed</td>
+                            <td>🟡 MEDIUM</td>
+                            <td>Timestomping attempt, log manipulation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4657</strong></td>
+                            <td>Registry value modified</td>
+                            <td>🟡 MEDIUM</td>
+                            <td>Persistence, configuration changes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4697</strong></td>
+                            <td>Service installed in system</td>
+                            <td>🟡 MEDIUM</td>
+                            <td>Persistence, lateral movement</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box memory">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">🧠</span>
+                        Memory Aid: Critical Event IDs
+                    </div>
+                    <div class="info-box-content">
+                        <p><strong>"46-24-25-88-98"</strong> - Remember these as pairs:</p>
+                        <ul>
+                            <li><strong>4624/4625</strong> = Logon Success/Failure (the authentication twins)</li>
+                            <li><strong>4688</strong> = Process creation (think "68" = process started)</li>
+                            <li><strong>4698</strong> = Scheduled task (think "98" = task scheduled)</li>
+                            <li><strong>4720/4732</strong> = Account/Group changes (72x = user management)</li>
+                            <li><strong>1102</strong> = Log cleared (think "11-02" = 911 for logs - emergency!)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2 id="sysmon-events">Sysmon Event IDs</h2>
+                
+                <p>Sysmon (System Monitor) provides enhanced logging beyond native Windows events. Essential Sysmon events:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Event ID</th>
+                            <th>Description</th>
+                            <th>Key Fields</th>
+                            <th>Detection Use Cases</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1</strong></td>
+                            <td>Process creation</td>
+                            <td>Image, CommandLine, ParentImage, Hashes, User</td>
+                            <td>Superior to 4688 - includes parent process and hashes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3</strong></td>
+                            <td>Network connection</td>
+                            <td>Image, DestinationIp, DestinationPort, Protocol</td>
+                            <td>Process-level network visibility, C2 detection</td>
+                        </tr>
+                        <tr>
+                            <td><strong>7</strong></td>
+                            <td>Image loaded (DLL)</td>
+                            <td>Image, ImageLoaded, Hashes</td>
+                            <td>DLL injection, side-loading detection</td>
+                        </tr>
+                        <tr>
+                            <td><strong>8</strong></td>
+                            <td>CreateRemoteThread</td>
+                            <td>SourceImage, TargetImage</td>
+                            <td>Process injection detection</td>
+                        </tr>
+                        <tr>
+                            <td><strong>10</strong></td>
+                            <td>Process access</td>
+                            <td>SourceImage, TargetImage, GrantedAccess</td>
+                            <td>LSASS access (credential dumping), process injection</td>
+                        </tr>
+                        <tr>
+                            <td><strong>11</strong></td>
+                            <td>File created</td>
+                            <td>Image, TargetFilename</td>
+                            <td>Malware drops, suspicious file creation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>12/13/14</strong></td>
+                            <td>Registry events</td>
+                            <td>Image, TargetObject, Details</td>
+                            <td>Persistence detection, configuration changes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>22</strong></td>
+                            <td>DNS query</td>
+                            <td>Image, QueryName, QueryResults</td>
+                            <td>DNS tunneling, DGA detection, C2 domains</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 id="registry-persistence">Registry Keys for Persistence Detection</h2>
+                
+                <!-- Workflow Diagram: Registry Persistence -->
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Common Registry Persistence Locations</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    REGISTRY PERSISTENCE LOCATIONS                        │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                          │
+│  ┌─────────────────── USER CONTEXT (HKCU) ───────────────────┐          │
+│  │                                                            │          │
+│  │  HKCU\Software\Microsoft\Windows\CurrentVersion\           │          │
+│  │  ├── Run              ← Programs run at user logon         │          │
+│  │  ├── RunOnce          ← Run once then delete               │          │
+│  │  ├── RunServices      ← Legacy, still checked              │          │
+│  │  └── Explorer\        │                                    │          │
+│  │      └── Shell Folders ← Startup folder path               │          │
+│  │                                                            │          │
+│  └────────────────────────────────────────────────────────────┘          │
+│                                                                          │
+│  ┌─────────────────── SYSTEM CONTEXT (HKLM) ──────────────────┐          │
+│  │                                                            │          │
+│  │  HKLM\Software\Microsoft\Windows\CurrentVersion\           │          │
+│  │  ├── Run              ← Programs run at system startup     │          │
+│  │  ├── RunOnce          ← Run once at startup                │          │
+│  │  └── Policies\Explorer\Run  ← GPO-based autoruns           │          │
+│  │                                                            │          │
+│  │  HKLM\SYSTEM\CurrentControlSet\Services\                   │          │
+│  │  └── [ServiceName]\   ← Malicious services                 │          │
+│  │      ├── ImagePath    ← Path to executable                 │          │
+│  │      └── Start        ← 2=Auto, 3=Manual, 4=Disabled       │          │
+│  │                                                            │          │
+│  └────────────────────────────────────────────────────────────┘          │
+│                                                                          │
+│  ┌─────────────────── ADVANCED PERSISTENCE ───────────────────┐          │
+│  │                                                            │          │
+│  │  HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\        │          │
+│  │  ├── Winlogon\Shell      ← Replaces explorer.exe           │          │
+│  │  ├── Winlogon\Userinit   ← Runs before shell               │          │
+│  │  └── Image File Execution Options\[exe]\                   │          │
+│  │      └── Debugger        ← Hijacks executable launch       │          │
+│  │                                                            │          │
+│  │  HKLM\SOFTWARE\Classes\                                    │          │
+│  │  └── [filetype]\shell\open\command  ← File handler hijack  │          │
+│  │                                                            │          │
+│  └────────────────────────────────────────────────────────────┘          │
+│                                                                          │
+└─────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <h3>Detection Queries</h3>
+                
+                <p><strong>Splunk - Registry Run Key Modifications:</strong></p>
+                <pre><code>index=windows sourcetype=WinRegistry 
+(registry_path="*\\CurrentVersion\\Run*" OR registry_path="*\\CurrentVersion\\RunOnce*")
+| stats count by registry_path, registry_value_name, registry_value_data, host, user
+| where NOT match(registry_value_data, "(?i)(microsoft|windows|program files)")
+</code></pre>
+
+                <p><strong>Sentinel KQL - Registry Persistence:</strong></p>
+                <pre><code>DeviceRegistryEvents
+| where ActionType == "RegistryValueSet"
+| where RegistryKey has_any (@"\CurrentVersion\Run", @"\CurrentVersion\RunOnce", 
+    @"Winlogon\Shell", @"Winlogon\Userinit", @"Image File Execution Options")
+| where RegistryValueData !contains "Microsoft" and RegistryValueData !contains "Windows"
+| project TimeGenerated, DeviceName, InitiatingProcessAccountName, 
+    RegistryKey, RegistryValueName, RegistryValueData
+</code></pre>
+
+                <h2 id="powershell-commands">Essential PowerShell Commands for Security</h2>
+                
+                <h3>System Information Gathering</h3>
+                
+                <pre><code># Get system information
+Get-ComputerInfo | Select-Object WindowsProductName, WindowsVersion, OsArchitecture
+
+# Get logged-on users
+Get-WmiObject -Class Win32_ComputerSystem | Select-Object UserName
+query user
+
+# Get running processes with command line
+Get-WmiObject Win32_Process | Select-Object ProcessId, Name, CommandLine
+
+# Get network connections with owning process
+Get-NetTCPConnection | Where-Object State -eq 'Established' | 
+    Select-Object LocalAddress, LocalPort, RemoteAddress, RemotePort, OwningProcess, 
+    @{Name='ProcessName';Expression={(Get-Process -Id $_.OwningProcess).Name}}
+
+# Get services
+Get-Service | Where-Object Status -eq 'Running' | Select-Object Name, DisplayName, StartType
+</code></pre>
+
+                <h3>Security Event Log Queries</h3>
+                
+                <pre><code># Get recent failed logons
+Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625} -MaxEvents 50 |
+    Select-Object TimeCreated, 
+    @{N='User';E={$_.Properties[5].Value}},
+    @{N='SourceIP';E={$_.Properties[19].Value}},
+    @{N='Status';E={$_.Properties[7].Value}}
+
+# Get recent successful logons (Type 10 = RDP)
+Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4624} -MaxEvents 100 |
+    Where-Object {$_.Properties[8].Value -eq 10} |
+    Select-Object TimeCreated,
+    @{N='User';E={$_.Properties[5].Value}},
+    @{N='SourceIP';E={$_.Properties[18].Value}}
+
+# Get process creation events
+Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4688} -MaxEvents 50 |
+    Select-Object TimeCreated,
+    @{N='User';E={$_.Properties[1].Value}},
+    @{N='Process';E={$_.Properties[5].Value}},
+    @{N='CommandLine';E={$_.Properties[8].Value}}
+
+# Check if security log was cleared
+Get-WinEvent -FilterHashtable @{LogName='Security'; Id=1102} -ErrorAction SilentlyContinue
+</code></pre>
+
+                <h3>Persistence Investigation</h3>
+                
+                <pre><code># Get startup programs (Run keys)
+Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run'
+Get-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run'
+
+# Get scheduled tasks
+Get-ScheduledTask | Where-Object State -eq 'Ready' | 
+    Select-Object TaskName, TaskPath, @{N='Action';E={$_.Actions.Execute}}
+
+# Get services with unusual paths
+Get-WmiObject Win32_Service | 
+    Where-Object {$_.PathName -notlike '*System32*' -and $_.PathName -notlike '*Program Files*'} |
+    Select-Object Name, State, PathName, StartMode
+
+# Get WMI subscriptions (persistence)
+Get-WMIObject -Namespace root\Subscription -Class __EventFilter
+Get-WMIObject -Namespace root\Subscription -Class __EventConsumer
+Get-WMIObject -Namespace root\Subscription -Class __FilterToConsumerBinding
+</code></pre>
+
+                <h3>Network Investigation</h3>
+                
+                <pre><code># Get all network connections
+netstat -ano | findstr ESTABLISHED
+Get-NetTCPConnection | Where-Object {$_.State -eq "Established"}
+
+# Get DNS cache
+Get-DnsClientCache | Select-Object Entry, RecordName, Data
+
+# Get ARP table
+Get-NetNeighbor | Where-Object State -eq 'Reachable'
+
+# Get listening ports
+Get-NetTCPConnection -State Listen | Select-Object LocalPort, OwningProcess,
+    @{N='Process';E={(Get-Process -Id $_.OwningProcess).Name}}
+</code></pre>
+
+                <h2 id="cmd-commands">Essential CMD Commands</h2>
+                
+                <pre><code># System information
+systeminfo
+hostname
+whoami /all
+whoami /priv
+
+# Network information
+ipconfig /all
+netstat -ano
+arp -a
+nslookup [domain]
+route print
+
+# User and group information
+net user
+net user [username]
+net localgroup administrators
+net group "Domain Admins" /domain
+
+# Process information
+tasklist /v
+tasklist /svc
+wmic process get processid,name,commandline
+
+# Service information
+sc query
+sc qc [servicename]
+wmic service get name,pathname,startmode
+
+# Scheduled tasks
+schtasks /query /fo LIST /v
+
+# Shares
+net share
+net use
+
+# Files and directories
+dir /s /b [path]
+attrib [file]
+icacls [file]
+</code></pre>
+
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p><strong>"What Windows Event IDs would you use to detect lateral movement?"</strong></p>
+                        <p>Focus on these events:</p>
+                        <ul>
+                            <li><strong>4624 (LogonType 3, 10)</strong> - Network logons and RDP, check for unusual source IPs</li>
+                            <li><strong>4648</strong> - Explicit credential usage (RunAs), often used with stolen creds</li>
+                            <li><strong>4672</strong> - Admin logons, track privileged access</li>
+                            <li><strong>5140/5145</strong> - Network share access, attackers access C$, ADMIN$</li>
+                            <li><strong>7045</strong> - New service installed (PsExec creates PSEXESVC)</li>
+                            <li><strong>4688</strong> - Process creation with network tools (PsExec, wmic, PowerShell remoting)</li>
+                        </ul>
+                        <p>Correlate source IPs across these events to identify lateral movement paths.</p>
+                    </div>
+                </div>
+
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li>Windows security relies on LSASS for authentication, SAM for local accounts, and Event Logs for auditing</li>
+                    <li><strong>Critical Event IDs:</strong> 4624/4625 (logon), 4688 (process), 4698 (task), 4720/4732 (accounts), 1102 (log cleared)</li>
+                    <li>Logon Types indicate HOW authentication occurred: Type 3 (network), Type 10 (RDP)</li>
+                    <li>Sysmon provides superior visibility: Event 1 (process+parent+hash), Event 10 (LSASS access), Event 3 (network per process)</li>
+                    <li>Registry persistence: Run keys, Services, Winlogon, Image File Execution Options</li>
+                    <li>PowerShell: Get-WinEvent for log queries, Get-ItemProperty for registry, Get-NetTCPConnection for network</li>
+                    <li>CMD: netstat, tasklist, wmic, schtasks for quick triage without PowerShell</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="index.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Back to</span>
+                            <span class="nav-button-title">Home</span>
+                        </div>
+                    </a>
+                    <a href="a-2-network-fundamentals.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">Network Fundamentals</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

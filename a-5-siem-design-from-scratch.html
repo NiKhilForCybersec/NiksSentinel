@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIEM Design from Scratch - SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Complete Guide</div>
+                    </div>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">📚</span>SIEM Fundamentals</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">🟢</span>Splunk Fundamentals</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Config</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">🔒</span>Splunk Security Ops</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 ES Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">⚡</span>Splunk SOAR</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">🔷</span>Sentinel Fundamentals</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">🔶</span>Sentinel Security Ops</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & TI</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Administration</a>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">⚖️</span>SIEM Comparison</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Basics</a>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">🎯</span>Detection Engineering</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 Sigma Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Detection Testing</a>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">🔍</span>Threat Hunting</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">📋</span>Use Cases</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+                <div class="nav-section expanded">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">📖</span>Appendices</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="a-1-windows-security-fundamentals.html" class="nav-item">A.1 Windows Security</a>
+                        <a href="a-2-network-fundamentals.html" class="nav-item">A.2 Network Fundamentals</a>
+                        <a href="a-3-use-case-development.html" class="nav-item">A.3 Use Case Development</a>
+                        <a href="a-4-siem-migration-guide.html" class="nav-item">A.4 SIEM Migration Guide</a>
+                        <a href="a-5-siem-design-from-scratch.html" class="nav-item active">A.5 SIEM Design from Scratch</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">SIEM Design from Scratch</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">SIEM Design from Scratch</h1>
+                <p class="page-subtitle">Complete guide to designing and deploying a greenfield SIEM implementation</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Building a SIEM from scratch requires careful planning across business requirements, technical architecture, log source prioritization, detection strategy, and operational processes. This guide walks through the complete process of designing and deploying a new SIEM - either Splunk or Microsoft Sentinel.
+                        </p>
+                    </div>
+                </div>
+
+                <h2 id="project-overview">Greenfield SIEM Project Overview</h2>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">SIEM Implementation - Complete Project Lifecycle</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                    GREENFIELD SIEM IMPLEMENTATION PHASES                                 │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                          │
+│  PHASE 1          PHASE 2          PHASE 3          PHASE 4          PHASE 5            │
+│  DISCOVER         DESIGN           BUILD            ONBOARD          OPERATE            │
+│  (4-8 weeks)      (4-6 weeks)      (6-12 weeks)     (8-16 weeks)     (Ongoing)          │
+│                                                                                          │
+│  ┌─────────┐      ┌─────────┐      ┌─────────┐      ┌─────────┐      ┌─────────┐        │
+│  │Business │      │Technical│      │ Deploy  │      │   Log   │      │   SOC   │        │
+│  │Require- │─────▶│Architect│─────▶│Platform │─────▶│ Sources │─────▶│  Ops    │        │
+│  │ments    │      │  ure    │      │         │      │& Content│      │         │        │
+│  └─────────┘      └─────────┘      └─────────┘      └─────────┘      └─────────┘        │
+│       │                │                │                │                │              │
+│       ▼                ▼                ▼                ▼                ▼              │
+│  • Stakeholder    • Platform       • Infra setup    • Priority       • Alert           │
+│    interviews       selection      • Core config      sources         triage           │
+│  • Compliance     • Sizing         • Integrations   • Detections     • Tuning          │
+│    needs          • Architecture   • Security       • Dashboards     • Hunting         │
+│  • Crown jewels   • Network flow   • Testing        • Playbooks      • Metrics         │
+│  • Risk assess    • Cost model                      • Training       • Improvement     │
+│                                                                                          │
+│  ════════════════════════════════════════════════════════════════════════════════════   │
+│                                                                                          │
+│  KEY DELIVERABLES:                                                                       │
+│  Phase 1: Requirements document, log source inventory, compliance matrix                │
+│  Phase 2: Architecture diagram, sizing document, cost estimate, project plan            │
+│  Phase 3: Working SIEM environment, integration configs, test results                   │
+│  Phase 4: Onboarded sources, detection rules, dashboards, trained team                  │
+│  Phase 5: SOC playbooks, KPIs, continuous improvement process                           │
+│                                                                                          │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <h2 id="phase1-discovery">Phase 1: Discovery & Requirements</h2>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Discovery Phase - Comprehensive Framework</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                    DISCOVERY FRAMEWORK                                                   │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                          │
+│  ╔═══════════════════════════════════════════════════════════════════════════════════╗  │
+│  ║ 1. STAKEHOLDER INTERVIEWS                                                         ║  │
+│  ╠═══════════════════════════════════════════════════════════════════════════════════╣  │
+│  ║                                                                                   ║  │
+│  ║  WHO TO INTERVIEW:              KEY QUESTIONS:                                    ║  │
+│  ║  ─────────────────              ──────────────                                    ║  │
+│  ║  • CISO / Security Director     • What keeps you up at night?                     ║  │
+│  ║  • SOC Manager                  • What visibility do you lack today?              ║  │
+│  ║  • IT Operations                • What compliance requirements apply?             ║  │
+│  ║  • Network Team                 • What are your crown jewel assets?               ║  │
+│  ║  • Cloud Team                   • What's your incident response process?          ║  │
+│  ║  • Compliance/Audit             • What reporting do auditors require?             ║  │
+│  ║  • Application Owners           • How many analysts will use the SIEM?            ║  │
+│  ║                                 • What's your budget range?                       ║  │
+│  ║                                 • What's the timeline expectation?                ║  │
+│  ╚═══════════════════════════════════════════════════════════════════════════════════╝  │
+│                                                                                          │
+│  ╔═══════════════════════════════════════════════════════════════════════════════════╗  │
+│  ║ 2. ENVIRONMENT INVENTORY                                                          ║  │
+│  ╠═══════════════════════════════════════════════════════════════════════════════════╣  │
+│  ║                                                                                   ║  │
+│  ║  Infrastructure:                 Security Tools:                                  ║  │
+│  ║  □ Windows servers (count)       □ Firewall vendor/model                          ║  │
+│  ║  □ Linux servers (count)         □ EDR solution                                   ║  │
+│  ║  □ Windows workstations          □ Email security gateway                         ║  │
+│  ║  □ Network devices               □ Web proxy / SWG                                ║  │
+│  ║  □ Cloud VMs                     □ VPN solution                                   ║  │
+│  ║                                  □ IDS/IPS                                        ║  │
+│  ║  Applications:                   Cloud:                                           ║  │
+│  ║  □ Web applications              □ AWS accounts/services                          ║  │
+│  ║  □ Databases (type, count)       □ Azure subscriptions                            ║  │
+│  ║  □ ERP systems                   □ GCP projects                                   ║  │
+│  ║  □ Custom applications           □ Microsoft 365 tenant                           ║  │
+│  ║  □ SaaS applications             □ Other SaaS (Salesforce, etc.)                  ║  │
+│  ╚═══════════════════════════════════════════════════════════════════════════════════╝  │
+│                                                                                          │
+│  ╔═══════════════════════════════════════════════════════════════════════════════════╗  │
+│  ║ 3. COMPLIANCE REQUIREMENTS                                                        ║  │
+│  ╠═══════════════════════════════════════════════════════════════════════════════════╣  │
+│  ║                                                                                   ║  │
+│  ║  REGULATION        LOGGING REQUIREMENTS            RETENTION PERIOD               ║  │
+│  ║  ──────────        ────────────────────            ────────────────               ║  │
+│  ║  PCI-DSS           All access to cardholder data   1 year (90 days online)        ║  │
+│  ║  HIPAA             Access to ePHI systems          6 years                        ║  │
+│  ║  SOX               Financial system access         7 years                        ║  │
+│  ║  GDPR              Processing activities           Varies (minimize)              ║  │
+│  ║  NIST 800-171      CUI system events               3 years                        ║  │
+│  ║  SOC 2             Security events                 1 year                         ║  │
+│  ╚═══════════════════════════════════════════════════════════════════════════════════╝  │
+│                                                                                          │
+│  ╔═══════════════════════════════════════════════════════════════════════════════════╗  │
+│  ║ 4. THREAT LANDSCAPE ASSESSMENT                                                    ║  │
+│  ╠═══════════════════════════════════════════════════════════════════════════════════╣  │
+│  ║                                                                                   ║  │
+│  ║  □ What threats are most relevant to your industry?                              ║  │
+│  ║  □ Have you had security incidents before? What type?                            ║  │
+│  ║  □ Are you targeted by specific threat actors (APTs)?                            ║  │
+│  ║  □ Biggest concerns: Ransomware? Insider threat? Data theft? BEC?                ║  │
+│  ║  □ Which MITRE ATT&CK techniques are highest priority?                           ║  │
+│  ╚═══════════════════════════════════════════════════════════════════════════════════╝  │
+│                                                                                          │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <h3>Log Source Prioritization Matrix</h3>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Log Source Priority Framework - What to Onboard When</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                    LOG SOURCE PRIORITIZATION                                             │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                          │
+│  ╔═══════════════════════════════════════════════════════════════════════════════════╗  │
+│  ║ TIER 1 - CRITICAL (Onboard Week 1-4)                                              ║  │
+│  ║ These provide core visibility into authentication, perimeter, and endpoints       ║  │
+│  ╠═══════════════════════════════════════════════════════════════════════════════════╣  │
+│  ║                                                                                   ║  │
+│  ║  Source              Detection Value                    Est. Volume               ║  │
+│  ║  ──────              ───────────────                    ───────────               ║  │
+│  ║  Active Directory    Auth attacks, priv escalation,     5-20 GB/day per 10K       ║  │
+│  ║  (Windows DC)        account changes, group changes     users                     ║  │
+│  ║                                                                                   ║  │
+│  ║  Perimeter Firewall  External attacks, C2 comms,        10-50 GB/day              ║  │
+│  ║                      policy violations, exfiltration    (varies by traffic)       ║  │
+│  ║                                                                                   ║  │
+│  ║  EDR / Endpoint      Malware execution, suspicious      5-15 GB/day per           ║  │
+│  ║                      processes, lateral movement        1K endpoints              ║  │
+│  ║                                                                                   ║  │
+│  ║  Azure AD / Entra    Cloud auth, MFA bypass, risky      1-5 GB/day per            ║  │
+│  ║                      sign-ins, conditional access       10K users                 ║  │
+│  ║                                                                                   ║  │
+│  ║  VPN                 Remote access abuse, impossible    1-5 GB/day                ║  │
+│  ║                      travel, credential theft                                     ║  │
+│  ╚═══════════════════════════════════════════════════════════════════════════════════╝  │
+│                                                                                          │
+│  ╔═══════════════════════════════════════════════════════════════════════════════════╗  │
+│  ║ TIER 2 - HIGH (Onboard Week 5-8)                                                  ║  │
+│  ║ Expand visibility to email, web, and cloud platforms                              ║  │
+│  ╠═══════════════════════════════════════════════════════════════════════════════════╣  │
+│  ║                                                                                   ║  │
+│  ║  Email Security      Phishing, BEC, malware delivery    5-20 GB/day               ║  │
+│  ║  Web Proxy / SWG     C2 callbacks, data exfiltration    10-50 GB/day              ║  │
+│  ║  DNS (Internal)      DNS tunneling, DGA detection       5-20 GB/day               ║  │
+│  ║  Microsoft 365       Email rules, file sharing abuse    5-15 GB/day               ║  │
+│  ║  Cloud Platform      Resource changes, IAM events       2-10 GB/day               ║  │
+│  ║  (AWS/Azure/GCP)                                                                  ║  │
+│  ╚═══════════════════════════════════════════════════════════════════════════════════╝  │
+│                                                                                          │
+│  ╔═══════════════════════════════════════════════════════════════════════════════════╗  │
+│  ║ TIER 3 - MEDIUM (Onboard Week 9-12)                                               ║  │
+│  ║ Additional context and application-level visibility                               ║  │
+│  ╠═══════════════════════════════════════════════════════════════════════════════════╣  │
+│  ║                                                                                   ║  │
+│  ║  Database Audit      Data access, SQL injection         5-20 GB/day               ║  │
+│  ║  Linux Servers       System events, SSH, sudo           2-10 GB/day               ║  │
+│  ║  Web Applications    App attacks, errors, access        Varies widely             ║  │
+│  ║  Network IDS/IPS     Exploit attempts, anomalies        5-20 GB/day               ║  │
+│  ║  DHCP                Asset tracking, rogue devices      <1 GB/day                 ║  │
+│  ╚═══════════════════════════════════════════════════════════════════════════════════╝  │
+│                                                                                          │
+│  ╔═══════════════════════════════════════════════════════════════════════════════════╗  │
+│  ║ TIER 4 - LOWER (Onboard as Needed)                                                ║  │
+│  ║ Specialized sources or high-volume/low-value                                      ║  │
+│  ╠═══════════════════════════════════════════════════════════════════════════════════╣  │
+│  ║                                                                                   ║  │
+│  ║  Vulnerability Scan  Compliance, context enrichment     <1 GB/day                 ║  │
+│  ║  Physical Access     Physical security correlation      <1 GB/day                 ║  │
+│  ║  NetFlow             Network forensics, baseline        10-100 GB/day (HIGH!)     ║  │
+│  ║  Printers/IoT        Usually low detection value        Varies                    ║  │
+│  ╚═══════════════════════════════════════════════════════════════════════════════════╝  │
+│                                                                                          │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <h2 id="phase2-design">Phase 2: Architecture Design</h2>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Platform Selection Decision Tree</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                    SPLUNK vs SENTINEL DECISION FRAMEWORK                                 │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                          │
+│                              START HERE                                                  │
+│                                  │                                                       │
+│                                  ▼                                                       │
+│                    ┌─────────────────────────────┐                                      │
+│                    │ Is your environment         │                                      │
+│                    │ primarily Microsoft/Azure?  │                                      │
+│                    └──────────────┬──────────────┘                                      │
+│                           YES │         │ NO                                            │
+│                               ▼         ▼                                               │
+│           ┌──────────────────────┐  ┌──────────────────────┐                           │
+│           │ Do you have          │  │ Do you need          │                           │
+│           │ Microsoft E5/G5?     │  │ on-premises SIEM?    │                           │
+│           └───────────┬──────────┘  └───────────┬──────────┘                           │
+│                YES │       │ NO            YES │       │ NO                            │
+│                    ▼       ▼                   ▼       ▼                               │
+│            ┌──────────┐ ┌──────────┐   ┌──────────┐ ┌──────────┐                       │
+│            │SENTINEL  │ │ Still    │   │ SPLUNK   │ │ Compare  │                       │
+│            │(Strong   │ │ consider │   │ ENTERP.  │ │ Both     │                       │
+│            │ fit)     │ │ Sentinel │   │ On-Prem  │ │ Options  │                       │
+│            └──────────┘ └──────────┘   └──────────┘ └──────────┘                       │
+│                                                                                          │
+│  ═══════════════════════════════════════════════════════════════════════════════════    │
+│                                                                                          │
+│                          DETAILED COMPARISON                                             │
+│  ┌───────────────────┬─────────────────────────┬─────────────────────────────────────┐  │
+│  │ FACTOR            │ SPLUNK                  │ SENTINEL                            │  │
+│  ├───────────────────┼─────────────────────────┼─────────────────────────────────────┤  │
+│  │ Deployment        │ Cloud OR On-Premises    │ Cloud only (Azure)                  │  │
+│  │ Licensing Model   │ GB/day ingested         │ GB/day + analytics fees             │  │
+│  │ Microsoft Logs    │ Good (via add-ons)      │ Native + some FREE (M365/Entra)     │  │
+│  │ Multi-Cloud       │ Excellent               │ Good (Azure-centric)                │  │
+│  │ Query Language    │ SPL (powerful, complex) │ KQL (intuitive, SQL-like)           │  │
+│  │ SOAR              │ Splunk SOAR (separate)  │ Logic Apps (built-in)               │  │
+│  │ Learning Curve    │ Steeper                 │ Gentler                             │  │
+│  │ Community         │ Extensive Splunkbase    │ Growing Content Hub                 │  │
+│  │ Best For          │ Complex multi-vendor    │ Microsoft-centric, cloud-first      │  │
+│  └───────────────────┴─────────────────────────┴─────────────────────────────────────┘  │
+│                                                                                          │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <h3>Splunk Architecture</h3>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Splunk Enterprise - Distributed Architecture</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                    SPLUNK DISTRIBUTED ARCHITECTURE                                       │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                          │
+│                              ┌─────────────────────┐                                    │
+│                              │    SOC ANALYSTS     │                                    │
+│                              │    (Web Browser)    │                                    │
+│                              └──────────┬──────────┘                                    │
+│                                         │ HTTPS                                         │
+│                                         ▼                                               │
+│                        ┌────────────────────────────────┐                               │
+│                        │        LOAD BALANCER           │                               │
+│                        └────────────────┬───────────────┘                               │
+│                                         │                                               │
+│              ┌──────────────────────────┼──────────────────────────┐                    │
+│              │                          │                          │                    │
+│              ▼                          ▼                          ▼                    │
+│      ┌──────────────┐          ┌──────────────┐          ┌──────────────┐              │
+│      │ SEARCH HEAD  │          │ SEARCH HEAD  │          │ SEARCH HEAD  │              │
+│      │      1       │          │      2       │          │      3       │              │
+│      └──────┬───────┘          └──────┬───────┘          └──────┬───────┘              │
+│             │                         │                         │                       │
+│             └─────────────────────────┼─────────────────────────┘                       │
+│                                       │ Distribute searches                             │
+│              ┌────────────────────────┼────────────────────────┐                        │
+│              │                        │                        │                        │
+│              ▼                        ▼                        ▼                        │
+│      ┌──────────────┐        ┌──────────────┐        ┌──────────────┐                  │
+│      │   INDEXER    │        │   INDEXER    │        │   INDEXER    │                  │
+│      │      1       │        │      2       │        │      3       │                  │
+│      │ (300 GB/day) │        │ (300 GB/day) │        │ (300 GB/day) │                  │
+│      └──────────────┘        └──────────────┘        └──────────────┘                  │
+│              │                        │                        │                        │
+│              └────────────────────────┼────────────────────────┘                        │
+│                                       │ Receive data                                    │
+│       ┌───────────────────────────────┼───────────────────────────────┐                │
+│       │                               │                               │                │
+│       ▼                               ▼                               ▼                │
+│ ┌───────────────┐            ┌───────────────┐               ┌───────────────┐         │
+│ │HEAVY FORWARDER│            │HEAVY FORWARDER│               │     HEC       │         │
+│ │ (Syslog)      │            │ (Database)    │               │ (Cloud/API)   │         │
+│ └───────┬───────┘            └───────┬───────┘               └───────┬───────┘         │
+│         │                            │                               │                 │
+│         ▼                            ▼                               ▼                 │
+│   [Firewalls]                  [Databases]                    [AWS/Azure/M365]         │
+│   [Network]                    [Linux Syslog]                 [Cloud Apps]             │
+│                                                                                          │
+│ ┌───────────────────────────────────────────────────────────────────────────────────┐  │
+│ │ WINDOWS (Universal Forwarders) - Managed by DEPLOYMENT SERVER                     │  │
+│ │   ┌────┐ ┌────┐ ┌────┐ ┌────┐ ┌────┐ ┌────┐ ┌────┐ ┌────┐                        │  │
+│ │   │ UF │ │ UF │ │ UF │ │ UF │ │ UF │ │ UF │ │ UF │ │ UF │  ... (all endpoints)   │  │
+│ │   └────┘ └────┘ └────┘ └────┘ └────┘ └────┘ └────┘ └────┘                        │  │
+│ └───────────────────────────────────────────────────────────────────────────────────┘  │
+│                                                                                          │
+│  KEY COMPONENTS:                                                                         │
+│  • License Master - manages license pool                                                │
+│  • Cluster Manager - manages indexer cluster                                            │
+│  • Deployer - manages search head cluster                                               │
+│  • Deployment Server - pushes configs to forwarders                                     │
+│  • Monitoring Console - health monitoring                                               │
+│                                                                                          │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <h3>Microsoft Sentinel Architecture</h3>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Microsoft Sentinel - Cloud-Native Architecture</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                    MICROSOFT SENTINEL ARCHITECTURE                                       │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                          │
+│                              ┌─────────────────────┐                                    │
+│                              │    SOC ANALYSTS     │                                    │
+│                              │   (Azure Portal)    │                                    │
+│                              └──────────┬──────────┘                                    │
+│                                         │                                               │
+│  ┌───────────────────────────────────────────────────────────────────────────────────┐  │
+│  │                         MICROSOFT SENTINEL                                        │  │
+│  │                     (Azure Resource Group)                                        │  │
+│  │                                                                                   │  │
+│  │  ┌─────────────────────────────────────────────────────────────────────────────┐ │  │
+│  │  │                    LOG ANALYTICS WORKSPACE                                  │ │  │
+│  │  │                                                                             │ │  │
+│  │  │  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐           │ │  │
+│  │  │  │SecurityEvent│ │ SigninLogs  │ │CommonSecLog │ │   Syslog    │           │ │  │
+│  │  │  │  (Windows)  │ │ (Azure AD)  │ │   (CEF)     │ │  (Linux)    │           │ │  │
+│  │  │  └─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘           │ │  │
+│  │  │                                                                             │ │  │
+│  │  │  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐           │ │  │
+│  │  │  │OfficeActiv- │ │DeviceProcess│ │AzureActivity│ │  Custom_CL  │           │ │  │
+│  │  │  │ity (M365)   │ │Events (MDE) │ │             │ │             │           │ │  │
+│  │  │  └─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘           │ │  │
+│  │  └─────────────────────────────────────────────────────────────────────────────┘ │  │
+│  │                                                                                   │  │
+│  │  ┌────────────┐ ┌────────────┐ ┌────────────┐ ┌────────────┐ ┌────────────┐      │  │
+│  │  │ Analytics  │ │ Incidents  │ │ Workbooks  │ │ Playbooks  │ │    UEBA    │      │  │
+│  │  │   Rules    │ │  & Cases   │ │(Dashboards)│ │(Logic Apps)│ │            │      │  │
+│  │  └────────────┘ └────────────┘ └────────────┘ └────────────┘ └────────────┘      │  │
+│  └───────────────────────────────────────────────────────────────────────────────────┘  │
+│                                                                                          │
+│                       DATA CONNECTORS                                                    │
+│       ┌─────────────────┬───────────────┬───────────────┬─────────────────┐            │
+│       │                 │               │               │                 │            │
+│       ▼                 ▼               ▼               ▼                 ▼            │
+│  ┌─────────┐      ┌─────────┐    ┌───────────┐   ┌─────────┐      ┌───────────┐       │
+│  │Microsoft│      │  Azure  │    │    AMA    │   │  CEF/   │      │  Logic    │       │
+│  │  Native │      │ Services│    │  Agents   │   │ Syslog  │      │   Apps    │       │
+│  └────┬────┘      └────┬────┘    └─────┬─────┘   └────┬────┘      └─────┬─────┘       │
+│       │                │               │              │                 │              │
+│       ▼                ▼               ▼              ▼                 ▼              │
+│  ┌─────────┐      ┌─────────┐    ┌─────────┐    ┌─────────┐      ┌─────────┐          │
+│  │Azure AD │      │ Azure   │    │ Windows │    │Firewalls│      │3rd Party│          │
+│  │M365     │      │ Activity│    │ Linux   │    │CEF devs │      │SaaS/API │          │
+│  │Defender │      │ KeyVault│    │ Servers │    │         │      │         │          │
+│  └─────────┘      └─────────┘    └─────────┘    └─────────┘      └─────────┘          │
+│                                                                                          │
+│  DATA FLOW:                                                                              │
+│  1. Microsoft services → Native connectors (1-click enable, some FREE)                  │
+│  2. Azure resources → Diagnostic settings to workspace                                  │
+│  3. Windows/Linux VMs → Azure Monitor Agent (AMA) with DCR                              │
+│  4. Network devices → CEF/Syslog via Linux forwarder with AMA                           │
+│  5. Third-party → Logic Apps or Azure Functions                                         │
+│                                                                                          │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <h3>Sizing Guidelines</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Org Size</th>
+                            <th>Est. Volume</th>
+                            <th>Splunk Architecture</th>
+                            <th>Sentinel Tier</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Small</strong> (&lt;500 users)</td>
+                            <td>10-50 GB/day</td>
+                            <td>Single instance or Splunk Cloud</td>
+                            <td>Pay-as-you-go or 100 GB tier</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Medium</strong> (500-5K users)</td>
+                            <td>50-300 GB/day</td>
+                            <td>3 indexers, 2 search heads</td>
+                            <td>200-500 GB commitment tier</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Large</strong> (5K-50K users)</td>
+                            <td>300 GB-2 TB/day</td>
+                            <td>Indexer cluster (6-12), SHC</td>
+                            <td>1-5 TB commitment + ADX archive</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Enterprise</strong> (50K+ users)</td>
+                            <td>2+ TB/day</td>
+                            <td>Multi-site clusters, federation</td>
+                            <td>Custom agreement, multi-workspace</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 id="phase3-build">Phase 3: Build & Deploy</h2>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Build Phase - Week by Week Checklist</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                    BUILD PHASE TIMELINE                                                  │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                          │
+│  WEEK 1-2: INFRASTRUCTURE DEPLOYMENT                                                    │
+│  ════════════════════════════════════                                                    │
+│  □ Provision compute resources (VMs / Azure resources)                                  │
+│  □ Configure networking (firewall rules, load balancers)                                │
+│  □ Install SIEM software / enable Azure Sentinel                                        │
+│  □ Configure authentication (LDAP/SAML/Entra ID)                                        │
+│  □ Set up initial admin accounts and RBAC                                               │
+│  □ Configure TLS certificates                                                           │
+│  □ Document all configurations                                                          │
+│                                                                                          │
+│  WEEK 3-4: CORE CONFIGURATION                                                           │
+│  ═════════════════════════════                                                           │
+│  □ Configure indexes/tables and retention policies                                      │
+│  □ Set up data collection infrastructure:                                               │
+│      Splunk: Deployment Server, forwarder management                                    │
+│      Sentinel: Data Collection Rules, AMA deployment strategy                           │
+│  □ Configure license/cost management and alerts                                         │
+│  □ Set up health monitoring for SIEM components                                         │
+│  □ Configure backup and disaster recovery                                               │
+│                                                                                          │
+│  WEEK 5-6: INTEGRATIONS                                                                 │
+│  ══════════════════════                                                                  │
+│  □ Configure SOAR / automation platform                                                 │
+│  □ Integrate with ticketing (ServiceNow/Jira)                                           │
+│  □ Set up email/SMS alerting                                                            │
+│  □ Configure threat intelligence feeds                                                  │
+│  □ Set up API access for automation                                                     │
+│  □ Integrate with identity provider for enrichment                                      │
+│                                                                                          │
+│  WEEK 7-8: SECURITY & TESTING                                                           │
+│  ═════════════════════════════                                                           │
+│  □ Security hardening (apply CIS benchmarks)                                            │
+│  □ Performance testing (simulate expected load)                                         │
+│  □ Failover testing (if clustered)                                                      │
+│  □ User acceptance testing                                                              │
+│  □ Create standard operating procedures                                                 │
+│  □ Document architecture and runbooks                                                   │
+│                                                                                          │
+│  ══════════════════════════════════════════════════════════════════════════════════     │
+│  MILESTONE: SIEM PLATFORM READY FOR DATA ONBOARDING                                     │
+│  ══════════════════════════════════════════════════════════════════════════════════     │
+│                                                                                          │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <h2 id="phase4-content">Phase 4: Onboard Sources & Detection Content</h2>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Detection Content Development Strategy</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                    DETECTION CONTENT ROLLOUT                                             │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                          │
+│  WEEK 1-4: TIER 1 SOURCES + FOUNDATIONAL DETECTIONS                                     │
+│  ══════════════════════════════════════════════════                                      │
+│                                                                                          │
+│  Sources:                          Detections to Enable:                                │
+│  ────────                          ─────────────────────                                │
+│  □ Active Directory                □ Brute force / password spray                       │
+│  □ Azure AD / Entra ID             □ Impossible travel                                  │
+│  □ Perimeter firewall              □ Account created/enabled after hours                │
+│  □ VPN                             □ Admin group membership changes                     │
+│  □ EDR platform                    □ Suspicious process execution                       │
+│                                    □ Known malware hashes (IOCs)                        │
+│                                    □ Large outbound data transfers                      │
+│                                                                                          │
+│  WEEK 5-8: TIER 2 SOURCES + EXPANDED DETECTIONS                                         │
+│  ══════════════════════════════════════════════                                          │
+│                                                                                          │
+│  Sources:                          Detections to Enable:                                │
+│  ────────                          ─────────────────────                                │
+│  □ Email security                  □ Phishing link clicks                               │
+│  □ Web proxy                       □ Suspicious email forwarding rules                  │
+│  □ DNS logs                        □ C2 beaconing patterns                              │
+│  □ Microsoft 365                   □ DNS tunneling / high-entropy domains               │
+│  □ Cloud platform                  □ Sensitive file downloads                           │
+│                                    □ Cloud resource changes (IAM, firewall)             │
+│                                                                                          │
+│  WEEK 9-12: TIER 3 + CUSTOM DETECTIONS                                                  │
+│  ══════════════════════════════════════                                                  │
+│                                                                                          │
+│  Sources:                          Detections to Enable:                                │
+│  ────────                          ─────────────────────                                │
+│  □ Database audit logs             □ SQL injection patterns                             │
+│  □ Linux servers                   □ Privileged database queries                        │
+│  □ Web applications                □ SSH brute force                                    │
+│  □ Network IDS                     □ Application-specific rules                         │
+│                                    □ Lateral movement (PsExec, WMI, WinRM)              │
+│                                    □ Data exfiltration patterns                         │
+│                                                                                          │
+│  ═══════════════════════════════════════════════════════════════════════════════════    │
+│                                                                                          │
+│  DASHBOARD PRIORITIES:                                                                   │
+│  1. SOC Overview (alert volume, open incidents, SLA status)                             │
+│  2. Authentication (logins, failures, geo-location)                                     │
+│  3. Endpoint Security (malware, suspicious processes, vulnerabilities)                  │
+│  4. Network Security (traffic analysis, blocked connections)                            │
+│  5. Cloud Security (resource changes, identity events)                                  │
+│                                                                                          │
+│  PLAYBOOK PRIORITIES:                                                                    │
+│  1. Malware Detected → Isolate host → Create ticket → Notify                            │
+│  2. Brute Force → Block source IP → Alert user → Document                               │
+│  3. Phishing Clicked → Check for compromise → Reset creds                               │
+│  4. Data Exfil Suspected → Disable account → Preserve evidence                          │
+│                                                                                          │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <h2 id="phase5-operations">Phase 5: Operationalize</h2>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">SOC Operations Framework</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                    SOC OPERATIONS - DAY 2 AND BEYOND                                     │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                          │
+│  ╔═══════════════════════════════════════════════════════════════════════════════════╗  │
+│  ║ DAILY OPERATIONS WORKFLOW                                                         ║  │
+│  ╠═══════════════════════════════════════════════════════════════════════════════════╣  │
+│  ║                                                                                   ║  │
+│  ║  ┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐            ║  │
+│  ║  │ ALERT   │──▶│ TRIAGE  │──▶│INVESTIG-│──▶│ESCALATE/│──▶│ CLOSE/  │            ║  │
+│  ║  │ QUEUE   │   │         │   │  ATE    │   │ CONTAIN │   │DOCUMENT │            ║  │
+│  ║  └─────────┘   └─────────┘   └─────────┘   └─────────┘   └─────────┘            ║  │
+│  ║                                                                                   ║  │
+│  ║  SLA Targets:                                                                     ║  │
+│  ║  ───────────                                                                      ║  │
+│  ║  • Critical:  Triage < 15 min,  Investigate < 1 hour                             ║  │
+│  ║  • High:      Triage < 30 min,  Investigate < 4 hours                            ║  │
+│  ║  • Medium:    Triage < 2 hours, Investigate < 24 hours                           ║  │
+│  ║  • Low:       Triage < 8 hours, Investigate < 72 hours                           ║  │
+│  ╚═══════════════════════════════════════════════════════════════════════════════════╝  │
+│                                                                                          │
+│  ╔═══════════════════════════════════════════════════════════════════════════════════╗  │
+│  ║ PERIODIC ACTIVITIES                                                               ║  │
+│  ╠═══════════════════════════════════════════════════════════════════════════════════╣  │
+│  ║                                                                                   ║  │
+│  ║  WEEKLY:                                                                          ║  │
+│  ║  □ Review false positive trends → tune rules                                     ║  │
+│  ║  □ Update threat intelligence feeds                                              ║  │
+│  ║  □ Review new detection rules for adoption (SIGMA, etc.)                         ║  │
+│  ║  □ Conduct threat hunting session (1-2 hours)                                    ║  │
+│  ║  □ Team standup / knowledge sharing                                              ║  │
+│  ║                                                                                   ║  │
+│  ║  MONTHLY:                                                                         ║  │
+│  ║  □ Generate SOC metrics report                                                   ║  │
+│  ║  □ Review detection coverage against MITRE ATT&CK                                ║  │
+│  ║  □ Validate data source health (all sources reporting?)                          ║  │
+│  ║  □ Review and rotate API keys/service accounts                                   ║  │
+│  ║  □ Capacity planning review                                                      ║  │
+│  ║                                                                                   ║  │
+│  ║  QUARTERLY:                                                                       ║  │
+│  ║  □ Detection effectiveness review (which rules add value?)                       ║  │
+│  ║  □ Purple team exercise (test detections)                                        ║  │
+│  ║  □ Platform upgrade planning                                                     ║  │
+│  ║  □ Budget and licensing review                                                   ║  │
+│  ╚═══════════════════════════════════════════════════════════════════════════════════╝  │
+│                                                                                          │
+│  ╔═══════════════════════════════════════════════════════════════════════════════════╗  │
+│  ║ KEY METRICS TO TRACK                                                              ║  │
+│  ╠═══════════════════════════════════════════════════════════════════════════════════╣  │
+│  ║                                                                                   ║  │
+│  ║  Metric                    Target              Why It Matters                     ║  │
+│  ║  ──────                    ──────              ──────────────                     ║  │
+│  ║  MTTD (Mean Time           < 24 hours          How fast do we detect threats?     ║  │
+│  ║   to Detect)                                                                     ║  │
+│  ║                                                                                   ║  │
+│  ║  MTTR (Mean Time           < 4 hours           How fast do we respond?            ║  │
+│  ║   to Respond)                                                                    ║  │
+│  ║                                                                                   ║  │
+│  ║  False Positive Rate       < 20%               Are we wasting analyst time?       ║  │
+│  ║                                                                                   ║  │
+│  ║  Alert-to-Incident         > 10%               Are alerts meaningful?             ║  │
+│  ║   Conversion                                                                     ║  │
+│  ║                                                                                   ║  │
+│  ║  Data Source Health        100%                Are we collecting all logs?        ║  │
+│  ║                                                                                   ║  │
+│  ║  MITRE ATT&CK Coverage     > 60% of            How complete is detection?         ║  │
+│  ║                            priority techniques                                    ║  │
+│  ╚═══════════════════════════════════════════════════════════════════════════════════╝  │
+│                                                                                          │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p><strong>"If you were tasked with designing a SIEM from scratch for a mid-sized company, how would you approach it?"</strong></p>
+                        <p>Structure your answer through the 5 phases:</p>
+                        <ol>
+                            <li><strong>Discovery:</strong> "First, I'd interview stakeholders to understand compliance requirements (PCI, HIPAA, etc.), identify crown jewel assets, and assess the threat landscape. I'd inventory the environment to estimate log volumes."</li>
+                            <li><strong>Design:</strong> "Based on their environment (Microsoft-centric vs. multi-cloud), budget, and team expertise, I'd recommend either Splunk or Sentinel. For a mid-size org, I'd size for approximately [X] GB/day."</li>
+                            <li><strong>Build:</strong> "I'd deploy the core infrastructure, configure integrations (ticketing, SOAR), and ensure security hardening before onboarding any data."</li>
+                            <li><strong>Onboard:</strong> "I'd prioritize log sources in tiers: Tier 1 (AD, firewall, EDR) for immediate visibility, then expand to email, proxy, cloud. Detection rules would map to MITRE ATT&CK, starting with high-fidelity, low-FP rules."</li>
+                            <li><strong>Operationalize:</strong> "Finally, I'd establish SOC processes with clear SLAs, define metrics (MTTD, MTTR, FP rate), and create a continuous improvement cycle including weekly tuning and monthly reviews."</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li><strong>5 Phases:</strong> Discover → Design → Build → Onboard → Operate</li>
+                    <li><strong>Discovery:</strong> Interview stakeholders, inventory environment, understand compliance, identify crown jewels, assess threats</li>
+                    <li><strong>Platform Selection:</strong> Sentinel for Microsoft-centric orgs; Splunk for multi-vendor or on-prem requirements</li>
+                    <li><strong>Log Source Tiers:</strong> T1 (AD, firewall, EDR, VPN) → T2 (email, proxy, DNS, cloud) → T3 (databases, apps, IDS)</li>
+                    <li><strong>Sizing:</strong> Based on user count and estimated daily volume - start with realistic estimates</li>
+                    <li><strong>Detection Strategy:</strong> Start with high-fidelity, low-FP rules mapped to MITRE ATT&CK; expand over time</li>
+                    <li><strong>Operations:</strong> Define SLAs, track metrics (MTTD, MTTR, FP rate), continuous tuning, regular reviews</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="a-4-siem-migration-guide.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">SIEM Migration Guide</span>
+                        </div>
+                    </a>
+                    <a href="index.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Back to</span>
+                            <span class="nav-button-title">Home</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

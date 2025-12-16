@@ -1311,3 +1311,65 @@ tbody tr:last-child td {
 .section-card:nth-child(11) { animation-delay: 0.6s; }
 .section-card:nth-child(12) { animation-delay: 0.65s; }
 .section-card:nth-child(13) { animation-delay: 0.7s; }
+
+/* ============================================
+   Workflow Diagrams
+   ============================================ */
+
+.workflow-diagram {
+    margin: var(--spacing-xl) 0;
+    background: var(--bg-secondary);
+    border: 1px solid var(--bg-tertiary);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.workflow-diagram::before {
+    content: '';
+    display: block;
+    height: 3px;
+    background: var(--gradient-border);
+}
+
+.workflow-title {
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--bg-tertiary);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--cyan-primary);
+    border-bottom: 1px solid var(--bg-primary);
+}
+
+.workflow-container {
+    padding: var(--spacing-lg);
+    overflow-x: auto;
+}
+
+.diagram-ascii {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--text-primary);
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    border: none;
+    white-space: pre;
+    overflow-x: auto;
+}
+
+.diagram-ascii::before {
+    display: none;
+}
+
+/* Responsive diagram handling */
+@media (max-width: 768px) {
+    .diagram-ascii {
+        font-size: 0.65rem;
+    }
+    
+    .workflow-container {
+        padding: var(--spacing-md);
+    }
+}

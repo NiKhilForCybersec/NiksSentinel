@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIEM Migration Guide - SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+        <div class="sidebar-overlay"></div>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Complete Guide</div>
+                    </div>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">📚</span>SIEM Fundamentals</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="1-1-introduction-to-siem.html" class="nav-item">1.1 Introduction to SIEM</a>
+                        <a href="1-2-architecture-components.html" class="nav-item">1.2 Architecture & Components</a>
+                        <a href="1-3-log-sources-onboarding.html" class="nav-item">1.3 Log Sources & Onboarding</a>
+                        <a href="1-4-log-parsing-normalization.html" class="nav-item">1.4 Log Parsing & Normalization</a>
+                        <a href="1-5-detection-engineering-fundamentals.html" class="nav-item">1.5 Detection Engineering</a>
+                        <a href="1-6-soc-operations-siem.html" class="nav-item">1.6 SOC Operations & SIEM</a>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">🟢</span>Splunk Fundamentals</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="2-1-splunk-architecture.html" class="nav-item">2.1 Splunk Architecture</a>
+                        <a href="2-2-installation-configuration.html" class="nav-item">2.2 Installation & Config</a>
+                        <a href="2-3-data-ingestion.html" class="nav-item">2.3 Data Ingestion</a>
+                        <a href="2-4-index-management.html" class="nav-item">2.4 Index Management</a>
+                        <a href="2-5-spl-fundamentals.html" class="nav-item">2.5 SPL Fundamentals</a>
+                        <a href="2-6-spl-data-retrieval.html" class="nav-item">2.6 SPL Data Retrieval</a>
+                        <a href="2-7-spl-transforming.html" class="nav-item">2.7 SPL Transforming</a>
+                        <a href="2-8-spl-manipulation.html" class="nav-item">2.8 SPL Manipulation</a>
+                        <a href="2-9-spl-advanced.html" class="nav-item">2.9 SPL Advanced</a>
+                        <a href="2-10-search-optimization.html" class="nav-item">2.10 Search Optimization</a>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">🔒</span>Splunk Security Ops</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="3-1-splunk-es-overview.html" class="nav-item">3.1 ES Overview</a>
+                        <a href="3-2-notable-events.html" class="nav-item">3.2 Notable Events</a>
+                        <a href="3-3-correlation-searches.html" class="nav-item">3.3 Correlation Searches</a>
+                        <a href="3-4-risk-based-alerting.html" class="nav-item">3.4 Risk-Based Alerting</a>
+                        <a href="3-5-threat-intelligence.html" class="nav-item">3.5 Threat Intelligence</a>
+                        <a href="3-6-asset-identity.html" class="nav-item">3.6 Asset & Identity</a>
+                        <a href="3-7-security-dashboards.html" class="nav-item">3.7 Security Dashboards</a>
+                        <a href="3-8-es-administration.html" class="nav-item">3.8 ES Administration</a>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">⚡</span>Splunk SOAR</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="4-1-soar-overview.html" class="nav-item">4.1 SOAR Overview</a>
+                        <a href="4-2-playbooks.html" class="nav-item">4.2 Playbooks</a>
+                        <a href="4-3-apps-integrations.html" class="nav-item">4.3 Apps & Integrations</a>
+                        <a href="4-4-case-management.html" class="nav-item">4.4 Case Management</a>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">🔷</span>Sentinel Fundamentals</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="5-1-sentinel-architecture.html" class="nav-item">5.1 Sentinel Architecture</a>
+                        <a href="5-2-log-analytics.html" class="nav-item">5.2 Log Analytics</a>
+                        <a href="5-3-data-connectors.html" class="nav-item">5.3 Data Connectors</a>
+                        <a href="5-4-kql-fundamentals.html" class="nav-item">5.4 KQL Fundamentals</a>
+                        <a href="5-5-kql-advanced.html" class="nav-item">5.5 KQL Advanced</a>
+                        <a href="5-6-analytics-rules.html" class="nav-item">5.6 Analytics Rules</a>
+                        <a href="5-7-incidents-investigation.html" class="nav-item">5.7 Incidents & Investigation</a>
+                        <a href="5-8-workbooks-reporting.html" class="nav-item">5.8 Workbooks & Reporting</a>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">🔶</span>Sentinel Security Ops</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="6-1-automation-playbooks.html" class="nav-item">6.1 Automation & Playbooks</a>
+                        <a href="6-2-watchlists-ti.html" class="nav-item">6.2 Watchlists & TI</a>
+                        <a href="6-3-ueba.html" class="nav-item">6.3 UEBA</a>
+                        <a href="6-4-sentinel-administration.html" class="nav-item">6.4 Administration</a>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">⚖️</span>SIEM Comparison</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="7-1-splunk-vs-sentinel.html" class="nav-item">7.1 Splunk vs Sentinel</a>
+                        <a href="7-2-query-language-comparison.html" class="nav-item">7.2 SPL vs KQL</a>
+                        <a href="7-3-migration-considerations.html" class="nav-item">7.3 Migration Basics</a>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">🎯</span>Detection Engineering</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="8-1-detection-development.html" class="nav-item">8.1 Detection Development</a>
+                        <a href="8-2-mitre-attack.html" class="nav-item">8.2 MITRE ATT&CK</a>
+                        <a href="8-3-sigma-rules.html" class="nav-item">8.3 Sigma Rules</a>
+                        <a href="8-4-detection-testing.html" class="nav-item">8.4 Detection Testing</a>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">🔍</span>Threat Hunting</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="9-1-hunting-fundamentals.html" class="nav-item">9.1 Hunting Fundamentals</a>
+                        <a href="9-2-hunting-methodologies.html" class="nav-item">9.2 Methodologies</a>
+                        <a href="9-3-hunting-queries.html" class="nav-item">9.3 Hunting Queries</a>
+                    </div>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">📋</span>Use Cases</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="10-1-authentication-attacks.html" class="nav-item">10.1 Authentication Attacks</a>
+                        <a href="10-2-malware-execution.html" class="nav-item">10.2 Malware Execution</a>
+                        <a href="10-3-data-exfiltration.html" class="nav-item">10.3 Data Exfiltration</a>
+                        <a href="10-4-insider-threats.html" class="nav-item">10.4 Insider Threats</a>
+                    </div>
+                </div>
+                <div class="nav-section expanded">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">📖</span>Appendices</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items">
+                        <a href="a-1-windows-security-fundamentals.html" class="nav-item">A.1 Windows Security</a>
+                        <a href="a-2-network-fundamentals.html" class="nav-item">A.2 Network Fundamentals</a>
+                        <a href="a-3-use-case-development.html" class="nav-item">A.3 Use Case Development</a>
+                        <a href="a-4-siem-migration-guide.html" class="nav-item active">A.4 SIEM Migration Guide</a>
+                        <a href="a-5-siem-design-from-scratch.html" class="nav-item">A.5 SIEM Design from Scratch</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">SIEM Migration Guide</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">SIEM Migration Guide</h1>
+                <p class="page-subtitle">Complete methodology for migrating from any SIEM to Splunk or Microsoft Sentinel</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            SIEM migrations are complex, high-risk projects that can take 6-18 months. This guide provides a complete methodology covering assessment, planning, migration execution, validation, and cutover. Whether migrating from QRadar, ArcSight, LogRhythm, Elastic, or any other SIEM to Splunk or Sentinel, this framework applies.
+                        </p>
+                    </div>
+                </div>
+
+                <h2 id="migration-overview">Migration Project Overview</h2>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">SIEM Migration - Complete Project Lifecycle (6-18 Months)</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                        SIEM MIGRATION PROJECT PHASES                                     │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                          │
+│  PHASE 1          PHASE 2          PHASE 3          PHASE 4          PHASE 5            │
+│  ASSESS           PLAN             BUILD            MIGRATE          CUTOVER            │
+│  (4-6 weeks)      (4-8 weeks)      (8-16 weeks)     (8-24 weeks)     (2-4 weeks)        │
+│                                                                                          │
+│  ┌─────────┐      ┌─────────┐      ┌─────────┐      ┌─────────┐      ┌─────────┐        │
+│  │         │      │         │      │         │      │         │      │         │        │
+│  │ Current │─────▶│ Target  │─────▶│ Deploy  │─────▶│ Parallel│─────▶│  Full   │        │
+│  │ State   │      │ Design  │      │  New    │      │ Running │      │ Cutover │        │
+│  │ Audit   │      │         │      │  SIEM   │      │         │      │         │        │
+│  │         │      │         │      │         │      │         │      │         │        │
+│  └─────────┘      └─────────┘      └─────────┘      └─────────┘      └─────────┘        │
+│       │                │                │                │                │              │
+│       ▼                ▼                ▼                ▼                ▼              │
+│  • Inventory      • Architecture   • Install        • Data sources  • Decommission     │
+│  • Log sources    • Sizing         • Configure      • Rules         • Handoff          │
+│  • Rules          • Licensing      • Test env       • Dashboards    • Hypercare        │
+│  • Dashboards     • Migration map  • Integrations   • Reports       • Close project    │
+│  • Reports        • Timeline       •                • Tuning                           │
+│  • Gaps           • Risk plan      •                •                                   │
+│                                                                                          │
+│  ════════════════════════════════════════════════════════════════════════════════════   │
+│                                                                                          │
+│  KEY MILESTONES:                                                                         │
+│  M1: Assessment     M2: Design        M3: Platform      M4: Parallel      M5: Go-Live   │
+│      Complete           Approved          Ready             Validated         Complete  │
+│                                                                                          │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <h2 id="phase1-assessment">Phase 1: Current State Assessment</h2>
+                
+                <div class="info-box best-practice">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">✓</span>
+                        Critical First Step
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            Never start a migration without a complete inventory. The #1 cause of migration failures is discovering critical dependencies mid-project. Spend extra time here - it pays off later.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Current State Assessment - Complete Inventory Checklist</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                        WHAT TO DOCUMENT FOR EACH COMPONENT                               │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                          │
+│  ╔═══════════════════════════════════════════════════════════════════════════════════╗  │
+│  ║ 1. DATA SOURCES INVENTORY                                                         ║  │
+│  ╠═══════════════════════════════════════════════════════════════════════════════════╣  │
+│  ║                                                                                   ║  │
+│  ║  For EACH log source, document:                                                   ║  │
+│  ║  ┌─────────────────────┬──────────────────────────────────────────────────────┐  ║  │
+│  ║  │ Source Name         │ Example: "Palo Alto Firewall - HQ"                   │  ║  │
+│  ║  │ Source Type         │ Firewall / Endpoint / Server / Cloud / App           │  ║  │
+│  ║  │ Collection Method   │ Syslog / Agent / API / File / WMI                    │  ║  │
+│  ║  │ Daily Volume (GB)   │ Measured, not estimated - pull from SIEM metrics     │  ║  │
+│  ║  │ Events Per Second   │ Peak and average EPS                                 │  ║  │
+│  ║  │ Log Format          │ CEF / LEEF / JSON / Syslog RFC3164/5424 / Custom     │  ║  │
+│  ║  │ Current Parser      │ Add-on or parser name in old SIEM                    │  ║  │
+│  ║  │ Criticality         │ Critical / High / Medium / Low                       │  ║  │
+│  ║  │ Owner               │ Team/person responsible for this source              │  ║  │
+│  ║  │ Retention Required  │ 30 / 90 / 365 days / 7 years (compliance)            │  ║  │
+│  ║  │ Network Path        │ How does data get to SIEM? (direct/via collector)    │  ║  │
+│  ║  └─────────────────────┴──────────────────────────────────────────────────────┘  ║  │
+│  ╚═══════════════════════════════════════════════════════════════════════════════════╝  │
+│                                                                                          │
+│  ╔═══════════════════════════════════════════════════════════════════════════════════╗  │
+│  ║ 2. DETECTION RULES INVENTORY                                                      ║  │
+│  ╠═══════════════════════════════════════════════════════════════════════════════════╣  │
+│  ║                                                                                   ║  │
+│  ║  For EACH detection rule:                                                         ║  │
+│  ║  ┌─────────────────────┬──────────────────────────────────────────────────────┐  ║  │
+│  ║  │ Rule Name           │ Descriptive name                                     │  ║  │
+│  ║  │ Rule Logic          │ EXPORT THE FULL QUERY - don't paraphrase             │  ║  │
+│  ║  │ Data Sources Used   │ Which log sources does this rule query?              │  ║  │
+│  ║  │ Severity            │ Critical / High / Medium / Low / Informational       │  ║  │
+│  ║  │ Alert Volume        │ Avg alerts per day/week (from SIEM metrics)          │  ║  │
+│  ║  │ False Positive Rate │ High / Medium / Low / Unknown                        │  ║  │
+│  ║  │ MITRE ATT&CK        │ Technique ID if mapped                               │  ║  │
+│  ║  │ Migration Decision  │ Must-have / Nice-to-have / Deprecate / Use Native    │  ║  │
+│  ║  └─────────────────────┴──────────────────────────────────────────────────────┘  ║  │
+│  ╚═══════════════════════════════════════════════════════════════════════════════════╝  │
+│                                                                                          │
+│  ╔═══════════════════════════════════════════════════════════════════════════════════╗  │
+│  ║ 3. DASHBOARDS, REPORTS, SAVED SEARCHES                                            ║  │
+│  ╠═══════════════════════════════════════════════════════════════════════════════════╣  │
+│  ║  □ Dashboard Name      □ Purpose / Audience      □ Screenshot + Export            ║  │
+│  ║  □ Refresh frequency   □ Who uses it daily?      □ Data sources needed            ║  │
+│  ╚═══════════════════════════════════════════════════════════════════════════════════╝  │
+│                                                                                          │
+│  ╔═══════════════════════════════════════════════════════════════════════════════════╗  │
+│  ║ 4. INTEGRATIONS                                                                   ║  │
+│  ╠═══════════════════════════════════════════════════════════════════════════════════╣  │
+│  ║  □ SOAR/Automation platform    □ Ticketing (SNOW/Jira)   □ Email/SMS alerting    ║  │
+│  ║  □ Threat Intel feeds          □ CMDB                    □ AD/LDAP integration    ║  │
+│  ║  □ Vulnerability scanner       □ EDR integration         □ Custom API consumers   ║  │
+│  ╚═══════════════════════════════════════════════════════════════════════════════════╝  │
+│                                                                                          │
+│  ╔═══════════════════════════════════════════════════════════════════════════════════╗  │
+│  ║ 5. USERS & PERMISSIONS                                                            ║  │
+│  ╠═══════════════════════════════════════════════════════════════════════════════════╣  │
+│  ║  □ User count by role  □ Role definitions        □ SSO/SAML config                ║  │
+│  ║  □ API service accounts □ Data access restrictions □ Compliance audit needs       ║  │
+│  ╚═══════════════════════════════════════════════════════════════════════════════════╝  │
+│                                                                                          │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <h3>Get Your Metrics from Old SIEM</h3>
+                
+                <pre><code># FROM SPLUNK (if migrating away):
+# Daily volume by index
+| tstats sum(sizeOnDiskMB) as MB where index=* by index
+| eval GB=round(MB/1024, 2)
+| sort - GB
+
+# EPS by sourcetype
+| tstats count where index=* by _time, sourcetype span=1h
+| stats avg(count) as avg_hourly by sourcetype
+| eval avg_eps = round(avg_hourly/3600, 2)
+
+# FROM QRADAR:
+# Admin Console → System Monitoring → Event Rate
+# Export to CSV
+
+# FROM ARCSIGHT:
+# Command Center → Statistics → Connector Statistics
+# Export throughput data
+
+# FROM ELASTIC:
+# Stack Management → Index Management → show sizes
+# Or: GET _cat/indices?v&s=store.size:desc</code></pre>
+
+                <h3>Rule Migration Decision Matrix</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Decision</th>
+                            <th>Criteria</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Must Migrate (P1)</strong></td>
+                            <td>High value, low FP, critical to SOC, compliance</td>
+                            <td>Convert and test first. Block go-live if not working.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Should Migrate (P2)</strong></td>
+                            <td>Medium value, some FPs, useful detection</td>
+                            <td>Migrate after P1 rules. OK to delay if needed.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Replace with Native</strong></td>
+                            <td>Standard detection covered by new SIEM OOTB</td>
+                            <td>Don't convert - enable native rule instead.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Deprecate</strong></td>
+                            <td>Never fires, high FP, obsolete threat, duplicate</td>
+                            <td>Document decision. Don't migrate.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 id="phase2-planning">Phase 2: Target Architecture & Planning</h2>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Architecture Decision Flow</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                        ARCHITECTURE DECISIONS                                            │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                          │
+│                              ┌─────────────────────┐                                    │
+│                              │ Choose Target SIEM  │                                    │
+│                              └──────────┬──────────┘                                    │
+│                                         │                                                │
+│                    ┌────────────────────┴────────────────────┐                          │
+│                    │                                         │                          │
+│                    ▼                                         ▼                          │
+│            ┌──────────────┐                         ┌──────────────┐                    │
+│            │   SPLUNK     │                         │   SENTINEL   │                    │
+│            └──────┬───────┘                         └──────┬───────┘                    │
+│                   │                                        │                            │
+│         ┌─────────┴─────────┐                              │                            │
+│         │                   │                              │                            │
+│         ▼                   ▼                              ▼                            │
+│  ┌─────────────┐    ┌─────────────┐               ┌─────────────┐                       │
+│  │ SPLUNK      │    │ SPLUNK      │               │ MICROSOFT   │                       │
+│  │ CLOUD       │    │ ENTERPRISE  │               │ SENTINEL    │                       │
+│  │             │    │ (On-Prem)   │               │ (Azure)     │                       │
+│  │ • Managed   │    │             │               │             │                       │
+│  │ • Pay as go │    │ • Self-     │               │ • Cloud-    │                       │
+│  │ • Fast      │    │   managed   │               │   native    │                       │
+│  │   deploy    │    │ • Full      │               │ • Pay per   │                       │
+│  │             │    │   control   │               │   GB        │                       │
+│  └─────────────┘    └─────────────┘               └─────────────┘                       │
+│                                                                                          │
+│  ═══════════════════════════════════════════════════════════════════════════════════    │
+│                                                                                          │
+│  SIZING FORMULAS:                                                                        │
+│                                                                                          │
+│  SPLUNK ENTERPRISE (On-Prem):          SENTINEL:                                        │
+│  ─────────────────────────────         ─────────                                        │
+│  License = Daily ingest (GB/day)       Cost = (GB/day × 30 × $2.76) + Analytics cost   │
+│  Indexers = Daily_GB / 150-300               + Retention beyond 90 days                 │
+│  Search Heads = Users / 20 + 1         Use Commitment Tiers for discount               │
+│  Storage = GB × Days × RF × 1.15       Use Azure Data Explorer for long-term archive   │
+│  (RF = Replication Factor = 3)                                                          │
+│                                                                                          │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <h3>Migration Strategy Options</h3>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Choose Your Migration Strategy</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                        MIGRATION STRATEGY COMPARISON                                     │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                          │
+│  STRATEGY A: BIG BANG                    STRATEGY B: PARALLEL RUN                       │
+│  ════════════════════                    ════════════════════════                       │
+│                                                                                          │
+│  OLD ████████████████░░░░░░              OLD ████████████████████████░░░░              │
+│  NEW ░░░░░░░░░░░░░░░░████████            NEW ░░░░░░░░████████████████████████           │
+│                     │ Cutover                             │ Gradual shift               │
+│                                                                                          │
+│  Pros:                                   Pros:                                          │
+│  + Faster timeline                       + Lower risk - validate before commit          │
+│  + Lower infrastructure cost             + Can compare detections side-by-side          │
+│  + Clean break                           + Rollback is easy                             │
+│                                                                                          │
+│  Cons:                                   Cons:                                          │
+│  - Higher risk if issues                 - Double infrastructure cost                   │
+│  - No comparison baseline                - Longer timeline                              │
+│  - Rollback is difficult                 - Team split between two systems               │
+│                                                                                          │
+│  Best for: Small environments            Best for: Large/critical environments          │
+│                                                                                          │
+│  ─────────────────────────────────────────────────────────────────────────────────────  │
+│                                                                                          │
+│  STRATEGY C: PHASED BY LOG TYPE          STRATEGY D: PHASED BY CRITICALITY             │
+│  ═══════════════════════════════         ═════════════════════════════════             │
+│                                                                                          │
+│  Week 1-4:   Network logs                Week 1-4:   Critical sources only             │
+│  Week 5-8:   Endpoint logs               Week 5-8:   High priority sources             │
+│  Week 9-12:  Cloud logs                  Week 9-12:  Medium priority                   │
+│  Week 13-16: Application logs            Week 13-16: Low priority                      │
+│                                                                                          │
+│  Best for: Complex environments          Best for: Tight timelines                     │
+│                                                                                          │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <h2 id="phase3-build">Phase 3: Build Target Environment</h2>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Build Phase - Splunk vs Sentinel Side-by-Side</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌────────────────────────────────────────┬──────────────────────────────────────────────┐
+│         SPLUNK DEPLOYMENT              │           SENTINEL DEPLOYMENT                │
+├────────────────────────────────────────┼──────────────────────────────────────────────┤
+│                                        │                                              │
+│  WEEK 1-2: CORE INFRASTRUCTURE         │  WEEK 1-2: AZURE SETUP                       │
+│  □ Deploy Search Head(s)               │  □ Create Resource Group                     │
+│  □ Deploy Indexer(s)                   │  □ Create Log Analytics Workspace            │
+│  □ Configure Indexer Cluster           │  □ Enable Microsoft Sentinel                 │
+│  □ Deploy Deployment Server            │  □ Configure retention settings              │
+│  □ Set up License Master               │  □ Set up commitment tiers                   │
+│  □ Configure indexes.conf              │  □ Configure Entra ID integration            │
+│                                        │                                              │
+│  WEEK 3-4: DATA COLLECTION             │  WEEK 3-4: DATA CONNECTORS                   │
+│  □ Deploy Universal Forwarders         │  □ Enable Microsoft connectors               │
+│  □ Configure Deployment apps           │  □ Deploy Azure Monitor Agent                │
+│  □ Deploy Heavy Forwarder(s)           │  □ Create Data Collection Rules              │
+│  □ Set up HTTP Event Collector         │  □ Configure CEF/Syslog forwarding           │
+│  □ Install Technology Add-ons          │  □ Set up custom connectors                  │
+│                                        │                                              │
+│  WEEK 5-6: SECURITY CONTENT            │  WEEK 5-6: SECURITY CONTENT                  │
+│  □ Install Enterprise Security         │  □ Enable Content Hub solutions              │
+│  □ Configure ES data models            │  □ Configure UEBA                            │
+│  □ Set up CIM compliance               │  □ Set up Watchlists                         │
+│  □ Configure Asset/Identity            │  □ Configure Analytics Rules                 │
+│                                        │                                              │
+│  WEEK 7-8: INTEGRATIONS                │  WEEK 7-8: INTEGRATIONS                      │
+│  □ Configure Splunk SOAR               │  □ Create Logic App Playbooks                │
+│  □ Set up ServiceNow integration       │  □ Configure Automation Rules                │
+│  □ Configure email alerts              │  □ Set up ServiceNow connector               │
+│                                        │                                              │
+└────────────────────────────────────────┴──────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <h2 id="phase4-migrate">Phase 4: Migrate Data Sources & Content</h2>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Per-Source Migration Workflow</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                    DATA SOURCE MIGRATION - STEP BY STEP                                  │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                          │
+│  Execute this workflow for EACH data source:                                            │
+│                                                                                          │
+│  ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐              │
+│  │ 1. PREP  │──▶│2. CONFIG │──▶│3. VERIFY │──▶│4. PARSE  │──▶│5. VOLUME │              │
+│  └──────────┘   └──────────┘   └──────────┘   └──────────┘   └──────────┘              │
+│                                                                                          │
+│  STEP 1: PREPARATION                                                                     │
+│  □ Review source documentation from Phase 1                                             │
+│  □ Identify equivalent connector/TA in target SIEM                                      │
+│  □ Check if firewall rules needed (new SIEM IP/port)                                    │
+│  □ Coordinate change window with source owner                                           │
+│                                                                                          │
+│  STEP 2: CONFIGURE COLLECTION                                                            │
+│  SPLUNK:                               SENTINEL:                                        │
+│  • inputs.conf on HF/Indexer           • Deploy AMA to forwarder                        │
+│  • Set sourcetype, index               • Create DCR (Data Collection Rule)              │
+│  • TCP/UDP port configuration          • Route to appropriate table                     │
+│                                                                                          │
+│  STEP 3: VERIFY DATA ARRIVAL                                                             │
+│  SPLUNK:                               SENTINEL:                                        │
+│  index=* sourcetype=NEW                TableName                                        │
+│  | head 10                             | take 10                                        │
+│                                                                                          │
+│  STEP 4: VALIDATE PARSING                                                                │
+│  □ Are key fields extracted? (src_ip, dest_ip, user, action)                           │
+│  □ Do field names match your data model?                                               │
+│  □ Compare sample: OLD SIEM vs NEW SIEM                                                │
+│                                                                                          │
+│  STEP 5: VALIDATE VOLUME                                                                 │
+│  □ Volume matches old SIEM (within 5%)?                                                 │
+│  □ No gaps in timeline?                                                                 │
+│  □ Latency acceptable (<5 min)?                                                         │
+│                                                                                          │
+│  IF ALL PASS: ✓ Mark source as MIGRATED                                                 │
+│                                                                                          │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <h3>Query Language Conversion</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Old SIEM Query</th>
+                            <th>Splunk SPL</th>
+                            <th>Sentinel KQL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>QRadar AQL:</strong><br><code>SELECT sourceip, COUNT(*) FROM events WHERE eventid=4625 GROUP BY sourceip</code></td>
+                            <td><code>index=windows EventCode=4625 | stats count by src_ip</code></td>
+                            <td><code>SecurityEvent | where EventID == 4625 | summarize count() by IpAddress</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>ArcSight:</strong><br><code>deviceVendor="Microsoft" AND name CONTAINS "failed"</code></td>
+                            <td><code>index=* vendor=Microsoft name="*failed*"</code></td>
+                            <td><code>CommonSecurityLog | where DeviceVendor == "Microsoft" and Activity contains "failed"</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box tip">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💡</span>
+                        Pro Tip: Use SIGMA as Intermediate Format
+                    </div>
+                    <div class="info-box-content">
+                        <pre><code># Convert SIGMA to Splunk
+sigma convert -t splunk rule.yml
+
+# Convert SIGMA to Sentinel KQL
+sigma convert -t microsoft365defender rule.yml</code></pre>
+                    </div>
+                </div>
+
+                <h2 id="phase5-cutover">Phase 5: Validation & Cutover</h2>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Validation Tests & Go-Live Checklist</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                        VALIDATION & CUTOVER CHECKLIST                                    │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                          │
+│  VALIDATION TESTS (Run during parallel operation):                                      │
+│  ═════════════════════════════════════════════════                                       │
+│                                                                                          │
+│  □ TEST 1: DETECTION PARITY                                                             │
+│    Run Atomic Red Team tests on both SIEMs                                              │
+│    PASS: New SIEM detects >= 95% of old SIEM detections                                │
+│                                                                                          │
+│  □ TEST 2: DATA COMPLETENESS                                                            │
+│    Compare event counts by source for 24 hours                                          │
+│    PASS: Within 5% of old SIEM volumes                                                 │
+│                                                                                          │
+│  □ TEST 3: SEARCH PERFORMANCE                                                           │
+│    Run top 10 analyst searches                                                          │
+│    PASS: Comparable or faster than old SIEM                                            │
+│                                                                                          │
+│  □ TEST 4: END-TO-END WORKFLOW                                                          │
+│    SOC analyst processes test incident                                                  │
+│    PASS: Analyst confirms workflow acceptable                                          │
+│                                                                                          │
+│  □ TEST 5: INTEGRATION VALIDATION                                                       │
+│    Ticketing, SOAR, email all working                                                   │
+│    PASS: All integrations functional                                                   │
+│                                                                                          │
+│  ─────────────────────────────────────────────────────────────────────────────────────  │
+│                                                                                          │
+│  GO-LIVE CHECKLIST:                                                                      │
+│  ═══════════════════                                                                     │
+│                                                                                          │
+│  PRE-CUTOVER (T-7):           CUTOVER DAY (T-0):          HYPERCARE (T+1 to T+14):     │
+│  □ All critical sources       □ War room established      □ Daily SOC check-ins        │
+│  □ All P1 rules tested        □ Switch SOC to new SIEM    □ Rapid issue response       │
+│  □ SOC team trained           □ Redirect alert routing    □ Aggressive FP tuning       │
+│  □ Runbooks updated           □ Monitor every 30 min      □ Document all issues        │
+│  □ Stakeholder sign-off       □ Rollback plan ready                                     │
+│                                                                                          │
+│  DECOMMISSION (T+30):                                                                    │
+│  □ Export final data from old SIEM (compliance)                                         │
+│  □ Disable old SIEM collection                                                          │
+│  □ Archive old SIEM (keep 90 days minimum)                                              │
+│  □ Terminate old SIEM licenses                                                          │
+│  □ Project closure documentation                                                        │
+│                                                                                          │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p><strong>"Describe a SIEM migration project you've worked on."</strong></p>
+                        <ul>
+                            <li><strong>Situation:</strong> "We migrated from [old SIEM] to [Splunk/Sentinel] because [cost/features/cloud strategy]."</li>
+                            <li><strong>Task:</strong> "I was responsible for [data source migration/rule conversion/validation]."</li>
+                            <li><strong>Action:</strong> "I [created inventory/converted rules/built validation framework]. The challenge was [discovery/conversion/SOC resistance], addressed by [specific action]."</li>
+                            <li><strong>Result:</strong> "Successfully migrated [X] sources, [Y] rules with [Z]% detection parity."</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li><strong>5 Phases:</strong> Assess (4-6 wk) → Plan (4-8 wk) → Build (8-16 wk) → Migrate (8-24 wk) → Cutover (2-4 wk)</li>
+                    <li><strong>Assessment:</strong> Complete inventory of data sources, rules, dashboards, integrations, users</li>
+                    <li><strong>Strategies:</strong> Big Bang | Parallel Run | Phased by Type | Phased by Priority</li>
+                    <li><strong>Per-Source:</strong> Prep → Configure → Verify → Parse → Volume check</li>
+                    <li><strong>Validation:</strong> Detection parity, data completeness, performance, workflow, integrations</li>
+                    <li><strong>Cutover:</strong> Pre-checklist → War room → Hypercare → Decommission</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="a-3-use-case-development.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Use Case Development</span>
+                        </div>
+                    </a>
+                    <a href="a-5-siem-design-from-scratch.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Next</span>
+                            <span class="nav-button-title">SIEM Design from Scratch</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

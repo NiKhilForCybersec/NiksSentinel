@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use Case Development Workflow - SIEM Mastery Guide</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div>
+                        <div class="logo-text">SIEM Mastery</div>
+                        <div class="logo-subtext">Complete Guide</div>
+                    </div>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">📚</span>SIEM Fundamentals</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items"><a href="1-1-introduction-to-siem.html" class="nav-item">Introduction to SIEM</a></div>
+                </div>
+                <div class="nav-section expanded">
+                    <div class="nav-section-header"><span class="nav-section-title"><span class="nav-section-icon">📖</span>Appendices</span><span class="nav-section-arrow">›</span></div>
+                    <div class="nav-section-items"><a href="a-1-windows-security-fundamentals.html" class="nav-item">Windows Security</a><a href="a-2-network-fundamentals.html" class="nav-item">Network Fundamentals</a><a href="a-3-use-case-development.html" class="nav-item active">Use Case Development</a></div>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Use Case Development Workflow</span>
+                </nav>
+            </header>
+            
+            <div class="content-area">
+                <h1 class="page-title">Use Case Development Workflow</h1>
+                <p class="page-subtitle">From security requirements to production detection rules - the complete process</p>
+                
+                <div class="info-box overview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">📘</span>
+                        Chapter Overview
+                    </div>
+                    <div class="info-box-content">
+                        <p>
+                            This appendix covers the complete workflow for developing SIEM use cases: gathering requirements from stakeholders, translating them into detection logic, mapping to specific log sources and events, implementing rules, and validating effectiveness. This is a critical skill for SIEM engineers.
+                        </p>
+                    </div>
+                </div>
+
+                <h2 id="development-lifecycle">Use Case Development Lifecycle</h2>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Complete Use Case Development Workflow</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                    USE CASE DEVELOPMENT LIFECYCLE                                │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   ┌─────────┐     ┌─────────┐     ┌─────────┐     ┌─────────┐     ┌─────────┐  │
+│   │    1    │     │    2    │     │    3    │     │    4    │     │    5    │  │
+│   │ REQUIRE │────▶│  DATA   │────▶│ DESIGN  │────▶│ IMPLEM- │────▶│  TEST   │  │
+│   │ -MENTS  │     │ MAPPING │     │  LOGIC  │     │  ENT    │     │ VALIDATE│  │
+│   └────┬────┘     └────┬────┘     └────┬────┘     └────┬────┘     └────┬────┘  │
+│        │               │               │               │               │        │
+│        ▼               ▼               ▼               ▼               ▼        │
+│   ┌─────────┐     ┌─────────┐     ┌─────────┐     ┌─────────┐     ┌─────────┐  │
+│   │• Threat │     │• Log    │     │• Detect │     │• SPL/   │     │• Atomic │  │
+│   │  Model  │     │  Sources│     │  Pattern│     │  KQL    │     │  Red    │  │
+│   │• Business│    │• Event  │     │• Thresh-│     │• Alert  │     │  Team   │  │
+│   │  Context│     │  IDs    │     │  olds   │     │  Config │     │• Purple │  │
+│   │• MITRE  │     │• Fields │     │• False  │     │• Play-  │     │  Team   │  │
+│   │  Mapping│     │• Gaps   │     │  Positiv│     │  book   │     │• Tune   │  │
+│   └─────────┘     └─────────┘     └─────────┘     └─────────┘     └─────────┘  │
+│        │                                                               │        │
+│        │                         ┌──────────┐                          │        │
+│        └─────────────────────────│    6     │◀─────────────────────────┘        │
+│                                  │ MAINTAIN │                                   │
+│                                  │ & TUNE   │                                   │
+│                                  └──────────┘                                   │
+│                                       │                                         │
+│                                       ▼                                         │
+│                              ┌─────────────────┐                                │
+│                              │• Monitor FP/FN  │                                │
+│                              │• Update for new │                                │
+│                              │  threats        │                                │
+│                              │• Retire obsolete│                                │
+│                              └─────────────────┘                                │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <h2 id="requirements-gathering">Phase 1: Requirements Gathering</h2>
+                
+                <h3>Sources of Detection Requirements</h3>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Security Requirements Sources</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+                              ┌────────────────────────┐
+                              │   DETECTION NEED       │
+                              └───────────┬────────────┘
+                                          │
+          ┌───────────────┬───────────────┼───────────────┬───────────────┐
+          │               │               │               │               │
+          ▼               ▼               ▼               ▼               ▼
+    ┌───────────┐   ┌───────────┐   ┌───────────┐   ┌───────────┐   ┌───────────┐
+    │  THREAT   │   │ COMPLIANCE│   │  INCIDENT │   │  BUSINESS │   │  THREAT   │
+    │  INTEL    │   │ REQUIRE-  │   │  LESSONS  │   │  REQUIRE- │   │  MODELING │
+    │           │   │  MENTS    │   │  LEARNED  │   │  MENTS    │   │           │
+    └─────┬─────┘   └─────┬─────┘   └─────┬─────┘   └─────┬─────┘   └─────┬─────┘
+          │               │               │               │               │
+          ▼               ▼               ▼               ▼               ▼
+    • APT reports   • PCI-DSS      • Post-incident • Business       • MITRE ATT&CK
+    • CVE alerts    • HIPAA          reviews        context        • Kill Chain
+    • IOCs          • SOX         • Near misses   • Crown jewels   • Threat
+    • ISAC feeds    • GDPR        • Tabletop      • Risk register    landscape
+    • Dark web      • Industry      exercises     • Stakeholder    • Attack trees
+      monitoring      regs                          input
+                        </pre>
+                    </div>
+                </div>
+
+                <h3>Stakeholder Communication</h3>
+                
+                <p>When gathering requirements from stakeholders, translate their language to SIEM terms:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Stakeholder Says</th>
+                            <th>They Mean</th>
+                            <th>SIEM Translation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"We need to know if someone's stealing our data"</td>
+                            <td>Data exfiltration detection</td>
+                            <td>Monitor: large outbound transfers, cloud uploads, USB copies, email attachments</td>
+                        </tr>
+                        <tr>
+                            <td>"Alert us if hackers get in"</td>
+                            <td>Initial access detection</td>
+                            <td>Monitor: suspicious authentications, exploit attempts, phishing clicks</td>
+                        </tr>
+                        <tr>
+                            <td>"Track privileged user activity"</td>
+                            <td>Admin monitoring</td>
+                            <td>Monitor: 4672 events, admin group changes, sensitive system access</td>
+                        </tr>
+                        <tr>
+                            <td>"We're worried about ransomware"</td>
+                            <td>Ransomware detection</td>
+                            <td>Monitor: mass file modifications, shadow copy deletion, known ransomware patterns</td>
+                        </tr>
+                        <tr>
+                            <td>"Auditors want login reports"</td>
+                            <td>Compliance reporting</td>
+                            <td>Dashboards: successful/failed logins, access to sensitive systems, admin activity</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Use Case Documentation Template</h3>
+                
+                <pre><code>USE CASE SPECIFICATION
+======================
+
+UC-ID: [Unique identifier, e.g., UC-AUTH-001]
+Name: [Descriptive name]
+Author: [Your name]
+Date: [Creation date]
+Version: [Version number]
+
+1. BUSINESS CONTEXT
+   - Business Problem: [What risk/requirement does this address?]
+   - Stakeholder: [Who requested/owns this?]
+   - Priority: [Critical/High/Medium/Low]
+   - Compliance: [Related compliance requirements]
+
+2. THREAT CONTEXT
+   - MITRE ATT&CK: [Tactic/Technique IDs]
+   - Kill Chain Phase: [Reconnaissance/Delivery/Exploitation/etc.]
+   - Threat Actor: [If applicable - APT groups, insider, etc.]
+   - Attack Scenario: [Brief description of attack this detects]
+
+3. DATA REQUIREMENTS
+   - Primary Log Source: [Firewall/Windows/Proxy/etc.]
+   - Required Fields: [List specific fields needed]
+   - Data Availability: [Confirmed/Needs onboarding]
+   - Retention Requirement: [How long must data be kept?]
+
+4. DETECTION LOGIC
+   - Description: [Plain English detection description]
+   - Threshold: [Specific values]
+   - Time Window: [Detection timeframe]
+   - Exclusions: [Known good patterns to exclude]
+
+5. RESPONSE
+   - Severity: [Critical/High/Medium/Low]
+   - SLA: [Response time requirement]
+   - Playbook: [Link to response playbook]
+   - Escalation: [Escalation path]
+
+6. TESTING & VALIDATION
+   - Test Method: [How to validate detection works]
+   - Expected FP Rate: [Acceptable false positive rate]
+   - Review Cycle: [How often to review effectiveness]
+</code></pre>
+
+                <h2 id="data-mapping">Phase 2: Data Source Mapping</h2>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Mapping Use Cases to Data Sources</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                    USE CASE → DATA SOURCE MAPPING                                │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   USE CASE: Detect brute force attacks against user accounts                    │
+│                                                                                  │
+│   ┌─────────────────────────────────────────────────────────────────────────┐   │
+│   │ STEP 1: Identify what activity we're looking for                        │   │
+│   │ ────────────────────────────────────────────────────────────────────────│   │
+│   │ Activity: Multiple failed authentication attempts to same account       │   │
+│   └─────────────────────────────────────────────────────────────────────────┘   │
+│                                       │                                         │
+│                                       ▼                                         │
+│   ┌─────────────────────────────────────────────────────────────────────────┐   │
+│   │ STEP 2: What systems can record this activity?                          │   │
+│   │ ────────────────────────────────────────────────────────────────────────│   │
+│   │ • Domain Controllers (Windows Security Log)                             │   │
+│   │ • Azure AD (Sign-in Logs)                                               │   │
+│   │ • VPN Concentrators                                                     │   │
+│   │ • Web Applications (application logs)                                   │   │
+│   │ • Linux servers (auth.log, sshd)                                        │   │
+│   └─────────────────────────────────────────────────────────────────────────┘   │
+│                                       │                                         │
+│                                       ▼                                         │
+│   ┌─────────────────────────────────────────────────────────────────────────┐   │
+│   │ STEP 3: What specific events/fields do we need?                         │   │
+│   │ ────────────────────────────────────────────────────────────────────────│   │
+│   │                                                                         │   │
+│   │  SOURCE              EVENT                 REQUIRED FIELDS              │   │
+│   │  ───────────────────────────────────────────────────────────────────    │   │
+│   │  Windows DC          4625                  TargetUserName,              │   │
+│   │                      (Failed Logon)        IpAddress, SubStatus,        │   │
+│   │                                            LogonType                     │   │
+│   │                                                                         │   │
+│   │  Azure AD            SigninLogs            UserPrincipalName,           │   │
+│   │                      ResultType=50126      IPAddress, ResultType,       │   │
+│   │                                            AppDisplayName               │   │
+│   │                                                                         │   │
+│   │  Linux               auth.log              username, source_ip,         │   │
+│   │                      "Failed password"     timestamp, service           │   │
+│   └─────────────────────────────────────────────────────────────────────────┘   │
+│                                       │                                         │
+│                                       ▼                                         │
+│   ┌─────────────────────────────────────────────────────────────────────────┐   │
+│   │ STEP 4: Verify data is available in SIEM                                │   │
+│   │ ────────────────────────────────────────────────────────────────────────│   │
+│   │ □ Data connector configured                                             │   │
+│   │ □ Events flowing to SIEM                                                │   │
+│   │ □ Required fields being parsed                                          │   │
+│   │ □ Data retention meets requirements                                     │   │
+│   │ □ Latency acceptable for detection SLA                                  │   │
+│   └─────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <h3>Data Source Reference Matrix</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Detection Category</th>
+                            <th>Primary Log Sources</th>
+                            <th>Key Events/Tables</th>
+                            <th>Critical Fields</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Authentication Attacks</strong></td>
+                            <td>Windows DC, Azure AD, VPN</td>
+                            <td>4624/4625, SigninLogs</td>
+                            <td>User, IP, LogonType, Status</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Malware Execution</strong></td>
+                            <td>EDR, Windows, Sysmon</td>
+                            <td>4688, DeviceProcessEvents, Sysmon 1</td>
+                            <td>Process, CommandLine, ParentProcess, Hash</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lateral Movement</strong></td>
+                            <td>Windows DC, Firewall, EDR</td>
+                            <td>4624 (Type 3/10), 4648, SMB logs</td>
+                            <td>SourceIP, DestIP, User, Service</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Exfiltration</strong></td>
+                            <td>Proxy, DLP, Cloud Apps</td>
+                            <td>Proxy logs, CloudAppEvents</td>
+                            <td>User, Destination, BytesOut, FileName</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Persistence</strong></td>
+                            <td>Sysmon, Windows, EDR</td>
+                            <td>Sysmon 12/13, 4698, 7045</td>
+                            <td>RegistryKey, TaskName, ServiceName</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Privilege Escalation</strong></td>
+                            <td>Windows DC, EDR</td>
+                            <td>4672, 4728, 4732</td>
+                            <td>User, Group, PrivilegeList</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 id="design-logic">Phase 3: Design Detection Logic</h2>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Detection Logic Design Process</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                    DETECTION LOGIC DESIGN                                        │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   ┌──────────────────────────────────────────────────────────────────────────┐  │
+│   │ EXAMPLE: Password Spray Detection                                        │  │
+│   └──────────────────────────────────────────────────────────────────────────┘  │
+│                                                                                  │
+│   1. DEFINE THE PATTERN                                                         │
+│   ─────────────────────                                                         │
+│   Attack Pattern: Attacker tries ONE password against MANY accounts             │
+│   Distinguishing Feature: Same source IP, many unique users, failed logins      │
+│                                                                                  │
+│   2. DETERMINE THRESHOLDS                                                        │
+│   ──────────────────────                                                         │
+│   ┌─────────────────────────────────────────────────────────────┐               │
+│   │  Parameter          │  Threshold  │  Rationale              │               │
+│   ├─────────────────────┼─────────────┼─────────────────────────┤               │
+│   │  Unique users       │  >= 5       │  Spray hits many users  │               │
+│   │  Failed attempts    │  >= 10      │  Not just typos         │               │
+│   │  Time window        │  10 minutes │  Attacks are fast       │               │
+│   │  Source             │  Single IP  │  Same attacker source   │               │
+│   └─────────────────────────────────────────────────────────────┘               │
+│                                                                                  │
+│   3. IDENTIFY EXCLUSIONS (Reduce False Positives)                               │
+│   ────────────────────────────────────────────────                               │
+│   • Exclude known load balancer/proxy IPs (many users behind one IP)            │
+│   • Exclude monitoring/health check accounts                                     │
+│   • Exclude known good IPs (office NAT ranges)                                  │
+│   • Time-based: Exclude password reset windows                                   │
+│                                                                                  │
+│   4. DEFINE ALERT CONTEXT                                                        │
+│   ─────────────────────                                                          │
+│   Include in alert:                                                              │
+│   • Source IP + GeoIP                                                           │
+│   • List of targeted usernames                                                  │
+│   • Time of first/last attempt                                                  │
+│   • Any successful logins from same IP                                          │
+│   • Historical activity from this IP                                            │
+│                                                                                  │
+│   5. BUILD THE QUERY                                                             │
+│   ─────────────────────                                                          │
+│                                                                                  │
+│   SENTINEL KQL:                                                                  │
+│   ┌──────────────────────────────────────────────────────────────────────────┐  │
+│   │ SigninLogs                                                               │  │
+│   │ | where ResultType == "50126"  // Invalid username or password           │  │
+│   │ | where IPAddress !in (known_proxy_ips)  // Exclusions                   │  │
+│   │ | summarize                                                              │  │
+│   │     TargetedUsers = dcount(UserPrincipalName),                           │  │
+│   │     UserList = make_set(UserPrincipalName),                              │  │
+│   │     AttemptCount = count(),                                              │  │
+│   │     FirstAttempt = min(TimeGenerated),                                   │  │
+│   │     LastAttempt = max(TimeGenerated)                                     │  │
+│   │     by IPAddress, bin(TimeGenerated, 10m)                                │  │
+│   │ | where TargetedUsers >= 5 and AttemptCount >= 10                        │  │
+│   └──────────────────────────────────────────────────────────────────────────┘  │
+│                                                                                  │
+│   SPLUNK SPL:                                                                    │
+│   ┌──────────────────────────────────────────────────────────────────────────┐  │
+│   │ index=windows EventCode=4625 SubStatus=0xC000006A                        │  │
+│   │ | where NOT cidrmatch("10.0.0.0/8", Source_Network_Address)              │  │
+│   │ | bin _time span=10m                                                     │  │
+│   │ | stats dc(Account_Name) as TargetedUsers,                               │  │
+│   │         values(Account_Name) as UserList,                                │  │
+│   │         count as AttemptCount,                                           │  │
+│   │         earliest(_time) as FirstAttempt,                                 │  │
+│   │         latest(_time) as LastAttempt                                     │  │
+│   │         by Source_Network_Address                                        │  │
+│   │ | where TargetedUsers >= 5 AND AttemptCount >= 10                        │  │
+│   └──────────────────────────────────────────────────────────────────────────┘  │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <h2 id="mitre-mapping">MITRE ATT&CK & Kill Chain Mapping</h2>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Cyber Kill Chain vs MITRE ATT&CK</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│           CYBER KILL CHAIN              MITRE ATT&CK TACTICS                    │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│  ┌─────────────────┐                                                            │
+│  │ 1. RECONNAIS-   │ ──────────────────▶  TA0043: Reconnaissance               │
+│  │    SANCE        │                      • T1595: Active Scanning              │
+│  │ (Target research│                      • T1592: Gather Victim Host Info      │
+│  └────────┬────────┘                                                            │
+│           │                                                                      │
+│           ▼                                                                      │
+│  ┌─────────────────┐                                                            │
+│  │ 2. WEAPONIZ-    │ ──────────────────▶  TA0042: Resource Development         │
+│  │    ATION        │                      • T1587: Develop Capabilities         │
+│  │ (Create payload)│                      • T1588: Obtain Capabilities          │
+│  └────────┬────────┘                                                            │
+│           │                                                                      │
+│           ▼                                                                      │
+│  ┌─────────────────┐                                                            │
+│  │ 3. DELIVERY     │ ──────────────────▶  TA0001: Initial Access               │
+│  │ (Send to target)│                      • T1566: Phishing                     │
+│  │                 │                      • T1190: Exploit Public App           │
+│  └────────┬────────┘                      • T1078: Valid Accounts               │
+│           │                                                                      │
+│           ▼                                                                      │
+│  ┌─────────────────┐                                                            │
+│  │ 4. EXPLOITATION │ ──────────────────▶  TA0002: Execution                    │
+│  │ (Trigger vuln)  │                      • T1059: Command/Script Interpreter   │
+│  │                 │                      • T1204: User Execution               │
+│  └────────┬────────┘                                                            │
+│           │                                                                      │
+│           ▼                                                                      │
+│  ┌─────────────────┐                      TA0003: Persistence                   │
+│  │ 5. INSTALLATION │ ──────────────────▶  • T1547: Boot/Logon Autostart        │
+│  │ (Establish      │                      • T1053: Scheduled Task               │
+│  │  persistence)   │                      • T1543: Create/Modify Service        │
+│  └────────┬────────┘                                                            │
+│           │                               TA0004: Privilege Escalation          │
+│           │                               TA0005: Defense Evasion               │
+│           ▼                                                                      │
+│  ┌─────────────────┐                      TA0006: Credential Access             │
+│  │ 6. COMMAND &    │ ──────────────────▶  • T1003: OS Credential Dumping       │
+│  │    CONTROL      │                                                            │
+│  │ (Remote control)│                      TA0011: Command and Control           │
+│  └────────┬────────┘                      • T1071: Application Layer Protocol   │
+│           │                               • T1573: Encrypted Channel            │
+│           ▼                                                                      │
+│  ┌─────────────────┐                      TA0007: Discovery                     │
+│  │ 7. ACTIONS ON   │                      TA0008: Lateral Movement              │
+│  │    OBJECTIVES   │ ──────────────────▶  TA0009: Collection                   │
+│  │ (Achieve goal)  │                      TA0010: Exfiltration                  │
+│  └─────────────────┘                      TA0040: Impact                        │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+ KEY INSIGHT: Kill Chain is LINEAR (7 steps), ATT&CK is a MATRIX (14 tactics).
+ Attackers may loop back or skip phases. Use both frameworks together.
+                        </pre>
+                    </div>
+                </div>
+
+                <h3>Mapping Use Cases to Frameworks</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Use Case</th>
+                            <th>Kill Chain Phase</th>
+                            <th>MITRE Tactic</th>
+                            <th>MITRE Technique</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Brute force detection</td>
+                            <td>Delivery</td>
+                            <td>Initial Access (TA0001)</td>
+                            <td>T1110 - Brute Force</td>
+                        </tr>
+                        <tr>
+                            <td>Suspicious PowerShell</td>
+                            <td>Exploitation</td>
+                            <td>Execution (TA0002)</td>
+                            <td>T1059.001 - PowerShell</td>
+                        </tr>
+                        <tr>
+                            <td>New scheduled task</td>
+                            <td>Installation</td>
+                            <td>Persistence (TA0003)</td>
+                            <td>T1053.005 - Scheduled Task</td>
+                        </tr>
+                        <tr>
+                            <td>LSASS memory access</td>
+                            <td>Installation</td>
+                            <td>Credential Access (TA0006)</td>
+                            <td>T1003.001 - LSASS Memory</td>
+                        </tr>
+                        <tr>
+                            <td>DNS beaconing</td>
+                            <td>C2</td>
+                            <td>C2 (TA0011)</td>
+                            <td>T1071.004 - DNS</td>
+                        </tr>
+                        <tr>
+                            <td>Large data upload</td>
+                            <td>Actions</td>
+                            <td>Exfiltration (TA0010)</td>
+                            <td>T1567 - Exfil to Cloud</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 id="implementation">Phase 4: Implementation</h2>
+                
+                <h3>Splunk Implementation Checklist</h3>
+                
+                <pre><code>SPLUNK CORRELATION SEARCH SETUP
+===============================
+
+1. Navigate: Settings → Searches, reports, and alerts
+2. Create New → Scheduled Search
+
+Configuration:
+- Search: [Your SPL query]
+- Schedule: Every 5-15 minutes (based on use case)
+- Time Range: -15m to now (overlap to catch stragglers)
+- Alert Actions:
+  □ Add to Triggered Alerts
+  □ Create Notable Event (for ES)
+  □ Send to SOAR
+  
+Notable Event Fields:
+- Title: "Password Spray Detected from {src_ip}"
+- Urgency: High
+- Owner: Unassigned
+- Status: New
+- Drill-down search: Detailed investigation query
+- Next Steps: Link to playbook
+
+Throttling:
+- Suppress for: 1 hour
+- Fields to group by: src_ip (don't alert on same IP repeatedly)
+</code></pre>
+
+                <h3>Sentinel Implementation Checklist</h3>
+                
+                <pre><code>SENTINEL ANALYTICS RULE SETUP
+=============================
+
+1. Navigate: Microsoft Sentinel → Analytics → Create → Scheduled query rule
+
+General Tab:
+- Name: "Password Spray Attack Detected"
+- Description: [Detailed description]
+- Severity: High
+- MITRE ATT&CK: Initial Access - T1110.003
+- Status: Enabled
+
+Rule Logic Tab:
+- Rule query: [Your KQL query]
+- Entity mapping:
+  • Account: UserPrincipalName
+  • IP: IPAddress
+- Query scheduling: Run every 5 minutes
+- Lookup data from: Last 10 minutes
+- Alert threshold: > 0 results
+
+Incident Settings Tab:
+- Create incidents: Enabled
+- Alert grouping: Group related alerts into a single incident
+- Grouping: By IPAddress (within 5 hours)
+
+Automated Response Tab:
+- Attach playbook: "Isolate-Compromised-Account"
+</code></pre>
+
+                <h2 id="testing-validation">Phase 5: Testing & Validation</h2>
+                
+                <div class="workflow-diagram">
+                    <div class="workflow-title">Detection Testing Workflow</div>
+                    <div class="workflow-container">
+                        <pre class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                    DETECTION TESTING WORKFLOW                                    │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   ┌────────────────────────────────────────────────────────────────────────┐    │
+│   │ 1. UNIT TESTING - Does the query work?                                 │    │
+│   │ ──────────────────────────────────────────────────────────────────────│    │
+│   │ • Run query against historical data with known attacks                 │    │
+│   │ • Verify query syntax is correct                                       │    │
+│   │ • Check query performance (run time < 30 seconds)                      │    │
+│   │ • Validate entity mapping extracts correct fields                      │    │
+│   └────────────────────────────────────────────────────────────────────────┘    │
+│                                       │                                         │
+│                                       ▼                                         │
+│   ┌────────────────────────────────────────────────────────────────────────┐    │
+│   │ 2. INTEGRATION TESTING - Does the alert fire?                          │    │
+│   │ ──────────────────────────────────────────────────────────────────────│    │
+│   │ • Enable rule in test/dev environment                                  │    │
+│   │ • Simulate attack using Atomic Red Team:                               │    │
+│   │   > Invoke-AtomicTest T1110.003 -TestNumbers 1                         │    │
+│   │ • Verify alert generated within expected time                          │    │
+│   │ • Check alert contains all required context                            │    │
+│   └────────────────────────────────────────────────────────────────────────┘    │
+│                                       │                                         │
+│                                       ▼                                         │
+│   ┌────────────────────────────────────────────────────────────────────────┐    │
+│   │ 3. FALSE POSITIVE TESTING - Does it alert on normal activity?          │    │
+│   │ ──────────────────────────────────────────────────────────────────────│    │
+│   │ • Run in "alert-only" mode for 1-2 weeks (don't page SOC yet)          │    │
+│   │ • Review all generated alerts                                          │    │
+│   │ • Categorize: True Positive / False Positive / Benign True Positive    │    │
+│   │ • Tune thresholds and exclusions based on findings                     │    │
+│   │ • Target: <20% false positive rate                                     │    │
+│   └────────────────────────────────────────────────────────────────────────┘    │
+│                                       │                                         │
+│                                       ▼                                         │
+│   ┌────────────────────────────────────────────────────────────────────────┐    │
+│   │ 4. PRODUCTION DEPLOYMENT - Go live                                      │    │
+│   │ ──────────────────────────────────────────────────────────────────────│    │
+│   │ • Enable alert routing to SOC queue                                    │    │
+│   │ • Train analysts on use case and response procedures                   │    │
+│   │ • Document in detection catalog                                        │    │
+│   │ • Set review date (30/60/90 days)                                      │    │
+│   └────────────────────────────────────────────────────────────────────────┘    │
+│                                       │                                         │
+│                                       ▼                                         │
+│   ┌────────────────────────────────────────────────────────────────────────┐    │
+│   │ 5. CONTINUOUS VALIDATION - Keep it working                              │    │
+│   │ ──────────────────────────────────────────────────────────────────────│    │
+│   │ • Periodic red team/purple team testing                                │    │
+│   │ • Track detection metrics (TP, FP, FN rates)                           │    │
+│   │ • Update for new attack variations                                     │    │
+│   │ • Retire if threat no longer relevant                                  │    │
+│   └────────────────────────────────────────────────────────────────────────┘    │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="info-box interview">
+                    <div class="info-box-header">
+                        <span class="info-box-icon">💼</span>
+                        Interview Question
+                    </div>
+                    <div class="info-box-content">
+                        <p><strong>"Walk me through how you would develop a new SIEM use case."</strong></p>
+                        <ol>
+                            <li><strong>Requirements:</strong> Start by understanding the threat or compliance requirement. Map to MITRE ATT&CK. Document the business context and stakeholder.</li>
+                            <li><strong>Data Mapping:</strong> Identify which log sources capture this activity. Verify the data is being collected and has the required fields.</li>
+                            <li><strong>Logic Design:</strong> Define the detection pattern, thresholds, time windows, and exclusions. Write the query in SPL/KQL.</li>
+                            <li><strong>Implementation:</strong> Configure the scheduled search/analytics rule. Set up alerting, entity mapping, and incident creation.</li>
+                            <li><strong>Testing:</strong> Validate with Atomic Red Team. Run in test mode to baseline false positives. Tune thresholds.</li>
+                            <li><strong>Deployment:</strong> Enable in production. Train SOC. Document in detection catalog. Schedule periodic reviews.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <h2 id="summary">Chapter Summary</h2>
+                
+                <ul>
+                    <li><strong>Requirements Sources:</strong> Threat intel, compliance, incidents, business needs, threat modeling</li>
+                    <li><strong>Stakeholder Translation:</strong> Convert business language to SIEM terms (events, log sources, thresholds)</li>
+                    <li><strong>Data Mapping:</strong> Activity → Log Sources → Events → Fields → Verify availability</li>
+                    <li><strong>Detection Logic:</strong> Pattern + Thresholds + Exclusions + Context = Effective detection</li>
+                    <li><strong>Framework Mapping:</strong> Use both Kill Chain (linear) and MITRE ATT&CK (matrix) for coverage</li>
+                    <li><strong>Testing:</strong> Unit test → Integration test → FP testing → Production → Continuous validation</li>
+                    <li><strong>Documentation:</strong> Every use case needs: business context, MITRE mapping, data requirements, detection logic, response playbook</li>
+                </ul>
+                
+                <div class="page-navigation">
+                    <a href="a-2-network-fundamentals.html" class="nav-button prev">
+                        <span class="nav-button-icon">←</span>
+                        <div>
+                            <span class="nav-button-label">Previous</span>
+                            <span class="nav-button-title">Network Fundamentals</span>
+                        </div>
+                    </a>
+                    <a href="index.html" class="nav-button next">
+                        <span class="nav-button-icon">→</span>
+                        <div>
+                            <span class="nav-button-label">Back to</span>
+                            <span class="nav-button-title">Home</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>
